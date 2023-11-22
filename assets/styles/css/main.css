@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+:root {
+  --color-bg-body: #e1d4c9;
+  --color-bg-container: #665f55;
+  --color-bg-backdrop: rgba(64, 63, 61, 0.8);
+  --color-border-light: #c1b6ad;
+  --color-border-dark: #665f55;
+  --color-text-dark: #403f3d;
+  --color-text-light: #e1d4c9;
+  --color-text-accent: #b0907a;
+}
+
+body {
+  background-color: var(--color-bg-body);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  padding: 1.25rem 2.5rem;
+}
+body .boby-wrapper {
+  max-width: 85rem;
+  margin: auto;
+}
+
+h1 {
+  color: var(--color-text-light);
+  font-family: Inter;
+  font-size: 4.5rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 105%;
+}
+h1 span {
+  color: var(--color-text-accent);
+}
+
+h2 {
+  font-size: 3.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+}
+h2 span {
+  color: var(--color-text-accent);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav ul li {
+  margin-right: 2.5rem;
+}
+nav ul li:last-child {
+  margin-right: 0rem;
+}
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+nav ul li a::after {
+  content: "";
+  height: 0.125rem;
+  background-color: var(--color-text-dark);
+  display: block;
+  transition: all 0.3s ease-out;
+  width: 0;
+}
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+.header-menu-link {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.header-menu-link::after {
+  content: "";
+  height: 0.125rem;
+  background-color: var(--color-text-dark);
+  display: block;
+  transition: all 0.3s ease-out;
+  width: 0;
+}
+.header-menu-link:hover::after {
+  width: 100%;
+}
+.header-menu-link a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-menu-link .header-menu-link__text {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}/*# sourceMappingURL=main.css.map */
