@@ -7,8 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Coffe House</title>
   <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
-  <link href="assets/styles/css/main.css" rel="stylesheet">
   <link href="assets/styles/css/normalize.css" rel="stylesheet">
+  <link href="assets/styles/css/main.css" rel="stylesheet">
+  <link href="assets/styles/css/carousel.css" rel="stylesheet">
 </head>
 
 <body class="home-page">
@@ -134,16 +135,16 @@
         </div>
       </div>
     </section>
-    <section class="section_favourites-coffee" id="favorite-coffee">
+    <section class="section_favorites-coffee" id="favorite-coffee">
       <h2>Choose your <span>favorite</span> coffee</h2>
       <div class="carousel">
         <div class="carousel__tools-bar">
-          <div class="carousel__arrow_left">
+          <div class="carousel__arrow carousel__arrow_left">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <div class="carousel__arrow_right">
+          <div class="carousel__arrow carousel__arrow_right">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -152,7 +153,7 @@
         <div class="carousel__wrapper">
           <ul class="carousel__item-list">
             <li class="carousel__item">
-              <div class="carousel__coffe-img"><img src="/assets/images/carousel/slider-1.png"
+              <div class="carousel__coffe-img"><img src="assets/images/carousel/slider-1.png"
                   alt="coffee S’mores Frappuccino"></div>
               <div class="carousel__coffe-text">
                 <div class="carousel__coffe-title">S’mores Frappuccino</div>
@@ -162,7 +163,7 @@
               </div>
             </li>
             <li class="carousel__item">
-              <div class="carousel__coffe-img"><img src="/assets/images/carousel/slider-2.png"
+              <div class="carousel__coffe-img"><img src="assets/images/carousel/slider-2.png"
                   alt="coffee Caramel Macchiato"></div>
               <div class="carousel__coffe-text">
                 <div class="carousel__coffe-title">Caramel Macchiato</div>
@@ -172,7 +173,7 @@
               </div>
             </li>
             <li class="carousel__item">
-              <div class="carousel__coffe-img"><img src="/assets/images/carousel/slider-3.png" alt="coffee Ice coffee">
+              <div class="carousel__coffe-img"><img src="assets/images/carousel/slider-3.png" alt="coffee Ice coffee">
               </div>
               <div class="carousel__coffe-text">
                 <div class="carousel__coffe-title">Ice coffee</div>
@@ -183,11 +184,17 @@
             </li>
           </ul>
         </div>
-        <div class="carousel__progress-bar">
-          <ul>
-            <li class="carousel__progress-line"></li>
-            <li class="carousel__progress-line"></li>
-            <li class="carousel__progress-line"></li>
+        <div class="carousel__progress-bar progress-bar">
+          <ul class="progress-bar__wrapper">
+            <li class="progress-bar__line current">
+              <div class="progress-bar__fill"></div>
+            </li>
+            <li class="progress-bar__line">
+              <div class="progress-bar__fill"></div>
+            </li>
+            <li class="progress-bar__line">
+              <div class="progress-bar__fill"></div>
+            </li>
           </ul>
         </div>
       </div>
