@@ -148,11 +148,12 @@ nav {
   }
 }
 section {
-  border-radius: 40px;
-  padding: 6.25rem;
+  margin-bottom: 6.25rem;
 }
 .section_enjoy {
   background: url("../../images/home/img-hero.jpg") no-repeat center center;
+  padding: 6.25rem;
+  border-radius: 40px;
   &__wrapper {
     max-width: 33.1rem;
     display: flex;

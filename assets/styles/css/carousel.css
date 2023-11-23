@@ -49,7 +49,7 @@
 .carousel__arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(50%);
+  transform: translateY(-95%);
   display: flex;
   width: 3.75rem;
   height: 3.75rem;
@@ -59,10 +59,10 @@
   border: solid 1px var(--color-text-dark);
 }
 .carousel__arrow_left {
-  left: -6.25rem;
+  left: 0;
 }
 .carousel__arrow_right {
-  right: -6.25rem;
+  right: 0;
 }
 .carousel__arrow_right svg {
   transform: rotate(180deg);

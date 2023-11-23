@@ -155,12 +155,13 @@ nav ul li a:hover::after {
 }
 
 section {
-  border-radius: 40px;
-  padding: 6.25rem;
+  margin-bottom: 6.25rem;
 }
 
 .section_enjoy {
   background: url("../../images/home/img-hero.jpg") no-repeat center center;
+  padding: 6.25rem;
+  border-radius: 40px;
 }
 .section_enjoy__wrapper {
   max-width: 33.1rem;
