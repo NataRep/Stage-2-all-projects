@@ -51,6 +51,7 @@ h2 {
   font-style: normal;
   font-weight: 600;
   line-height: 125%;
+  margin-top: 0;
   span {
     color: var(--color-text-accent);
     font-style: italic;
@@ -189,5 +190,10 @@ section {
         }
       }
     }
+  }
+}
+.section_favorites-coffee {
+  h2 {
+    text-align: center;
   }
 }
