@@ -23,7 +23,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 .carousel__coffe-text {
   text-align: center;
@@ -49,14 +49,22 @@
 .carousel__arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-95%);
+  transform: translateY(-80%);
   display: flex;
   width: 3.75rem;
   height: 3.75rem;
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  border: solid 1px var(--color-text-dark);
+  border: solid 1px var(--color-border-dark);
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+}
+.carousel__arrow:hover {
+  background-color: var(--color-border-dark);
+}
+.carousel__arrow:hover svg path {
+  stroke: var(--color-bg-body);
 }
 .carousel__arrow_left {
   left: 0;
