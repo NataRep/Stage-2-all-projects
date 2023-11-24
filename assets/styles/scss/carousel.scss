@@ -25,7 +25,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
   }
   &__coffe-text {
     text-align: center;
@@ -51,19 +51,30 @@
   &__arrow {
     position: absolute;
     top: 50%;
-    transform: translateY(50%);
+    transform: translateY(-80%);
     display: flex;
     width: 3.75rem;
     height: 3.75rem;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    border: solid 1px var(--color-text-dark);
+    border: solid 1px var(--color-border-dark);
+    cursor: pointer;
+    @include transition(background-color);
+
+    &:hover {
+      background-color: var(--color-border-dark);
+      svg {
+        path {
+          stroke: var(--color-bg-body);
+        }
+      }
+    }
     &_left {
-      left: -6.25rem;
+      left: 0;
     }
     &_right {
-      right: -6.25rem;
+      right: 0;
       svg {
         transform: rotate(180deg);
       }
