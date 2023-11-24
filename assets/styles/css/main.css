@@ -129,13 +129,18 @@ nav ul li a {
 nav ul li a::after {
   content: "";
   height: 0.125rem;
-  background-color: var(--color-text-dark);
+  background-color: none;
   display: block;
-  transition: all 0.3s ease-out;
   width: 0;
+  transition: all 0.3s ease-out;
 }
 nav ul li a:hover::after {
+  content: "";
+  height: 0.125rem;
+  background-color: var(--color-text-dark);
+  display: block;
   width: 100%;
+  transition: all 0.3s ease-out;
 }
 
 .header-menu-link {
@@ -148,13 +153,19 @@ nav ul li a:hover::after {
 .header-menu-link::after {
   content: "";
   height: 0.125rem;
-  background-color: var(--color-text-dark);
+  background-color: none;
   display: block;
+  width: 0;
   transition: all 0.3s ease-out;
   width: 0;
 }
 .header-menu-link:hover::after {
+  content: "";
+  height: 0.125rem;
+  background-color: var(--color-text-dark);
+  display: block;
   width: 100%;
+  transition: all 0.3s ease-out;
 }
 .header-menu-link a {
   display: flex;
@@ -298,6 +309,27 @@ footer .contacts__item {
   font-weight: 600;
   line-height: 150%;
   color: var(--color-text-light);
+}
+footer .contacts__item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer .contacts__item a::after {
+  content: "";
+  height: 0.125rem;
+  background-color: none;
+  display: block;
+  width: 0;
+  transition: all 0.3s ease-out;
+}
+footer .contacts__item a:hover::after {
+  content: "";
+  height: 0.125rem;
+  background-color: var(--color-text-light);
+  display: block;
+  width: 100%;
+  transition: all 0.3s ease-out;
 }
 
 .social-links__list {
