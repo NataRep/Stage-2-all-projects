@@ -14,6 +14,10 @@ async function createComponent() {
 
   //фильтруем отображение карточек для первичного вывода
   filterCards("coffee");
+
+  //кнопки переключения
+  const buttons = document.querySelectorAll(".menu-switcher__button");
+  buttons.addEventListener("click", switchMenu(event, buttons));
 }
 
 createComponent();
@@ -55,7 +59,6 @@ function addCards(place, productsJSON) {
 function filterCards(category) {
   const cardsList = document.querySelectorAll(".card");
   cardsList.forEach((card) => {
-    console.log(card.dataset.category);
     if (card.dataset.category === category) {
       card.classList.remove("hidden");
     } else if (
@@ -65,4 +68,27 @@ function filterCards(category) {
       card.classList.add("hidden");
     }
   });
+}
+function getCategory(buttons) {
+  let category;
+  buttons.forEach((button) => {
+    if (button.classList.contains("current")) {
+      category = button.dataset.category;
+    }
+  });
+  return category;
+}
+
+function switchMenu(event, buttons) {
+  const buttonActive = event.target;
+  buttons.forEach((button) => {
+    if (button === buttonActive) {
+      button.classList.add("current");
+    } else {
+      if (button.classList.contains("current")) {
+        button.classList.remove("current");
+      }
+    }
+  });
+  filterCards(getCategory());
 }
