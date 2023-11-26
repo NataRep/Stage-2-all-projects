@@ -30,7 +30,7 @@ body .boby-wrapper {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 h1 {

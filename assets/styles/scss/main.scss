@@ -39,7 +39,7 @@ body {
   }
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 h1 {
   font-size: 3.75rem;
