@@ -71,26 +71,19 @@ function filterCards(category) {
     }
   });
 }
-function getCategory() {
-  let category;
-  buttons.forEach((button) => {
-    if (button.classList.contains("current")) {
-      category = button.dataset.category;
-    }
-  });
-  return category;
-}
 
 function switchMenu(event) {
   const buttonActive = event.target.closest(".button");
+  let category;
   buttons.forEach((button) => {
     if (button === buttonActive) {
       button.classList.add("current");
+      category = button.dataset.category;
     } else {
       if (button.classList.contains("current")) {
         button.classList.remove("current");
       }
     }
   });
-  filterCards(getCategory());
+  filterCards(category);
 }
