@@ -23,7 +23,7 @@ function createCard(product) {
   const price = product.price;
   const category = product.category;
 
-  const urlFolderImages = "assets/images/menu";
+  const urlFolderImages = "assets/images/menu/";
   const image =
     urlFolderImages + product.name.toLowerCase().split(" ").join("-") + ".jpg";
 
