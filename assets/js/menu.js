@@ -82,7 +82,6 @@ function getCategory() {
 }
 
 function switchMenu(event) {
-  con;
   const buttonActive = event.target;
   buttons.forEach((button) => {
     if (button === buttonActive) {
