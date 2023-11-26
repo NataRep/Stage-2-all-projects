@@ -17,7 +17,9 @@ async function createComponent() {
 
   //кнопки переключения
   const buttons = document.querySelectorAll(".menu-switcher__button");
-  buttons.addEventListener("click", switchMenu(event, buttons));
+  buttons.forEach((button)=> {
+    button.ddEventListener("click", switchMenu(event));
+  }
 }
 
 createComponent();
@@ -69,7 +71,7 @@ function filterCards(category) {
     }
   });
 }
-function getCategory(buttons) {
+function getCategory() {
   let category;
   buttons.forEach((button) => {
     if (button.classList.contains("current")) {
@@ -79,7 +81,8 @@ function getCategory(buttons) {
   return category;
 }
 
-function switchMenu(event, buttons) {
+function switchMenu(event) {
+  con
   const buttonActive = event.target;
   buttons.forEach((button) => {
     if (button === buttonActive) {
