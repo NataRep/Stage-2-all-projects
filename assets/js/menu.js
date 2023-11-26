@@ -1,4 +1,4 @@
-const cardsList = document.querySelector(".cards-list");
+const cardsListWrapper = document.querySelector(".cards-list");
 
 async function createComponent() {
   //получаем с сервера json
@@ -7,12 +7,15 @@ async function createComponent() {
   const productsJSON = await response.json();
   console.log(productsJSON);
 
-  //проверяем валидность данных
+  //проверяем валидность данных и создаем карточки товаров
   if (!Array.isArray(productsJSON)) {
     throw TypeError(`Menu error. Products array i invalid.`);
   } else {
-    addCards(cardsList, productsJSON);
+    addCards(cardsListWrapper, productsJSON);
   }
+
+  //фильтруем отображение карточек для первичного вывода
+  filterCards("coffee");
 }
 
 createComponent();
@@ -28,7 +31,7 @@ function createCard(product) {
     urlFolderImages + product.name.toLowerCase().split(" ").join("-") + ".jpg";
 
   const card = document.createElement("li");
-  card.classList.add("card", "cards-list__card");
+  card.classList.add("card", "cards-list__card", "hidden");
   card.dataset.category = category;
 
   const content = `<div class="card__info">
@@ -48,5 +51,19 @@ function createCard(product) {
 function addCards(place, productsJSON) {
   productsJSON.forEach((product) => {
     place.append(createCard(product));
+  });
+}
+
+function filterCards(category) {
+  const cardsList = cardsListWrapper.querySelectorAll(".cards");
+  Array(cardsList).forEach((card) => {
+    if (card.dataset.category === category) {
+      card.classList.remove("hidden");
+    } else if (
+      card.dataset.category != category &&
+      !card.classList.contains("hidden")
+    ) {
+      card.classList.add("hidden");
+    }
   });
 }
