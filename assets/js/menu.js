@@ -3,9 +3,7 @@ const cardsListWrapper = document.querySelector(".cards-list");
 async function createComponent() {
   //получаем с сервера json
   let response = await fetch("assets/products.json");
-  console.log(response);
   const productsJSON = await response.json();
-  console.log(productsJSON);
 
   //проверяем валидность данных и создаем карточки товаров
   if (!Array.isArray(productsJSON)) {
@@ -55,8 +53,9 @@ function addCards(place, productsJSON) {
 }
 
 function filterCards(category) {
-  const cardsList = cardsListWrapper.querySelectorAll(".cards");
-  Array(cardsList).forEach((card) => {
+  const cardsList = document.querySelectorAll(".card");
+  cardsList.forEach((card) => {
+    console.log(card.dataset.category);
     if (card.dataset.category === category) {
       card.classList.remove("hidden");
     } else if (
