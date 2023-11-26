@@ -21,7 +21,7 @@ createComponent();
 //кнопки переключения
 const buttons = document.querySelectorAll(".menu-switcher__button");
 buttons.forEach((button) => {
-  button.addEventListener("click", switchMenu());
+  button.addEventListener("click", switchMenu);
 });
 
 function createCard(product) {
