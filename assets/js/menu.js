@@ -17,9 +17,9 @@ async function createComponent() {
 
   //кнопки переключения
   const buttons = document.querySelectorAll(".menu-switcher__button");
-  buttons.forEach((button)=> {
+  buttons.forEach((button) => {
     button.ddEventListener("click", switchMenu(event));
-  }
+  });
 }
 
 createComponent();
@@ -82,7 +82,7 @@ function getCategory() {
 }
 
 function switchMenu(event) {
-  con
+  con;
   const buttonActive = event.target;
   buttons.forEach((button) => {
     if (button === buttonActive) {
