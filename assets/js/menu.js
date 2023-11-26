@@ -14,15 +14,15 @@ async function createComponent() {
 
   //фильтруем отображение карточек для первичного вывода
   filterCards("coffee");
-
-  //кнопки переключения
-  const buttons = document.querySelectorAll(".menu-switcher__button");
-  buttons.forEach((button) => {
-    button.ddEventListener("click", switchMenu(event));
-  });
 }
 
 createComponent();
+
+//кнопки переключения
+const buttons = document.querySelectorAll(".menu-switcher__button");
+buttons.forEach((button) => {
+  button.addEventListener("click", switchMenu(event));
+});
 
 function createCard(product) {
   const name = product.name;
