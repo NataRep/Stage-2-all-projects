@@ -82,7 +82,7 @@ function getCategory() {
 }
 
 function switchMenu(event) {
-  const buttonActive = event.target;
+  const buttonActive = event.target.closest(".button");
   buttons.forEach((button) => {
     if (button === buttonActive) {
       button.classList.add("current");
