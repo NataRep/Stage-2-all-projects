@@ -1,18 +1,20 @@
 const cardsList = document.querySelector(".cards-list");
 
-//получаем с сервера json
 async function createComponent() {
+  //получаем с сервера json
   let response = await fetch("assets/products.json");
   console.log(response);
   const productsJSON = await response.json();
   console.log(productsJSON);
 
+  //проверяем валидность данных
   if (!Array.isArray(productsJSON)) {
     throw TypeError(`Menu error. Products array i invalid.`);
   } else {
     addCards(cardsList, productsJSON);
   }
 }
+
 createComponent();
 
 function createCard(product) {
@@ -26,7 +28,7 @@ function createCard(product) {
     urlFolderImages + product.name.toLowerCase().split(" ").join("-") + ".jpg";
 
   const card = document.createElement("li");
-  card.classeList.add("card", "cards-list__card");
+  card.classList.add("card", "cards-list__card");
   card.dataset.category = category;
 
   const content = `<div class="card__info">
@@ -38,7 +40,7 @@ function createCard(product) {
 </div>
 <div class="card__price">$${price}</div>`;
 
-  card.insertAdjacentHTML("afterbegine", content);
+  card.insertAdjacentHTML("afterbegin", content);
 
   return card;
 }
