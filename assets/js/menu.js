@@ -3,9 +3,15 @@ const cardsList = document.querySelector("cards-list");
 //получаем с сервера json
 async function createComponent() {
   let response = await fetch("assets/products.json");
+  console.log(response);
   const productsJSON = await response.json();
+  console.log(productsJSON);
 
-  addCards(cardsList, productsJSON);
+  if (!Array.isArray(productsJSON)) {
+    throw TypeError(`Menu error. Products array i invalid.`);
+  } else {
+    addCards(cardsList, productsJSON);
+  }
 }
 createComponent();
 
