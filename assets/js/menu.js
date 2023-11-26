@@ -1,4 +1,4 @@
-const cardsList = document.querySelector("cards-list");
+const cardsList = document.querySelector(".cards-list");
 
 //получаем с сервера json
 async function createComponent() {
