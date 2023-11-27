@@ -38,6 +38,8 @@
     &.current {
       background-color: var(--color-bg-container);
       color: var(--color-text-light);
+      cursor: auto;
+      pointer-events: none;
       .button__icon {
         background-color: var(--color-bg-body);
       }
