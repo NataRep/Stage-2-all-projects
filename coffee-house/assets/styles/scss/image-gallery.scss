@@ -16,29 +16,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 41.25rem;
     img {
-      transform: scale(1.1);
+      transform: scale(1);
+      transform-origin: bottom;
       @include transition(transform);
     }
     &:nth-child(1) {
       grid-area: A;
+      overflow: hidden;
+      max-height: 36.875rem;
+      img {
+      }
     }
     &:nth-child(2) {
       grid-area: B;
-      max-height: 430px;
+      max-height: 26.875rem;
       overflow: hidden;
+      img {
+      }
     }
     &:nth-child(3) {
       grid-area: D;
-      max-height: 430px;
+      max-height: 26.875rem;
       overflow: hidden;
+      img {
+      }
     }
     &:nth-child(4) {
       grid-area: C;
+      overflow: hidden;
+      max-height: 36.875rem;
+      img {
+      }
     }
     &:hover {
       img {
-        transform: scale(1);
+        transform: scale(0.95);
       }
     }
   }
