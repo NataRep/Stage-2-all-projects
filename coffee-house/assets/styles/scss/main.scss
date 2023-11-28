@@ -162,6 +162,9 @@ nav {
   &:not(.active):hover::after {
     @include bottom-line(100%, var(--color-text-dark));
   }
+  &.active::after {
+    @include bottom-line(100%, var(--color-text-dark));
+  }
   a {
     display: flex;
     align-items: center;
@@ -307,27 +310,34 @@ footer {
     }
     &__item {
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-family: Inter;
-      font-size: 1rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 150%;
-      color: var(--color-text-light);
+      flex-direction: column;
+      align-items: center;
+      width: fit-content;
+
+      &::after {
+        @include bottom-line(0, none);
+      }
+      &:hover {
+        &::after {
+          @include bottom-line(100%, var(--color-text-light));
+        }
+      }
+      &-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-family: Inter;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+        color: var(--color-text-light);
+      }
       a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        &::after {
-          @include bottom-line(0, none);
-        }
-        &:hover {
-          &::after {
-            @include bottom-line(100%, var(--color-text-light));
-          }
-        }
       }
     }
   }
