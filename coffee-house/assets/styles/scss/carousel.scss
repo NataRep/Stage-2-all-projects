@@ -62,7 +62,17 @@
     cursor: pointer;
     @include transition(background-color);
 
-    &:hover {
+    @media (hover: hover) and (min-width: 768px) {
+      &:hover {
+        background-color: var(--color-border-dark);
+        svg {
+          path {
+            stroke: var(--color-bg-body);
+          }
+        }
+      }
+    }
+    &:active {
       background-color: var(--color-border-dark);
       svg {
         path {
@@ -70,6 +80,7 @@
         }
       }
     }
+
     &_left {
       left: 0;
     }

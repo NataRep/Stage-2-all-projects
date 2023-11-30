@@ -60,10 +60,18 @@
   cursor: pointer;
   transition: background-color 0.3s ease-out;
 }
-.carousel__arrow:hover {
+@media (hover: hover) and (min-width: 768px) {
+  .carousel__arrow:hover {
+    background-color: var(--color-border-dark);
+  }
+  .carousel__arrow:hover svg path {
+    stroke: var(--color-bg-body);
+  }
+}
+.carousel__arrow:active {
   background-color: var(--color-border-dark);
 }
-.carousel__arrow:hover svg path {
+.carousel__arrow:active svg path {
   stroke: var(--color-bg-body);
 }
 .carousel__arrow_left {

@@ -36,6 +36,8 @@
   overflow: hidden;
   max-height: 36.875rem;
 }
-.image-gallery__item:hover img {
-  transform: scale(0.95);
+@media (hover: hover) and (min-width: 768px) {
+  .image-gallery__item:hover img {
+    transform: scale(0.95);
+  }
 }/*# sourceMappingURL=image-gallery.css.map */

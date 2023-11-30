@@ -100,7 +100,7 @@ main {
   background-color: var(--color-bg-body);
   transition: all 0.3s ease-out;
 }
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 768px) {
   .button a:hover {
     background-color: var(--color-bg-container);
     color: var(--color-text-light);
@@ -109,6 +109,14 @@ main {
     transition: all 0.3s ease-out;
     fill: var(--color-text-light);
   }
+}
+.button a:active {
+  background-color: var(--color-bg-container);
+  color: var(--color-text-light);
+}
+.button a:active svg path {
+  transition: all 0.3s ease-out;
+  fill: var(--color-text-light);
 }
 
 header {
@@ -153,13 +161,15 @@ nav ul li a::after {
   width: 0;
   transition: all 0.3s ease-out;
 }
-nav ul li a:hover::after {
-  content: "";
-  height: 0.125rem;
-  background-color: var(--color-text-dark);
-  display: block;
-  width: 100%;
-  transition: all 0.3s ease-out;
+@media (hover: hover) and (min-width: 768px) {
+  nav ul li a:hover::after {
+    content: "";
+    height: 0.125rem;
+    background-color: var(--color-text-dark);
+    display: block;
+    width: 100%;
+    transition: all 0.3s ease-out;
+  }
 }
 
 .header-menu-link {
@@ -183,13 +193,15 @@ nav ul li a:hover::after {
   transition: all 0.3s ease-out;
   width: 0;
 }
-.header-menu-link:not(.active):hover::after {
-  content: "";
-  height: 0.125rem;
-  background-color: var(--color-text-dark);
-  display: block;
-  width: 100%;
-  transition: all 0.3s ease-out;
+@media (hover: hover) and (min-width: 768px) {
+  .header-menu-link:not(.active):hover::after {
+    content: "";
+    height: 0.125rem;
+    background-color: var(--color-text-dark);
+    display: block;
+    width: 100%;
+    transition: all 0.3s ease-out;
+  }
 }
 .header-menu-link.active::after {
   content: "";
@@ -259,11 +271,22 @@ section {
   width: calc(200px - 9.75rem);
   border: none;
 }
-.section_enjoy .button a:hover {
+@media (hover: hover) and (min-width: 768px) {
+  .section_enjoy .button a:hover {
+    background-color: var(--color-bg-body);
+    color: inherit;
+  }
+  .section_enjoy .button a:hover .button__icon {
+    opacity: 1;
+    width: 23px;
+    padding-left: 0.5rem;
+  }
+}
+.section_enjoy .button a:active {
   background-color: var(--color-bg-body);
   color: inherit;
 }
-.section_enjoy .button a:hover .button__icon {
+.section_enjoy .button a:active .button__icon {
   opacity: 1;
   width: 23px;
   padding-left: 0.5rem;
@@ -359,13 +382,15 @@ footer .contacts__item::after {
   width: 0;
   transition: all 0.3s ease-out;
 }
-footer .contacts__item:hover::after {
-  content: "";
-  height: 0.125rem;
-  background-color: var(--color-text-light);
-  display: block;
-  width: 100%;
-  transition: all 0.3s ease-out;
+@media (hover: hover) and (min-width: 768px) {
+  footer .contacts__item:hover::after {
+    content: "";
+    height: 0.125rem;
+    background-color: var(--color-text-light);
+    display: block;
+    width: 100%;
+    transition: all 0.3s ease-out;
+  }
 }
 footer .contacts__item-wrapper {
   display: flex;
@@ -400,9 +425,17 @@ footer .contacts__item a {
   border: 1px solid var(--color-border-light);
   transition: all 0.3s ease-out;
 }
-.social-links__item a:hover {
+@media (hover: hover) and (min-width: 768px) {
+  .social-links__item a:hover {
+    background-color: var(--color-bg-body);
+  }
+  .social-links__item a:hover path {
+    stroke: var(--color-bg-container);
+  }
+}
+.social-links__item a:active {
   background-color: var(--color-bg-body);
 }
-.social-links__item a:hover path {
+.social-links__item a:active path {
   stroke: var(--color-bg-container);
 }/*# sourceMappingURL=main.css.map */

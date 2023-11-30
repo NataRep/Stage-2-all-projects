@@ -40,12 +40,14 @@
 .menu-switcher .button.current .button__icon {
   background-color: var(--color-bg-body);
 }
-.menu-switcher .button:hover {
-  background-color: var(--color-bg-container);
-  color: var(--color-text-light);
-}
-.menu-switcher .button:hover .button__icon {
-  background-color: var(--color-bg-body);
+@media (hover: hover) and (min-width: 768px) {
+  .menu-switcher .button:hover {
+    background-color: var(--color-bg-container);
+    color: var(--color-text-light);
+  }
+  .menu-switcher .button:hover .button__icon {
+    background-color: var(--color-bg-body);
+  }
 }
 
 .cards-list {
@@ -99,6 +101,8 @@
   font-weight: 600;
   line-height: 125%;
 }
-.card:hover img {
-  transform: scale(1);
+@media (hover: hover) and (min-width: 768px) {
+  .card:hover img {
+    transform: scale(1);
+  }
 }/*# sourceMappingURL=cards-list.css.map */

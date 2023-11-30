@@ -100,7 +100,7 @@ main {
     background-color: var(--color-bg-body);
 
     @include transition(all);
-    @media (hover: hover) {
+    @media (hover: hover) and (min-width: 768px) {
       &:hover {
         background-color: var(--color-bg-container);
         color: var(--color-text-light);
@@ -109,6 +109,16 @@ main {
             @include transition(all);
             fill: var(--color-text-light);
           }
+        }
+      }
+    }
+    &:active {
+      background-color: var(--color-bg-container);
+      color: var(--color-text-light);
+      svg {
+        path {
+          @include transition(all);
+          fill: var(--color-text-light);
         }
       }
     }
@@ -146,8 +156,10 @@ nav {
         &::after {
           @include bottom-line(0, none);
         }
-        &:hover::after {
-          @include bottom-line(100%, var(--color-text-dark));
+        @media (hover: hover) and (min-width: 768px) {
+          &:hover::after {
+            @include bottom-line(100%, var(--color-text-dark));
+          }
         }
       }
     }
@@ -167,8 +179,10 @@ nav {
     @include bottom-line(0, none);
     width: 0;
   }
-  &:not(.active):hover::after {
-    @include bottom-line(100%, var(--color-text-dark));
+  @media (hover: hover) and (min-width: 768px) {
+    &:not(.active):hover::after {
+      @include bottom-line(100%, var(--color-text-dark));
+    }
   }
   &.active::after {
     @include bottom-line(100%, var(--color-text-dark));
@@ -232,7 +246,18 @@ section {
     a {
       width: calc(200px - 4.875rem * 2);
       border: none;
-      &:hover {
+      @media (hover: hover) and (min-width: 768px) {
+        &:hover {
+          background-color: var(--color-bg-body);
+          color: inherit;
+          .button__icon {
+            opacity: 1;
+            width: 23px;
+            padding-left: 0.5rem;
+          }
+        }
+      }
+      &:active {
         background-color: var(--color-bg-body);
         color: inherit;
         .button__icon {
@@ -329,9 +354,11 @@ footer {
       &::after {
         @include bottom-line(0, none);
       }
-      &:hover {
-        &::after {
-          @include bottom-line(100%, var(--color-text-light));
+      @media (hover: hover) and (min-width: 768px) {
+        &:hover {
+          &::after {
+            @include bottom-line(100%, var(--color-text-light));
+          }
         }
       }
       &-wrapper {
@@ -370,7 +397,15 @@ footer {
       border-radius: 6.25rem;
       border: 1px solid var(--color-border-light);
       @include transition(all);
-      &:hover {
+      @media (hover: hover) and (min-width: 768px) {
+        &:hover {
+          background-color: var(--color-bg-body);
+          path {
+            stroke: var(--color-bg-container);
+          }
+        }
+      }
+      &:active {
         background-color: var(--color-bg-body);
         path {
           stroke: var(--color-bg-container);
