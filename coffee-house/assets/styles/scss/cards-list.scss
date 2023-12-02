@@ -7,6 +7,12 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 2.5rem;
+  @media (max-width: 768px) {
+    margin-bottom: 2.375rem;
+  }
+  @media (max-width: 480px) {
+    gap: 0.25rem;
+  }
 
   .button {
     display: flex;
@@ -44,11 +50,13 @@
         background-color: var(--color-bg-body);
       }
     }
-    &:hover {
-      background-color: var(--color-bg-container);
-      color: var(--color-text-light);
-      .button__icon {
-        background-color: var(--color-bg-body);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: var(--color-bg-container);
+        color: var(--color-text-light);
+        .button__icon {
+          background-color: var(--color-bg-body);
+        }
       }
     }
   }
@@ -57,8 +65,13 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, 19.375rem);
   gap: 2.5rem;
+  justify-content: center;
+  @media (max-width: 768px) {
+    padding: 0 0.75rem;
+    gap: 2.375rem;
+  }
 }
 .card {
   display: flex;
@@ -70,8 +83,6 @@
   border-radius: 2.5rem;
   border: 1px solid var(--color-border-light);
   cursor: pointer;
-  &:hover {
-  }
   &__img {
     width: 19.25rem;
     height: 19.25rem;
@@ -104,9 +115,28 @@
     font-weight: 600;
     line-height: 125%;
   }
-  &:hover {
-    img {
-      transform: scale(1);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      img {
+        transform: scale(1);
+      }
+    }
+  }
+}
+.button_load-more {
+  display: none;
+  @media (max-width: 786px) {
+    display: flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin: 2.25rem auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.25rem;
+    border: 1px solid var(--color-border-dark);
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }
