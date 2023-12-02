@@ -20,12 +20,15 @@
     @include transition(transform);
   }
   &__item {
-    width: 100%;
+    width: calc(100vw - 2rem);
     max-width: 480px;
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    @media (max-width: 480px) {
+      gap: 0.75rem;
+    }
   }
   &__coffe-text {
     text-align: center;
@@ -48,6 +51,12 @@
     font-weight: 600;
     line-height: 125%;
   }
+  &__coffe-img {
+    img {
+      width: calc(100vw - 2rem);
+      max-width: 480px;
+    }
+  }
   &__arrow {
     position: absolute;
     top: 50%;
@@ -62,7 +71,21 @@
     cursor: pointer;
     @include transition(background-color);
 
-    &:hover {
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: var(--color-border-dark);
+        svg {
+          path {
+            stroke: var(--color-bg-body);
+          }
+        }
+      }
+    }
+    &:active {
       background-color: var(--color-border-dark);
       svg {
         path {
@@ -70,6 +93,7 @@
         }
       }
     }
+
     &_left {
       left: 0;
     }
