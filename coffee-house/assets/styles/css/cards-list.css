@@ -5,6 +5,16 @@
   gap: 0.75rem;
   margin-bottom: 2.5rem;
 }
+@media (max-width: 768px) {
+  .menu-switcher {
+    margin-bottom: 2.375rem;
+  }
+}
+@media (max-width: 480px) {
+  .menu-switcher {
+    gap: 0.25rem;
+  }
+}
 .menu-switcher .button {
   display: flex;
   padding: 0.69rem 1rem 0.69rem 0.5rem;
@@ -40,7 +50,7 @@
 .menu-switcher .button.current .button__icon {
   background-color: var(--color-bg-body);
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   .menu-switcher .button:hover {
     background-color: var(--color-bg-container);
     color: var(--color-text-light);
@@ -54,8 +64,15 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, 19.375rem);
   gap: 2.5rem;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .cards-list {
+    padding: 0 0.75rem;
+    gap: 2.375rem;
+  }
 }
 
 .card {
@@ -101,8 +118,28 @@
   font-weight: 600;
   line-height: 125%;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   .card:hover img {
     transform: scale(1);
+  }
+}
+
+.button_load-more {
+  display: none;
+}
+@media (max-width: 786px) {
+  .button_load-more {
+    display: flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin: 2.25rem auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.25rem;
+    border: 1px solid var(--color-border-dark);
+  }
+  .button_load-more svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }/*# sourceMappingURL=cards-list.css.map */

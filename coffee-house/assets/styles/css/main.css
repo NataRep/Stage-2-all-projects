@@ -44,8 +44,15 @@ h1 {
   font-weight: 600;
   line-height: 125%;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 2.4rem;
+  max-width: 768px;
+  margin: 0 auto 2.4rem;
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 125%;
+  }
 }
 h1 span {
   color: var(--color-text-accent);
@@ -107,7 +114,7 @@ main {
   background-color: var(--color-bg-body);
   transition: all 0.3s ease-out;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   .button a:hover {
     background-color: var(--color-bg-container);
     color: var(--color-text-light);
@@ -168,7 +175,7 @@ nav ul li a::after {
   width: 0;
   transition: all 0.3s ease-out;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   nav ul li a:hover::after {
     content: "";
     height: 0.125rem;
@@ -200,7 +207,7 @@ nav ul li a::after {
   transition: all 0.3s ease-out;
   width: 0;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   .header-menu-link:not(.active):hover::after {
     content: "";
     height: 0.125rem;
@@ -295,7 +302,7 @@ section {
   width: calc(200px - 9.75rem);
   border: none;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   .section_enjoy .button a:hover {
     background-color: var(--color-bg-body);
     color: inherit;
@@ -345,13 +352,12 @@ section {
 @media (max-width: 768px) {
   .section_mobile-app {
     align-items: normal;
-    gap: 6.5rem;
   }
 }
 @media (max-width: 480px) {
   .section_mobile-app {
     gap: 2rem;
-    margin-bottom: 7rem;
+    margin-bottom: 6.5rem;
   }
 }
 @media (max-width: 980px) {
@@ -411,7 +417,7 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     padding: 6.25rem 3.75rem 5.15rem;
-    margin-top: -7px;
+    margin-top: 0;
     gap: 5.25rem;
   }
 }
@@ -473,7 +479,7 @@ footer .contacts__item::after {
   width: 0;
   transition: all 0.3s ease-out;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   footer .contacts__item:hover::after {
     content: "";
     height: 0.125rem;
@@ -516,7 +522,7 @@ footer .contacts__item a {
   border: 1px solid var(--color-border-light);
   transition: all 0.3s ease-out;
 }
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
   .social-links__item a:hover {
     background-color: var(--color-bg-body);
   }

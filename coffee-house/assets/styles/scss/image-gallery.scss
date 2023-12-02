@@ -65,7 +65,7 @@
         max-height: 36.875rem;
       }
     }
-    @media (hover: hover) and (min-width: 768px) {
+    @media (hover: hover) and (pointer: fine) {
       &:hover {
         img {
           transform: scale(0.95);
