@@ -1,5 +1,3 @@
-const cardsListWrapper = document.querySelector(".cards-list");
-
 async function createComponent() {
   //получаем с сервера json
   let response = await fetch("assets/products.json");
@@ -19,8 +17,7 @@ async function createComponent() {
 createComponent();
 
 //кнопки переключения
-const buttons = document.querySelectorAll(".menu-switcher__button");
-buttons.forEach((button) => {
+buttonsMenuSwitcher.forEach((button) => {
   button.addEventListener("click", switchMenu);
 });
 
@@ -70,12 +67,14 @@ function filterCards(category) {
       card.classList.add("hidden");
     }
   });
+  //делаем так, чтобы в зависимости от размера экрана с списке карточек товаров показывалось нужное колличество, скрывая лишние стилями
+  hideCardsInAdaptive(findHomMuchCardsShow());
 }
 
 function switchMenu(event) {
   const buttonActive = event.target.closest(".button");
   let category;
-  buttons.forEach((button) => {
+  buttonsMenuSwitcher.forEach((button) => {
     if (button === buttonActive) {
       button.classList.add("current");
       category = button.dataset.category;
@@ -86,4 +85,35 @@ function switchMenu(event) {
     }
   });
   filterCards(category);
+}
+
+function getVisibleCards() {
+  return document.querySelectorAll(".card:not(.hidden)");
+}
+
+function findHomMuchCardsShow() {
+  const countCardsModile = 4;
+  const countCardsDefault = 8;
+  return window.innerWidth <= 768 ? countCardsModile : countCardsDefault;
+}
+
+function hideCardsInAdaptive(countCards) {
+  //делаем так, чтобы в зависимости от размера экрана с списке карточек товаров показывалось нужное колличество, скрывая лишние стилями
+  while (countCards < getVisibleCards().length) {
+    const visibleCards = getVisibleCards();
+    visibleCards[visibleCards.length - 1].classList.add("hidden");
+  }
+}
+function changeButtonsLoadMore(category) {
+  //получаем какой категории сейчас отфильтрованны карточки
+  //смотрим их общее колличество на странице и сравниваем с колличеством видимых
+
+  if (category > getVisibleCards().length) {
+    buttonLoadMore.classList.remove("hidden");
+  } else if (
+    (category < getVisibleCards().length) &
+    !buttonLoadMore.classList.contains("hidden")
+  ) {
+    buttonLoadMore.classList.add("hidden");
+  }
 }
