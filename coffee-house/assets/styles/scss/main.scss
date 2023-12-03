@@ -124,16 +124,6 @@ main {
         }
       }
     }
-    &:active {
-      background-color: var(--color-bg-container);
-      color: var(--color-text-light);
-      svg {
-        path {
-          @include transition(all);
-          fill: var(--color-text-light);
-        }
-      }
-    }
   }
 }
 header {
@@ -281,15 +271,6 @@ section {
         }
       }
       @media (max-width: 768px) {
-        background-color: var(--color-bg-body);
-        color: inherit;
-        .button__icon {
-          opacity: 1;
-          width: 23px;
-          padding-left: 0.5rem;
-        }
-      }
-      &:active {
         background-color: var(--color-bg-body);
         color: inherit;
         .button__icon {
