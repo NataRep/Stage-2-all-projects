@@ -104,7 +104,29 @@ function hideCardsInAdaptive(countCards) {
     visibleCards[visibleCards.length - 1].classList.add("hidden");
   }
 }
+
+function showCardsInAdaptive(countCards) {
+  //задача функции увеличивать число отображаемых карточек , если их число в данный момент меньше требуемого
+
+  //массив видимых карточек
+  let visibleCards = getVisibleCards();
+
+  ///масив скрытых карточек тойже категории
+  const category = visibleCards[0].dataset.category;
+  let hideCards = document.querySelectorAll(
+    `.hidden[data-category=${category}]`
+  );
+
+  while ((countCards > visibleCards.length) & (hideCards.length > 0)) {
+    visibleCards = getVisibleCards();
+    hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
+    hideCards[0].classList.remove("hidden");
+  }
+}
+
 function changeButtonsLoadMore(category) {
+  // НИГДЕ НЕ ИСПОЛЬЗУЕТСЯ
+
   //получаем какой категории сейчас отфильтрованны карточки
   //смотрим их общее колличество на странице и сравниваем с колличеством видимых
 
@@ -117,3 +139,19 @@ function changeButtonsLoadMore(category) {
     buttonLoadMore.classList.add("hidden");
   }
 }
+
+//Уменьшаем количество отображаемых карточек в зависимости от размера экрана
+let isMobile = window.innerWidth > 768 ? false : true;
+function changeNumberOfCards() {
+  if (isMobile != window.innerWidth <= 768) {
+    if (!(window.innerWidth > 768 === true)) {
+      hideCardsInAdaptive(4);
+      isMobile = true;
+    } else {
+      showCardsInAdaptive(8);
+      isMobile = false;
+    }
+  }
+}
+
+window.addEventListener("resize", changeNumberOfCards, true);
