@@ -316,6 +316,17 @@ section {
     padding-left: 0.5rem;
   }
 }
+@media (hover: none) and (min-width: 768px) {
+  .section_enjoy .button a {
+    background-color: var(--color-bg-body);
+    color: inherit;
+  }
+  .section_enjoy .button a .button__icon {
+    opacity: 1;
+    width: 23px;
+    padding-left: 0.5rem;
+  }
+}
 
 .section_favorites-coffee h2 {
   text-align: center;

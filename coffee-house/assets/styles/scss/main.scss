@@ -279,6 +279,15 @@ section {
           padding-left: 0.5rem;
         }
       }
+      @media (hover: none) and (min-width: 768px) {
+        background-color: var(--color-bg-body);
+        color: inherit;
+        .button__icon {
+          opacity: 1;
+          width: 23px;
+          padding-left: 0.5rem;
+        }
+      }
     }
   }
 }
