@@ -119,8 +119,8 @@ function showCardsInAdaptive(countCards) {
 
   while ((countCards > visibleCards.length) & (hideCards.length > 0)) {
     visibleCards = getVisibleCards();
-    hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
     hideCards[0].classList.remove("hidden");
+    hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
   }
 }
 
