@@ -142,4 +142,13 @@
     width: 1.5rem;
     height: 1.5rem;
   }
+}
+@media (max-width: 786px) and (hover: hover) and (pointer: fine) {
+  .button_load-more:hover {
+    background-color: var(--color-border-dark);
+    color: inherit;
+  }
+  .button_load-more:hover svg path {
+    stroke: var(--color-bg-body);
+  }
 }/*# sourceMappingURL=cards-list.css.map */
