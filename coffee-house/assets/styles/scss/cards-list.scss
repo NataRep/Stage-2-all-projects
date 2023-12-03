@@ -138,5 +138,16 @@
       width: 1.5rem;
       height: 1.5rem;
     }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: var(--color-border-dark);
+        color: inherit;
+        svg {
+          path {
+            stroke: var(--color-bg-body);
+          }
+        }
+      }
+    }
   }
 }
