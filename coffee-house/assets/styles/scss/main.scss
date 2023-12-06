@@ -210,10 +210,11 @@ section {
   margin-bottom: 6.25rem;
 }
 .section_enjoy {
-  background: url("../../images/home/img-hero.jpg") no-repeat center center;
   background-size: cover;
   padding: 6.25rem;
   border-radius: 40px;
+  position: relative;
+
   @media (max-width: 980px) {
     padding: 6.25rem 3.75rem;
   }
@@ -225,6 +226,18 @@ section {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    z-index: 1;
+    position: relative;
+  }
+  &__video {
+    position: absolute;
+    border-radius: 40px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 0;
   }
   h1 {
     font-size: 4.5rem;

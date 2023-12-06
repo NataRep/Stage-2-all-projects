@@ -60,11 +60,13 @@ function filterCards(category) {
   cardsList.forEach((card) => {
     if (card.dataset.category === category) {
       card.classList.remove("hidden");
+      card.classList.add("animated-opacity");
     } else if (
       card.dataset.category != category &&
       !card.classList.contains("hidden")
     ) {
       card.classList.add("hidden");
+      card.classList.remove("animated-opacity");
     }
   });
   //делаем так, чтобы в зависимости от размера экрана с списке карточек товаров показывалось нужное колличество, скрывая лишние стилями
@@ -98,11 +100,20 @@ function findHomMuchCardsShow() {
 }
 
 function hideCardsInAdaptive(countCards) {
+  console.log("скрываем лишние");
   //делаем так, чтобы в зависимости от размера экрана с списке карточек товаров показывалось нужное колличество, скрывая лишние стилями
   while (countCards < getVisibleCards().length) {
     const visibleCards = getVisibleCards();
     visibleCards[visibleCards.length - 1].classList.add("hidden");
   }
+
+  //проверяем количество скрытых карточек и решаем показывать ли кнопку loadMore
+  const visibleCards = getVisibleCards();
+  const category = visibleCards[0].dataset.category;
+  let hideCards = document.querySelectorAll(
+    `.hidden[data-category=${category}]`
+  );
+  changeButtonsLoadMore(hideCards);
 }
 
 function showCardsInAdaptive(countCards) {
@@ -122,26 +133,25 @@ function showCardsInAdaptive(countCards) {
     hideCards[0].classList.remove("hidden");
     hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
   }
+
+  //заново проверяем количество скрытых карточек и решаем показывать ли кнопку loadMore
+  hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
+  changeButtonsLoadMore(hideCards);
 }
 
-function changeButtonsLoadMore(category) {
-  // НИГДЕ НЕ ИСПОЛЬЗУЕТСЯ
-
-  //получаем какой категории сейчас отфильтрованны карточки
-  //смотрим их общее колличество на странице и сравниваем с колличеством видимых
-
-  if (category > getVisibleCards().length) {
+function changeButtonsLoadMore(hideCards) {
+  //скрыть или показать кнопку Load more
+  if (hideCards.length > 0) {
+    console.log("showCardsInAdaptive " + hideCards.length);
     buttonLoadMore.classList.remove("hidden");
-  } else if (
-    (category < getVisibleCards().length) &
-    !buttonLoadMore.classList.contains("hidden")
-  ) {
+  } else {
     buttonLoadMore.classList.add("hidden");
   }
 }
 
 //Уменьшаем количество отображаемых карточек в зависимости от размера экрана
 let isMobile = window.innerWidth > 768 ? false : true;
+
 function changeNumberOfCards() {
   if (isMobile != window.innerWidth <= 768) {
     if (!(window.innerWidth > 768 === true)) {
@@ -154,4 +164,20 @@ function changeNumberOfCards() {
   }
 }
 
+function loadMoreCards() {
+  //получаем количество скрытых карточек
+  const visibleCards = getVisibleCards();
+  const category = visibleCards[0].dataset.category;
+  let hideCards = document.querySelectorAll(
+    `.hidden[data-category=${category}]`
+  );
+  hideCards.forEach((card) => {
+    card.classList.remove("hidden");
+    card.classList.add("animated-opacity");
+  });
+
+  hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
+  changeButtonsLoadMore(hideCards);
+}
+buttonLoadMore.addEventListener("click", loadMoreCards);
 window.addEventListener("resize", changeNumberOfCards, true);
