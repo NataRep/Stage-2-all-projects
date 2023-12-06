@@ -164,4 +164,20 @@ function changeNumberOfCards() {
   }
 }
 
+function loadMoreCards() {
+  //получаем количество скрытых карточек
+  const visibleCards = getVisibleCards();
+  const category = visibleCards[0].dataset.category;
+  let hideCards = document.querySelectorAll(
+    `.hidden[data-category=${category}]`
+  );
+  hideCards.forEach((card) => {
+    card.classList.remove("hidden");
+    card.classList.add("animated-opacity");
+  });
+
+  hideCards = document.querySelectorAll(`.hidden[data-category=${category}]`);
+  changeButtonsLoadMore(hideCards);
+}
+buttonLoadMore.addEventListener("click", loadMoreCards);
 window.addEventListener("resize", changeNumberOfCards, true);
