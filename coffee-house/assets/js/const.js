@@ -12,6 +12,7 @@ const carousel = document.querySelector(".carousel");
 const carouselWrapper = carousel.querySelector(".carousel__wrapper");
 const carouselList = carousel.querySelector(".carousel__item-list");
 const carouselItems = carousel.querySelectorAll(".carousel__item");
+const progressBarLines = carousel.querySelectorAll(".progress-bar__line");
 const buttonLeft = carousel.querySelector(".carousel__arrow_left");
 const buttonRight = carousel.querySelector(".carousel__arrow_right");
 const carouselProgressBarList = carousel.querySelectorAll(

@@ -2,7 +2,7 @@
 let timer = 0;
 let direction = "right";
 let speed = 6;
-let indexCurrent = 1;
+let indexCurrent = 0;
 let interval;
 
 let translateX = 0;
@@ -12,22 +12,34 @@ const containerWith = carouselWrapper.clientWidth;
 const carouselWidth = carouselList.clientWidth;
 
 function rotateLeft() {
-  translateX =
-    translateX == 0
-      ? -(carouselWidth - containerWith)
-      : translateX + containerWith + 160;
+  removeCurrentClass(indexCurrent);
+  if (translateX == 0) {
+    translateX = -(carouselWidth - containerWith);
+    indexCurrent = 2;
+  } else {
+    translateX = translateX + containerWith + 160;
+    indexCurrent -= 1;
+  }
   carouselList.style.transform = `translateX(${translateX}px)`;
   direction = "left";
+  console.log(indexCurrent);
+  addCurrentClass(indexCurrent);
 }
 
 function rotateRight() {
   //сдвивгаем список в лево 160 - расстояние между карточками в стилях
-  translateX =
-    translateX - containerWith != -carouselWidth
-      ? translateX + -(containerWith + 160)
-      : 0;
+  removeCurrentClass(indexCurrent);
+  if (translateX - containerWith != -carouselWidth) {
+    translateX = translateX + -(containerWith + 160);
+    indexCurrent += 1;
+  } else {
+    translateX = 0;
+    indexCurrent = 0;
+  }
   carouselList.style.transform = `translateX(${translateX}px)`;
   direction = "right";
+  console.log(indexCurrent);
+  addCurrentClass(indexCurrent);
 }
 
 function changeDirection(event) {
@@ -44,7 +56,6 @@ function changeDirection(event) {
 }
 
 function rotateCarosel() {
-  console.log("начало отсчета");
   interval = setInterval(function () {
     timer += 1;
     if (timer === speed) {
@@ -56,13 +67,31 @@ function rotateCarosel() {
         timer = 0;
       }
     }
-    console.log(timer);
   }, 1000);
+  pausedAnimation(false);
 }
 
 function stopRotate() {
   clearInterval(interval);
-  console.log("конец отсчета");
+  pausedAnimation(true);
+}
+
+function addCurrentClass(current) {
+  progressBarLines[current].classList.remove("prev");
+  progressBarLines[current].classList.add("current");
+}
+function removeCurrentClass(prev) {
+  progressBarLines[prev].classList.remove("current");
+  progressBarLines[prev].classList.add("prev");
+}
+function pausedAnimation(isOnPause) {
+  if (isOnPause) {
+    let activeLine = carousel.querySelector(".current .progress-bar__fill");
+    activeLine.style.animationPlayState = "paused";
+  } else {
+    let activeLine = carousel.querySelector(".current .progress-bar__fill");
+    activeLine.style.animationPlayState = "running";
+  }
 }
 
 rotateCarosel();
