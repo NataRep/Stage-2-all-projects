@@ -9,15 +9,15 @@
     position: relative;
     max-width: 480px;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
     margin-bottom: 2.5rem;
   }
   &__item-list {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 200px;
-    @include transition(transform);
+    gap: 10rem;
+    transition: transform 0.5s ease-out;
   }
   &__item {
     width: calc(100vw - 2rem);
