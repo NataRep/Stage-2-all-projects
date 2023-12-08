@@ -100,7 +100,6 @@ function findHomMuchCardsShow() {
 }
 
 function hideCardsInAdaptive(countCards) {
-  console.log("скрываем лишние");
   //делаем так, чтобы в зависимости от размера экрана с списке карточек товаров показывалось нужное колличество, скрывая лишние стилями
   while (countCards < getVisibleCards().length) {
     const visibleCards = getVisibleCards();
