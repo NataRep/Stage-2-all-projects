@@ -22,12 +22,10 @@ function rotateLeft() {
   }
   carouselList.style.transform = `translateX(${translateX}px)`;
   direction = "left";
-  console.log(indexCurrent);
   addCurrentClass(indexCurrent);
 }
 
 function rotateRight() {
-  //сдвивгаем список в лево 160 - расстояние между карточками в стилях
   removeCurrentClass(indexCurrent);
   if (translateX - containerWith != -carouselWidth) {
     translateX = translateX + -(containerWith + 160);
@@ -38,7 +36,6 @@ function rotateRight() {
   }
   carouselList.style.transform = `translateX(${translateX}px)`;
   direction = "right";
-  console.log(indexCurrent);
   addCurrentClass(indexCurrent);
 }
 
@@ -70,6 +67,36 @@ function rotateCarosel() {
   }, 1000);
   pausedAnimation(false);
 }
+let touchStartX;
+function stopRotateOnTab(event) {
+  touchStartX = event.touches[0].clientX;
+  stopRotate();
+}
+function rotateCaroselSwipe(event) {
+  //получаем координаты свайпа
+  let tochEndX = event.changedTouches[event.changedTouches.length - 1].pageX;
+  let distance = Math.abs(touchStartX - tochEndX);
+  let swipe = 20;
+
+  //вращаем карусель по свайпу
+  if (distance >= swipe) {
+    //убираем паузу у анимации
+    pausedAnimation(false);
+
+    //меняем направление
+    direction = touchStartX - tochEndX > 0 ? "right" : "left";
+    if (direction === "left") {
+      rotateLeft();
+      timer = 0;
+    }
+    if (direction === "right") {
+      rotateRight();
+      timer = 0;
+    }
+  }
+  //продолжаем вращение в нужную сторону
+  rotateCarosel();
+}
 
 function stopRotate() {
   clearInterval(interval);
@@ -84,6 +111,7 @@ function removeCurrentClass(prev) {
   progressBarLines[prev].classList.remove("current");
   progressBarLines[prev].classList.add("prev");
 }
+
 function pausedAnimation(isOnPause) {
   if (isOnPause) {
     let activeLine = carousel.querySelector(".current .progress-bar__fill");
@@ -101,5 +129,5 @@ buttonRight.addEventListener("click", changeDirection);
 
 carouselWrapper.addEventListener("mouseenter", stopRotate, false);
 carouselWrapper.addEventListener("mouseleave", rotateCarosel, false);
-carouselWrapper.addEventListener("touchstart", stopRotate, false);
-carouselWrapper.addEventListener("touchend", rotateCarosel, false);
+carouselWrapper.addEventListener("touchstart", stopRotateOnTab, false);
+carouselWrapper.addEventListener("touchend", rotateCaroselSwipe, false);
