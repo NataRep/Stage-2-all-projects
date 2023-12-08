@@ -7,15 +7,15 @@
   position: relative;
   max-width: 480px;
   left: 50%;
-  transform: translate(-50%);
+  transform: translateX(-50%);
   margin-bottom: 2.5rem;
 }
 .carousel__item-list {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 200px;
-  transition: transform 0.3s ease-out;
+  gap: 10rem;
+  transition: transform 0.5s ease-out;
 }
 .carousel__item {
   width: calc(100vw - 2rem);
@@ -113,8 +113,40 @@
   background: var(--color-border-light);
   overflow: hidden;
 }
-.carousel .progress-bar__line.current .progress-bar__fill {
-  background: var(--color-text-dark);
-  width: 100%;
+.carousel .progress-bar__line .progress-bar__fill {
+  width: 0%;
   height: 100%;
+}
+.carousel .progress-bar__line.current .progress-bar__fill {
+  background: var(--color-border-dark);
+  transition: all 5s;
+  animation-name: fill;
+  animation-fill-mode: forwards;
+  animation-duration: 5s;
+  width: 100%;
+}
+.carousel .progress-bar__line.prev .progress-bar__fill {
+  background: var(--color-border-dark);
+  transition: all 0.7s;
+  animation-name: empty;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  width: 0%;
+}
+
+@keyframes fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes empty {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
 }/*# sourceMappingURL=carousel.css.map */
