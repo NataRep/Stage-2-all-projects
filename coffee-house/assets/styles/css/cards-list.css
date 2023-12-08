@@ -151,4 +151,18 @@
   .button_load-more:hover svg path {
     stroke: var(--color-bg-body);
   }
+}
+
+.animated-opacity {
+  opacity: 0;
+  animation: 1s linear 0s 1 forwards animated;
+}
+
+@keyframes animated {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }/*# sourceMappingURL=cards-list.css.map */
