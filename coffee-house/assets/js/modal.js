@@ -9,15 +9,15 @@ async function getJson() {
   //проверяем валидность данных и создаем карточки товаров
   if (!Array.isArray(productsJSON)) {
     throw TypeError(`Menu error. Products array i invalid.`);
+  } else {
+    document.querySelectorAll(".cards-list__card").forEach((card) => {
+      card.addEventListener("click", function () {
+        showModal(event, productsJSON);
+      });
+    });
   }
-  document.querySelectorAll(".cards-list__card").forEach((card) => {
-    card.addEventListener("click", showModal(productsJSON));
-  });
 }
-
 getJson();
-
-console.log(productsJSON);
 
 function showModal(event, productsJSON) {
   console.log("click");
