@@ -10,12 +10,14 @@ async function getJson() {
   if (!Array.isArray(productsJSON)) {
     throw TypeError(`Menu error. Products array i invalid.`);
   }
-
-  cardList.forEach((card) => {
-    card.addEventListener("clock", showModal);
-  });
+  return productsJSON;
 }
-getJson();
+
+const productsJSON = getJson();
+
+cardList.forEach((card) => {
+  card.addEventListener("clock", showModal);
+});
 
 function showModal(event) {
   modal.cardList.remove("hidden");
