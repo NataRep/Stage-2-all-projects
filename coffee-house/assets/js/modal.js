@@ -11,26 +11,27 @@ async function getJson() {
     throw TypeError(`Menu error. Products array i invalid.`);
   }
   console.log("Get JSON");
+  document.querySelectorAll(".cards-list__card").forEach((card) => {
+    card.addEventListener("click", showModal);
+  });
   return productsJSON;
 }
 
 const productsJSON = getJson();
 
-document.querySelectorAll(".cards-list__card").forEach((card) => {
-  card.addEventListener("click", showModal);
-});
-
 function showModal(event) {
   console.log("click");
   modal.classList.remove("hidden");
-  let product = findObject(getProdTitle(event), productsJSON);
+  let prodTitle = getProdTitle(event);
+  let product = findObject(prodTitle, productsJSON);
   fillModal(product, modal);
 }
 
 //находим название товара в карточке, по которой был клик
 function getProdTitle(event) {
-  let card = this;
+  let card = event.target.closest(".cards-list__card");
   let title = card.querySelector(".card__title").innerHtml;
+  console.log(title);
   return title;
 }
 
@@ -41,6 +42,7 @@ function findObject(title, array) {
       return title;
     }
   });
+  console.log(object);
   return object;
 }
 
