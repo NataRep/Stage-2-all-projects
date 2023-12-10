@@ -16,7 +16,7 @@ async function getJson() {
 
 const productsJSON = getJson();
 
-cardList.forEach((card) => {
+document.querySelectorAll(".cards-list__card").forEach((card) => {
   card.addEventListener("click", showModal);
 });
 
@@ -24,7 +24,6 @@ function showModal(event) {
   console.log("click");
   modal.classList.remove("hidden");
   let product = findObject(getProdTitle(event), productsJSON);
-  let modal = this;
   fillModal(product, modal);
 }
 
