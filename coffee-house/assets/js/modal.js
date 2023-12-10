@@ -10,16 +10,16 @@ async function getJson() {
   if (!Array.isArray(productsJSON)) {
     throw TypeError(`Menu error. Products array i invalid.`);
   }
-  console.log("Get JSON");
   document.querySelectorAll(".cards-list__card").forEach((card) => {
-    card.addEventListener("click", showModal);
+    card.addEventListener("click", showModal(productsJSON));
   });
-  return productsJSON;
 }
 
-const productsJSON = getJson();
+getJson();
 
-function showModal(event) {
+console.log(productsJSON);
+
+function showModal(event, productsJSON) {
   console.log("click");
   modal.classList.remove("hidden");
   let prodTitle = getProdTitle(event);
@@ -37,12 +37,12 @@ function getProdTitle(event) {
 
 //находим нужный товар в массиве
 function findObject(title, array) {
+  console.log(array); ////ПОЛУЧАЕМ ВЫПОЛНЕННЫЙ ПРОМИС, А НЕ ПРОСТО МАССИВ!!!!!!!!!!!
   let object = array.find((obj) => {
     if (obj.name === title) {
       return title;
     }
   });
-  console.log(object);
   return object;
 }
 
