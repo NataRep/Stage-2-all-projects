@@ -1,10 +1,11 @@
+//DOM
 const cardList = document.querySelectorAll(".cards-list__card");
 const modal = document.querySelector(".modal");
 const modalCloseButton = modal.querySelector(".modal__button");
 const modalBg = modal.querySelector(".modal__bg");
 const modalSizesRow = modal.querySelector(".row-sizes");
 const modalAdditivesRow = modal.querySelector(".row-additives");
-//DOM
+const modalLabelsAll = modal.querySelectorAll("label");
 const modalImg = modal.querySelector("img");
 const modalName = modal.querySelector(".modal__title");
 const modalDesc = modal.querySelector(".modal__desc");
@@ -106,7 +107,6 @@ function closeModal(event) {
 }
 //очистка модального окна
 function cleanModal() {
-  console.log(modalAdditivesRow.innerHTML);
   modalAdditivesRow.innerHTML = "";
   modalSizesRow.innerHTML = "";
   modalName.innerHTML = "";
@@ -114,20 +114,21 @@ function cleanModal() {
   modalImg.src = "";
   modalPrice.innerHTML = "";
 }
-modal.addEventListener("click", closeModal);
 
 //добавить калькулятор
 function calculatePrice() {
-  const chekedInputSize = modalSizesRow.querySelectorAll("input");
-  const chekedInputAdditives = modalAdditivesRow.querySelectorAll("input");
+  const inputsSizes = modalSizesRow.querySelectorAll("input");
+  const inputsAdditives = modalAdditivesRow.querySelectorAll("input");
   let totalPrice = +modalPrice.innerHTML;
 
-  chekedInputSize.forEach((input) => {
+  inputsSizes.forEach((input) => {
     if (input.checked == true) {
+      console.log(input.value);
+      console.log(totalPrice);
       totalPrice += +input.value;
     }
   });
-  chekedInputAdditives.forEach((input) => {
+  inputsAdditives.forEach((input) => {
     if (input.checked == true) {
       totalPrice += +input.value;
     }
@@ -136,4 +137,8 @@ function calculatePrice() {
   modalPrice.innerHTML = totalPrice;
 }
 
-modal.querySelectorAll("label").addEventListener("click", calculatePrice);
+//Вышаем события
+modalLabelsAll.forEach((label) => {
+  label.addEventListener("click", calculatePrice);
+});
+modal.addEventListener("click", closeModal);
