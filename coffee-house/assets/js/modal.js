@@ -83,7 +83,7 @@ function fillModal(obj, modal) {
   obj.additives.map((additive, index, array) => {
     let additiveName = additive.name;
     let additivePrice = additive.addPrice;
-    let input = `<input type="radio" id="additives-${
+    let input = `<input type="checkbox" id="additives-${
       index + 1
     }" name="additives" value="${additivePrice}" class="input"/>`;
     let label = `<label for="additives-${
@@ -96,9 +96,7 @@ function fillModal(obj, modal) {
   });
 }
 
-//добавить закрытие модалки и очистку модалки после закрытия и + document.querySelector("body").classList.toggle("scroll-none");..
-//Щелчок по области вокруг модала и кнопки "Закрыть" закрывает его: +2
-
+//закрытие модального окна по клику
 function closeModal(event) {
   if (event.target == modalCloseButton || event.target == modalBg) {
     modal.classList.add("hidden");
@@ -106,6 +104,7 @@ function closeModal(event) {
     cleanModal();
   }
 }
+//очистка модального окна
 function cleanModal() {
   console.log(modalAdditivesRow.innerHTML);
   modalAdditivesRow.innerHTML = "";
@@ -116,4 +115,25 @@ function cleanModal() {
   modalPrice.innerHTML = "";
 }
 modal.addEventListener("click", closeModal);
+
 //добавить калькулятор
+function calculatePrice() {
+  const chekedInputSize = modalSizesRow.querySelectorAll("input");
+  const chekedInputAdditives = modalAdditivesRow.querySelectorAll("input");
+  let totalPrice = +modalPrice.innerHTML;
+
+  chekedInputSize.forEach((input) => {
+    if (input.checked == true) {
+      totalPrice += +input.value;
+    }
+  });
+  chekedInputAdditives.forEach((input) => {
+    if (input.checked == true) {
+      totalPrice += +input.value;
+    }
+  });
+
+  modalPrice.innerHTML = totalPrice;
+}
+
+modal.querySelectorAll("label").addEventListener("click", calculatePrice);
