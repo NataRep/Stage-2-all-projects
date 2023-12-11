@@ -1,5 +1,16 @@
 const cardList = document.querySelectorAll(".cards-list__card");
 const modal = document.querySelector(".modal");
+const modalCloseButton = modal.querySelector(".modal__button");
+const modalBg = modal.querySelector(".modal__bg");
+const modalSizesRow = modal.querySelector(".row-sizes");
+const modalAdditivesRow = modal.querySelector(".row-additives");
+//DOM
+const modalImg = modal.querySelector("img");
+const modalName = modal.querySelector(".modal__title");
+const modalDesc = modal.querySelector(".modal__desc");
+const modalPrice = modal.querySelector(".modal__total-value");
+
+const urlFolderImages = "assets/images/menu/";
 
 async function getJson() {
   //получаем с сервера json
@@ -45,13 +56,6 @@ function findObject(title, array) {
 }
 
 function fillModal(obj, modal) {
-  //DOM
-  const modalImg = modal.querySelector("img");
-  const modalName = modal.querySelector(".modal__title");
-  const modalDesc = modal.querySelector(".modal__desc");
-  const mobilPrice = modal.querySelector(".modal__total-value");
-
-  const urlFolderImages = "assets/images/menu/";
   const imageSrc =
     urlFolderImages + obj.name.toLowerCase().split(" ").join("-") + ".jpg";
 
@@ -59,11 +63,9 @@ function fillModal(obj, modal) {
   modalName.innerHTML = obj.name;
   modalDesc.innerHTML = obj.description;
   modalImg.src = imageSrc;
-  mobilPrice.innerHTML = obj.price;
+  modalPrice.innerHTML = obj.price;
 
   //размер
-  const mobilSizesRow = modal.querySelector(".row-sizes");
-
   for (let key in obj.sizes) {
     let sizeName = key;
     let sizeValue = obj.sizes[key].size;
@@ -73,17 +75,15 @@ function fillModal(obj, modal) {
     if (key === "s") {
       input = `<input type="radio" id="size-${sizeName}" name="size" value="${sizePrice}" class="input" checked/>`;
     }
-    mobilSizesRow.insertAdjacentHTML("beforeend", input);
-    mobilSizesRow.insertAdjacentHTML("beforeend", label);
+    modalSizesRow.insertAdjacentHTML("beforeend", input);
+    modalSizesRow.insertAdjacentHTML("beforeend", label);
   }
 
-  //дополнения
-  const mobilAdditivesRow = modal.querySelector(".row-additives");
-
+  //допопции
   obj.additives.map((additive, index, array) => {
     let additiveName = additive.name;
     let additivePrice = additive.addPrice;
-    let input = `<input type="radio" id="additives-${
+    let input = `<input type="checkbox" id="additives-${
       index + 1
     }" name="additives" value="${additivePrice}" class="input"/>`;
     let label = `<label for="additives-${
@@ -91,20 +91,49 @@ function fillModal(obj, modal) {
     }"><span class="input__type">${
       index + 1
     }</span><span class="input__value">${additiveName}</span></label>`;
-    mobilAdditivesRow.insertAdjacentHTML("beforeend", input);
-    mobilAdditivesRow.insertAdjacentHTML("beforeend", label);
+    modalAdditivesRow.insertAdjacentHTML("beforeend", input);
+    modalAdditivesRow.insertAdjacentHTML("beforeend", label);
   });
 }
 
-//добавить закрытие модалки и очистку модалки после закрытия и + document.querySelector("body").classList.toggle("scroll-none");..
-//Щелчок по области вокруг модала и кнопки "Закрыть" закрывает его: +2
-
-const closeButton = modal.querySelector(".modal__button");
-const modalBg = modal.querySelector(".modal__bg");
-
+//закрытие модального окна по клику
 function closeModal(event) {
-  if (event.target == closeButton || event.target == modalBg) {
+  if (event.target == modalCloseButton || event.target == modalBg) {
     modal.classList.add("hidden");
+    document.querySelector("body").classList.toggle("scroll-none");
+    cleanModal();
   }
 }
+//очистка модального окна
+function cleanModal() {
+  console.log(modalAdditivesRow.innerHTML);
+  modalAdditivesRow.innerHTML = "";
+  modalSizesRow.innerHTML = "";
+  modalName.innerHTML = "";
+  modalDesc.innerHTML = "";
+  modalImg.src = "";
+  modalPrice.innerHTML = "";
+}
+modal.addEventListener("click", closeModal);
+
 //добавить калькулятор
+function calculatePrice() {
+  const chekedInputSize = modalSizesRow.querySelectorAll("input");
+  const chekedInputAdditives = modalAdditivesRow.querySelectorAll("input");
+  let totalPrice = +modalPrice.innerHTML;
+
+  chekedInputSize.forEach((input) => {
+    if (input.checked == true) {
+      totalPrice += +input.value;
+    }
+  });
+  chekedInputAdditives.forEach((input) => {
+    if (input.checked == true) {
+      totalPrice += +input.value;
+    }
+  });
+
+  modalPrice.innerHTML = totalPrice;
+}
+
+modal.querySelectorAll("label").addEventListener("click", calculatePrice);
