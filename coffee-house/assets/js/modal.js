@@ -97,7 +97,9 @@ function fillModal(obj, modal) {
 
   //вешаем обработчик для созданных лейблов
   modal.querySelectorAll("label").forEach((label) => {
-    label.addEventListener("click", calculatePrice);
+    label.addEventListener("click", function () {
+      calculatePrice(obj.price);
+    });
   });
 }
 
@@ -119,21 +121,22 @@ function cleanModal() {
   modalPrice.innerHTML = "";
 }
 
-//добавить калькулятор
-function calculatePrice(event) {
-  const checkedLabels = modal.querySelectorAll("input:checked");
-  console.log(checkedLabels);
+//калькулятор
+function calculatePrice(str) {
+  //ждем, чтобы инпут на лейбл которого кликнули стал checked
+  setTimeout(() => {
+    const checkedInputs = modal.querySelectorAll("input:checked");
+    const inputs = modal.querySelectorAll("input");
+    console.log(inputs);
+    console.log(checkedInputs);
 
-  /*let label = event.target.closest("label");
-  let id = label.getAttribute("for");
-  let input = document.getElementById(id);
-  let totalPrice = +modalPrice.innerHTML;
-  if (input.checked === true) {
-    totalPrice -= input.value;
-  } else {
-    totalPrice += input.value;
-  }
-  modalPrice.innerHTML = totalPrice;*/
+    let price = parseFloat(str);
+    for (let i = 0; i < checkedInputs.length; i++) {
+      let current = parseFloat(checkedInputs[i].value);
+      price += current;
+    }
+    modalPrice.innerHTML = price;
+  }, 1);
 }
 
 //Вешаем события
