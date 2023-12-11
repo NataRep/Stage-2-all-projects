@@ -135,14 +135,7 @@ function calculatePrice(str) {
       let current = parseFloat(checkedInputs[i].value);
       price += current;
     }
-
-    if (Number.isInteger(price)) {
-      price = price + ".0";
-    }
-    if (price % 10 != 0) {
-      price = price + "0";
-    }
-    modalPrice.innerHTML = price;
+    modalPrice.innerHTML = price.toFixed(2);
   }, 1);
 }
 
