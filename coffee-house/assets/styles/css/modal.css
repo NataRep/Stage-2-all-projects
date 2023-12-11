@@ -127,6 +127,12 @@
   border: 1px solid var(--color-border-dark, #665f55);
   background-color: var(--color-bg-body);
 }
+@media (hover: hover) and (pointer: fine) {
+  .modal__button:hover {
+    background-color: var(--color-bg-container);
+    color: var(--color-text-light);
+  }
+}
 .modal__labels-row {
   display: flex;
   justify-content: flex-start;
