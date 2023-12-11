@@ -127,9 +127,6 @@ function calculatePrice(str) {
   setTimeout(() => {
     const checkedInputs = modal.querySelectorAll("input:checked");
     const inputs = modal.querySelectorAll("input");
-    console.log(inputs);
-    console.log(checkedInputs);
-
     let price = parseFloat(str);
     for (let i = 0; i < checkedInputs.length; i++) {
       let current = parseFloat(checkedInputs[i].value);

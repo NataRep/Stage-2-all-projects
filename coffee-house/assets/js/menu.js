@@ -141,7 +141,6 @@ function showCardsInAdaptive(countCards) {
 function changeButtonsLoadMore(hideCards) {
   //скрыть или показать кнопку Load more
   if (hideCards.length > 0) {
-    console.log("showCardsInAdaptive " + hideCards.length);
     buttonLoadMore.classList.remove("hidden");
   } else {
     buttonLoadMore.classList.add("hidden");
