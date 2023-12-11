@@ -99,11 +99,11 @@ function fillModal(obj, modal) {
 //добавить закрытие модалки и очистку модалки после закрытия и + document.querySelector("body").classList.toggle("scroll-none");..
 //Щелчок по области вокруг модала и кнопки "Закрыть" закрывает его: +2
 
-const closeButton = modal.querySelector(".modal__button");
+const modalCloseButton = modal.querySelector(".modal__button");
 const modalBg = modal.querySelector(".modal__bg");
 
 function closeModal(event) {
-  if (event.target == closeButton || event.target == modalBg) {
+  if (event.target == modalCloseButton || event.target == modalBg) {
     modal.classList.add("hidden");
   }
 }
