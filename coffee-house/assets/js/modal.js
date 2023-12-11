@@ -137,7 +137,7 @@ function calculatePrice() {
   modalPrice.innerHTML = totalPrice;
 }
 
-//Вышаем события
+//Вешаем события
 modalLabelsAll.forEach((label) => {
   label.addEventListener("click", calculatePrice);
 });
