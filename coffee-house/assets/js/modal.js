@@ -94,6 +94,11 @@ function fillModal(obj, modal) {
     modalAdditivesRow.insertAdjacentHTML("beforeend", input);
     modalAdditivesRow.insertAdjacentHTML("beforeend", label);
   });
+
+  //вешаем обработчик для созданных лейблов
+  modal.querySelectorAll("label").forEach((label) => {
+    label.addEventListener("click", calculatePrice);
+  });
 }
 
 //закрытие модального окна по клику
@@ -116,26 +121,20 @@ function cleanModal() {
 
 //добавить калькулятор
 function calculatePrice(event) {
-  console.log("click");
-  let label = event.target.closest("label");
-  console.log(label);
+  const checkedLabels = modal.querySelectorAll("input:checked");
+  console.log(checkedLabels);
 
-  let id = label.for;
-  console.log(id);
-  let input = modal.getElementsById(id);
-  console.log(input);
+  /*let label = event.target.closest("label");
+  let id = label.getAttribute("for");
+  let input = document.getElementById(id);
   let totalPrice = +modalPrice.innerHTML;
   if (input.checked === true) {
-    totalPrice += input.value;
-  } else {
     totalPrice -= input.value;
+  } else {
+    totalPrice += input.value;
   }
-  modalPrice.innerHTML = totalPrice;
+  modalPrice.innerHTML = totalPrice;*/
 }
 
 //Вешаем события
-modal.querySelectorAll("label").forEach((label) => {
-  label.addEventListener("click", calculatePrice);
-});
-
 modal.addEventListener("click", closeModal);
