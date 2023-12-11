@@ -5,7 +5,6 @@ const modalCloseButton = modal.querySelector(".modal__button");
 const modalBg = modal.querySelector(".modal__bg");
 const modalSizesRow = modal.querySelector(".row-sizes");
 const modalAdditivesRow = modal.querySelector(".row-additives");
-const modalLabelsAll = modal.querySelectorAll("label");
 const modalImg = modal.querySelector("img");
 const modalName = modal.querySelector(".modal__title");
 const modalDesc = modal.querySelector(".modal__desc");
@@ -116,29 +115,27 @@ function cleanModal() {
 }
 
 //добавить калькулятор
-function calculatePrice() {
-  const inputsSizes = modalSizesRow.querySelectorAll("input");
-  const inputsAdditives = modalAdditivesRow.querySelectorAll("input");
+function calculatePrice(event) {
+  console.log("click");
+  let label = event.target.closest("label");
+  console.log(label);
+
+  let id = label.for;
+  console.log(id);
+  let input = modal.getElementsById(id);
+  console.log(input);
   let totalPrice = +modalPrice.innerHTML;
-
-  inputsSizes.forEach((input) => {
-    if (input.checked == true) {
-      console.log(input.value);
-      console.log(totalPrice);
-      totalPrice += +input.value;
-    }
-  });
-  inputsAdditives.forEach((input) => {
-    if (input.checked == true) {
-      totalPrice += +input.value;
-    }
-  });
-
+  if (input.checked === true) {
+    totalPrice += input.value;
+  } else {
+    totalPrice -= input.value;
+  }
   modalPrice.innerHTML = totalPrice;
 }
 
-//Вышаем события
-modalLabelsAll.forEach((label) => {
+//Вешаем события
+modal.querySelectorAll("label").forEach((label) => {
   label.addEventListener("click", calculatePrice);
 });
+
 modal.addEventListener("click", closeModal);
