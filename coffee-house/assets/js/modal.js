@@ -5,7 +5,6 @@ const modalCloseButton = modal.querySelector(".modal__button");
 const modalBg = modal.querySelector(".modal__bg");
 const modalSizesRow = modal.querySelector(".row-sizes");
 const modalAdditivesRow = modal.querySelector(".row-additives");
-const modalLabelsAll = modal.querySelectorAll("label");
 const modalImg = modal.querySelector("img");
 const modalName = modal.querySelector(".modal__title");
 const modalDesc = modal.querySelector(".modal__desc");
@@ -95,6 +94,13 @@ function fillModal(obj, modal) {
     modalAdditivesRow.insertAdjacentHTML("beforeend", input);
     modalAdditivesRow.insertAdjacentHTML("beforeend", label);
   });
+
+  //вешаем обработчик для созданных лейблов
+  modal.querySelectorAll("label").forEach((label) => {
+    label.addEventListener("click", function () {
+      calculatePrice(obj.price);
+    });
+  });
 }
 
 //закрытие модального окна по клику
@@ -115,30 +121,23 @@ function cleanModal() {
   modalPrice.innerHTML = "";
 }
 
-//добавить калькулятор
-function calculatePrice() {
-  const inputsSizes = modalSizesRow.querySelectorAll("input");
-  const inputsAdditives = modalAdditivesRow.querySelectorAll("input");
-  let totalPrice = +modalPrice.innerHTML;
+//калькулятор
+function calculatePrice(str) {
+  //ждем, чтобы инпут на лейбл которого кликнули стал checked
+  setTimeout(() => {
+    const checkedInputs = modal.querySelectorAll("input:checked");
+    const inputs = modal.querySelectorAll("input");
+    console.log(inputs);
+    console.log(checkedInputs);
 
-  inputsSizes.forEach((input) => {
-    if (input.checked == true) {
-      console.log(input.value);
-      console.log(totalPrice);
-      totalPrice += +input.value;
+    let price = parseFloat(str);
+    for (let i = 0; i < checkedInputs.length; i++) {
+      let current = parseFloat(checkedInputs[i].value);
+      price += current;
     }
-  });
-  inputsAdditives.forEach((input) => {
-    if (input.checked == true) {
-      totalPrice += +input.value;
-    }
-  });
-
-  modalPrice.innerHTML = totalPrice;
+    modalPrice.innerHTML = price;
+  }, 1);
 }
 
 //Вешаем события
-modalLabelsAll.forEach((label) => {
-  label.addEventListener("click", calculatePrice);
-});
 modal.addEventListener("click", closeModal);
