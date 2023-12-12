@@ -19,13 +19,13 @@ let interval;
 
 let translateX = 0;
 // ширины контейнера обертки
-const containerWith = carouselWrapper.clientWidth;
+let containerWith = carouselWrapper.clientWidth;
 // ширина списка всех эллементов каресели
-const carouselWidth = carouselList.clientWidth;
+let carouselWidth = carouselList.clientWidth;
 
 function rotateLeft() {
   removeCurrentClass(indexCurrent);
-  if (translateX == 0) {
+  if (indexCurrent == 0) {
     translateX = -(carouselWidth - containerWith);
     indexCurrent = 2;
   } else {
@@ -39,7 +39,7 @@ function rotateLeft() {
 
 function rotateRight() {
   removeCurrentClass(indexCurrent);
-  if (translateX - containerWith != -carouselWidth) {
+  if (indexCurrent < 2) {
     translateX = translateX + -(containerWith + 160);
     indexCurrent += 1;
   } else {
@@ -127,10 +127,14 @@ function removeCurrentClass(prev) {
 function pausedAnimation(isOnPause) {
   if (isOnPause) {
     let activeLine = carousel.querySelector(".current .progress-bar__fill");
-    activeLine.style.animationPlayState = "paused";
+    if (activeLine) {
+      activeLine.style.animationPlayState = "paused";
+    }
   } else {
     let activeLine = carousel.querySelector(".current .progress-bar__fill");
-    activeLine.style.animationPlayState = "running";
+    if (activeLine) {
+      activeLine.style.animationPlayState = "running";
+    }
   }
 }
 
@@ -143,3 +147,22 @@ carouselWrapper.addEventListener("mouseenter", stopRotate, false);
 carouselWrapper.addEventListener("mouseleave", rotateCarosel, false);
 carouselWrapper.addEventListener("touchstart", stopRotateOnTab, false);
 carouselWrapper.addEventListener("touchend", rotateCaroselSwipe, false);
+
+window.addEventListener("resize", function () {
+  clearInterval(interval);
+  progressBarLines.forEach((item, index) => {
+    if (item.classList.contains("current") && index != 0) {
+      item.classList.remove("current");
+      item.classList.add("prev");
+    }
+  });
+  progressBarLines[0].classList.add("current");
+  containerWith = carouselWrapper.clientWidth;
+  carouselWidth = carouselList.clientWidth;
+  carouselList.style.transform = `translateX(0px)`;
+  direction = "right";
+  translateX = 0;
+  timer = 0;
+  indexCurrent = 0;
+  rotateCarosel();
+});
