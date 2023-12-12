@@ -143,3 +143,8 @@ carouselWrapper.addEventListener("mouseenter", stopRotate, false);
 carouselWrapper.addEventListener("mouseleave", rotateCarosel, false);
 carouselWrapper.addEventListener("touchstart", stopRotateOnTab, false);
 carouselWrapper.addEventListener("touchend", rotateCaroselSwipe, false);
+window.addEventListener("resize", function () {
+  containerWith = carouselWrapper.clientWidth;
+  rotateCarosel();
+  console.log("повернули");
+});
