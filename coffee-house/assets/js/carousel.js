@@ -19,7 +19,7 @@ let interval;
 
 let translateX = 0;
 // ширины контейнера обертки
-const containerWith = carouselWrapper.clientWidth;
+let containerWith = carouselWrapper.clientWidth;
 // ширина списка всех эллементов каресели
 const carouselWidth = carouselList.clientWidth;
 
@@ -143,8 +143,15 @@ carouselWrapper.addEventListener("mouseenter", stopRotate, false);
 carouselWrapper.addEventListener("mouseleave", rotateCarosel, false);
 carouselWrapper.addEventListener("touchstart", stopRotateOnTab, false);
 carouselWrapper.addEventListener("touchend", rotateCaroselSwipe, false);
+
 window.addEventListener("resize", function () {
   containerWith = carouselWrapper.clientWidth;
-  rotateCarosel();
-  console.log("повернули");
+  console.log("размер изменен");
+  let oldindexCurrent = indexCurrent;
+  translateX = 0;
+  indexCurrent = 0;
+  direction = "right";
+  timer = speed - 1;
+  rotateRight();
+  progressBarLines[oldindexCurrent].classList.add("prev");
 });
