@@ -171,11 +171,12 @@
     transition: all 3s ease-in-out;
     &:checked {
       & + label {
-        background: var(--color-bg-container, #665f55);
-        border: 1px solid var(--color-bg-container, #665f55);
+        background: var(--color-bg-container);
+        border: 1px solid var(--color-bg-container);
         color: var(--color-text-light);
         .input__type {
           color: var(--color-text-dark);
+          background: var(--color-bg-body);
         }
       }
     }
