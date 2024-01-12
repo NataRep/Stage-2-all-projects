@@ -1,0 +1,21 @@
+.image {
+  background: url(./../../../assets/images/hangman.svg) no-repeat;
+  width: 16rem;
+  height: 25rem;
+  position: relative;
+
+  &__man {
+    width: 35%;
+    position: absolute;
+    right: 0;
+    top: 12%;
+  }
+}
+#manHeader,
+#manBody,
+#manLeftArm,
+#manRightArm,
+#manLeftLeg,
+#manRightLeg {
+  opacity: 0;
+}

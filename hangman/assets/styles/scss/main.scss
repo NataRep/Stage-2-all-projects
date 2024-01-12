@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
+@import url("illustration.css");
+
+:root {
+  --color-pen: #31258d;
+}
+
+.page {
+  background: url(./../../../assets/images/main-bg.jpg);
+  font-family: Island Moments;
+  color: var(--color-pen);
+}
+h1 {
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 4rem;
+  text-align: center;
+}
+.main {
+  max-width: 768px;
+  margin: auto;
+  padding: 1.5rem;
+
+  &__content {
+  }
+}
