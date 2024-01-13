@@ -2,21 +2,32 @@
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 767px) and (min-width: 601px) {
+    margin-bottom: 2rem;
+  }
+
   &__word {
     display: flex;
     margin: 0 0 0.725rem 0;
     padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   &__letter {
     list-style: none;
-    width: 3rem;
+    width: 2.5rem;
     height: 3rem;
+    margin-right: 0.5rem;
     background: url("./../../../assets/images/underscore.svg") no-repeat bottom
       center;
+    background-size: contain;
   }
 }
 .hint {
   font-size: 2rem;
+  @media (max-width: 767px) {
+    margin-bottom: 2rem;
+  }
   &__title {
     float: left;
     color: var(--color-red);
@@ -27,8 +38,17 @@
   display: flex;
   justify-content: center;
   font-size: 2.5rem;
+  line-height: 1.5rem;
+
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__text {
     margin-right: 0.5rem;
+    width: fit-content;
   }
   &__count {
     color: var(--color-red);
