@@ -1,5 +1,6 @@
 import { taskLettersArray } from "../../../js/utils/globalVariables.js";
 import { questionElement } from "../../../js/utils/globalVariables.js";
+import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
 
 export function createSectionTask() {
   const section = document.createElement("section");
@@ -11,6 +12,7 @@ export function createSectionTask() {
 
   //заполняем блок слова контейнерами для букв
   taskLettersArray.map((li) => {
+    arrayLetterFields.push(li);
     wordField.append(li);
     li.classList.add("task__letter");
   });

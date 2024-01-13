@@ -54,7 +54,9 @@
   margin-right: 0.5rem;
   width: -moz-fit-content;
   width: fit-content;
+  display: contents;
 }
 .counter__count {
   color: var(--color-red);
+  margin-left: 1rem;
 }/*# sourceMappingURL=task.css.map */

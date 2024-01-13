@@ -11,9 +11,7 @@ import { createKeyboardSection } from "./js/modules/keyboard/createKeyboardSecti
 let countIncorrectGuesses;
 
 //начало игры//
-function startGame() {
-  countIncorrectGuesses = 0;
-}
+function startGame() {}
 
 function fillBody() {
   body.classList.add("page");

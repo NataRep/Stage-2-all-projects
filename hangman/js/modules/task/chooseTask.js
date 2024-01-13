@@ -3,7 +3,6 @@ export function chooseTask(data) {
 
   const countTasks = data.length - 1;
   let random = (Math.random() * countTasks).toFixed(0);
-  console.log(random);
 
   while (!data[random].unique) {
     if (data.some((item) => item.unique === true)) {

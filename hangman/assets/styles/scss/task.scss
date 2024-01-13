@@ -49,8 +49,10 @@
   &__text {
     margin-right: 0.5rem;
     width: fit-content;
+    display: contents;
   }
   &__count {
     color: var(--color-red);
+    margin-left: 1rem;
   }
 }

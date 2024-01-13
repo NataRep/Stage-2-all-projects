@@ -1,9 +1,9 @@
 export function createLettersArray(word) {
-  const lettersArray = [];
+  const array = [];
   for (let i = 0; i < word.length; i++) {
     let li = document.createElement("li");
     li.classList.add("task__letter");
-    lettersArray.push(li);
+    array.push(li);
   }
-  return lettersArray;
+  return array;
 }
