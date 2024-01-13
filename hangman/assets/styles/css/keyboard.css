@@ -16,9 +16,15 @@
   font-size: 1.5rem;
   text-transform: uppercase;
   cursor: pointer;
+  transition: color 0.2s;
 }
-.keyboard__key:hover {
+.keyboard__key:active {
   color: var(--color-red);
+}
+@media (hover: hover) and (pointer: fine) {
+  .keyboard__key:hover {
+    color: var(--color-red);
+  }
 }
 .keyboard__key.disable {
   color: var(--color-grey);

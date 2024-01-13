@@ -16,8 +16,16 @@
     font-size: 1.5rem;
     text-transform: uppercase;
     cursor: pointer;
-    &:hover {
+    transition: color 0.2s;
+
+    &:active {
       color: var(--color-red);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--color-red);
+      }
     }
     &.disable {
       color: var(--color-grey);
