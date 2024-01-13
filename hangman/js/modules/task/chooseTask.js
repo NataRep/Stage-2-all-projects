@@ -2,7 +2,7 @@ export function chooseTask(data) {
   //функция должна вернуть объект с вопросов, который еще не был использован, если это возможно
 
   const countTasks = data.length - 1;
-  let random = (Math.random() * (countTasks + 1)).toFixed(0);
+  let random = (Math.random() * countTasks).toFixed(0);
   console.log(random);
 
   while (!data[random].unique) {

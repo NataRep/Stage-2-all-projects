@@ -4,4 +4,32 @@
 }
 .task__word {
   display: flex;
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
+.task__letter {
+  list-style: none;
+  width: 3rem;
+  height: 3rem;
+  background: url("./../../../assets/images/underscore.svg") no-repeat bottom center;
+}
+
+.hint {
+  font-size: 2rem;
+  display: flex;
+}
+.hint__title {
+  color: var(--color-red);
+  margin-right: 0.5rem;
+}
+
+.counter {
+  display: flex;
+  font-size: 2.5rem;
+}
+.counter__text {
+  margin-right: 0.5rem;
+}
+.counter__count {
+  color: var(--color-red);
 }/*# sourceMappingURL=task.css.map */
