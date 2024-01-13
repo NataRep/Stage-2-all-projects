@@ -33,10 +33,10 @@ function fillBody() {
   const counterSection = createCounterSection();
   const keyboardSection = createKeyboardSection();
 
-  body.append(h1);
   body.append(main);
+
+  main.append(h1);
   main.append(content);
-  content.append(h1);
   content.append(illustration);
   content.append(taskSection);
   content.append(counterSection);

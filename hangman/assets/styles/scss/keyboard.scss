@@ -1,0 +1,29 @@
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 30rem;
+
+  &__key {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 2rem;
+    height: 2rem;
+    background: url("./../../../assets/images/key.svg") no-repeat center;
+    margin: 0.5rem;
+    font-family: JejuHallasan;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      color: var(--color-red);
+    }
+    &.disable {
+      color: var(--color-grey);
+      background: url("./../../../assets/images/key-disable.svg") no-repeat
+        center;
+      pointer-events: none;
+    }
+  }
+}

@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
+@import url("fonts.css");
 @import url("variablles.css");
 @import url("illustration.css");
 @import url("task.css");
+@import url("keyboard.css");
 
 .page {
   background: url(./../../../assets/images/main-bg.jpg);
@@ -21,5 +23,25 @@ h1 {
   padding: 1.5rem;
 
   &__content {
+    display: grid;
+    grid-template-columns: 15.5rem auto;
+    grid-template-areas:
+      "A A B B B B"
+      "A A C C C C"
+      "A A D D D D";
+    gap: 2rem;
+
+    .image {
+      grid-area: A;
+    }
+    .task {
+      grid-area: B;
+    }
+    .counter {
+      grid-area: C;
+    }
+    .keyboard {
+      grid-area: D;
+    }
   }
 }

@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "JejuHallasan";
+  src: url("./../../../assets/fonts/jejuHallasan/JejuHallasan.ttf.woff") format("woff"), url("./../../../assets/fonts/jejuHallasan/JejuHallasan.ttf.svg#JejuHallasan") format("svg"), url("./../../../assets/fonts/jejuHallasan/JejuHallasan.ttf.eot"), url("./../../../assets/fonts/jejuHallasan/JejuHallasan.ttf.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}/*# sourceMappingURL=fonts.css.map */
