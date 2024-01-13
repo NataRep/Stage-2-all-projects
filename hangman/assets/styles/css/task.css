@@ -1,0 +1,7 @@
+.task {
+  display: flex;
+  flex-direction: column;
+}
+.task__word {
+  display: flex;
+}/*# sourceMappingURL=task.css.map */

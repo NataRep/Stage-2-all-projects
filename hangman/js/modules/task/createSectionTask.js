@@ -1,7 +1,7 @@
-export function createSectionTask(task) {
-  const word = task.word;
-  const question = task.question;
+import { taskLettersArray } from "../../../js/utils/globalVariables.js";
+import { questionElement } from "../../../js/utils/globalVariables.js";
 
+export function createSectionTask() {
   const section = document.createElement("section");
   section.classList.add("task");
 
@@ -9,11 +9,11 @@ export function createSectionTask(task) {
   const wordField = document.createElement("ul");
   wordField.classList.add("task__word");
 
-  //заполняем блок контейнерами для букв
-  for (let i = 0; i < word.length; i++) {
-    let li = document.createElement("li");
+  //заполняем блок слова контейнерами для букв
+  taskLettersArray.map((li) => {
     wordField.append(li);
-  }
+    li.classList.add("task__letter");
+  });
 
   //создаем блок с вопросом
   const hint = document.createElement("div");
@@ -23,14 +23,10 @@ export function createSectionTask(task) {
   hintTitle.classList.add("hint__title");
   hintTitle.innerHTML = "Hint:";
 
-  const hindQuestion = document.createElement("div");
-  hindQuestion.classList.add("hint__question");
-  hindQuestion.innerHTML = question;
-
   section.append(wordField);
   section.append(hint);
   hint.append(hintTitle);
-  hint.append(hindQuestion);
+  hint.append(questionElement);
 
   return section;
 }

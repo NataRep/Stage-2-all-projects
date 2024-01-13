@@ -1,20 +1,18 @@
 import { body } from "./js/utils/globalVariables.js";
-import { createIllustration } from "./js/modules/illustration/createIllustration.js";
+import { task } from "./js/utils/globalVariables.js";
+import { createSectionIllustration } from "./js/modules/illustration/createSectionIllustration.js";
 import { createSectionTask } from "./js/modules/task/createSectionTask.js";
-import { data } from "./js/utils/data.js";
-import { chooseTask } from "./js/modules/task/chooseTask.js";
+
 import { createCounterSection } from "./js/modules/counter/createCounterSection.js";
 import { createKeyboardSection } from "./js/modules/keyboard/createKeyboardSection.js";
 
 //глобальные переменные//
 
 let countIncorrectGuesses;
-let task;
 
 //начало игры//
 function startGame() {
   countIncorrectGuesses = 0;
-  task = chooseTask(data);
 }
 
 function fillBody() {
@@ -30,7 +28,7 @@ function fillBody() {
   content.classList.add("content", "main__content");
 
   //заполняем документ блоками
-  const illustration = createIllustration();
+  const illustration = createSectionIllustration();
   const taskSection = createSectionTask(task);
   const counterSection = createCounterSection();
   const keyboardSection = createKeyboardSection();
