@@ -61,6 +61,12 @@ h1 {
     margin: auto;
   }
 }
+@media (max-width: 480px) {
+  .main__content .image {
+    height: 10rem;
+    width: 7rem;
+  }
+}
 .main__content .task {
   grid-area: B;
 }

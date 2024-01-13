@@ -62,6 +62,10 @@ h1 {
       @media (max-width: 600px) {
         margin: auto;
       }
+      @media (max-width: 480px) {
+        height: 10rem;
+        width: 7rem;
+      }
     }
     .task {
       grid-area: B;

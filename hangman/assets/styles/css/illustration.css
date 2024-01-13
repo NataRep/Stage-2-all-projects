@@ -1,21 +1,25 @@
 .image {
   background: url(./../../../assets/images/hangman.svg) no-repeat;
-  width: 16rem;
+  background-size: contain;
+  width: 15.5rem;
   height: 25rem;
   position: relative;
 }
 .image__man {
-  width: 35%;
+  height: 100%;
   position: absolute;
   right: 0;
-  top: 12%;
+  top: 0;
 }
-
-#manHeader,
-#manBody,
-#manLeftArm,
-#manRightArm,
-#manLeftLeg,
-#manRightLeg {
+@media (max-width: 480px) {
+  .image__man {
+    right: -0.5rem;
+    top: 10%;
+  }
+}
+.image__man svg {
+  height: 84%;
+}
+.image__man svg path {
   opacity: 0;
 }/*# sourceMappingURL=illustration.css.map */
