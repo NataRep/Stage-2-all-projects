@@ -1,7 +1,8 @@
 import { word } from "../../../js/utils/globalVariables.js";
 import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
-import { counterElement } from "../../../js/utils/globalVariables.js";
 import { game } from "../../../js/utils/globalVariables.js";
+import { gameOver } from "../../../js/modules/gameplay/gameOver.js";
+import { changeCounter } from "../../../js/modules/gameplay/changeCounter.js";
 
 export function checkLetter(letter) {
   let result = false;
@@ -19,13 +20,15 @@ export function checkLetter(letter) {
     //проверяем угадано ли слово целиком
     if (game.countCorrectGuesses === word.length) {
       //выигрыш
-      //gameOver(true);
-      console.log("win!!!");
+      gameOver(true);
     }
   }
   if (!result) {
     //совпадения с буквой слова нет, увеличиваем счетчик ошибок
     game.countIncorrectGuesses++;
+
+    //изменение состояния счетчика
+    changeCounter(game.countIncorrectGuesses);
 
     //рисуем одну часть человечка
     const man = document.getElementById("svg-man");
@@ -38,8 +41,7 @@ export function checkLetter(letter) {
 
     if (game.countIncorrectGuesses == 6) {
       //проигрыш
-      //gameOver(false);
-      console.log("loss!!!");
+      gameOver(false);
     }
   }
 }
