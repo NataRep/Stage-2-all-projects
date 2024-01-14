@@ -1,17 +1,16 @@
 import { body } from "./js/utils/globalVariables.js";
 import { task } from "./js/utils/globalVariables.js";
+import { game } from "./js/utils/globalVariables.js";
 import { createSectionIllustration } from "./js/modules/illustration/createSectionIllustration.js";
 import { createSectionTask } from "./js/modules/task/createSectionTask.js";
 
 import { createCounterSection } from "./js/modules/counter/createCounterSection.js";
 import { createKeyboardSection } from "./js/modules/keyboard/createKeyboardSection.js";
 
-//глобальные переменные//
-
-let countIncorrectGuesses;
-
 //начало игры//
-function startGame() {}
+function startGame() {
+  game.countIncorrectGuesses = 0;
+}
 
 function fillBody() {
   body.classList.add("page");

@@ -9,18 +9,27 @@
 }
 .task__word {
   display: flex;
-  margin: 0 0 0.725rem 0;
+  margin: 0 0 1rem 0;
   padding: 0;
   justify-content: center;
   flex-wrap: wrap;
 }
 .task__letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   width: 2.5rem;
-  height: 3rem;
+  height: 2.5rem;
   margin-right: 0.5rem;
   background: url("./../../../assets/images/underscore.svg") no-repeat bottom center;
   background-size: contain;
+  font-family: JejuHallasan;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+.task__letter.open {
+  background: none;
 }
 
 .hint {
