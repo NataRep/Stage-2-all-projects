@@ -37,7 +37,6 @@ export function restartGame(event) {
   arrayLetterFields.splice(0, arrayLetterFields.length);
 
   fillBody();
-  console.log(arrayLetterFields);
 
   body.style.overflow = "auto";
   questionElement.innerHTML = game.task.question;
