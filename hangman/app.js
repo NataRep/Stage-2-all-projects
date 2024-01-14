@@ -3,6 +3,7 @@ import { task } from "./js/utils/globalVariables.js";
 import { game } from "./js/utils/globalVariables.js";
 import { createSectionIllustration } from "./js/modules/illustration/createSectionIllustration.js";
 import { createSectionTask } from "./js/modules/task/createSectionTask.js";
+import { onKeyDown } from "./js/modules/gameplay/onkeydown.js";
 
 import { createCounterSection } from "./js/modules/counter/createCounterSection.js";
 import { createKeyboardSection } from "./js/modules/keyboard/createKeyboardSection.js";
@@ -10,6 +11,7 @@ import { createKeyboardSection } from "./js/modules/keyboard/createKeyboardSecti
 //начало игры//
 function startGame() {
   game.countIncorrectGuesses = 0;
+  document.addEventListener("keydown", onKeyDown);
 }
 
 function fillBody() {
