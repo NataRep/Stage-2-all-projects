@@ -23,10 +23,6 @@ export function checkLetter(letter) {
     //проверяем правильно ли угалад игрок
     for (let i = 0; i < game.task.word.length; i++) {
       if (game.task.word[i] === letter) {
-        console.log("верно");
-        console.log(game.task.word.length);
-        console.log(game.task.word);
-        console.log(arrayLetterFields[i]);
         //если найдено совпадение, то показываем букву в слове
         arrayLetterFields[i].classList.add("open");
         arrayLetterFields[i].innerHTML = letter;

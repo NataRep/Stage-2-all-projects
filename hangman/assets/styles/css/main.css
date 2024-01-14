@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap");
 @import url("fonts.css");
 @import url("variablles.css");
 @import url("illustration.css");
@@ -7,7 +8,7 @@
 @import url("modal.css");
 .page {
   background: url(./../../../assets/images/main-bg.jpg);
-  font-family: Island Moments;
+  font-family: "Annie Use Your Telescope", cursive;
   color: var(--color-pen);
   position: relative;
 }

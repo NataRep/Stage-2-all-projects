@@ -8,6 +8,8 @@ import { createCounterSection } from "../../js/modules/counter/createCounterSect
 import { createKeyboardSection } from "../../js/modules/keyboard/createKeyboardSection.js";
 
 export function fillBody() {
+  console.log("The secret word: " + game.task.word);
+
   createLettersArray(game.task.word);
 
   body.classList.add("page");
