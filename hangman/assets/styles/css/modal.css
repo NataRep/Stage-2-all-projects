@@ -17,6 +17,11 @@
   box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.25);
   width: 28rem;
 }
+@media (max-width: 480px) {
+  .modal__container {
+    width: 18rem;
+  }
+}
 .modal__title {
   color: var(--color-red);
   font-size: 4rem;
@@ -53,6 +58,11 @@
 }
 .modal__button:active {
   color: var(--color-red);
+}
+@media (max-width: 480px) {
+  .modal__button {
+    transform: rotate(-15deg) translateX(0rem);
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .modal__button:hover {
