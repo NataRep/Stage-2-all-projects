@@ -1,0 +1,68 @@
+.modal {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100dvh;
+  background: rgba(26, 11, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1rem 2rem 1rem;
+    background: url(./../../../assets/images/main-bg.jpg);
+    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.25);
+    width: 28rem;
+  }
+
+  &__title {
+    color: var(--color-red);
+    font-size: 4rem;
+    margin: 0 0 2rem 0;
+    opacity: 0.9;
+    font-weight: normal;
+  }
+
+  &__massege {
+    color: var(--color-pen);
+    font-family: JejuHallasan;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__row-word {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  &__word {
+    font-family: JejuHallasan;
+  }
+
+  &__button {
+    transform: rotate(-15deg) translateX(5rem);
+    background: url(./../../../assets/images/button-bg.svg) no-repeat;
+    background-size: cover;
+    border: none;
+    width: 15rem;
+    height: 3.5rem;
+    text-align: center;
+    font-family: JejuHallasan;
+    font-size: 2rem;
+    color: var(--color-pen);
+    cursor: pointer;
+    transition: color 0.2s;
+    &:active {
+      color: var(--color-red);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--color-red);
+      }
+    }
+  }
+}

@@ -4,11 +4,13 @@
 @import url("illustration.css");
 @import url("task.css");
 @import url("keyboard.css");
+@import url("modal.css");
 
 .page {
   background: url(./../../../assets/images/main-bg.jpg);
   font-family: Island Moments;
   color: var(--color-pen);
+  position: relative;
 }
 h1 {
   font-size: 4rem;

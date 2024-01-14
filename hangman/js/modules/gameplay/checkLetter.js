@@ -33,8 +33,6 @@ export function checkLetter(letter) {
     //рисуем одну часть человечка
     const man = document.getElementById("svg-man");
     const manPath = man.querySelectorAll("path");
-    console.log(manPath);
-    console.log(game.countIncorrectGuesses);
     manPath[game.countIncorrectGuesses - 1].style.opacity = "1";
 
     //TODO: можно добавить звук карандаша
