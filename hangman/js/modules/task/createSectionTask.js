@@ -1,5 +1,5 @@
-import { taskLettersArray } from "../../../js/utils/globalVariables.js";
 import { questionElement } from "../../../js/utils/globalVariables.js";
+import { game } from "../../../js/utils/globalVariables.js";
 import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
 
 export function createSectionTask() {
@@ -11,10 +11,12 @@ export function createSectionTask() {
   wordField.classList.add("task__word");
 
   //заполняем блок слова контейнерами для букв
-  taskLettersArray.map((li) => {
+  let array = game.task.word.split("");
+  array.map((letter) => {
+    let li = document.createElement("li");
+    li.classList.add("task__letter");
     arrayLetterFields.push(li);
     wordField.append(li);
-    li.classList.add("task__letter");
   });
 
   //создаем блок с вопросом

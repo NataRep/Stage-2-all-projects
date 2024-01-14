@@ -1,6 +1,5 @@
 import { data } from "./data.js";
 import { chooseTask } from "../../js/modules/task/chooseTask.js";
-import { createLettersArray } from "../../js/modules/task/createLettersArray.js";
 import { createQuestionElement } from "../../js/modules/task/createQuestionElement.js";
 import { createCuonterElement } from "../../js/modules/counter/createCuonterElement.js";
 
@@ -9,24 +8,17 @@ export const game = {
   countIncorrectGuesses: 0,
   countCorrectGuesses: 0,
   usedLetter: [],
+  task: chooseTask(data),
 };
 
-//выбираем случайным образом задание из массива дата
-export const task = chooseTask(data);
-
-//секретное слово
-export const word = task.word;
-
-//подсказка для отгадывания секретного слова
-export const question = task.question;
-
 //список букв в секретном слове
-export const taskLettersArray = createLettersArray(word);
+export const taskLettersArray = []; //из-за того, что это константы не получается сменить слово
 
 //DOM
 export const body = document.body;
+
 //элемент в котором нужно менять вопрос при смене задания
-export const questionElement = createQuestionElement(question);
+export const questionElement = createQuestionElement(game.task.question); // из-за того, что это константы не получается сменить вопрос
 
 // коллекция полей для букв ответа
 export const arrayLetterFields = [];

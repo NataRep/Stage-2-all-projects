@@ -16,6 +16,5 @@ export function chooseTask(data) {
   }
   //отмечаем вопрос как использованный
   data[random].unique = false;
-
   return data[random];
 }
