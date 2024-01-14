@@ -8,6 +8,7 @@ import { createCuonterElement } from "../../js/modules/counter/createCuonterElem
 export const game = {
   countIncorrectGuesses: 0,
   countCorrectGuesses: 0,
+  usedLetter: [],
 };
 
 //выбираем случайным образом задание из массива дата
@@ -34,3 +35,4 @@ export const arrayLetterFields = [];
 export const counterElement = createCuonterElement(0);
 
 // коллекция букв на клавиатуре или сразу при создании повесить на каждую букву обработчик
+export const arrayKeyboardButtons = [];
