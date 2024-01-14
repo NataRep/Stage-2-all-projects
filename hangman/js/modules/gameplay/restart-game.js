@@ -8,6 +8,7 @@ import { chooseTask } from "../../../js/modules/task/chooseTask.js";
 import { fillBody } from "../../../js/utils/fill-body.js";
 import { taskLettersArray } from "../../../js/utils/globalVariables.js";
 import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
+import { onKeyDown } from "../../../js/modules/gameplay/onkeydown.js";
 
 export function restartGame(event) {
   //удалить модальное окно
@@ -31,8 +32,6 @@ export function restartGame(event) {
   //заново выбрать задачу и обновить вопрос и игровое поле
   game.task = chooseTask(data);
 
-  console.log(game.task);
-
   body.innerHTML = "";
   taskLettersArray.splice(0, taskLettersArray.length); //чтобы обновилось задание нужно обновить taskLettersArray = createLettersArray(game.task.word);
   arrayLetterFields.splice(0, arrayLetterFields.length);
@@ -45,6 +44,5 @@ export function restartGame(event) {
 
   //сбросить счетчик ошибок на 0
   counterElement.innerHTML = "0";
-
-  console.log("новая игра");
+  document.addEventListener("keydown", onKeyDown);
 }
