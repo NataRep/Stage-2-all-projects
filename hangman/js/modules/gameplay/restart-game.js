@@ -1,13 +1,13 @@
 import { data } from "../../../js/utils/data.js";
-import { game } from "../../../js/utils/globalVariables.js";
-import { body } from "../../../js/utils/globalVariables.js";
-import { questionElement } from "../../../js/utils/globalVariables.js";
-import { counterElement } from "../../../js/utils/globalVariables.js";
-import { arrayKeyboardButtons } from "../../../js/utils/globalVariables.js";
-import { chooseTask } from "../../../js/modules/task/chooseTask.js";
+import { game } from "../../utils/global-variables.js";
+import { body } from "../../utils/global-variables.js";
+import { questionElement } from "../../utils/global-variables.js";
+import { counterElement } from "../../utils/global-variables.js";
+import { arrayKeyboardButtons } from "../../utils/global-variables.js";
+import { chooseTask } from "../task/choose-task.js";
 import { fillBody } from "../../../js/utils/fill-body.js";
-import { taskLettersArray } from "../../../js/utils/globalVariables.js";
-import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
+import { taskLettersArray } from "../../utils/global-variables.js";
+import { arrayLetterFields } from "../../utils/global-variables.js";
 import { onKeyDown } from "../../../js/modules/gameplay/onkeydown.js";
 
 export function restartGame(event) {
@@ -33,7 +33,8 @@ export function restartGame(event) {
   game.task = chooseTask(data);
 
   body.innerHTML = "";
-  taskLettersArray.splice(0, taskLettersArray.length); //чтобы обновилось задание нужно обновить taskLettersArray = createLettersArray(game.task.word);
+  //чтобы обновилось задание нужно обновить чтобы масивы с полями для букв были пустыми;
+  taskLettersArray.splice(0, taskLettersArray.length);
   arrayLetterFields.splice(0, arrayLetterFields.length);
 
   fillBody();

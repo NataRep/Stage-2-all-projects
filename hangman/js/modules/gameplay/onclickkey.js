@@ -1,4 +1,4 @@
-import { checkLetter } from "../../../js/modules/gameplay/checkLetter.js";
+import { checkLetter } from "./check-letter.js";
 
 export function onClickKey(event) {
   //отмечаем кнопку как использованную

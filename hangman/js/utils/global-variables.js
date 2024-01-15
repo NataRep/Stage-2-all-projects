@@ -1,7 +1,7 @@
 import { data } from "./data.js";
-import { chooseTask } from "../../js/modules/task/chooseTask.js";
-import { createQuestionElement } from "../../js/modules/task/createQuestionElement.js";
-import { createCuonterElement } from "../../js/modules/counter/createCuonterElement.js";
+import { chooseTask } from "../modules/task/choose-task.js";
+import { createQuestionElement } from "../modules/task/create-question-element.js";
+import { createCuonterElement } from "../modules/counter/create-cuonter-element.js";
 
 //объект для хранения глобальных переменных по игровому процессу
 export const game = {

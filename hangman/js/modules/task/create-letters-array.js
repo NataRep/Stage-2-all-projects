@@ -1,4 +1,4 @@
-import { taskLettersArray } from "../../../js/utils/globalVariables.js";
+import { taskLettersArray } from "../../utils/global-variables.js";
 
 export function createLettersArray(word) {
   for (let i = 0; i < word.length; i++) {

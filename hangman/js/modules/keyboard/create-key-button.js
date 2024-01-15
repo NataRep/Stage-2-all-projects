@@ -1,4 +1,4 @@
-import { onClickKey } from "../../../js/modules/gameplay/onclickkey.js";
+import { onClickKey } from "../gameplay/onclickkey.js";
 
 export function createKeyButton(letter) {
   const button = document.createElement("div");

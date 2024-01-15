@@ -1,8 +1,8 @@
-import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
-import { arrayKeyboardButtons } from "../../../js/utils/globalVariables.js";
-import { game } from "../../../js/utils/globalVariables.js";
-import { gameOver } from "../../../js/modules/gameplay/gameOver.js";
-import { changeCounter } from "../../../js/modules/gameplay/changeCounter.js";
+import { arrayLetterFields } from "../../utils/global-variables.js";
+import { arrayKeyboardButtons } from "../../utils/global-variables.js";
+import { game } from "../../utils/global-variables.js";
+import { gameOver } from "./game-over.js";
+import { changeCounter } from "./change-counter.js";
 
 export function checkLetter(letter) {
   let result = false;

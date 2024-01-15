@@ -1,11 +1,11 @@
-import { body } from "../../js/utils/globalVariables.js";
-import { game } from "../../js/utils/globalVariables.js";
-import { createSectionIllustration } from "../../js/modules/illustration/createSectionIllustration.js";
-import { createSectionTask } from "../../js/modules/task/createSectionTask.js";
-import { createLettersArray } from "../../js/modules/task/createLettersArray.js";
+import { body } from "./global-variables.js";
+import { game } from "./global-variables.js";
+import { createSectionIllustration } from "../modules/illustration/create-section-illustration.js";
+import { createSectionTask } from "../modules/task/create-section-task.js";
+import { createLettersArray } from "../modules/task/create-letters-array.js";
 
-import { createCounterSection } from "../../js/modules/counter/createCounterSection.js";
-import { createKeyboardSection } from "../../js/modules/keyboard/createKeyboardSection.js";
+import { createCounterSection } from "../modules/counter/create-counter-section.js";
+import { createKeyboardSection } from "../modules/keyboard/create-keyboard-section.js";
 
 export function fillBody() {
   console.log("The secret word: " + game.task.word);

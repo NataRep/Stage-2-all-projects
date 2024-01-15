@@ -1,4 +1,4 @@
-import { counterElement } from "../../../js/utils/globalVariables.js";
+import { counterElement } from "../../utils/global-variables.js";
 
 export function createCounterSection() {
   const section = document.createElement("section");

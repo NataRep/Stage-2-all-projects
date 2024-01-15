@@ -1,6 +1,6 @@
-import { questionElement } from "../../../js/utils/globalVariables.js";
-import { game } from "../../../js/utils/globalVariables.js";
-import { arrayLetterFields } from "../../../js/utils/globalVariables.js";
+import { questionElement } from "../../utils/global-variables.js";
+import { game } from "../../utils/global-variables.js";
+import { arrayLetterFields } from "../../utils/global-variables.js";
 
 export function createSectionTask() {
   const section = document.createElement("section");

@@ -1,6 +1,6 @@
 import { abc } from "./abc.js";
-import { createKeyButton } from "./createKeyButton.js";
-import { arrayKeyboardButtons } from "../../../js/utils/globalVariables.js";
+import { createKeyButton } from "./create-key-button.js";
+import { arrayKeyboardButtons } from "../../utils/global-variables.js";
 
 export function createKeyboardSection() {
   const section = document.createElement("section");

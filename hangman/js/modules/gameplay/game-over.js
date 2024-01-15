@@ -1,7 +1,7 @@
-import { createModal } from "../../../js/modules/modal/create-modal.js";
-import { game } from "../../../js/utils/globalVariables.js";
-import { body } from "../../../js/utils/globalVariables.js";
-import { onKeyDown } from "../../../js/modules/gameplay/onkeydown.js";
+import { createModal } from "../modal/create-modal.js";
+import { game } from "../../utils/global-variables.js";
+import { body } from "../../utils/global-variables.js";
+import { onKeyDown } from "./onkeydown.js";
 
 export function gameOver(result) {
   let massege = result === true ? "You win!" : "You loss!";

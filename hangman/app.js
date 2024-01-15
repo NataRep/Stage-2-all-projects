@@ -1,4 +1,4 @@
-import { game } from "./js/utils/globalVariables.js";
+import { game } from "./js/utils/global-variables.js";
 import { onKeyDown } from "./js/modules/gameplay/onkeydown.js";
 import { fillBody } from "./js/utils/fill-body.js";
 
