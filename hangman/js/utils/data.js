@@ -2,13 +2,25 @@ export let data = [
   {
     word: "scope",
     question:
-      "this in JavaScript defines where a declared variable or function is available.",
+      "This in JavaScript defines where a declared variable or function is available.",
+    unique: true,
+  },
+  {
+    word: "padding",
+    question:
+      "Css property that specifies the internal indentation of the element.",
     unique: true,
   },
   {
     word: "closures",
     question:
-      "this is the combination of a function bundled together with references to its surrounding state (the lexical environment).",
+      "This is the combination of a function bundled together with references to its surrounding state (the lexical environment).",
+    unique: true,
+  },
+  {
+    word: "article",
+    question:
+      "A semantic html tag that defines independent, self-contained content.",
     unique: true,
   },
   {
@@ -17,18 +29,40 @@ export let data = [
     unique: true,
   },
   {
+    word: "rebase",
+    question: "Reapply commits on top of another base tip in git.",
+    unique: true,
+  },
+  {
     word: "break",
-    question: "secret word for cycle interruption",
+    question: "Secret word for cycle interruption",
+    unique: true,
+  },
+  {
+    word: "boolean",
+    question:
+      "It is a data type in js that can take only two values: true or false.",
     unique: true,
   },
   {
     word: "recursion",
-    question: "a term in programming that means a function calls itself.",
+    question: "A term in programming that means a function calls itself.",
+    unique: true,
+  },
+  {
+    word: "html",
+    question: "Which html tag should have a global lang attribute",
     unique: true,
   },
   {
     word: "hypertext",
     question: "this is a system of text pages linked to each other by links.",
+    unique: true,
+  },
+  {
+    word: "linter",
+    question:
+      "A programming tool used to analyse code to detect potential problems, structural errors, style violations and other defects.",
     unique: true,
   },
   {
