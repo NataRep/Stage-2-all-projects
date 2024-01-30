@@ -1,0 +1,63 @@
+.game {
+  width: fit-content;
+  margin: auto;
+  padding: 2rem;
+  border: 1px solid var(--black);
+  border-radius: 1.5rem;
+
+  &__playfield {
+    display: grid;
+    grid-template-areas:
+      "- top "
+      "left main";
+    width: fit-content;
+    margin: auto;
+  }
+
+  &__hints {
+    display: flex;
+  }
+  &__hints_top {
+    grid-area: top;
+    height: 3rem;
+
+    .game__hint {
+      flex-direction: column;
+    }
+  }
+  &__hints_left {
+    grid-area: left;
+    flex-direction: column;
+
+    .game__hint {
+      flex-direction: row;
+      height: 3rem;
+    }
+  }
+  &__picture {
+    grid-area: main;
+    border: 2px solid var(--black);
+  }
+
+  &__row {
+    display: flex;
+  }
+  &__hint {
+    display: flex;
+    width: 3rem;
+
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__num {
+    line-height: 1rem;
+    margin: 0;
+  }
+
+  &__box {
+    border: 1px solid var(--black);
+    width: calc(3rem - 2px);
+    height: calc(3rem - 2px);
+  }
+}

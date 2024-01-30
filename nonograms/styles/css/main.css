@@ -1,0 +1,9 @@
+@import url("variablles.css");
+@import url("../../components/playing-field/styles/css/style.css"); /*# sourceMappingURL=main.css.map */
+
+* {
+  color: var(--black);
+}
+main {
+  background: ;
+}
