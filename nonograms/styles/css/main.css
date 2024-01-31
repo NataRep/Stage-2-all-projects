@@ -8,4 +8,8 @@
 body {
   background-color: var(--gray-light);
   font-family: "Roboto Mono", monospace;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+  align-items: stretch;
 }/*# sourceMappingURL=main.css.map */
