@@ -1,9 +1,9 @@
-@import url("variablles.css");
-@import url("../../components/playing-field/styles/css/style.css"); /*# sourceMappingURL=main.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap");
 
-* {
-  color: var(--black);
-}
-main {
-  background: ;
-}
+@import url("variablles.css");
+@import url("../../components/playing-field/styles/css/style.css");
+
+body {
+  background-color: var(--gray-light);
+  font-family: "Roboto Mono", monospace;
+} /*# sourceMappingURL=main.css.map */

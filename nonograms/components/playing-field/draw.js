@@ -1,10 +1,32 @@
 export class Draw {
   constructor(game) {
     this.gameObj = game;
+    this.boxList = []; //массив дивов клеток поля для очистки и изменения
   }
   drawPlayFeildEl() {
     const gameEl = document.createElement("div");
     gameEl.classList.add("game");
+
+    //название таска и секундомер
+    const wrapperInfoLine = document.createElement("div");
+    wrapperInfoLine.classList.add("game__info-row");
+
+    const nameEl = document.createElement("div");
+    nameEl.classList.add("game__name");
+    nameEl.innerHTML = `"${this.gameObj.taskName}"`;
+    //запоминаем эллемент в объекте
+    this.nameTaskEl = nameEl;
+
+    const timerEl = document.createElement("div");
+    timerEl.classList.add("game__timer");
+    timerEl.innerHTML = "00:00";
+    //запоминаем эллемент в объекте
+    this.timerEl = timerEl;
+
+    wrapperInfoLine.append(nameEl);
+    wrapperInfoLine.append(timerEl);
+
+    //Игровое поле
 
     const playField = document.createElement("div");
     playField.classList.add("game__playfield");
@@ -51,6 +73,8 @@ export class Draw {
         const box = document.createElement("div");
         box.classList.add("game__box");
         rowPlayField.append(box);
+
+        this.boxList.push(box);
       }
       picture.append(rowPlayField);
     });
@@ -58,6 +82,8 @@ export class Draw {
     playField.append(hintTop);
     playField.append(hintLeft);
     playField.append(picture);
+
+    gameEl.append(wrapperInfoLine);
     gameEl.append(playField);
 
     return gameEl;

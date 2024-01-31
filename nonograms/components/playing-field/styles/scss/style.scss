@@ -1,17 +1,27 @@
 .game {
   width: fit-content;
   margin: auto;
-  padding: 2rem;
+  padding: 1rem 2.75rem 2.75rem;
   border: 1px solid var(--black);
   border-radius: 1.5rem;
+  background: var(--white);
+
+  &__info-row {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
 
   &__playfield {
     display: grid;
     grid-template-areas:
       "- top "
       "left main";
+    justify-items: end;
+    align-items: end;
     width: fit-content;
     margin: auto;
+    border: 2px solid var(--black);
   }
 
   &__hints {
@@ -19,33 +29,54 @@
   }
   &__hints_top {
     grid-area: top;
-    height: 3rem;
+    height: 6rem;
+    border-bottom: 1px solid var(--black);
 
     .game__hint {
       flex-direction: column;
+      border-left: 1px solid var(--black);
+      width: 3rem;
+      padding-bottom: 0.5rem;
+    }
+    .game__num {
+      margin-top: 0.5rem;
     }
   }
   &__hints_left {
     grid-area: left;
     flex-direction: column;
+    width: 6rem;
+    border-right: 1px solid var(--black);
 
     .game__hint {
       flex-direction: row;
       height: 3rem;
+      border-top: 1px solid var(--black);
+      padding-right: 0.5rem;
+    }
+
+    .game__num {
+      margin-left: 0.5rem;
     }
   }
   &__picture {
     grid-area: main;
-    border: 2px solid var(--black);
+    height: fit-content;
+    width: fit-content;
+    border-left: 1px solid var(--black);
+    border-top: 1px solid var(--black);
   }
 
   &__row {
     display: flex;
+    border-bottom: 1px solid var(--black);
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
   &__hint {
     display: flex;
-    width: 3rem;
-
     align-items: center;
     justify-content: flex-end;
   }
@@ -53,11 +84,32 @@
   &__num {
     line-height: 1rem;
     margin: 0;
+    font-weight: 500;
   }
 
   &__box {
-    border: 1px solid var(--black);
-    width: calc(3rem - 2px);
-    height: calc(3rem - 2px);
+    border-left: 1px solid var(--black);
+    width: 3rem;
+    height: 3rem;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &.painted {
+      background-color: var(--black);
+    }
+    &.marked {
+      background: url("/nonograms/assets/images/marked.svg") no-repeat center;
+    }
+  }
+
+  &__info-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    text-transform: capitalize;
   }
 }
