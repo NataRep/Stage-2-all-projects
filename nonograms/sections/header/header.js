@@ -16,7 +16,8 @@ export function createHeader() {
   buttonRow.classList.add("header__buttons");
 
   const buttonNewGame = createButton(["button", "button_new-game"], "new game");
-  buttonNewGame.id = "buttonNewGame";
+
+  const buttonTheme = createButton(["button", "button_theme"], "");
 
   const buttonContinue = createButton(
     ["button", "button_continue"],

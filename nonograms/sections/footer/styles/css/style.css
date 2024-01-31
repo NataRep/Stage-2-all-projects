@@ -1,0 +1,11 @@
+.footer {
+  width: 100%;
+  background: var(--black);
+  color: var(--gray-light);
+}
+.footer__container {
+  max-width: var(--container-width);
+  margin: auto;
+  padding: 1rem 2rem;
+  text-align: right;
+}/*# sourceMappingURL=style.css.map */
