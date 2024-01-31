@@ -20,7 +20,7 @@
   width: -moz-fit-content;
   width: fit-content;
   margin: auto;
-  border: 2px solid var(--black);
+  border: 4px solid var(--black);
 }
 .game__hints {
   display: flex;

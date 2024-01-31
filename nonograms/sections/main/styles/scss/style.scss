@@ -1,5 +1,4 @@
 .main {
-  min-height: 100vh;
   background-image: url("/nonograms/assets/images/cat-woman-big.png");
   background-repeat: no-repeat;
   background-position: right top;
@@ -8,8 +7,7 @@
   @media (max-width: 1020px) {
     background-image: url("/nonograms/assets/images/cat-woman-medium.png");
   }
-  @media (max-width: 768px) {
-    background-image: none;
+  @media (max-width: 500px) {
   }
 
   &__container {
