@@ -84,6 +84,7 @@
   border-left: 1px solid var(--black);
   width: 3rem;
   height: 3rem;
+  cursor: pointer;
 }
 .game__box:first-child {
   border-left: none;

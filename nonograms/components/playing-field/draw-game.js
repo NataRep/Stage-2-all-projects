@@ -1,7 +1,10 @@
-export class Draw {
+export class DrawGame {
   constructor(game) {
     this.gameObj = game;
     this.boxList = []; //массив дивов клеток поля для очистки и изменения
+    //this.gameEl = gameEl;
+    //this.nameTaskEl = nameEl;
+    //this.timerEl = timerEl;
   }
   drawPlayFeildEl() {
     const gameEl = document.createElement("div");
@@ -14,14 +17,10 @@ export class Draw {
     const nameEl = document.createElement("div");
     nameEl.classList.add("game__name");
     nameEl.innerHTML = `"${this.gameObj.taskName}"`;
-    //запоминаем эллемент в объекте
-    this.nameTaskEl = nameEl;
 
     const timerEl = document.createElement("div");
     timerEl.classList.add("game__timer");
     timerEl.innerHTML = "00:00";
-    //запоминаем эллемент в объекте
-    this.timerEl = timerEl;
 
     wrapperInfoLine.append(nameEl);
     wrapperInfoLine.append(timerEl);
@@ -85,6 +84,11 @@ export class Draw {
 
     gameEl.append(wrapperInfoLine);
     gameEl.append(playField);
+
+    //запоминаем эллементы DOM в объекте
+    this.gameEl = gameEl;
+    this.nameTaskEl = nameEl;
+    this.timerEl = timerEl;
 
     return gameEl;
   }

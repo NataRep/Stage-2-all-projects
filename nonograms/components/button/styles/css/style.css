@@ -1,0 +1,26 @@
+.button {
+  background-color: var(--white);
+  border-radius: 1.5rem;
+  border: 1px solid var(--black);
+  display: flex;
+  padding: 0rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 3rem;
+  text-transform: lowercase;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: var(--gray);
+    color: var(--white);
+  }
+}
+.button:active {
+  background: var(--gray);
+  color: var(--white);
+}/*# sourceMappingURL=style.css.map */
