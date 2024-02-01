@@ -4,10 +4,10 @@ import { DrawGame } from "../components/playing-field/draw-game.js";
 import { createModalWin } from "../components/modals/modal-win.js";
 import { buttonsTools } from "../sections/main/create-main-section.js";
 
-export function startGame() {
+export function startGame(task) {
   const main = document.getElementsByTagName("main")[0];
 
-  let newGame = new Game(chooseTask("random"));
+  let newGame = new Game(task);
   let draw = new DrawGame(newGame);
 
   newGame.createGameFeild();
@@ -20,11 +20,13 @@ export function startGame() {
     //перерисовываем поле
     gameNode.before(draw.drawPlayFeildEl());
     gameNode.remove();
-    console.log("удаляем поле");
   } else {
     //рисуем поле первый раз
     main.children[0].append(draw.drawPlayFeildEl());
   }
+
+  //делаем активными кнопки для этой игры
+  buttonsTools.forEach((button) => (button.disabled = false));
 
   //таймер
   //переменная для таймера

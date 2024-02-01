@@ -1,4 +1,6 @@
 import { createButton } from "../../components/button/button.js";
+import { chooseTask } from "../../js/choose-task.js";
+import { startGame } from "../../js/start-game.js";
 
 export function createHeader() {
   const header = document.createElement("header");
@@ -16,6 +18,11 @@ export function createHeader() {
   buttonRow.classList.add("header__buttons");
 
   const buttonNewGame = createButton(["button", "button_new-game"], "new game");
+
+  buttonNewGame.addEventListener("click", () => {
+    const newTask = chooseTask("random");
+    startGame(newTask);
+  });
 
   const buttonTheme = createButton(["button", "button_theme"], "");
 

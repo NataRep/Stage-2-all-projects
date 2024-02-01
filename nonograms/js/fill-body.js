@@ -5,7 +5,7 @@ import { createFooter } from "../sections/footer/footer.js";
 export function fillBody() {
   const body = document.getElementsByTagName("body")[0];
 
-  body.append(createHeader());
   body.append(createMainSection());
   body.append(createFooter());
+  body.prepend(createHeader());
 }
