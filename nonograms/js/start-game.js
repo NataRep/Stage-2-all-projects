@@ -25,6 +25,21 @@ export function startGame() {
     main.children[0].append(draw.drawPlayFeildEl());
   }
 
+  //таймер
+  //переменная для таймера
+  let setTimer;
+
+  draw.playField.addEventListener("click", () => {
+    //запускаем таймер
+    if (newGame.stopTimer) {
+      newGame.stopTimer = false;
+      setTimer = setInterval(() => {
+        newGame.time++;
+        draw.changeTimer(newGame.time);
+      }, 1000);
+    }
+  });
+
   //вешаем обработчик фиксации хода в объекте игры
 
   //клетки берем из массива draw.boxList, в нем для кадой клетки объект
@@ -38,12 +53,18 @@ export function startGame() {
     box.boxEl.addEventListener("click", () => {
       //отмечаем ход в матрице
       newGame.checkBoxInMatrix(box.x, box.y);
+
       //сравниваем матрицу таска и текущий результат
       newGame.compareMatrix();
+
       //проверяем выигрыш
       if (newGame.isWin) {
-        draw.stopGame();
+        //выводим модалку
         setTimeout(draw.gameEl.append(createModalWin(newGame.time)), 3000);
+        //останавливаем таймер
+        clearInterval(setTimer);
+        //убираем возможность кликать по полю
+        draw.stopGame();
       }
     });
   });

@@ -136,4 +136,14 @@ export class DrawGame {
   stopGame() {
     this.playField.style.pointerEvents = "none";
   }
+
+  changeTimer(time) {
+    let sec = time % 60 > 9 ? time % 60 : "0" + (time % 60);
+    let min =
+      Math.floor(time / 60) > 9
+        ? Math.floor(time / 60)
+        : "0" + Math.floor(time / 60);
+
+    this.timerEl.innerHTML = `${min}:${sec}`;
+  }
 }

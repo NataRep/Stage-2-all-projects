@@ -5,6 +5,7 @@ export class Game {
       (this.taskLevel = task.level),
       (this.time = 0);
     this.isWin = false;
+    this.stopTimer = true;
   }
 
   createGameFeild() {
