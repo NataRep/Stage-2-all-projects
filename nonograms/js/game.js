@@ -78,11 +78,12 @@ export class Game {
 
   //метод фиксации хода игрока по координатам  в матрице
   //вызывается после каждого хода игрока, координаты берем из DOM
-  checkBoxInMatrix(x, y) {
+  checkBoxInMatrix(x, y, marker) {
     //marker - "x" или "_"
     const str = this.gameFeild.matrix[y];
     let newStr = str;
-    let marker = newStr[x] === "_" ? "x" : "_";
+    //let marker = newStr[x] === "_" ? "x" : "_";
+    console.log(marker);
     newStr = newStr.slice(0, x) + marker + newStr.slice(x + 1);
     this.gameFeild.matrix.splice(y, 1, newStr);
   }

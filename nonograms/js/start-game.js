@@ -53,9 +53,11 @@ export function startGame(task) {
   //};
 
   draw.boxList.forEach((box) => {
+    //обработка клика на левую кнопку мыши
     box.boxEl.addEventListener("click", () => {
       //отмечаем ход в матрице
-      newGame.checkBoxInMatrix(box.x, box.y);
+      let marker = box.boxEl.classList.contains("painted") ? "x" : "_";
+      newGame.checkBoxInMatrix(box.x, box.y, marker);
 
       //сравниваем матрицу таска и текущий результат
       newGame.compareMatrix();
@@ -71,6 +73,10 @@ export function startGame(task) {
         //делаем не активными кнопки для этой игры
         buttonsTools.forEach((button) => (button.disabled = true));
       }
+    });
+    //обработка клика на правую кнопку мыши
+    box.boxEl.addEventListener("contextmenu", () => {
+      newGame.checkBoxInMatrix(box.x, box.y, "_");
     });
   });
 }
