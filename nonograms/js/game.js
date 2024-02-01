@@ -68,8 +68,6 @@ export class Game {
 
     for (let i = 0; i < matrixSize; i++) {
       if (this.gameFeild.matrix[i] != this.matrix[i]) {
-        console.log(this.gameFeild.matrix[i]);
-        console.log(this.matrix[i]);
         win = false;
       }
     }
@@ -79,9 +77,11 @@ export class Game {
   //метод фиксации хода игрока по координатам  в матрице
   //вызывается после каждого хода игрока, координаты берем из DOM
   checkBoxInMatrix(x, y) {
-    const str = this.gameFeild.matrix[y - 1];
+    //marker - "x" или "_"
+    const str = this.gameFeild.matrix[y];
     let newStr = str;
-    newStr = newStr.slice(0, x - 1) + "x" + newStr.slice(x);
-    this.gameFeild.matrix.splice(y - 1, 1, newStr);
+    let marker = newStr[x] === "_" ? "x" : "_";
+    newStr = newStr.slice(0, x) + marker + newStr.slice(x + 1);
+    this.gameFeild.matrix.splice(y, 1, newStr);
   }
 }

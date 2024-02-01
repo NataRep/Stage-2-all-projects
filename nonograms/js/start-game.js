@@ -23,4 +23,19 @@ export function startGame() {
     //рисуем поле первый раз
     main.children[0].append(draw.drawPlayFeildEl());
   }
+
+  //вешаем обработчик фиксации хода в объекте игры
+  //клетки берем из массива draw.boxList, в нем для кадой клетки объект
+  //const boxObj = {
+  //  boxEl: box,
+  //  x: i,
+  //  y: indexRow,
+  //};
+
+  draw.boxList.forEach((box) => {
+    box.boxEl.addEventListener("click", () => {
+      newGame.checkBoxInMatrix(box.x, box.y);
+      console.log(newGame.gameFeild.matrix);
+    });
+  });
 }

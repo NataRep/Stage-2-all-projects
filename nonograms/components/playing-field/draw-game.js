@@ -64,7 +64,7 @@ export class DrawGame {
     picture.classList.add("game__picture");
 
     //заполняем поле строками с клетками
-    this.gameObj.gameFeild.matrix.forEach((row) => {
+    this.gameObj.gameFeild.matrix.forEach((row, indexRow) => {
       const rowPlayField = document.createElement("div");
       rowPlayField.classList.add("game__row");
 
@@ -73,7 +73,20 @@ export class DrawGame {
         box.classList.add("game__box");
         rowPlayField.append(box);
 
-        this.boxList.push(box);
+        //создаем объект для дальнейших манипуляций с клетками в логике игры
+        const boxObj = {
+          boxEl: box,
+          x: i,
+          y: indexRow,
+        };
+        this.boxList.push(boxObj);
+
+        //обработчики изменения внешнего вида ячеек
+        box.addEventListener("click", this.changeBoxClass);
+        box.addEventListener("contextmenu", () => {
+          this.changeBoxClass(event);
+          event.preventDefault();
+        });
       }
       picture.append(rowPlayField);
     });
@@ -91,5 +104,28 @@ export class DrawGame {
     this.timerEl = timerEl;
 
     return gameEl;
+  }
+
+  //метод отметки клетки по клику
+  changeBoxClass(event) {
+    const box = event.target;
+
+    //клик по левой кнопки мыши
+    if (event.button === 0) {
+      box.classList.toggle("painted");
+
+      if (box.classList.contains("marked")) {
+        box.classList.remove("marked");
+      }
+    }
+
+    //клик по правой кнопки мыши
+    if (event.button === 2) {
+      box.classList.toggle("marked");
+
+      if (box.classList.contains("painted")) {
+        box.classList.remove("painted");
+      }
+    }
   }
 }
