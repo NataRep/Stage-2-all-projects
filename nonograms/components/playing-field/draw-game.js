@@ -5,6 +5,7 @@ export class DrawGame {
     //this.gameEl = gameEl;
     //this.nameTaskEl = nameEl;
     //this.timerEl = timerEl;
+    //this.playField;
   }
   drawPlayFeildEl() {
     const gameEl = document.createElement("div");
@@ -29,6 +30,8 @@ export class DrawGame {
 
     const playField = document.createElement("div");
     playField.classList.add("game__playfield");
+
+    this.playField = playField;
 
     //функция заполнения ячеек подсказок
     function drawCeilHint(array, place) {
@@ -127,5 +130,10 @@ export class DrawGame {
         box.classList.remove("painted");
       }
     }
+  }
+
+  //останавливаем возможность отметки клеток после окончания игры
+  stopGame() {
+    this.playField.style.pointerEvents = "none";
   }
 }

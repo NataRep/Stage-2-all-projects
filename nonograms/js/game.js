@@ -72,6 +72,7 @@ export class Game {
       }
     }
     this.isWin = win;
+    return this.isWin;
   }
 
   //метод фиксации хода игрока по координатам  в матрице
