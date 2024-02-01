@@ -2,6 +2,7 @@ import { Game } from "./game.js";
 import { chooseTask } from "./choose-task.js";
 import { DrawGame } from "../components/playing-field/draw-game.js";
 import { createModalWin } from "../components/modals/modal-win.js";
+import { buttonsTools } from "../sections/main/create-main-section.js";
 
 export function startGame() {
   const main = document.getElementsByTagName("main")[0];
@@ -65,6 +66,8 @@ export function startGame() {
         clearInterval(setTimer);
         //убираем возможность кликать по полю
         draw.stopGame();
+        //делаем не активными кнопки для этой игры
+        buttonsTools.forEach((button) => (button.disabled = true));
       }
     });
   });

@@ -1,5 +1,16 @@
 import { createButton } from "../../components/button/button.js";
 
+//Создаем кнопки
+//TODO: повесить обработчики!!!!!!!!!!!
+
+export const buttonReset = createButton(["button", "button_reset"], "Reset");
+export const buttonSave = createButton(["button", "button_save"], "Save");
+export const buttonSolution = createButton(
+  ["button", "button_solution"],
+  "Solution"
+);
+export const buttonsTools = [buttonReset, buttonSave, buttonSolution];
+
 export function createMainSection() {
   const mainSection = document.createElement("main");
   mainSection.classList.add("main");
@@ -9,15 +20,6 @@ export function createMainSection() {
 
   const rowButtons = document.createElement("div");
   rowButtons.classList.add("main__row-buttons");
-
-  //Создаем кнопки
-  //TODO: повесить обработчики!!!!!!!!!!!
-  const buttonReset = createButton(["button", "button_reset"], "Reset");
-  const buttonSave = createButton(["button", "button_save"], "Save");
-  const buttonSolution = createButton(
-    ["button", "button_solution"],
-    "Solution"
-  );
 
   rowButtons.append(buttonReset);
   rowButtons.append(buttonSave);

@@ -28,4 +28,9 @@
     background: var(--gray);
     color: var(--white);
   }
+  &:disabled {
+    color: var(--gray-light);
+    border-color: var(--gray-light);
+    pointer-events: none;
+  }
 }
