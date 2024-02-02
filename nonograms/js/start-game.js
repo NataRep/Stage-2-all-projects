@@ -3,6 +3,7 @@ import { chooseTask } from "./choose-task.js";
 import { DrawGame } from "../components/playing-field/draw-game.js";
 import { createModalWin } from "../components/modals/modal-win.js";
 import { buttonsTools } from "../sections/main/create-main-section.js";
+import { audio } from "../components/audio/audio.js";
 
 export function startGame(task) {
   const main = document.getElementsByTagName("main")[0];
@@ -59,11 +60,17 @@ export function startGame(task) {
       let marker = box.boxEl.classList.contains("painted") ? "x" : "_";
       newGame.checkBoxInMatrix(box.x, box.y, marker);
 
+      //выбираем звук
+      let sound = marker == "x" ? audio.paint : audio.clean;
+      sound.play();
       //сравниваем матрицу таска и текущий результат
       newGame.compareMatrix();
 
       //проверяем выигрыш
       if (newGame.isWin) {
+        //звук победы
+        audio.win.play();
+
         //выводим модалку
         setTimeout(draw.gameEl.append(createModalWin(newGame.time)), 3000);
         //останавливаем таймер
@@ -77,6 +84,13 @@ export function startGame(task) {
     //обработка клика на правую кнопку мыши
     box.boxEl.addEventListener("contextmenu", () => {
       newGame.checkBoxInMatrix(box.x, box.y, "_");
+
+      let sound =
+        box.boxEl.classList.contains("painted") ||
+        box.boxEl.classList.contains("marked")
+          ? audio.mark
+          : audio.clean;
+      sound.play();
     });
   });
 }
