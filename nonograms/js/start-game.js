@@ -100,4 +100,20 @@ export function startGame(task) {
     clearInterval(setTimer);
     newGame.stopTimer = true;
   });
+
+  //вешаем обработчик на кнопку Solution
+  buttonsTools[2].addEventListener("click", () => {
+    //отображаем решение на поле
+    draw.showSolution(newGame.matrix);
+
+    //делаем не активными кнопки для этой игры
+    buttonsTools.forEach((button) => (button.disabled = true));
+
+    //отключаю возможность кликать по полю
+    draw.stopGame();
+
+    //останавливаем таймер
+    clearInterval(setTimer);
+    newGame.stopTimer = true;
+  });
 }

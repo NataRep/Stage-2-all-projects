@@ -147,10 +147,39 @@ export class DrawGame {
     this.timerEl.innerHTML = `${min}:${sec}`;
   }
 
+  //метод очистки поля при клике на кнопку reset
   reset() {
     this.boxList.forEach((box) => {
       box.boxEl.classList.remove("painted", "marked");
     });
     this.timerEl.innerHTML = "00:00";
+  }
+
+  //метод показывающей решение на игровом поле
+  showSolution(taskMatrix) {
+    taskMatrix.forEach((str, index) => {
+      for (let i = 0; i < str.length; i++) {
+        //ищу нужную клетку на поле
+        const box = this.boxList.find((el, num) => {
+          if (+el.x == i && +el.y == index) {
+            return el;
+          }
+        }).boxEl;
+
+        if (str[i] === "x") {
+          box.classList.add("painted");
+          if (box.classList.contains("marked")) {
+            box.classList.remove("marked");
+          }
+        } else {
+          if (box.classList.contains("painted")) {
+            box.classList.remove("painted");
+          }
+        }
+        if (box.classList.contains("marked")) {
+          box.classList.remove("marked");
+        }
+      }
+    });
   }
 }
