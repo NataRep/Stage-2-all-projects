@@ -1,4 +1,5 @@
 import { createButton } from "../../components/button/button.js";
+import { createModalChooseTask } from "../../components/modals/modal-choose.js";
 import { chooseTask } from "../../js/choose-task.js";
 import { startGame } from "../../js/start-game.js";
 
@@ -27,6 +28,9 @@ export function createHeader() {
   const buttonTheme = createButton(["button", "button_theme"], "");
 
   const buttonChoose = createButton(["button", "button_choose"], "choose task");
+  buttonChoose.addEventListener("click", () => {
+    header.append(createModalChooseTask());
+  });
 
   const buttonContinue = createButton(
     ["button", "button_continue"],
