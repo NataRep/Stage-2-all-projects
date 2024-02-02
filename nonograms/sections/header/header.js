@@ -17,7 +17,7 @@ export function createHeader() {
   const buttonRow = document.createElement("div");
   buttonRow.classList.add("header__buttons");
 
-  const buttonNewGame = createButton(["button", "button_new-game"], "new game");
+  const buttonNewGame = createButton(["button", "button_new-random"], "random");
 
   buttonNewGame.addEventListener("click", () => {
     const newTask = chooseTask("random");
@@ -26,14 +26,16 @@ export function createHeader() {
 
   const buttonTheme = createButton(["button", "button_theme"], "");
 
+  const buttonChoose = createButton(["button", "button_choose"], "choose task");
+
   const buttonContinue = createButton(
     ["button", "button_continue"],
-    "continue a saved game"
+    "continue"
   );
-  buttonContinue.id = "buttonContinue";
 
   container.append(logo);
   buttonRow.append(buttonNewGame);
+  buttonRow.append(buttonChoose);
   buttonRow.append(buttonContinue);
   container.append(buttonRow);
   header.append(container);
