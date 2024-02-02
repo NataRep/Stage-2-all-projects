@@ -1,5 +1,4 @@
 import { Game } from "./game.js";
-import { chooseTask } from "./choose-task.js";
 import { DrawGame } from "../components/playing-field/draw-game.js";
 import { createModalWin } from "../components/modals/modal-win.js";
 import { buttonsTools } from "../sections/main/create-main-section.js";
@@ -72,7 +71,7 @@ export function startGame(task) {
         audio.win.play();
 
         //выводим модалку
-        setTimeout(draw.gameEl.append(createModalWin(newGame.time)), 3000);
+        draw.gameEl.append(createModalWin(newGame.time));
         //останавливаем таймер
         clearInterval(setTimer);
         //убираем возможность кликать по полю
@@ -92,5 +91,13 @@ export function startGame(task) {
           : audio.clean;
       sound.play();
     });
+  });
+
+  //вешаем обработчик на кнопку Reset
+  buttonsTools[0].addEventListener("click", () => {
+    newGame.reset();
+    draw.reset();
+    clearInterval(setTimer);
+    newGame.stopTimer = true;
   });
 }

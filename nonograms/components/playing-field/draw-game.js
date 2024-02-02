@@ -146,4 +146,11 @@ export class DrawGame {
 
     this.timerEl.innerHTML = `${min}:${sec}`;
   }
+
+  reset() {
+    this.boxList.forEach((box) => {
+      box.boxEl.classList.remove("painted", "marked");
+    });
+    this.timerEl.innerHTML = "00:00";
+  }
 }

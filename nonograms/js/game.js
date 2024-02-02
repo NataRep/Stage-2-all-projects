@@ -1,9 +1,9 @@
 export class Game {
   constructor(task) {
-    (this.matrix = task.matrix),
-      (this.taskName = task.name),
-      (this.taskLevel = task.level),
-      (this.time = 0);
+    this.matrix = task.matrix;
+    this.taskName = task.name;
+    this.taskLevel = task.level;
+    this.time = 0;
     this.isWin = false;
     this.stopTimer = true;
   }
@@ -83,8 +83,18 @@ export class Game {
     const str = this.gameFeild.matrix[y];
     let newStr = str;
     //let marker = newStr[x] === "_" ? "x" : "_";
-    console.log(marker);
     newStr = newStr.slice(0, x) + marker + newStr.slice(x + 1);
     this.gameFeild.matrix.splice(y, 1, newStr);
+  }
+
+  reset() {
+    //сбрасываю таймер
+    this.time = 0;
+
+    //очищаю матрицу поля
+    const matrixSize = this.matrix.length;
+    this.gameFeild = {
+      matrix: new Array(matrixSize).fill("_".repeat(matrixSize)),
+    };
   }
 }
