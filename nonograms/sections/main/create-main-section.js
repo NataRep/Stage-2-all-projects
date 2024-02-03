@@ -2,6 +2,7 @@ import { createButton } from "../../components/button/button.js";
 import { newGame } from "../../js/start-game.js";
 import { draw } from "../../js/start-game.js";
 import { setTimer } from "../../js/start-game.js";
+import { audio } from "../../components/audio/audio.js";
 
 //Создаем кнопки и вешаем оброаботчики
 export const buttonReset = createButton(["button", "button_reset"], "Reset");
@@ -15,6 +16,7 @@ buttonReset.addEventListener("click", () => {
 export const buttonSave = createButton(["button", "button_save"], "Save");
 buttonSave.addEventListener("click", () => {
   newGame.save();
+  audio.save.play();
 });
 
 export const buttonSolution = createButton(

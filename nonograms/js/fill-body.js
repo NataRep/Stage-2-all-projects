@@ -11,6 +11,7 @@ export function fillBody() {
   body.append(audio.mark);
   body.append(audio.paint);
   body.append(audio.win);
+  body.append(audio.save);
 
   body.append(createMainSection());
   body.append(createFooter());

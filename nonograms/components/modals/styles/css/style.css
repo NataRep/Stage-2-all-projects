@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+li {
+  line-height: 1.75rem;
+}
+
 .dark-theme .modal {
   background-color: var(--gray-medium);
 }/*# sourceMappingURL=style.css.map */

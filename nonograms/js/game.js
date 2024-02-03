@@ -74,6 +74,30 @@ export class Game {
       }
     }
     this.isWin = win;
+
+    //сохраняем результат выигрыша
+    if (this.isWin) {
+      const result = {
+        task: this.taskName,
+        level: this.taskLevel,
+        time: this.time,
+      };
+      //для хранения объектов сохраненных игр используется ключ 'lastWin' в localStorage
+      let lastWin = localStorage.getItem("lastWin")
+        ? JSON.parse(localStorage.getItem("lastWin"))
+        : [];
+
+      if (lastWin.length == 5) {
+        lastWin.shift();
+      }
+
+      lastWin.push(result);
+      localStorage.removeItem("lastWin");
+
+      //перезаписываем данные в localStorage
+      localStorage.setItem("lastWin", JSON.stringify(lastWin));
+    }
+
     return this.isWin;
   }
 
@@ -120,12 +144,15 @@ export class Game {
       ? JSON.parse(localStorage.getItem("savedGame"))
       : [];
 
+    //Чтобы не переполнялось хранилище сделаем лимит сохраненных игр
+    if (savedGames.length == 20) {
+      savedGames.shift();
+    }
+
     savedGames.push(settingsGame);
     localStorage.removeItem("savedGame");
 
     //перезаписываем данные в localStorage
     localStorage.setItem("savedGame", JSON.stringify(savedGames));
   }
-
-  continue() {}
 }

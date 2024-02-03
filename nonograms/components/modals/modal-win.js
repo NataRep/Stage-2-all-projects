@@ -18,11 +18,44 @@ export function createModalWin(timer) {
     */
   time.innerHTML = `You have solved the nonogram in ${timer}&nbsp;seconds!`;
 
+  //отображаем рекорды
+  const subTitle = document.createElement("h3");
+  subTitle.classList.add("modal__h3");
+  subTitle.innerHTML = "Your latest results:";
+
   const records = document.createElement("ul");
   records.classList.add("modal__records");
+  let lastWins = JSON.parse(localStorage.getItem("lastWin"));
+
+  const currentWin = lastWins[lastWins.length - 1];
+
+  //сортируем по времени
+  lastWins.sort((a, b) => {
+    return +a.time - +b.time;
+  });
+
+  lastWins.forEach((win) => {
+    const li = document.createElement("li");
+    li.classList.add("modal__record");
+
+    if (win === currentWin) {
+      li.classList.add("modal__record_current");
+    }
+
+    //отображаем время
+    let sec = win.time % 60 > 9 ? win.time % 60 : "0" + (win.time % 60);
+    let min =
+      Math.floor(win.time / 60) > 9
+        ? Math.floor(win.time / 60)
+        : "0" + Math.floor(win.time / 60);
+
+    li.innerHTML = `${min}:${sec} - ${win.level} - ${win.task}`;
+    records.append(li);
+  });
 
   modal.append(title);
   modal.append(time);
+  modal.append(subTitle);
   modal.append(records);
 
   return modal;

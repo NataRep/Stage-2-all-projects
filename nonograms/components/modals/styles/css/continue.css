@@ -1,5 +1,4 @@
 .modal_continue li {
-  line-height: 1.75rem;
   cursor: pointer;
 }
 @media (hover: hover) and (pointer: fine) {
