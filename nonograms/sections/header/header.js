@@ -2,6 +2,7 @@ import { createButton } from "../../components/button/button.js";
 import { createModalChooseTask } from "../../components/modals/modal-choose.js";
 import { chooseTask } from "../../js/choose-task.js";
 import { startGame } from "../../js/start-game.js";
+import { audio } from "../../components/audio/audio.js";
 
 export function createHeader() {
   const header = document.createElement("header");
@@ -15,20 +16,19 @@ export function createHeader() {
   logo.alt = "logotype";
   logo.classList.add("logo");
 
+  //контейнер для кнопок начала игры
   const buttonRow = document.createElement("div");
   buttonRow.classList.add("header__buttons");
+
+  //контейнер для кнопок настройки звука и темы
+  const buttonTools = document.createElement("div");
+  buttonTools.classList.add("header__tools");
 
   const buttonNewGame = createButton(["button", "button_new-random"], "random");
 
   buttonNewGame.addEventListener("click", () => {
     const newTask = chooseTask("random");
     startGame(newTask);
-  });
-
-  const buttonTheme = createButton(["button", "button_theme"], "");
-  buttonTheme.addEventListener("click", () => {
-    const body = document.body;
-    body.classList.toggle("dark-theme");
   });
 
   const buttonChoose = createButton(["button", "button_choose"], "choose task");
@@ -41,12 +41,40 @@ export function createHeader() {
     "continue"
   );
 
+  const buttonTheme = createButton(
+    ["button", "button_theme", "button_circle"],
+    ""
+  );
+  buttonTheme.addEventListener("click", () => {
+    const body = document.body;
+    body.classList.toggle("dark-theme");
+  });
+
+  const buttonSound = createButton(
+    ["button", "button_sound", "button_circle"],
+    ""
+  );
+  buttonSound.addEventListener("click", () => {
+    buttonSound.classList.toggle("off");
+    if (buttonSound.classList.contains("off")) {
+      for (let sound in audio) {
+        audio[sound].volume = 0;
+      }
+    } else {
+      for (let sound in audio) {
+        audio[sound].volume = 1;
+      }
+    }
+  });
+
   container.append(logo);
   buttonRow.append(buttonNewGame);
   buttonRow.append(buttonChoose);
   buttonRow.append(buttonContinue);
   container.append(buttonRow);
-  container.append(buttonTheme);
+  buttonTools.append(buttonSound);
+  buttonTools.append(buttonTheme);
+  container.append(buttonTools);
   header.append(container);
 
   return header;

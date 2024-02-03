@@ -34,9 +34,8 @@
     pointer-events: none;
   }
 
-  &_theme {
+  &_circle {
     width: 48px;
-    background: url(/nonograms/assets/images/theme.svg) no-repeat;
     height: 48px;
     background-size: contain;
     border: none;
@@ -46,26 +45,64 @@
       width: 30px;
       height: 30px;
     }
+  }
+
+  &_theme {
+    background: url(/nonograms/assets/images/theme.svg) no-repeat;
+    background-size: contain;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(/nonograms/assets/images/theme-hover.svg) var(--black)
+        background: url(/nonograms/assets/images/theme-hover.svg) var(--gray)
           no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(/nonograms/assets/images/theme-hover.svg) var(--black)
+      background: url(/nonograms/assets/images/theme-hover.svg) var(--gray)
         no-repeat;
       background-size: contain;
       color: inherit;
     }
-    &:disabled {
-      background: url(/nonograms/assets/images/theme.svg) var(--black) no-repeat;
+  }
+
+  &_sound {
+    background: url(/nonograms/assets/images/sound-on.svg) no-repeat;
+    background-size: contain;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray)
+          no-repeat;
+        background-size: contain;
+        color: inherit;
+      }
+    }
+    &:active {
+      background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray)
+        no-repeat;
       background-size: contain;
       color: inherit;
-      pointer-events: none;
+    }
+
+    &.off {
+      background: url(/nonograms/assets/images/sound-off.svg) no-repeat;
+      background-size: contain;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: url(/nonograms/assets/images/sound-off-hover.svg)
+            var(--gray) no-repeat;
+          background-size: contain;
+          color: inherit;
+        }
+      }
+      &:active {
+        background: url(/nonograms/assets/images/sound-off-hover.svg)
+          var(--gray) no-repeat;
+        background-size: contain;
+        color: inherit;
+      }
     }
   }
 }
@@ -84,12 +121,6 @@
       background: var(--gray);
       color: var(--gray-light);
     }
-
-    &:disabled {
-      background-color: var(--gray-medium);
-      color: var(--gray);
-      border-color: var(--gray-medium);
-    }
   }
 
   .button_theme {
@@ -106,13 +137,6 @@
         var(--gray-medium) no-repeat;
       background-size: contain;
       color: inherit;
-    }
-    &:disabled {
-      background: url(/nonograms/assets/images/theme.svg) var(--gray-medium)
-        no-repeat;
-      background-size: contain;
-      color: inherit;
-      pointer-events: none;
     }
   }
 }

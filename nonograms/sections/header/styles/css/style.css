@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
   gap: 2rem;
 }
 @media (max-width: 1050px) {
@@ -22,6 +22,14 @@
     padding: 1rem 0.75rem;
     gap: 2rem 1rem;
   }
+}
+.header__tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 1rem;
 }
 .header__buttons {
   display: flex;
