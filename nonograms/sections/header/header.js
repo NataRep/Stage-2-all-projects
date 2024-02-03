@@ -26,6 +26,10 @@ export function createHeader() {
   });
 
   const buttonTheme = createButton(["button", "button_theme"], "");
+  buttonTheme.addEventListener("click", () => {
+    const body = document.body;
+    body.classList.toggle("dark-theme");
+  });
 
   const buttonChoose = createButton(["button", "button_choose"], "choose task");
   buttonChoose.addEventListener("click", () => {
@@ -42,6 +46,7 @@ export function createHeader() {
   buttonRow.append(buttonChoose);
   buttonRow.append(buttonContinue);
   container.append(buttonRow);
+  container.append(buttonTheme);
   header.append(container);
 
   return header;

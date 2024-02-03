@@ -18,4 +18,8 @@
   font-weight: 400;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+.dark-theme .modal {
+  background-color: var(--gray-medium);
 }/*# sourceMappingURL=style.css.map */

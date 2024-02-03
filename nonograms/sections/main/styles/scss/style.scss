@@ -7,9 +7,6 @@
   @media (max-width: 1020px) {
     background-image: url("/nonograms/assets/images/cat-woman-medium.png");
   }
-  @media (max-width: 500px) {
-    background-image: none;
-  }
 
   &__container {
     width: fit-content;
@@ -22,7 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
     @media (max-width: 768px) {
       margin-bottom: 1.5rem;

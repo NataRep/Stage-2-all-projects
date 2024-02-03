@@ -6,7 +6,7 @@
   padding: 0.5rem 1.5rem;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 500;
   text-transform: lowercase;
@@ -32,5 +32,63 @@
     color: var(--gray-light);
     border-color: var(--gray-light);
     pointer-events: none;
+  }
+
+  &_theme {
+    width: 48px;
+    background: url(/nonograms/assets/images/theme.svg) no-repeat;
+    height: 48px;
+    background-size: contain;
+    border: none;
+    padding: 0;
+
+    @media (max-width: 1100px) {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(/nonograms/assets/images/theme-hover.svg) var(--black)
+          no-repeat;
+        background-size: contain;
+        color: inherit;
+      }
+    }
+    &:active {
+      background: url(/nonograms/assets/images/theme-hover.svg) var(--black)
+        no-repeat;
+      background-size: contain;
+      color: inherit;
+    }
+    &:disabled {
+      background: url(/nonograms/assets/images/theme.svg) var(--black) no-repeat;
+      background-size: contain;
+      color: inherit;
+      pointer-events: none;
+    }
+  }
+}
+
+.dark-theme {
+  .button {
+    background-color: var(--gray-medium);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--gray);
+        color: var(--gray-light);
+      }
+    }
+    &:active {
+      background: var(--gray);
+      color: var(--gray-light);
+    }
+
+    &:disabled {
+      background-color: var(--gray-medium);
+      color: var(--gray);
+      border-color: var(--gray-medium);
+    }
   }
 }

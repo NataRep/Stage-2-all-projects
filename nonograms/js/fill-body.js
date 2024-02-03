@@ -4,7 +4,8 @@ import { createFooter } from "../sections/footer/footer.js";
 import { audio } from "../components/audio/audio.js";
 
 export function fillBody() {
-  const body = document.getElementsByTagName("body")[0];
+  const body = document.body;
+  body.classList.add("page");
 
   body.append(audio.clean);
   body.append(audio.mark);

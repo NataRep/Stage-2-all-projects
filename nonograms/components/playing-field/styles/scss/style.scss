@@ -119,3 +119,8 @@
     text-transform: capitalize;
   }
 }
+.dark-theme {
+  .game {
+    background-color: var(--gray-medium);
+  }
+}

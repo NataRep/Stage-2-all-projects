@@ -9,11 +9,6 @@
     background-image: url("/nonograms/assets/images/cat-woman-medium.png");
   }
 }
-@media (max-width: 500px) {
-  .main {
-    background-image: none;
-  }
-}
 .main__container {
   width: -moz-fit-content;
   width: fit-content;
@@ -25,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 @media (max-width: 768px) {
   .main__row-buttons {

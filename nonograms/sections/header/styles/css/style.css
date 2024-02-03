@@ -17,14 +17,29 @@
     justify-content: center;
   }
 }
+@media (max-width: 600px) {
+  .header__container {
+    padding: 1rem 0.75rem;
+    gap: 2rem 1rem;
+  }
+}
 .header__buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
 }
+@media (max-width: 600px) {
+  .header__buttons {
+    gap: 1rem;
+  }
+}
 @media (max-width: 768px) {
   .header .logo {
     width: 100%;
   }
+}
+
+.dark-theme .header {
+  background: var(--gray-medium);
 }/*# sourceMappingURL=style.css.map */

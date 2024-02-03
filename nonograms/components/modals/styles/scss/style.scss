@@ -20,3 +20,8 @@
     cursor: pointer;
   }
 }
+.dark-theme {
+  .modal {
+    background-color: var(--gray-medium);
+  }
+}
