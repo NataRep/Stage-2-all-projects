@@ -139,4 +139,40 @@
       color: inherit;
     }
   }
+
+  .button_sound {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(/nonograms/assets/images/sound-on-hover.svg)
+          var(--gray-medium) no-repeat;
+        background-size: contain;
+        color: inherit;
+      }
+    }
+    &:active {
+      background: url(/nonograms/assets/images/sound-on-hover.svg)
+        var(--gray-medium) no-repeat;
+      background-size: contain;
+      color: inherit;
+    }
+
+    &.off {
+      background: url(/nonograms/assets/images/sound-off.svg) no-repeat;
+      background-size: contain;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: url(/nonograms/assets/images/sound-off-hover.svg)
+            var(--gray-medium) no-repeat;
+          background-size: contain;
+          color: inherit;
+        }
+      }
+      &:active {
+        background: url(/nonograms/assets/images/sound-off-hover.svg)
+          var(--gray-medium) no-repeat;
+        background-size: contain;
+        color: inherit;
+      }
+    }
+  }
 }
