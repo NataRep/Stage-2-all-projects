@@ -85,4 +85,22 @@
   background-color: var(--gray-medium);
   color: var(--gray);
   border-color: var(--gray-medium);
+}
+@media (hover: hover) and (pointer: fine) {
+  .dark-theme .button_theme:hover {
+    background: url(/nonograms/assets/images/theme-hover.svg) var(--gray-medium) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.dark-theme .button_theme:active {
+  background: url(/nonograms/assets/images/theme-hover.svg) var(--gray-medium) no-repeat;
+  background-size: contain;
+  color: inherit;
+}
+.dark-theme .button_theme:disabled {
+  background: url(/nonograms/assets/images/theme.svg) var(--gray-medium) no-repeat;
+  background-size: contain;
+  color: inherit;
+  pointer-events: none;
 }/*# sourceMappingURL=style.css.map */

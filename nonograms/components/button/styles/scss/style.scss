@@ -91,4 +91,28 @@
       border-color: var(--gray-medium);
     }
   }
+
+  .button_theme {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(/nonograms/assets/images/theme-hover.svg)
+          var(--gray-medium) no-repeat;
+        background-size: contain;
+        color: inherit;
+      }
+    }
+    &:active {
+      background: url(/nonograms/assets/images/theme-hover.svg)
+        var(--gray-medium) no-repeat;
+      background-size: contain;
+      color: inherit;
+    }
+    &:disabled {
+      background: url(/nonograms/assets/images/theme.svg) var(--gray-medium)
+        no-repeat;
+      background-size: contain;
+      color: inherit;
+      pointer-events: none;
+    }
+  }
 }
