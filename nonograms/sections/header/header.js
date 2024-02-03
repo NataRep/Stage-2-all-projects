@@ -1,11 +1,32 @@
 import { createButton } from "../../components/button/button.js";
 import { createModalChooseTask } from "../../components/modals/modal-choose.js";
+import { createModalContinue } from "../../components/modals/modal-continue.js";
 import { chooseTask } from "../../js/choose-task.js";
 import { startGame } from "../../js/start-game.js";
 import { audio } from "../../components/audio/audio.js";
 
+export const buttonNewGame = createButton(
+  ["button", "button_new-random"],
+  "random"
+);
+buttonNewGame.addEventListener("click", () => {
+  const newTask = chooseTask("random");
+  startGame(newTask);
+});
+
+export const buttonContinue = createButton(
+  ["button", "button_continue"],
+  "continue"
+);
+
+buttonContinue.addEventListener("click", () => {
+  header.append(createModalContinue());
+});
+
+export let header;
+
 export function createHeader() {
-  const header = document.createElement("header");
+  header = document.createElement("header");
   header.classList.add("header");
 
   const container = document.createElement("div");
@@ -20,26 +41,14 @@ export function createHeader() {
   const buttonRow = document.createElement("div");
   buttonRow.classList.add("header__buttons");
 
-  //контейнер для кнопок настройки звука и темы
-  const buttonTools = document.createElement("div");
-  buttonTools.classList.add("header__tools");
-
-  const buttonNewGame = createButton(["button", "button_new-random"], "random");
-
-  buttonNewGame.addEventListener("click", () => {
-    const newTask = chooseTask("random");
-    startGame(newTask);
-  });
-
   const buttonChoose = createButton(["button", "button_choose"], "choose task");
   buttonChoose.addEventListener("click", () => {
     header.append(createModalChooseTask());
   });
 
-  const buttonContinue = createButton(
-    ["button", "button_continue"],
-    "continue"
-  );
+  //контейнер для кнопок настройки звука и темы
+  const buttonTools = document.createElement("div");
+  buttonTools.classList.add("header__tools");
 
   const buttonTheme = createButton(
     ["button", "button_theme", "button_circle"],

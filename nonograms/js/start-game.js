@@ -4,11 +4,15 @@ import { createModalWin } from "../components/modals/modal-win.js";
 import { buttonsTools } from "../sections/main/create-main-section.js";
 import { audio } from "../components/audio/audio.js";
 
+export let newGame;
+export let draw;
+export let setTimer;
+
 export function startGame(task) {
   const main = document.getElementsByTagName("main")[0];
 
-  let newGame = new Game(task);
-  let draw = new DrawGame(newGame);
+  newGame = new Game(task);
+  draw = new DrawGame(newGame);
 
   newGame.createGameFeild();
 
@@ -29,9 +33,6 @@ export function startGame(task) {
   buttonsTools.forEach((button) => (button.disabled = false));
 
   //таймер
-  //переменная для таймера
-  let setTimer;
-
   draw.playField.addEventListener("click", () => {
     //запускаем таймер
     if (newGame.stopTimer) {
@@ -91,29 +92,5 @@ export function startGame(task) {
           : audio.clean;
       sound.play();
     });
-  });
-
-  //вешаем обработчик на кнопку Reset
-  buttonsTools[0].addEventListener("click", () => {
-    newGame.reset();
-    draw.reset();
-    clearInterval(setTimer);
-    newGame.stopTimer = true;
-  });
-
-  //вешаем обработчик на кнопку Solution
-  buttonsTools[2].addEventListener("click", () => {
-    //отображаем решение на поле
-    draw.showSolution(newGame.matrix);
-
-    //делаем не активными кнопки для этой игры
-    buttonsTools.forEach((button) => (button.disabled = true));
-
-    //отключаю возможность кликать по полю
-    draw.stopGame();
-
-    //останавливаем таймер
-    clearInterval(setTimer);
-    newGame.stopTimer = true;
   });
 }

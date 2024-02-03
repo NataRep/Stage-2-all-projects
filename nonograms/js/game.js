@@ -1,3 +1,4 @@
+import { draw } from "./start-game.js";
 export class Game {
   constructor(task) {
     this.matrix = task.matrix;
@@ -97,4 +98,34 @@ export class Game {
       matrix: new Array(matrixSize).fill("_".repeat(matrixSize)),
     };
   }
+
+  save() {
+    //сохраняем данные для последующей настройки игры
+    let settingsGame = {
+      task: this.taskName,
+      level: this.taskLevel,
+      gameFeild: this.gameFeild,
+      time: this.time,
+      markedBoxes: [],
+    };
+    //получаем список всех отмеченных х клеток с индексом в массиве клеток
+    draw.boxList.forEach((box, index) => {
+      if (box.boxEl.classList.contains("marked")) {
+        settingsGame.markedBoxes.push(index);
+      }
+    });
+
+    //для хранения объектов сохраненных игр используется ключ 'savedGame' в localStorage
+    let savedGames = localStorage.getItem("savedGame")
+      ? JSON.parse(localStorage.getItem("savedGame"))
+      : [];
+
+    savedGames.push(settingsGame);
+    localStorage.removeItem("savedGame");
+
+    //перезаписываем данные в localStorage
+    localStorage.setItem("savedGame", JSON.stringify(savedGames));
+  }
+
+  continue() {}
 }
