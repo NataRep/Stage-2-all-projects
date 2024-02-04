@@ -48,19 +48,19 @@
   }
 
   &_theme {
-    background: url(/nonograms/assets/images/theme.svg) no-repeat;
+    background: url(../../../../assets/images/theme.svg) no-repeat;
     background-size: contain;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(/nonograms/assets/images/theme-hover.svg) var(--gray)
+        background: url(../../../../assets/images/theme-hover.svg) var(--gray)
           no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(/nonograms/assets/images/theme-hover.svg) var(--gray)
+      background: url(../../../../assets/images/theme-hover.svg) var(--gray)
         no-repeat;
       background-size: contain;
       color: inherit;
@@ -68,37 +68,37 @@
   }
 
   &_sound {
-    background: url(/nonograms/assets/images/sound-on.svg) no-repeat;
+    background: url(../../../../assets/images/sound-on.svg) no-repeat;
     background-size: contain;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray)
-          no-repeat;
+        background: url(../../../../assets/images/sound-on-hover.svg)
+          var(--gray) no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray)
+      background: url(../../../../assets/images/sound-on-hover.svg) var(--gray)
         no-repeat;
       background-size: contain;
       color: inherit;
     }
 
     &.off {
-      background: url(/nonograms/assets/images/sound-off.svg) no-repeat;
+      background: url(../../../../assets/images/sound-off.svg) no-repeat;
       background-size: contain;
       @media (hover: hover) and (pointer: fine) {
         &:hover {
-          background: url(/nonograms/assets/images/sound-off-hover.svg)
+          background: url(../../../../assets/images/sound-off-hover.svg)
             var(--gray) no-repeat;
           background-size: contain;
           color: inherit;
         }
       }
       &:active {
-        background: url(/nonograms/assets/images/sound-off-hover.svg)
+        background: url(../../../../assets/images/sound-off-hover.svg)
           var(--gray) no-repeat;
         background-size: contain;
         color: inherit;
@@ -126,14 +126,14 @@
   .button_theme {
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(/nonograms/assets/images/theme-hover.svg)
+        background: url(../../../../assets/images/theme-hover.svg)
           var(--gray-medium) no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(/nonograms/assets/images/theme-hover.svg)
+      background: url(../../../../assets/images/theme-hover.svg)
         var(--gray-medium) no-repeat;
       background-size: contain;
       color: inherit;
@@ -143,32 +143,32 @@
   .button_sound {
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(/nonograms/assets/images/sound-on-hover.svg)
+        background: url(../../../../assets/images/sound-on-hover.svg)
           var(--gray-medium) no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(/nonograms/assets/images/sound-on-hover.svg)
+      background: url(../../../../assets/images/sound-on-hover.svg)
         var(--gray-medium) no-repeat;
       background-size: contain;
       color: inherit;
     }
 
     &.off {
-      background: url(/nonograms/assets/images/sound-off.svg) no-repeat;
+      background: url(../../../../assets/images/sound-off.svg) no-repeat;
       background-size: contain;
       @media (hover: hover) and (pointer: fine) {
         &:hover {
-          background: url(/nonograms/assets/images/sound-off-hover.svg)
+          background: url(../../../../assets/images/sound-off-hover.svg)
             var(--gray-medium) no-repeat;
           background-size: contain;
           color: inherit;
         }
       }
       &:active {
-        background: url(/nonograms/assets/images/sound-off-hover.svg)
+        background: url(../../../../assets/images/sound-off-hover.svg)
           var(--gray-medium) no-repeat;
         background-size: contain;
         color: inherit;

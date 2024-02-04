@@ -127,7 +127,7 @@
   background-color: var(--black);
 }
 .game__box.marked {
-  background: url("/nonograms/assets/images/marked.svg") no-repeat center;
+  background: url("../../../../assets/images/marked.svg") no-repeat center;
 }
 .game__info-row {
   display: flex;

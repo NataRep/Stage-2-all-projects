@@ -33,7 +33,7 @@ export function createHeader() {
   container.classList.add("header__container");
 
   const logo = document.createElement("img");
-  logo.src = "/nonograms/assets/images/logo.svg";
+  logo.src = "../nonograms/assets/images/logo.svg";
   logo.alt = "logotype";
   logo.classList.add("logo");
 
