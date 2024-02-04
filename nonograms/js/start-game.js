@@ -20,13 +20,16 @@ export function startGame(task) {
   let mainChildren = Array.from(main.children[0].children);
   let gameNode = mainChildren.find((el) => el.classList.contains("game"));
 
+  let playFeildEl = draw.drawPlayFeildEl();
+  playFeildEl.classList.add(`size-${task.level}`);
+
   if (gameNode) {
     //перерисовываем поле
-    gameNode.before(draw.drawPlayFeildEl());
+    gameNode.before(playFeildEl);
     gameNode.remove();
   } else {
     //рисуем поле первый раз
-    main.children[0].append(draw.drawPlayFeildEl());
+    main.children[0].append(playFeildEl);
   }
 
   //делаем активными кнопки для этой игры

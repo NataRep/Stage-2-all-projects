@@ -8,4 +8,8 @@
 }
 .modal_continue li:active:hover {
   font-weight: 600;
+}
+.modal__games-list {
+  max-height: 50dvh;
+  overflow-y: scroll;
 }/*# sourceMappingURL=continue.css.map */

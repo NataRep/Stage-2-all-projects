@@ -45,7 +45,7 @@ export function createModalContinue() {
       li.addEventListener("click", () => {
         modal.remove();
 
-        const newTask = chooseTask(game.task);
+        const newTask = chooseTask(game.task, game.level);
         startGame(newTask);
 
         clearInterval(setTimer);

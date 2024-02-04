@@ -14,4 +14,8 @@
       }
     }
   }
+  &__games-list {
+    max-height: 50dvh;
+    overflow-y: scroll;
+  }
 }

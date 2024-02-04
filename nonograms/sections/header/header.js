@@ -10,7 +10,7 @@ export const buttonNewGame = createButton(
   "random"
 );
 buttonNewGame.addEventListener("click", () => {
-  const newTask = chooseTask("random");
+  const newTask = chooseTask("random", "random");
   startGame(newTask);
 });
 
