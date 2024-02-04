@@ -6,6 +6,13 @@
 }
 .modal__level {
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .modal__level {
+    font-size: 1.25rem;
+  }
 }
 .modal__level input {
   margin-right: 0.5rem;
