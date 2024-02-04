@@ -73,7 +73,7 @@ export const taskArray = [
       "_x__x__x__",
       "x__x__x___",
       "_x__x__x__",
-      "__________",
+      "__x__x__x_",
       "xxxxxxxx__",
       "x______xxx",
       "xxxxxxxx_x",
@@ -86,7 +86,6 @@ export const taskArray = [
     name: "mail",
     level: "10x10",
     matrix: [
-      "__________",
       "xxxxxxxxxx",
       "xx______xx",
       "x_x____x_x",
@@ -94,15 +93,15 @@ export const taskArray = [
       "x___xx___x",
       "x________x",
       "x________x",
+      "x________x",
+      "x________x",
       "xxxxxxxxxx",
-      "__________",
     ],
   },
   {
     name: "snoopy",
     level: "10x10",
     matrix: [
-      "__________",
       "xxxxxx__x_",
       "___xxxxx__",
       "___xxxxx__",
@@ -112,6 +111,7 @@ export const taskArray = [
       "__xxxx____",
       "__xxxx_x__",
       "_xxxxxxx__",
+      "xxxxxxxxxx",
     ],
   },
   {

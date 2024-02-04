@@ -35,18 +35,6 @@ export function startGame(task) {
   //делаем активными кнопки для этой игры
   buttonsTools.forEach((button) => (button.disabled = false));
 
-  //таймер
-  draw.playField.addEventListener("click", () => {
-    //запускаем таймер
-    if (newGame.stopTimer) {
-      newGame.stopTimer = false;
-      setTimer = setInterval(() => {
-        newGame.time++;
-        draw.changeTimer(newGame.time);
-      }, 1000);
-    }
-  });
-
   //вешаем обработчик фиксации хода в объекте игры
 
   //клетки берем из массива draw.boxList, в нем для кадой клетки объект
@@ -62,6 +50,15 @@ export function startGame(task) {
       //отмечаем ход в матрице
       let marker = box.boxEl.classList.contains("painted") ? "x" : "_";
       newGame.checkBoxInMatrix(box.x, box.y, marker);
+
+      //запускаем таймер
+      if (newGame.stopTimer) {
+        newGame.stopTimer = false;
+        setTimer = setInterval(() => {
+          newGame.time++;
+          draw.changeTimer(newGame.time);
+        }, 1000);
+      }
 
       //выбираем звук
       let sound = marker == "x" ? audio.paint : audio.clean;
@@ -87,6 +84,15 @@ export function startGame(task) {
     //обработка клика на правую кнопку мыши
     box.boxEl.addEventListener("contextmenu", () => {
       newGame.checkBoxInMatrix(box.x, box.y, "_");
+
+      //запускаем таймер
+      if (newGame.stopTimer) {
+        newGame.stopTimer = false;
+        setTimer = setInterval(() => {
+          newGame.time++;
+          draw.changeTimer(newGame.time);
+        }, 1000);
+      }
 
       let sound =
         box.boxEl.classList.contains("painted") ||

@@ -33,6 +33,11 @@ export class DrawGame {
 
     this.playField = playField;
 
+    //отменяем контекстное меню для поля
+    this.playField.addEventListener("contextmenu", () => {
+      event.preventDefault();
+    });
+
     //функция заполнения ячеек подсказок
     function drawCeilHint(array, place) {
       array.forEach((ceil) => {
