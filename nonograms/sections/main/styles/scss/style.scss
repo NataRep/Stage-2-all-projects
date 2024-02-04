@@ -1,11 +1,11 @@
 .main {
-  background-image: url("/nonograms/assets/images/cat-woman-big.png");
+  background-image: url("../../../../assets/images/cat-woman-big.png");
   background-repeat: no-repeat;
   background-position: right top;
   background-size: contain;
 
   @media (max-width: 1020px) {
-    background-image: url("/nonograms/assets/images/cat-woman-medium.png");
+    background-image: url("../../../../assets/images/cat-woman-medium.png");
   }
 
   &__container {
