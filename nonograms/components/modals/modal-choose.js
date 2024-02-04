@@ -1,9 +1,9 @@
 import { createModal } from "./modal.js";
 import { createButton } from "../../components/button/button.js";
-import { chooseTask } from "../../js/choose-task.js";
 import { startGame } from "../../js/start-game.js";
 import { taskArray } from "../../js/data.js";
 import { newGame } from "../../js/start-game.js";
+import { setTimer } from "../../js/start-game.js";
 
 export function createModalChooseTask() {
   const modal = createModal();
@@ -91,6 +91,7 @@ function createTasksButtons(level, modal) {
 
     buttonTask.addEventListener("click", () => {
       modal.remove();
+      clearInterval(setTimer);
       startGame(task);
     });
 

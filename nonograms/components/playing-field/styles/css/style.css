@@ -1,3 +1,11 @@
+:root {
+  --size-5x5-box: 3rem;
+  --size-10x10-box: 2.5rem;
+  --size-15x15-box: 1.75rem;
+  --size-10x10-box-mobile: 1.5rem;
+  --size-15x15-box-mobile: 1.25rem;
+}
+
 .game {
   width: -moz-fit-content;
   width: fit-content;
@@ -6,6 +14,11 @@
   border: 1px solid var(--black);
   border-radius: 1.5rem;
   background: var(--white);
+}
+@media (max-width: 768px) {
+  .game {
+    padding: 1rem 2rem 2rem;
+  }
 }
 .game__info-row {
   font-size: 1.25rem;
@@ -27,15 +40,19 @@
 }
 .game__hints_top {
   grid-area: top;
-  height: 6rem;
+  height: -moz-max-content;
+  height: max-content;
+  min-height: 6rem;
 }
 .game__hints_top .game__hint {
   flex-direction: column;
   border-left: 1px solid var(--black);
-  width: 3rem;
   padding-bottom: 0.5rem;
 }
 .game__hints_top .game__hint:first-child {
+  border-left: 2px solid var(--black);
+}
+.game__hints_top .game__hint:nth-child(5n+1) {
   border-left: 2px solid var(--black);
 }
 .game__hints_top .game__num {
@@ -44,15 +61,19 @@
 .game__hints_left {
   grid-area: left;
   flex-direction: column;
-  width: 6rem;
+  width: -moz-max-content;
+  width: max-content;
+  min-width: 6rem;
 }
 .game__hints_left .game__hint {
   flex-direction: row;
-  height: 3rem;
   border-top: 1px solid var(--black);
   padding-right: 0.5rem;
 }
 .game__hints_left .game__hint:first-child {
+  border-top: 2px solid var(--black);
+}
+.game__hints_left .game__hint:nth-child(5n+1) {
   border-top: 2px solid var(--black);
 }
 .game__hints_left .game__num {
@@ -71,8 +92,11 @@
   display: flex;
   border-bottom: 1px solid var(--black);
 }
+.game__row:nth-child(5n) {
+  border-bottom: 2px solid var(--black);
+}
 .game__row:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 .game__hint {
   display: flex;
@@ -84,11 +108,17 @@
   margin: 0;
   font-weight: 500;
 }
+@media (max-width: 768px) {
+  .game__num {
+    font-size: 0.75rem;
+  }
+}
 .game__box {
   border-left: 1px solid var(--black);
-  width: 3rem;
-  height: 3rem;
   cursor: pointer;
+}
+.game__box:nth-child(5n+1) {
+  border-left: 2px solid var(--black);
 }
 .game__box:first-child {
   border-left: none;
@@ -109,4 +139,61 @@
 
 .dark-theme .game {
   background-color: var(--gray-medium);
+}
+
+.game.size-5x5 .game__hints_top .game__hint {
+  width: var(--size-5x5-box);
+}
+.game.size-5x5 .game__hints_left .game__hint {
+  height: var(--size-5x5-box);
+}
+.game.size-5x5 .game__box {
+  width: var(--size-5x5-box);
+  height: var(--size-5x5-box);
+}
+
+.game.size-10x10 .game__hints_top .game__hint {
+  width: var(--size-10x10-box);
+}
+.game.size-10x10 .game__hints_left .game__hint {
+  height: var(--size-10x10-box);
+}
+.game.size-10x10 .game__box {
+  width: var(--size-10x10-box);
+  height: var(--size-10x10-box);
+}
+@media (max-width: 768px) {
+  .game.size-10x10 .game__hints_top .game__hint {
+    width: var(--size-10x10-box-mobile);
+  }
+  .game.size-10x10 .game__hints_left .game__hint {
+    height: var(--size-10x10-box-mobile);
+  }
+  .game.size-10x10 .game__box {
+    width: var(--size-10x10-box-mobile);
+    height: var(--size-10x10-box-mobile);
+  }
+}
+
+.game.size-15x15 .game__hints_top .game__hint {
+  width: var(--size-15x15-box);
+}
+.game.size-15x15 .game__hints_left .game__hint {
+  height: var(--size-15x15-box);
+}
+.game.size-15x15 .game__box {
+  width: var(--size-15x15-box);
+  height: var(--size-15x15-box);
+}
+@media (max-width: 768px) {
+  .game.size-15x15 .game__hints_top .game__hint {
+    width: var(--size-15x15-box-mobile);
+  }
+  .game.size-15x15 .game__hints_left .game__hint {
+    height: var(--size-15x15-box-mobile);
+  }
+  .game.size-15x15 .game__box {
+    width: var(--size-15x15-box-mobile);
+    height: var(--size-15x15-box-mobile);
+  }
 }/*# sourceMappingURL=style.css.map */
