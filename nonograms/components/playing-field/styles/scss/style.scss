@@ -46,14 +46,14 @@
 
     .game__hint {
       flex-direction: column;
-      border-left: 1px solid var(--black);
+      border-left: 1px solid var(--gray);
       padding-bottom: 0.5rem;
 
       &:first-child {
-        border-left: 2px solid var(--black);
+        border-left: 2px solid var(--gray);
       }
       &:nth-child(5n + 1) {
-        border-left: 2px solid var(--black);
+        border-left: 2px solid var(--gray);
       }
     }
     .game__num {
@@ -67,15 +67,15 @@
     min-width: 6rem;
     .game__hint {
       flex-direction: row;
-      border-top: 1px solid var(--black);
+      border-top: 1px solid var(--gray);
       padding-right: 0.5rem;
 
       &:first-child {
-        border-top: 2px solid var(--black);
+        border-top: 2px solid var(--gray);
       }
 
       &:nth-child(5n + 1) {
-        border-top: 2px solid var(--black);
+        border-top: 2px solid var(--gray);
       }
     }
 
@@ -87,16 +87,16 @@
     grid-area: main;
     height: fit-content;
     width: fit-content;
-    border-left: 2px solid var(--black);
-    border-top: 2px solid var(--black);
+    border-left: 2px solid var(--gray);
+    border-top: 2px solid var(--gray);
   }
 
   &__row {
     display: flex;
-    border-bottom: 1px solid var(--black);
+    border-bottom: 1px solid var(--gray);
 
     &:nth-child(5n) {
-      border-bottom: 2px solid var(--black);
+      border-bottom: 2px solid var(--gray);
     }
 
     &:last-child {
@@ -119,11 +119,11 @@
   }
 
   &__box {
-    border-left: 1px solid var(--black);
+    border-left: 1px solid var(--gray);
     cursor: pointer;
 
     &:nth-child(5n + 1) {
-      border-left: 2px solid var(--black);
+      border-left: 2px solid var(--gray);
     }
 
     &:first-child {
