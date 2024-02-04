@@ -1,5 +1,23 @@
-.modal__tasks-wrapper {
+.modal__levels {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+.modal__level {
+  font-size: 1.5rem;
+}
+.modal__level input {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+.modal__level input:checked + label {
+  font-weight: 500;
+}
+.modal__tasks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }/*# sourceMappingURL=choose.css.map */
