@@ -46,14 +46,14 @@
 }
 .game__hints_top .game__hint {
   flex-direction: column;
-  border-left: 1px solid var(--black);
+  border-left: 1px solid var(--gray);
   padding-bottom: 0.5rem;
 }
 .game__hints_top .game__hint:first-child {
-  border-left: 2px solid var(--black);
+  border-left: 2px solid var(--gray);
 }
 .game__hints_top .game__hint:nth-child(5n+1) {
-  border-left: 2px solid var(--black);
+  border-left: 2px solid var(--gray);
 }
 .game__hints_top .game__num {
   margin-top: 0.5rem;
@@ -67,14 +67,14 @@
 }
 .game__hints_left .game__hint {
   flex-direction: row;
-  border-top: 1px solid var(--black);
+  border-top: 1px solid var(--gray);
   padding-right: 0.5rem;
 }
 .game__hints_left .game__hint:first-child {
-  border-top: 2px solid var(--black);
+  border-top: 2px solid var(--gray);
 }
 .game__hints_left .game__hint:nth-child(5n+1) {
-  border-top: 2px solid var(--black);
+  border-top: 2px solid var(--gray);
 }
 .game__hints_left .game__num {
   margin-left: 0.5rem;
@@ -85,15 +85,15 @@
   height: fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-left: 2px solid var(--black);
-  border-top: 2px solid var(--black);
+  border-left: 2px solid var(--gray);
+  border-top: 2px solid var(--gray);
 }
 .game__row {
   display: flex;
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--gray);
 }
 .game__row:nth-child(5n) {
-  border-bottom: 2px solid var(--black);
+  border-bottom: 2px solid var(--gray);
 }
 .game__row:last-child {
   border-bottom: none !important;
@@ -114,11 +114,11 @@
   }
 }
 .game__box {
-  border-left: 1px solid var(--black);
+  border-left: 1px solid var(--gray);
   cursor: pointer;
 }
 .game__box:nth-child(5n+1) {
-  border-left: 2px solid var(--black);
+  border-left: 2px solid var(--gray);
 }
 .game__box:first-child {
   border-left: none;
