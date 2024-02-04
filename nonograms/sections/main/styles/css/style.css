@@ -1,0 +1,29 @@
+.main {
+  background-image: url("/nonograms/assets/images/cat-woman-big.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: contain;
+}
+@media (max-width: 1020px) {
+  .main {
+    background-image: url("/nonograms/assets/images/cat-woman-medium.png");
+  }
+}
+.main__container {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.main__row-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .main__row-buttons {
+    margin-bottom: 1.5rem;
+  }
+}/*# sourceMappingURL=style.css.map */

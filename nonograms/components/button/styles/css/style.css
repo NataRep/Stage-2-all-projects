@@ -1,0 +1,152 @@
+.button {
+  background-color: var(--white);
+  border-radius: 1.5rem;
+  border: 1px solid var(--black);
+  display: flex;
+  padding: 0.5rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: lowercase;
+  width: -moz-max-content;
+  width: max-content;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+@media (max-width: 620px) {
+  .button {
+    font-size: 1rem;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: var(--gray);
+    color: var(--white);
+  }
+}
+.button:active {
+  background: var(--gray);
+  color: var(--white);
+}
+.button:disabled {
+  color: var(--gray-light);
+  border-color: var(--gray-light);
+  pointer-events: none;
+}
+.button_circle {
+  width: 48px;
+  height: 48px;
+  background-size: contain;
+  border: none;
+  padding: 0;
+}
+@media (max-width: 1100px) {
+  .button_circle {
+    width: 30px;
+    height: 30px;
+  }
+}
+.button_theme {
+  background: url(/nonograms/assets/images/theme.svg) no-repeat;
+  background-size: contain;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button_theme:hover {
+    background: url(/nonograms/assets/images/theme-hover.svg) var(--gray) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.button_theme:active {
+  background: url(/nonograms/assets/images/theme-hover.svg) var(--gray) no-repeat;
+  background-size: contain;
+  color: inherit;
+}
+.button_sound {
+  background: url(/nonograms/assets/images/sound-on.svg) no-repeat;
+  background-size: contain;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button_sound:hover {
+    background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.button_sound:active {
+  background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray) no-repeat;
+  background-size: contain;
+  color: inherit;
+}
+.button_sound.off {
+  background: url(/nonograms/assets/images/sound-off.svg) no-repeat;
+  background-size: contain;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button_sound.off:hover {
+    background: url(/nonograms/assets/images/sound-off-hover.svg) var(--gray) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.button_sound.off:active {
+  background: url(/nonograms/assets/images/sound-off-hover.svg) var(--gray) no-repeat;
+  background-size: contain;
+  color: inherit;
+}
+
+.dark-theme .button {
+  background-color: var(--gray-medium);
+}
+@media (hover: hover) and (pointer: fine) {
+  .dark-theme .button:hover {
+    background: var(--gray);
+    color: var(--gray-light);
+  }
+}
+.dark-theme .button:active {
+  background: var(--gray);
+  color: var(--gray-light);
+}
+@media (hover: hover) and (pointer: fine) {
+  .dark-theme .button_theme:hover {
+    background: url(/nonograms/assets/images/theme-hover.svg) var(--gray-medium) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.dark-theme .button_theme:active {
+  background: url(/nonograms/assets/images/theme-hover.svg) var(--gray-medium) no-repeat;
+  background-size: contain;
+  color: inherit;
+}
+@media (hover: hover) and (pointer: fine) {
+  .dark-theme .button_sound:hover {
+    background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray-medium) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.dark-theme .button_sound:active {
+  background: url(/nonograms/assets/images/sound-on-hover.svg) var(--gray-medium) no-repeat;
+  background-size: contain;
+  color: inherit;
+}
+.dark-theme .button_sound.off {
+  background: url(/nonograms/assets/images/sound-off.svg) no-repeat;
+  background-size: contain;
+}
+@media (hover: hover) and (pointer: fine) {
+  .dark-theme .button_sound.off:hover {
+    background: url(/nonograms/assets/images/sound-off-hover.svg) var(--gray-medium) no-repeat;
+    background-size: contain;
+    color: inherit;
+  }
+}
+.dark-theme .button_sound.off:active {
+  background: url(/nonograms/assets/images/sound-off-hover.svg) var(--gray-medium) no-repeat;
+  background-size: contain;
+  color: inherit;
+}/*# sourceMappingURL=style.css.map */

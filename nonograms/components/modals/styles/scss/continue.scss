@@ -1,0 +1,17 @@
+.modal {
+  &_continue {
+    li {
+      cursor: pointer;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          font-weight: 600;
+        }
+      }
+      &:active {
+        &:hover {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

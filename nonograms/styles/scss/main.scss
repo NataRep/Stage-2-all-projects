@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap");
+@import url("variablles.css");
+@import url("../../sections/main/styles/css/style.css");
+@import url("../../sections/header/styles/css/style.css");
+@import url("../../sections/footer/styles/css/style.css");
+@import url("../../components/playing-field/styles/css/style.css");
+@import url("../../components/button/styles/css/style.css");
+@import url("../../components/modals/styles/css/style.css");
+@import url("../../components/modals/styles/css/win.css");
+@import url("../../components/modals/styles/css/choose.css");
+@import url("../../components/modals/styles/css/continue.css");
+
+.page {
+  background-color: var(--gray-light);
+  font-family: "Roboto Mono", monospace;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+  align-items: stretch;
+  transition: all 0.3s ease-out;
+
+  &.dark-theme {
+    background-color: var(--gray);
+  }
+}
