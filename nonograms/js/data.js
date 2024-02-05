@@ -7,7 +7,7 @@ export const taskArray = [
   {
     name: "flag",
     level: "5x5",
-    matrix: ["_xxxx", "_xxxx", "_xxxx", "_x___", "_x___"],
+    matrix: ["xxxxx", "xxxxx", "xxxxx", "x____", "x____"],
   },
   {
     name: "tower",
@@ -22,7 +22,7 @@ export const taskArray = [
   {
     name: "chair",
     level: "5x5",
-    matrix: ["x____", "x____", "xxxx_", "x__x_", "x__x_"],
+    matrix: ["x____", "x____", "xxxxx", "x___x", "x___x"],
   },
   {
     name: "dog",
