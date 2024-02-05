@@ -11,5 +11,5 @@
 }
 .modal__games-list {
   max-height: 50dvh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }/*# sourceMappingURL=continue.css.map */
