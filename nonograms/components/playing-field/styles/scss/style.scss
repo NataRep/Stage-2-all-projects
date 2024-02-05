@@ -191,6 +191,9 @@
 
     &__hint {
       border-color: var(--gray-border-dark);
+      &:nth-child(5n + 1) {
+        border-color: var(--gray-border-dark);
+      }
     }
     &__hints_top {
       .game__hint:first-child {
