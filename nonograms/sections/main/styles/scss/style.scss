@@ -3,6 +3,10 @@
   background-repeat: no-repeat;
   background-position: right top;
   background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5rem;
 
   @media (max-width: 1020px) {
     background-image: url("../../../../assets/images/cat-woman-medium.png");
@@ -12,7 +16,7 @@
     width: fit-content;
     margin: auto;
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
   }
 
   &__row-buttons {

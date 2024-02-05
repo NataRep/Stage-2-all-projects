@@ -4,4 +4,5 @@ export const audio = {
   clean: new Audio("../nonograms/assets/sounds/clean.wav"),
   win: new Audio("../nonograms/assets/sounds/win.mp3"),
   save: new Audio("../nonograms/assets/sounds/save.mp3"),
+  button: new Audio("../nonograms/assets/sounds/button.wav"),
 };

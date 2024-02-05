@@ -3,6 +3,7 @@ import { newGame } from "../../js/start-game.js";
 import { draw } from "../../js/start-game.js";
 import { setTimer } from "../../js/start-game.js";
 import { audio } from "../../components/audio/audio.js";
+import { createModalResults } from "../../components/modals/modal-results.js";
 
 //Создаем кнопки и вешаем оброаботчики
 export const buttonReset = createButton(["button", "button_reset"], "Reset");
@@ -16,9 +17,9 @@ buttonReset.addEventListener("click", () => {
 export const buttonSave = createButton(["button", "button_save"], "Save");
 buttonSave.addEventListener("click", () => {
   newGame.save();
-  audio.save.play();
 });
 
+//кнопка с решением
 export const buttonSolution = createButton(
   ["button", "button_solution"],
   "Solution"
@@ -50,6 +51,12 @@ export function createMainSection() {
   const rowButtons = document.createElement("div");
   rowButtons.classList.add("main__row-buttons");
 
+  //кнопка с результатами последних игр
+  const buttonResults = createButton(["button", "button_results"], "Results");
+  buttonResults.addEventListener("click", () => {
+    mainSection.append(createModalResults());
+  });
+
   rowButtons.append(buttonReset);
   rowButtons.append(buttonSave);
   rowButtons.append(buttonSolution);
@@ -57,6 +64,8 @@ export function createMainSection() {
   mainContainer.append(rowButtons);
 
   mainSection.append(mainContainer);
+
+  mainSection.append(buttonResults);
 
   return mainSection;
 }

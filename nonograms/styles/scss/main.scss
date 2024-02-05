@@ -18,8 +18,10 @@
   height: 100dvh;
   align-items: stretch;
   transition: all 0.3s ease-out;
+  color: var(--black);
 
   &.dark-theme {
-    background-color: var(--gray);
+    background-color: var(--bg-dark);
+    color: var(--gray-light);
   }
 }

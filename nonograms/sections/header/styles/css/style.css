@@ -43,11 +43,14 @@
   }
 }
 @media (max-width: 768px) {
-  .header .logo {
+  .header .logo svg {
     width: 100%;
   }
 }
 
 .dark-theme .header {
-  background: var(--gray-medium);
+  background: var(--gray);
+}
+.dark-theme .logo svg path {
+  fill: var(--gray-light);
 }/*# sourceMappingURL=style.css.map */

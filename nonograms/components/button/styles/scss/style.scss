@@ -1,7 +1,8 @@
 .button {
   background-color: var(--white);
   border-radius: 1.5rem;
-  border: 1px solid var(--black);
+  border-color: var(--black);
+  border: 1px solid;
   display: flex;
   padding: 0.5rem 1.5rem;
   justify-content: center;
@@ -109,66 +110,77 @@
 
 .dark-theme {
   .button {
-    background-color: var(--gray-medium);
+    background-color: var(--gray);
+    border-color: var(--gray-light);
+    color: var(--gray-light);
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: var(--gray);
-        color: var(--gray-light);
+        background: var(--gray-light);
+        color: var(--gray);
       }
     }
     &:active {
-      background: var(--gray);
-      color: var(--gray-light);
+      background: var(--gray-light);
+      color: var(--gray);
+    }
+    &:disabled {
+      color: var(--bg-dark);
+      border-color: var(--gray);
+      pointer-events: none;
     }
   }
 
   .button_theme {
+    background: url(../../../../assets/images/theme-dark.svg) no-repeat;
+    background-size: contain;
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(../../../../assets/images/theme-hover.svg)
-          var(--gray-medium) no-repeat;
+        background: url(../../../../assets/images/theme.svg) var(--gray-medium)
+          no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(../../../../assets/images/theme-hover.svg)
-        var(--gray-medium) no-repeat;
+      background: url(../../../../assets/images/theme.svg) var(--gray-medium)
+        no-repeat;
       background-size: contain;
       color: inherit;
     }
   }
 
   .button_sound {
+    background: url(../../../../assets/images/sound-on-dark.svg) no-repeat;
+    background-size: contain;
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: url(../../../../assets/images/sound-on-hover.svg)
+        background: url(../../../../assets/images/sound-on.svg)
           var(--gray-medium) no-repeat;
         background-size: contain;
         color: inherit;
       }
     }
     &:active {
-      background: url(../../../../assets/images/sound-on-hover.svg)
-        var(--gray-medium) no-repeat;
+      background: url(../../../../assets/images/sound-on.svg) var(--gray-medium)
+        no-repeat;
       background-size: contain;
       color: inherit;
     }
 
     &.off {
-      background: url(../../../../assets/images/sound-off.svg) no-repeat;
+      background: url(../../../../assets/images/sound-off-dark.svg) no-repeat;
       background-size: contain;
       @media (hover: hover) and (pointer: fine) {
         &:hover {
-          background: url(../../../../assets/images/sound-off-hover.svg)
+          background: url(../../../../assets/images/sound-off.svg)
             var(--gray-medium) no-repeat;
           background-size: contain;
           color: inherit;
         }
       }
       &:active {
-        background: url(../../../../assets/images/sound-off-hover.svg)
+        background: url(../../../../assets/images/sound-off.svg)
           var(--gray-medium) no-repeat;
         background-size: contain;
         color: inherit;

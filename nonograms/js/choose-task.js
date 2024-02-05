@@ -15,7 +15,6 @@ export function chooseTask(taskName, level) {
   } else {
     //выбор таска с указанным уровнем и названием
     let filterTaskArray = taskArray.filter((task) => {
-      console.log(task.level);
       if (task.level === level) return task;
     });
     return filterTaskArray.find((task) => task.name === taskName);
