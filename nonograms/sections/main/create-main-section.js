@@ -17,7 +17,6 @@ buttonReset.addEventListener("click", () => {
 export const buttonSave = createButton(["button", "button_save"], "Save");
 buttonSave.addEventListener("click", () => {
   newGame.save();
-  audio.save.play();
 });
 
 //кнопка с решением
