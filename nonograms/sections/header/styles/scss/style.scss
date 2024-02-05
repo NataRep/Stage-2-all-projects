@@ -41,7 +41,7 @@
     }
   }
 
-  .logo {
+  .logo svg {
     @media (max-width: 768px) {
       width: 100%;
     }
@@ -50,6 +50,12 @@
 
 .dark-theme {
   .header {
-    background: var(--gray-medium);
+    background: var(--gray);
+  }
+
+  .logo svg {
+    path {
+      fill: var(--gray-light);
+    }
   }
 }

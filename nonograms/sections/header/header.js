@@ -4,6 +4,7 @@ import { createModalContinue } from "../../components/modals/modal-continue.js";
 import { chooseTask } from "../../js/choose-task.js";
 import { startGame } from "../../js/start-game.js";
 import { audio } from "../../components/audio/audio.js";
+import { logotype } from "./logo.js";
 
 export const buttonNewGame = createButton(
   ["button", "button_new-random"],
@@ -32,9 +33,9 @@ export function createHeader() {
   const container = document.createElement("div");
   container.classList.add("header__container");
 
-  const logo = document.createElement("img");
-  logo.src = "../nonograms/assets/images/logo.svg";
-  logo.alt = "logotype";
+  const logo = document.createElement("div");
+  logo.innerHTML = logotype;
+
   logo.classList.add("logo");
 
   //контейнер для кнопок начала игры
