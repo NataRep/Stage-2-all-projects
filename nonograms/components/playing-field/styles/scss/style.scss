@@ -33,8 +33,8 @@
     align-items: end;
     width: fit-content;
     margin: auto;
-    border-color: var(--gray);
     border: 4px solid;
+    border-color: var(--gray);
   }
 
   &__hints {
@@ -55,9 +55,11 @@
 
       &:first-child {
         border-left: 2px solid;
+        border-color: var(--gray);
       }
       &:nth-child(5n + 1) {
         border-left: 2px solid;
+        border-color: var(--gray);
       }
     }
     .game__num {
@@ -92,22 +94,24 @@
     grid-area: main;
     height: fit-content;
     width: fit-content;
-    border-color: var(--gray);
     border-left: 2px solid;
     border-top: 2px solid;
+    border-color: var(--gray);
   }
 
   &__row {
     display: flex;
-    border-color: var(--gray);
     border-bottom: 1px solid;
+    border-color: var(--gray);
 
     &:nth-child(5n) {
       border-bottom: 2px solid;
+      border-color: var(--gray);
     }
 
     &:last-child {
       border-bottom: none;
+      border-color: var(--gray);
     }
   }
   &__hint {
@@ -126,16 +130,18 @@
   }
 
   &__box {
-    border-color: var(--gray);
     border-left: 1px solid;
+    border-color: var(--gray);
     cursor: pointer;
 
     &:nth-child(5n + 1) {
       border-left: 2px solid;
+      border-color: var(--gray);
     }
 
     &:first-child {
       border-left: none;
+      border-color: var(--gray);
     }
 
     &.painted {
