@@ -175,6 +175,9 @@
 .dark-theme .game__hint {
   border-color: var(--gray-border-dark);
 }
+.dark-theme .game__hints_top .game__hint:first-child {
+  border-color: var(--gray-border-dark);
+}
 
 .game.size-5x5 .game__hints_top .game__hint {
   width: var(--size-5x5-box);
