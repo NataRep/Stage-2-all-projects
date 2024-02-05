@@ -72,7 +72,9 @@ export function startGame(task) {
         audio.win.play();
 
         //выводим модалку
-        draw.gameEl.append(createModalWin(newGame.time));
+        setTimeout(() => {
+          draw.gameEl.append(createModalWin(newGame.time));
+        }, 700);
         //останавливаем таймер
         clearInterval(setTimer);
         //убираем возможность кликать по полю
