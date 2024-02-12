@@ -1,6 +1,6 @@
 # Link on my video:
 
-[https://www.youtube.com/watch?v=vnJj4fU1PEc] (https://www.youtube.com/watch?v=vnJj4fU1PEc "Переход на Youtube")
+https://www.youtube.com/watch?v=vnJj4fU1PEc
 
 # Transcript text:
 
