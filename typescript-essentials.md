@@ -5,7 +5,7 @@
 1. **Getting Started with TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/EJAE7XJP?sharingId=E839C56D540D058F)
 2. **Declare Variable Types in TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/YVH2ZENR?sharingId=E839C56D540D058F)
 3. **Implement interfaces in TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/UF5FPY53?sharingId=E839C56D540D058F)
-4. **Develop typed functions by using TypeScript**: [Badge]()
+4. **Develop typed functions by using TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/24XTJ8BV?sharingId=E839C56D540D058F)
 
 ## Reflections
 
@@ -59,3 +59,16 @@ In this module, I learned:
 8.  How to declare an interface with custom array types.
 
 ### 4. Develop typed functions by using TypeScript
+
+In this module I learned:
+
+1. That declaring argument data types in a function helps to avoid unnecessary input data validation code in the function body.
+   Output validation works the same way. I see this as a benefit of using TS. If I forget to do data type checking in js, there will be an error, whereas the typescript will point it out to me during development.
+   Also, it is convenient to work with functions that have already specified argument data types, because the IDE will prompt me when I use the function later.
+2. The syntax for declaring named, anonymous and arrow functions, and for specifying the type of arguments and output data.
+3. The difference between declaring function arguments in TS and JS. In TS, all function parameters are mandatory unless otherwise specified.
+4. How to write an optional function parameter and how to pass an unlimited number of parameters to a function in the remaining parameters array.
+5. How to use object destructuring as a function argument in a TS function call.
+6. How to define function types using type aliases or interfaces.
+
+This knowledge will help me when writing functions with ts. It is a pity that I have not yet understood how to pass random functions to the wrapper (decorator) if the type or interface of the callback is not known beforehand.
