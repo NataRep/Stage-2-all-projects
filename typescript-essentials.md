@@ -6,6 +6,7 @@
 2. **Declare Variable Types in TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/YVH2ZENR?sharingId=E839C56D540D058F)
 3. **Implement interfaces in TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/UF5FPY53?sharingId=E839C56D540D058F)
 4. **Develop typed functions by using TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/24XTJ8BV?sharingId=E839C56D540D058F)
+5. **Declare and instantiate classes in TypeScript**:[Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFL4QH2?sharingId=E839C56D540D058F)
 
 ## Reflections
 
@@ -72,3 +73,36 @@ In this module I learned:
 6. How to define function types using type aliases or interfaces.
 
 This knowledge will help me when writing functions with ts. It is a pity that I have not yet understood how to pass random functions to the wrapper (decorator) if the type or interface of the callback is not known beforehand.
+
+### 5. Declare and instantiate classes in TypeScript
+
+In this module, I learned:
+
+1. Learned how to declare a class using TypeScript.
+
+- Parameters can be mandatory or optional, have default values. As with all TypeScript functions, this is the main difference from JS.
+- You can set the Access Modifier for properties and methods of a class:
+  public - The default value is public. The property is accessible from anywhere in the code
+  private - The property cannot be accessed from outside the class containing it.
+  protected - acts in the same way as the private modifier, except that members declared as protected can be accessed inside derived classes.
+  readonly - read-only properties can be set only during initialisation at their declaration or in the constructor.
+- Static class properties available without creating an object are set using the static keyword
+
+2. Learned how to instantiate a class using TypeScript.
+3. Learned how to extend another class using extends keyword.
+4. Learned how and why to declare an interface to provide the form of a class using the implements keyword
+5. Learned to distinguish when it is better to use an interface or a class to define the structure of an object:
+
+- When to use an interface:
+  Interfaces only define the structure of the data, not the behaviour of the object.
+  The main advantage of interfaces is that they are weightless, don't stay in the js code and have a purely service purpose.
+  Where I will use interfaces:
+
+  - To define parameter objects for functions,
+  - to define structure for various framework properties.
+  - and to define what objects look like from remote services or APIs.
+    An interface can be used in a common module for client and server code, ensuring that the data structure is the same on both sides.
+
+- When to use Classes
+  When you need a template to create objects that can define methods and properties.
+  And also when you need to use class extension through inheritance.
