@@ -7,6 +7,7 @@
 3. **Implement interfaces in TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/UF5FPY53?sharingId=E839C56D540D058F)
 4. **Develop typed functions by using TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/24XTJ8BV?sharingId=E839C56D540D058F)
 5. **Declare and instantiate classes in TypeScript**:[Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFL4QH2?sharingId=E839C56D540D058F)
+6. **Define generics in TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/FZUBHFEX?sharingId=E839C56D540D058F)
 
 ## Reflections
 
@@ -82,15 +83,15 @@ In this module, I learned:
 
 - Parameters can be mandatory or optional, have default values. As with all TypeScript functions, this is the main difference from JS.
 - You can set the Access Modifier for properties and methods of a class:
-  public - The default value is public. The property is accessible from anywhere in the code
-  private - The property cannot be accessed from outside the class containing it.
-  protected - acts in the same way as the private modifier, except that members declared as protected can be accessed inside derived classes.
-  readonly - read-only properties can be set only during initialisation at their declaration or in the constructor.
-- Static class properties available without creating an object are set using the static keyword
+  'public' - The default value is public. The property is accessible from anywhere in the code
+  'private' - The property cannot be accessed from outside the class containing it.
+  'protected' - acts in the same way as the private modifier, except that members declared as protected can be accessed inside derived classes.
+  'readonly' - read-only properties can be set only during initialisation at their declaration or in the constructor.
+- Static class properties available without creating an object are set using the 'static' keyword
 
 2. Learned how to instantiate a class using TypeScript.
-3. Learned how to extend another class using extends keyword.
-4. Learned how and why to declare an interface to provide the form of a class using the implements keyword
+3. Learned how to extend another class using 'extends' keyword.
+4. Learned how and why to declare an interface to provide the form of a class using the 'implements' keyword
 5. Learned to distinguish when it is better to use an interface or a class to define the structure of an object:
 
 - When to use an interface:
@@ -105,4 +106,55 @@ In this module, I learned:
 
 - When to use Classes
   When you need a template to create objects that can define methods and properties.
-  And also when you need to use class extension through inheritance.
+
+### 6.Define generics in TypeScript
+
+In this module, I learned about generics, which allow you to create components with multiple data types, depending on the context of the call.
+The syntax of generics components is: somthing <T>(value:T):T{ return T}.
+It turns out that the capital letter in the quotes, is just a variable for the data type.
+Generics can be:
+
+- functions:
+
+  ```javascript
+  function GenericFunction<T>(value: T): T {
+    return T;
+  }
+  ```
+
+- interfaces:
+
+  ```javascript
+  interface GenericInterfaceForObg<T> {
+    value: T
+    getIdentity: () => T
+  }
+
+  interface GenericInterfaceForFunction<T>{
+    (arg: T): T;
+  }
+  ```
+
+- classes:
+
+  ```javascript
+  class GenericClass<T> {
+    value: T;
+  }
+  ```
+
+I also learned that in order for generics to work correctly, generic constraints can be used.
+They allow you to limit the possible input data types. To do this, you can use type extensions and type checks in the body of the component (typof for primitives and instanceof for objects).
+Syntax example:
+
+```javascript
+type ExemplType = 'string' | 'value';
+
+function identity<T extends ExemplType, U> (arg1: T, arg2: U):T {
+  if(typof arg1 === 'string' ){
+    .............
+  } else if (typeof value === 'number') {
+    .............
+  }
+}
+```
