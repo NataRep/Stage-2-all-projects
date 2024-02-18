@@ -9,6 +9,7 @@
 5. **Declare and instantiate classes in TypeScript**:[Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFL4QH2?sharingId=E839C56D540D058F)
 6. **Define generics in TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/FZUBHFEX?sharingId=E839C56D540D058F)
 7. **Access external libraries from TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFC4RC2?sharingId=E839C56D540D058F)
+8. **Organize code using TypeScript namespaces**:[Bandge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/YVH55LVR?sharingId=E839C56D540D058F)
 
 ## Reflections
 
@@ -170,3 +171,18 @@ For many libraries you can use the DefinitelyTyped project. You need to check if
 ```javascript
 npm install --save-dev @types/<library-name>
 ```
+
+### 8. Organize code using TypeScript namespaces
+
+странство имен - это особобый способ организовывать код в TS.
+Пространство имен задается при помощи ключевого слова namespace и его произвольного имени с заглавной буквы.
+Чтобы использовать функционал, заключенный внутри пространства имени его нужно экспортировать при помощи ключевого слова export и вызывать его как метод или свойство объекта пространства имен ИмяПрострастваИмен.ИмяФункции().
+Пространства имен могут быть вложенными. Файлы с пространствами имен можэно связывать при помощь:
+
+```javascript
+/// <reference path="file.ts" />
+```
+
+Файлы с пространствами имен можно скомпилировать в разные файлы или один, в зависимости от настроек компилятора.
+Оно помогает разделить области видимости для переменных и вынест их в область видимости.
+Так как сейчас в JS стали поддерживаться модули, то потребность в использовании пространства имен в новых проектах отпала. Поэтому я не планирую использовать пространства имен с своем коде.
