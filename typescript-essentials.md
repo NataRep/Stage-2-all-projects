@@ -174,15 +174,13 @@ npm install --save-dev @types/<library-name>
 
 ### 8. Organize code using TypeScript namespaces
 
-странство имен - это особобый способ организовывать код в TS.
-Пространство имен задается при помощи ключевого слова namespace и его произвольного имени с заглавной буквы.
-Чтобы использовать функционал, заключенный внутри пространства имени его нужно экспортировать при помощи ключевого слова export и вызывать его как метод или свойство объекта пространства имен ИмяПрострастваИмен.ИмяФункции().
-Пространства имен могут быть вложенными. Файлы с пространствами имен можэно связывать при помощь:
+A namespace is a special way to organise code in TS.
+A namespace is defined using the namespace keyword and its arbitrary capitalised name.
+To use the functionality contained within a namespace, it must be exported using the export keyword and called as a method or property of the namespace object NamespaceName.NameFunction().
+Namespaces can be nested. Namespace files can be linked using:
 
-```javascript
 /// <reference path="file.ts" />
-```
 
-Файлы с пространствами имен можно скомпилировать в разные файлы или один, в зависимости от настроек компилятора.
-Оно помогает разделить области видимости для переменных и вынест их в область видимости.
-Так как сейчас в JS стали поддерживаться модули, то потребность в использовании пространства имен в новых проектах отпала. Поэтому я не планирую использовать пространства имен с своем коде.
+Namespace files can be compiled into different files or a single file, depending on the compiler settings.
+It helps to separate scopes for variables and put them in a scope.
+Since JS now supports modules, there is no need to use namespaces in new projects. That's why I don't plan to use namespaces in my code.
