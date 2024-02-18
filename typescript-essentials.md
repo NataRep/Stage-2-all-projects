@@ -8,6 +8,7 @@
 4. **Develop typed functions by using TypeScript**: [Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/24XTJ8BV?sharingId=E839C56D540D058F)
 5. **Declare and instantiate classes in TypeScript**:[Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFL4QH2?sharingId=E839C56D540D058F)
 6. **Define generics in TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/FZUBHFEX?sharingId=E839C56D540D058F)
+7. **Access external libraries from TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFC4RC2?sharingId=E839C56D540D058F)
 
 ## Reflections
 
@@ -114,34 +115,34 @@ The syntax of generics components is: somthing <T>(value:T):T{ return T}.
 It turns out that the capital letter in the quotes, is just a variable for the data type.
 Generics can be:
 
-- functions:
+1. functions:
 
-  ```javascript
-  function GenericFunction<T>(value: T): T {
-    return T;
-  }
-  ```
+```javascript
+function GenericFunction<T>(value: T): T {
+  return T;
+}
+```
 
-- interfaces:
+2. interfaces:
 
-  ```javascript
-  interface GenericInterfaceForObg<T> {
-    value: T
-    getIdentity: () => T
-  }
+```javascript
+interface GenericInterfaceForObg<T> {
+  value: T
+  getIdentity: () => T
+}
 
-  interface GenericInterfaceForFunction<T>{
-    (arg: T): T;
-  }
-  ```
+interface GenericInterfaceForFunction<T>{
+  (arg: T): T;
+}
+```
 
-- classes:
+3. classes:
 
-  ```javascript
-  class GenericClass<T> {
-    value: T;
-  }
-  ```
+```javascript
+class GenericClass<T> {
+  value: T;
+}
+```
 
 I also learned that in order for generics to work correctly, generic constraints can be used.
 They allow you to limit the possible input data types. To do this, you can use type extensions and type checks in the body of the component (typof for primitives and instanceof for objects).
@@ -157,4 +158,15 @@ function identity<T extends ExemplType, U> (arg1: T, arg2: U):T {
     .............
   }
 }
+```
+
+### 7.Access external libraries from TypeScript
+
+In TS, you can use ES6 module syntax and compile to the right synatxis to support older browsers.
+If the imported modules have the correct types, there should be no problems. You can import any entities: variables, functions, classes, custom types, and interfaces.
+The difficulty arises when importing external libraries without predefined data types.
+For many libraries you can use the DefinitelyTyped project. You need to check if the project supports the required library, and then install the package via npm:
+
+```javascript
+npm install --save-dev @types/<library-name>
 ```
