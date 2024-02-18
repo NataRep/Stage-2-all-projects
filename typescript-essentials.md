@@ -179,7 +179,9 @@ A namespace is defined using the namespace keyword and its arbitrary capitalised
 To use the functionality contained within a namespace, it must be exported using the export keyword and called as a method or property of the namespace object NamespaceName.NameFunction().
 Namespaces can be nested. Namespace files can be linked using:
 
+```javascript
 /// <reference path="file.ts" />
+```
 
 Namespace files can be compiled into different files or a single file, depending on the compiler settings.
 It helps to separate scopes for variables and put them in a scope.
