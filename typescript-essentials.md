@@ -9,7 +9,7 @@
 5. **Declare and instantiate classes in TypeScript**:[Badge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFL4QH2?sharingId=E839C56D540D058F)
 6. **Define generics in TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/FZUBHFEX?sharingId=E839C56D540D058F)
 7. **Access external libraries from TypeScript**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/ZPFC4RC2?sharingId=E839C56D540D058F)
-8. **Organize code using TypeScript namespaces**:[Bandge](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/YVH55LVR?sharingId=E839C56D540D058F)
+8. **Organize code using TypeScript namespaces**:[Bange](https://learn.microsoft.com/api/achievements/share/en-us/Nuttik-9120/YVH55LVR?sharingId=E839C56D540D058F)
 
 ## Reflections
 
