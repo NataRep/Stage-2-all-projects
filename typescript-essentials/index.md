@@ -185,4 +185,4 @@ Namespaces can be nested. Namespace files can be linked using:
 
 Namespace files can be compiled into different files or a single file, depending on the compiler settings.
 It helps to separate scopes for variables and put them in a scope.
-Since JS now supports modules, there is no need to use namespaces in new projects. That's why I don't plan to use namespaces in my code.
+Since JS (ES6) now supports modules, there is no need to use namespaces in new projects. That's why I don't plan to use namespaces in my code.
