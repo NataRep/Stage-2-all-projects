@@ -1,5 +1,5 @@
 import './sources.css';
-import { IScource } from './../../../interfaces';
+import { IScource } from '../../../utils/interfaces';
 
 class Sources {
     draw(data: IScource[]) {

@@ -1,6 +1,6 @@
 import './news.css';
 //интерфейсы
-import { IArticle } from './../../../interfaces';
+import { IArticle } from '../../../utils/interfaces';
 
 class News {
     draw(data: IArticle[]) {

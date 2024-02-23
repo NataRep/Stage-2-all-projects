@@ -1,9 +1,9 @@
 import News from './news/news';
 import Sources from './sources/sources';
 //интерфейсы
-import { IDataNews } from './../../interfaces';
-import { IDataSources } from './../../interfaces';
-import { IAppView } from './../../interfaces';
+import { IDataNews } from '../../utils/interfaces';
+import { IDataSources } from '../../utils/interfaces';
+import { IAppView } from '../../utils/interfaces';
 
 export class AppView implements IAppView {
     news;
