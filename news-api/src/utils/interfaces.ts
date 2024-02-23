@@ -1,9 +1,9 @@
-interface Scouce {
+interface Sources {
     id: null | string;
     name: string;
 }
 export interface IArticle {
-    source: Scouce;
+    source: Sources;
     author: string;
     title: string;
     description: string;
@@ -18,7 +18,7 @@ export interface IDataNews {
     articles: IArticle[];
 }
 
-export interface IScource {
+export interface ISources {
     id: string;
     name: string;
     description: string;
@@ -30,18 +30,25 @@ export interface IScource {
 
 export interface IDataSources {
     status: string;
-    sources: IScource[];
+    sources: ISources[];
 }
 
 interface INews {
     draw(data: IArticle[]): void;
 }
 
-//interface ISources {
-//
-//}
-
+type source = { draw(data: ISources[]): void };
 export interface IAppView {
     news: INews;
-    sources: any;
+    sources: source;
+    drawNews: (data: IDataNews) => void;
+    drawSources: (data: IDataSources) => void;
+}
+export interface IOptions {
+    apiKey?: string;
+    sources?: string;
+}
+
+export interface IObject {
+    [index: string]: string;
 }
