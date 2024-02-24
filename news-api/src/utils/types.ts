@@ -1,7 +1,9 @@
 export type responeCallbackType<T> = (data: T) => void;
+
 export type objectType = {
     [key: string]: string;
 };
+
 export const enum httpStatusType {
     UNAUTHORIZED = 401,
     NOT_FOUND = 404,

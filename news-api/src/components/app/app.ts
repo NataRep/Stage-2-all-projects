@@ -1,4 +1,5 @@
 import AppController from '../controller/controller';
+import { SourceSort } from '../sorting/sorting';
 import { AppView } from '../view/appView';
 import { IAppView } from '../../utils/interfaces';
 import { IDataNews } from '../../utils/interfaces';
@@ -19,6 +20,8 @@ class App {
             this.controller.getNews(e, (data: IDataNews) => this.view.drawNews(data))
         );
         this.controller.getSources((data: IDataSources) => this.view.drawSources(data));
+
+        setTimeout(SourceSort.sort, 500);
     }
 }
 
