@@ -16,6 +16,7 @@ class Loader {
     getResp(
         { endpoint, options = {} }: { endpoint: string; options?: IOptions },
         callback: responeCallback<IDataNews | IDataSources | void> = () => {
+            ///НАЙТИ ПРАВИЛЬНЫЙ ВИД КОЛБКОВ
             console.error('No callback for GET response');
         }
     ) {
