@@ -3,8 +3,8 @@ import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 import { IOptions } from '../../utils/interfaces';
 import { TObject } from '../../utils/types';
-import { httpStatus } from '../../utils/types';
-import { endpoint } from '../../utils/types';
+import { httpStatusType } from '../../utils/types';
+import { endpointType } from '../../utils/types';
 
 class Loader {
     protected readonly baseLink: string;
@@ -16,7 +16,7 @@ class Loader {
     }
 
     protected getResp(
-        { endpoint, options = {} }: { endpoint: endpoint; options?: IOptions },
+        { endpoint, options = {} }: { endpoint: endpointType; options?: IOptions },
         callback: responeCallback<IDataNews> | responeCallback<IDataSources> = () => {
             console.error('No callback for GET response');
         }
@@ -26,9 +26,7 @@ class Loader {
 
     protected errorHandler(res: Response) {
         if (!res.ok) {
-            const httpStatus: httpStatus = res.status;
-
-            if (httpStatus === 401 || httpStatus === 404)
+            if (res.status === httpStatusType.UNAUTHORIZED || res.status === httpStatusType.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
