@@ -41,6 +41,3 @@ export interface IOptions {
     apiKey?: string;
     sources?: string;
 }
-export interface IObject {
-    [index: string]: string;
-}

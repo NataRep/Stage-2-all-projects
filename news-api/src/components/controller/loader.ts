@@ -2,7 +2,7 @@ import { responeCallback } from '../../utils/types';
 import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 import { IOptions } from '../../utils/interfaces';
-import { IObject } from '../../utils/interfaces';
+import { TObject } from '../../utils/types';
 
 class Loader {
     baseLink: string;
@@ -33,7 +33,7 @@ class Loader {
     }
 
     makeUrl(options: IOptions, endpoint: string) {
-        const urlOptions: IObject = { ...this.options, ...options };
+        const urlOptions: TObject = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
