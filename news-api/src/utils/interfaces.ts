@@ -1,9 +1,8 @@
-interface Sources {
-    id: null | string;
-    name: string;
-}
 export interface IArticle {
-    source: Sources;
+    source: {
+        id: null | string;
+        name: string;
+    };
     author: string;
     title: string;
     description: string;
@@ -17,7 +16,6 @@ export interface IDataNews {
     totalResults: number;
     articles: IArticle[];
 }
-
 export interface ISources {
     id: string;
     name: string;
@@ -27,20 +25,15 @@ export interface ISources {
     language: string;
     country: string;
 }
-
 export interface IDataSources {
     status: string;
     sources: ISources[];
 }
-
-interface INews {
-    draw(data: IArticle[]): void;
-}
-
-type source = { draw(data: ISources[]): void };
 export interface IAppView {
-    news: INews;
-    sources: source;
+    news: {
+        draw(data: IArticle[]): void;
+    };
+    sources: { draw(data: ISources[]): void };
     drawNews: (data: IDataNews) => void;
     drawSources: (data: IDataSources) => void;
 }
@@ -48,7 +41,6 @@ export interface IOptions {
     apiKey?: string;
     sources?: string;
 }
-
 export interface IObject {
     [index: string]: string;
 }
