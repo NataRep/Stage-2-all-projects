@@ -15,8 +15,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: { endpoint: string; options?: IOptions },
-        callback: responeCallback<IDataNews | IDataSources | void> = () => {
-            ///НАЙТИ ПРАВИЛЬНЫЙ ВИД КОЛБКОВ
+        callback: responeCallback<IDataNews> | responeCallback<IDataSources> = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -44,7 +43,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: responeCallback<IDataNews | IDataSources>, options = {}) {
+    load(
+        method: string,
+        endpoint: string,
+        callback: responeCallback<IDataNews> | responeCallback<IDataSources>,
+        options = {}
+    ) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
