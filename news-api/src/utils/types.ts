@@ -1,5 +1,5 @@
-export type responeCallback<T> = (data: T) => void;
-export type TObject = {
+export type responeCallbackType<T> = (data: T) => void;
+export type objectType = {
     [key: string]: string;
 };
 export const enum httpStatusType {

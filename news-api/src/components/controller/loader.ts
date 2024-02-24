@@ -1,8 +1,8 @@
-import { responeCallback } from '../../utils/types';
+import { responeCallbackType } from '../../utils/types';
 import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 import { IOptions } from '../../utils/interfaces';
-import { TObject } from '../../utils/types';
+import { objectType } from '../../utils/types';
 import { httpStatusType } from '../../utils/types';
 import { endpointType } from '../../utils/types';
 
@@ -17,7 +17,7 @@ class Loader {
 
     protected getResp(
         { endpoint, options = {} }: { endpoint: endpointType; options?: IOptions },
-        callback: responeCallback<IDataNews> | responeCallback<IDataSources> = () => {
+        callback: responeCallbackType<IDataNews> | responeCallbackType<IDataSources> = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -35,7 +35,7 @@ class Loader {
     }
 
     protected makeUrl(options: IOptions, endpoint: string) {
-        const urlOptions: TObject = { ...this.options, ...options };
+        const urlOptions: objectType = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -48,7 +48,7 @@ class Loader {
     private load(
         method: string,
         endpoint: string,
-        callback: responeCallback<IDataNews> | responeCallback<IDataSources>,
+        callback: responeCallbackType<IDataNews> | responeCallbackType<IDataSources>,
         options = {}
     ) {
         fetch(this.makeUrl(options, endpoint), { method })
