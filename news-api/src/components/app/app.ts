@@ -5,15 +5,15 @@ import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 
 class App {
-    controller;
-    view: IAppView;
+    private readonly controller;
+    private readonly view: IAppView;
 
     constructor() {
         this.controller = new AppController();
         this.view = new AppView();
     }
 
-    start(): void {
+    public start(): void {
         const sourcesEl = document.querySelector('.sources') as HTMLElement;
         sourcesEl.addEventListener('click', (e: Event) =>
             this.controller.getNews(e, (data: IDataNews) => this.view.drawNews(data))

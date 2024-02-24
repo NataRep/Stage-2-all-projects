@@ -6,20 +6,20 @@ import { IDataSources } from '../../utils/interfaces';
 import { IAppView } from '../../utils/interfaces';
 
 export class AppView implements IAppView {
-    news;
-    sources;
+    public readonly news;
+    public readonly sources;
 
     constructor() {
         this.news = new News();
         this.sources = new Sources();
     }
 
-    drawNews(data: IDataNews) {
+    public drawNews(data: IDataNews) {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data: IDataSources) {
+    public drawSources(data: IDataSources) {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
