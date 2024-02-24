@@ -6,7 +6,8 @@ class AppLoader extends Loader {
         const apiKeyData = process.env.API_KEY;
 
         if (!apiUrl || !apiKeyData) {
-            throw new Error('Error: undefind url or key of API');
+            console.log('Undefind url or key of API');
+            throw new Error();
         } else {
             super(apiUrl, {
                 apiKey: apiKeyData,

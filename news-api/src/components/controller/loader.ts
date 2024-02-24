@@ -3,6 +3,8 @@ import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 import { IOptions } from '../../utils/interfaces';
 import { TObject } from '../../utils/types';
+import { httpStatus } from '../../utils/types';
+import { endpoint } from '../../utils/types';
 
 class Loader {
     protected readonly baseLink: string;
@@ -14,7 +16,7 @@ class Loader {
     }
 
     protected getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: IOptions },
+        { endpoint, options = {} }: { endpoint: endpoint; options?: IOptions },
         callback: responeCallback<IDataNews> | responeCallback<IDataSources> = () => {
             console.error('No callback for GET response');
         }
@@ -24,7 +26,9 @@ class Loader {
 
     protected errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            const httpStatus: httpStatus = res.status;
+
+            if (httpStatus === 401 || httpStatus === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }

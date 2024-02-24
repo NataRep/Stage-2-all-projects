@@ -18,10 +18,8 @@ class Sources {
             }
         });
 
-        const sourceEl: HTMLElement | null = document.querySelector('.sources');
-        if (sourceEl) {
-            sourceEl.append(fragment);
-        }
+        const sourceEl = document.querySelector('.sources') as HTMLElement;
+        sourceEl.append(fragment);
     }
 }
 
