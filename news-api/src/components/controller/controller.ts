@@ -19,6 +19,18 @@ class AppController extends AppLoader {
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
+                //у всех остальных источников проверяю нужно ли убрать класс
+                const newsSourcesButtons: HTMLElement[] = Array.from(document.querySelectorAll('.source__item'));
+                newsSourcesButtons.forEach((el) => {
+                    if (el.classList.contains('current')) {
+                        el.classList.remove('current');
+                    }
+                });
+                //выделяю классом кнопку с источником отображаемых новостией
+                target.classList.add('current');
+
+                //
+
                 const sourceId: string | null = target.getAttribute('data-source-id');
 
                 if (sourceId) {

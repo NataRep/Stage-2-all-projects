@@ -1,13 +1,38 @@
 .button_sort {
     display: flex;
     width: fit-content;
-    background: none;
-    border: 2px solid #30c5ff;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5em;
-    padding: 1em 2em;
-    color: #70d6ff;
+    background: url(./../../assets/images/sort-button-reverse.svg) no-repeat center;
+    background-size: cover;
+    width: 3rem;
+    height: 3rem;
     transition: 0.25s;
     cursor: pointer;
+    position: absolute;
+    right: 2rem;
+    bottom: 112px;
+}
+.button_sort.reverse {
+    background: url(./../../assets/images/sort-button.svg) no-repeat center;
+    background-size: cover;
+}
+.button_sort:hover,
+.button_sort:active {
+    background: url(./../../assets/images/sort-button-hover.svg) no-repeat center;
+    background-size: cover;
+}
+.button_sort.reverse:active {
+    background: url(./../../assets/images/sort-button-reverse-hover.svg) no-repeat center;
+    background-size: cover;
+}
+@media (hover: hover) and (pointer: fine) {
+    .button_sort:hover,
+    .button_sort:focus {
+        background: url(./../../assets/images/sort-button-reverse-hover.svg) no-repeat center;
+        background-size: cover;
+    }
+    .button_sort.reverse:hover,
+    .button_sort.reverse:focus {
+        background: url(./../../assets/images/sort-button-hover.svg) no-repeat center;
+        background-size: cover;
+    }
 }

@@ -2,33 +2,106 @@
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    height: 120px;
+    height: 96px;
     overflow: auto;
     align-items: center;
-    font: 300 1em 'Fira Sans', sans-serif;
+    font:
+        300 1em 'Fira Sans',
+        sans-serif;
 }
-
 .source__item {
-    background: none;
-    border: 2px solid #30c5ff;
+    background: #1e1e1e;
     font: inherit;
     line-height: 1;
     margin: 0.5em;
     padding: 1em 2em;
-    color: #70d6ff;
+    color: #cdcdcd;
+    border-radius: 4px;
+    position: relative;
     transition: 0.25s;
     cursor: pointer;
 }
-
-.source__item:hover,
-.source__item:focus {
-    border-color: #3fcc59;
-    color: #69db7e;
-    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
-    transform: translateY(-0.25em);
+.source__item::after {
+    content: '';
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 0 4px 4px;
+    transition: 0.25s;
+}
+.source__item.current {
+    color: #f8f7f2;
+    pointer-events: none;
+}
+.source__item.current::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background-color: #73b230;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 0 4px 4px;
+    transition: 0.25s;
+}
+@media (hover: hover) and (pointer: fine) {
+    .source__item:hover,
+    .source__item:focus {
+        color: #f8f7f2;
+        transform: translateY(-0.25em);
+    }
+    .source__item:hover::after {
+        height: 4px;
+        background-color: #eebe4c;
+    }
+}
+.source__item:active {
+    color: #f8f7f2;
 }
 
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+/* Define the scrollbar style */
+.sources::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+/*scroll*/
+.sources::-webkit-scrollbar-thumb {
+    background: #00000054;
+}
+
+.sources::-webkit-scrollbar-track {
+    background-color: #0000001f;
+    border: none;
+}
+
+.sources::-webkit-scrollbar-button:single-button {
+    background-color: #1e1e1e;
+    transition: 0.25s;
+}
+.sources::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background: url(./../../../assets/images/arrow-left.svg) #1e1e1e no-repeat center;
+}
+.sources::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background: url(./../../../assets/images/arrow-right.svg) #1e1e1e no-repeat center;
+}
+.sources::-webkit-scrollbar-button:single-button:horizontal:decrement:active {
+    background: url(./../../../assets/images/arrow-left-press.svg) #1e1e1e no-repeat center;
+}
+.sources::-webkit-scrollbar-button:single-button:horizontal:increment:active {
+    background: url(./../../../assets/images/arrow-right-press.svg) #1e1e1e no-repeat center;
+}
+@media (hover: hover) and (pointer: fine) {
+    .sources::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+        background: url(./../../../assets/images/arrow-left-press.svg) #1e1e1e no-repeat center;
+    }
+    .sources::-webkit-scrollbar-button:single-button:horizontal:increment:hover {
+        background: url(./../../../assets/images/arrow-right-press.svg) #1e1e1e no-repeat center;
+    }
 }

@@ -1,11 +1,30 @@
 body {
     color: #fff;
-    background: #17181c;
+    background: #1e1e1e;
     font-family: sans-serif;
+    margin: 0;
+    padding: 0.5rem;
 }
 
 header {
     padding: 10px 30px;
+    background-color: #b74642;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+header .logo {
+    width: 27rem;
+    height: 9rem;
+    background: url(assets/images/logo.svg) no-repeat;
+}
+
+@media (max-width: 768px) {
+    header .logo {
+        width: 13.5rem;
+        height: 4.5rem;
+        background: url(assets/images/logo.svg) no-repeat;
+        background-size: contain;
+    }
 }
 
 header h1 {
