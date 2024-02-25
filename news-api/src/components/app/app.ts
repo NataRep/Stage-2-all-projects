@@ -21,7 +21,8 @@ class App {
         );
         this.controller.getSources((data: IDataSources) => this.view.drawSources(data));
 
-        setTimeout(SourceSort.sort, 500);
+        //Ипользую отсрочку, чтобы успели прогрузится все кнопки
+        setTimeout(SourceSort.sort, 1000);
     }
 }
 
