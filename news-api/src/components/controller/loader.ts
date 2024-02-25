@@ -5,9 +5,6 @@ import { IOptions } from '../../utils/interfaces';
 import { objectType } from '../../utils/types';
 import { httpStatusType } from '../../utils/types';
 import { endpointType } from '../../utils/types';
-
-import { SourceSort } from '../sorting/sorting';
-
 class Loader {
     protected readonly baseLink: string;
     protected readonly options: IOptions;

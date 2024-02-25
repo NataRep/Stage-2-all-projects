@@ -10,8 +10,8 @@ export class SourceSort {
             const reverse = [...newsSourcesButtons].sort((a: HTMLElement, b: HTMLElement) => {
                 const spanA = a.querySelector('.source__item-name') as HTMLElement;
                 const spanB = b.querySelector('.source__item-name') as HTMLElement;
-                let nameA: string = spanA.innerHTML;
-                let nameB: string = spanB.innerHTML;
+                const nameA: string = spanA.innerHTML;
+                const nameB: string = spanB.innerHTML;
 
                 return nameB.localeCompare(nameA);
             });
