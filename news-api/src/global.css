@@ -113,9 +113,10 @@ footer .rsschool a {
 }
 .link-to-top {
     opacity: 0.8;
-    position: fixed;
+    position: sticky;
     bottom: 2rem;
     right: 2rem;
+    float: right;
     width: 2.5rem;
     height: 2.5rem;
     background: url('./assets/images/arrow-top.svg') no-repeat center #b74642;
