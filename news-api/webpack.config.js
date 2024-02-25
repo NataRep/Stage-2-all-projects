@@ -20,6 +20,16 @@ const baseConfig = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            // изображения
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+            // шрифты и SVG
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                type: 'asset/inline',
+            },
         ],
     },
     resolve: {
