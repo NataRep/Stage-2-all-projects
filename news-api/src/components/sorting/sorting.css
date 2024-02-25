@@ -11,6 +11,17 @@
     right: 2rem;
     bottom: 112px;
 }
+@media (max-width: 360px) {
+    .button_sort {
+        position: static;
+        right: auto;
+        bottom: auto;
+        width: 2rem;
+        height: 2rem;
+        margin-left: 0.5rem;
+        margin-top: 1rem;
+    }
+}
 .button_sort.reverse {
     background: url(./../../assets/images/sort-button.svg) no-repeat center;
     background-size: cover;

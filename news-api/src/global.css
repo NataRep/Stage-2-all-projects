@@ -7,10 +7,15 @@ body {
 }
 
 header {
-    padding: 10px 30px;
+    padding: 10px 32px;
     background-color: #b74642;
     position: relative;
     border-radius: 8px 8px 0 0;
+}
+@media (max-width: 768px) {
+    header {
+        padding: 10px 16px;
+    }
 }
 header .logo {
     width: 27rem;
