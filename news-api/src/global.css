@@ -31,12 +31,30 @@ header h1 {
     font-size: 40px;
     font-weight: 800;
 }
-
+main {
+    padding: 2rem 0;
+}
 footer {
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.welcome-message {
+    width: fit-content;
+    margin: auto;
+    padding: 2rem 0;
+    text-align: center;
+    color: #cdcdcd;
+}
+@media (max-width: 500px) {
+    .welcome-message h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.welcome-message span {
+    color: #73b230;
 }
 footer .copyright {
     font-size: 14px;
