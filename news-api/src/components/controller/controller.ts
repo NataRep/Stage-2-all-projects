@@ -1,6 +1,5 @@
 import AppLoader from './appLoader';
-import { IDataNews } from '../../utils/interfaces';
-import { IDataSources } from '../../utils/interfaces';
+import { IDataNews, IDataSources } from '../../utils/interfaces';
 import { endpointType } from '../../utils/types';
 
 class AppController extends AppLoader {

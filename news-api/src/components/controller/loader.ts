@@ -1,10 +1,5 @@
-import { responeCallbackType } from '../../utils/types';
-import { IDataNews } from '../../utils/interfaces';
-import { IDataSources } from '../../utils/interfaces';
-import { IOptions } from '../../utils/interfaces';
-import { objectType } from '../../utils/types';
-import { httpStatusType } from '../../utils/types';
-import { endpointType } from '../../utils/types';
+import { IDataNews, IOptions, IDataSources } from '../../utils/interfaces';
+import { responeCallbackType, objectType, httpStatusType, endpointType } from '../../utils/types';
 class Loader {
     protected readonly baseLink: string;
     protected readonly options: IOptions;
