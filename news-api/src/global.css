@@ -72,6 +72,7 @@ footer {
     background: #b74642;
     color: #1e1e1e;
     margin-top: auto;
+    border-radius: 0 0 8px 8px;
 }
 @media (max-width: 500px) {
     footer {
