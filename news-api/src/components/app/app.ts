@@ -1,7 +1,9 @@
 import AppController from '../controller/controller';
 import { SourceSort } from '../sorting/sorting';
 import { AppView } from '../view/appView';
-import { IAppView, IDataNews, IDataSources } from '../../utils/interfaces';
+import { IAppView } from '../../utils/interfaces';
+import { IDataNews } from '../../utils/interfaces';
+import { IDataSources } from '../../utils/interfaces';
 
 class App {
     private readonly controller;

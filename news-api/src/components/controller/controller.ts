@@ -1,12 +1,13 @@
 import AppLoader from './appLoader';
-import { IDataNews, IDataSources } from '../../utils/interfaces';
-import { endpointType } from '../../utils/types';
+import { EndpointType } from '../../utils/types';
+import { IDataNews } from '../../utils/interfaces';
+import { IDataSources } from '../../utils/interfaces';
 
 class AppController extends AppLoader {
     public getSources(callback: (data: IDataSources) => void) {
         super.getResp(
             {
-                endpoint: endpointType.SOURCES,
+                endpoint: EndpointType.SOURCES,
             },
             callback
         );
@@ -37,7 +38,7 @@ class AppController extends AppLoader {
                         newsContainer.setAttribute('data-source', sourceId);
                         super.getResp(
                             {
-                                endpoint: endpointType.EVERYTHING,
+                                endpoint: EndpointType.EVERYTHING,
                                 options: {
                                     sources: sourceId,
                                 },

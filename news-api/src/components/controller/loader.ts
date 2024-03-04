@@ -1,5 +1,9 @@
+import { ObjectType } from '../../utils/types';
+import { EndpointType } from '../../utils/types';
+import { HttpStatusType } from '../../utils/types';
+import { ResponeCallbackType } from '../../utils/types';
 import { IDataNews, IOptions, IDataSources } from '../../utils/interfaces';
-import { responeCallbackType, objectType, httpStatusType, endpointType } from '../../utils/types';
+
 class Loader {
     protected readonly baseLink: string;
     protected readonly options: IOptions;
@@ -10,8 +14,8 @@ class Loader {
     }
 
     protected getResp(
-        { endpoint, options = {} }: { endpoint: endpointType; options?: IOptions },
-        callback: responeCallbackType<IDataNews> | responeCallbackType<IDataSources> = () => {
+        { endpoint, options = {} }: { endpoint: EndpointType; options?: IOptions },
+        callback: ResponeCallbackType<IDataNews> | ResponeCallbackType<IDataSources> = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -20,7 +24,7 @@ class Loader {
 
     protected errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === httpStatusType.UNAUTHORIZED || res.status === httpStatusType.NOT_FOUND)
+            if (res.status === HttpStatusType.UNAUTHORIZED || res.status === HttpStatusType.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
@@ -29,7 +33,7 @@ class Loader {
     }
 
     protected makeUrl(options: IOptions, endpoint: string) {
-        const urlOptions: objectType = { ...this.options, ...options };
+        const urlOptions: ObjectType = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -42,7 +46,7 @@ class Loader {
     private load(
         method: string,
         endpoint: string,
-        callback: responeCallbackType<IDataNews> | responeCallbackType<IDataSources>,
+        callback: ResponeCallbackType<IDataNews> | ResponeCallbackType<IDataSources>,
         options = {}
     ) {
         fetch(this.makeUrl(options, endpoint), { method })

@@ -1,15 +1,15 @@
-export type responeCallbackType<T> = (data: T) => void;
+export type ResponeCallbackType<T> = (data: T) => void;
 
-export type objectType = {
+export type ObjectType = {
     [key: string]: string;
 };
 
-export const enum httpStatusType {
+export const enum HttpStatusType {
     UNAUTHORIZED = 401,
     NOT_FOUND = 404,
 }
 
-export const enum endpointType {
+export const enum EndpointType {
     SOURCES = 'sources',
     EVERYTHING = 'everything',
 }
