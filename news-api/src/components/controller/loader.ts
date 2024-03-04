@@ -1,6 +1,6 @@
 import { ObjectType } from '../../utils/types';
-import { EndpointType } from '../../utils/types';
-import { HttpStatusType } from '../../utils/types';
+import { EndpointType } from '../../utils/enums';
+import { HttpStatusType } from '../../utils/enums';
 import { ResponeCallbackType } from '../../utils/types';
 import { IDataNews, IOptions, IDataSources } from '../../utils/interfaces';
 

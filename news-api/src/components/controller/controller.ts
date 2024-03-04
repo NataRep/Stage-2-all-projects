@@ -1,5 +1,5 @@
 import AppLoader from './appLoader';
-import { EndpointType } from '../../utils/types';
+import { EndpointType } from '../../utils/enums';
 import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 
