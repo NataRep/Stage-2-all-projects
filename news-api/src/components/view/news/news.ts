@@ -1,5 +1,4 @@
 import './news.css';
-//интерфейсы
 import { IArticle } from '../../../utils/interfaces';
 
 class News {

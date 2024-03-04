@@ -7,7 +7,6 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
     devtool: 'inline-source-map',
-    //entry: path.resolve(__dirname, './src/index.js'),
     mode: 'development',
     module: {
         rules: [
