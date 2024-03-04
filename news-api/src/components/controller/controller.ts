@@ -3,6 +3,9 @@ import { EndpointType } from '../../utils/enums';
 import { IDataNews } from '../../utils/interfaces';
 import { IDataSources } from '../../utils/interfaces';
 
+//variables for highlighting the current link with color
+let currentNewsButton: HTMLElement;
+let prevNewsButton: HTMLElement;
 class AppController extends AppLoader {
     public getSources(callback: (data: IDataSources) => void) {
         super.getResp(
@@ -19,20 +22,15 @@ class AppController extends AppLoader {
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
-                //у всех остальных источников проверяю нужно ли убрать класс
-                const newsSourcesButtons: HTMLElement[] = Array.from(document.querySelectorAll('.source__item'));
-                newsSourcesButtons.forEach((el) => {
-                    if (el.classList.contains('current')) {
-                        el.classList.remove('current');
-                    }
-                });
-                //выделяю классом кнопку с источником отображаемых новостией
+                //highlight the current link
+                prevNewsButton = currentNewsButton;
+                if (prevNewsButton instanceof HTMLElement) {
+                    prevNewsButton.classList.remove('current');
+                }
+                currentNewsButton = target;
                 target.classList.add('current');
 
-                //
-
                 const sourceId: string | null = target.getAttribute('data-source-id');
-
                 if (sourceId) {
                     if (newsContainer.getAttribute('data-source') !== sourceId) {
                         newsContainer.setAttribute('data-source', sourceId);
@@ -49,7 +47,6 @@ class AppController extends AppLoader {
                 } else {
                     throw Error('sourceId is null');
                 }
-
                 return;
             }
             target = target.parentNode as HTMLElement;
