@@ -1,6 +1,9 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import { IDataNews, IDataSources, IAppView } from '../../utils/interfaces';
+import { IAppView } from '../../utils/interfaces';
+import { IDataNews } from '../../utils/interfaces';
+import { IDataSources } from '../../utils/interfaces';
+
 export class AppView implements IAppView {
     public readonly news;
     public readonly sources;
