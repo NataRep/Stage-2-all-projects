@@ -10,18 +10,30 @@
     "format": "prettier --write .",
     "ci:format": "prettier --check .",
     "lint": "eslint . --ext .ts",
-    "prepare": "husky"
+    "precommit": "format",
+    "prepare": "husky install",
+    "branch-validator": "validate-branch-name"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format",
-      "pre-push": "npm run lint && validate-branch-name"
-    }
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix"
+    ],
+    "*.{css,scss}": [
+      "stylelint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "validate-branch-name": {
+    "pattern": "^(master|main){1}$|^(feat|fix|refactor)/RSS-PZ-.+$",
+    "errorMsg": "Invalid branch name. Branch names must follow the defined rules."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@impact-tools/git-branch-validator": "^3.0.0",
     "css-loader": "^6.10.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
