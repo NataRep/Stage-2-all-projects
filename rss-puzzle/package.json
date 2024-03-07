@@ -26,7 +26,7 @@
     ]
   },
   "validate-branch-name": {
-    "pattern": "^(master|main){1}$|^(feat|fix|refactor)/RSS-PZ-.+$",
+    "pattern": "^(rss-puzzle|main){1}$|^(feat|fix|refactor)/RSS-PZ-.+$",
     "errorMsg": "Invalid branch name. Branch names must follow the defined rules."
   },
   "keywords": [],
