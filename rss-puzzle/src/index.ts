@@ -1,3 +1,6 @@
 import './style.scss';
+import App from './app/app';
 
-console.log('test');
+export const app = new App();
+
+app.start();

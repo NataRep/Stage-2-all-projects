@@ -13,7 +13,7 @@ module.exports = {
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
       title: 'English Puzzle Game',
-      //favicon: path.resolve(__dirname, './src/assets/images/favicon.svg'),
+      favicon: path.resolve(__dirname, './src/images/favicon.svg'),
     }),
   ],
   resolve: {
