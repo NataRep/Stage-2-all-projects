@@ -1,11 +1,9 @@
 import './login-form.scss';
+import app from '../../index';
 import Form from './form';
-import User from './../../app/user';
 import Button from '../button/button';
 import { LocalStorageKeys } from './../../utils/enums';
 import { InputErrors, ValidationLengthInputs } from '../../utils/enums';
-
-export let USER: User;
 
 class LoginForm extends Form {
   nameInput: HTMLInputElement;
@@ -34,8 +32,7 @@ class LoginForm extends Form {
 
   private onClickButton(event: Event) {
     if (this.fieldValidation && this.nameInput.value.length > 0 && this.surnameInput.value.length > 0) {
-      USER = new User(this.nameInput.value, this.surnameInput.value, 0, 0);
-      window.localStorage.setItem(LocalStorageKeys.USER, JSON.stringify(USER));
+      app.login(this.nameInput.value, this.surnameInput.value);
       console.log('Сохраняем Юзера');
       console.log('загружаем страницу Правила');
     }

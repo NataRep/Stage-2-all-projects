@@ -1,6 +1,7 @@
 import './style.scss';
 import App from './app/app';
 
-export const app = new App();
-
+const app: App = new App();
 app.start();
+
+export default app;
