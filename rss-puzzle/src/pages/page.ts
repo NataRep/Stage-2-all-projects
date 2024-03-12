@@ -1,8 +1,12 @@
+import App from '../app/app';
 class Page {
   className: string;
 
-  constructor(className: string) {
+  app: App;
+
+  constructor(className: string, app: App) {
     this.className = className;
+    this.app = app;
   }
 
   protected changeBodyClass() {

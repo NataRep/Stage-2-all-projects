@@ -1,5 +1,5 @@
 import './form.scss';
-
+import App from '../../app/app';
 class Form {
   className: string;
 
@@ -7,9 +7,12 @@ class Form {
 
   button?: HTMLButtonElement;
 
-  constructor(className: string) {
+  app: App;
+
+  constructor(className: string, app: App) {
     this.className = className;
     this.inputs = [];
+    this.app = app;
   }
 
   public addInputTextWithLabel(

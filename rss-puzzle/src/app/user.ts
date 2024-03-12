@@ -1,15 +1,15 @@
 class User {
-  userName: string;
+  name: string;
 
-  userSername: string;
+  surname: string;
 
   level: number;
 
   round: number;
 
-  constructor(userName: string, userSername: string, level: number, round: number) {
-    this.userName = userName;
-    this.userSername = userSername;
+  constructor(userName: string, userSurname: string, level: number, round: number) {
+    this.name = userName;
+    this.surname = userSurname;
     this.level = level;
     this.round = round;
   }

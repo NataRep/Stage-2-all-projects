@@ -1,8 +1,8 @@
 import './login-form.scss';
-import app from '../../index';
+import App from '../../app/app';
 import Form from './form';
 import Button from '../button/button';
-import { LocalStorageKeys } from './../../utils/enums';
+import StartPage from '../../pages/start/start-page';
 import { InputErrors, ValidationLengthInputs } from '../../utils/enums';
 
 class LoginForm extends Form {
@@ -18,8 +18,8 @@ class LoginForm extends Form {
 
   surnameErrorsArray: HTMLElement[];
 
-  constructor() {
-    super('login');
+  constructor(app: App) {
+    super('login', app);
     this.nameInput = this.addInputTextWithLabel('loginName', 'First Name', 'John', 3, 15, true);
     this.nameInput.addEventListener('blur', this.checkValalidationInput.bind(this));
     this.surnameInput = this.addInputTextWithLabel('loginSurname', 'Surname', 'Smith', 4, 15, true);
@@ -32,19 +32,19 @@ class LoginForm extends Form {
 
   private onClickButton(event: Event) {
     if (this.fieldValidation && this.nameInput.value.length > 0 && this.surnameInput.value.length > 0) {
-      app.login(this.nameInput.value, this.surnameInput.value);
-      console.log('Сохраняем Юзера');
-      console.log('загружаем страницу Правила');
+      this.app.login(this.nameInput.value, this.surnameInput.value);
+      const startPages = new StartPage(this.app);
+      startPages.drawStartPage();
     }
     if (this.nameInput.value.length === 0 || this.surnameInput.value.length === 0) {
       if (this.nameInput.value.length === 0) {
-        let inputField = this.nameInput.parentElement;
+        const inputField = this.nameInput.parentElement;
         inputField.classList.add('invalided');
         const error = this.createErrorMessage(this.nameInput, 'emty');
         this.nameErrorsArray.push(error);
       }
       if (this.surnameInput.value.length === 0) {
-        let inputField = this.surnameInput.parentElement;
+        const inputField = this.surnameInput.parentElement;
         inputField.classList.add('invalided');
         const error = this.createErrorMessage(this.surnameInput, 'emty');
         this.surnameErrorsArray.push(error);

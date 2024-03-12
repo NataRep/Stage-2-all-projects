@@ -1,0 +1,24 @@
+@import './../../utils/variables.scss';
+
+.start-rules {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 1rem 2.75rem 1rem 1.25rem;
+  max-width: 35rem;
+  min-height: 13.5rem;
+  margin: 2rem 0 3.5rem;
+
+  &__h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 100%;
+    color: var(--color-grey-dark);
+  }
+  &__text {
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 170%;
+    color: var(--color-grey-dark);
+    margin-left: 1.5rem;
+  }
+}

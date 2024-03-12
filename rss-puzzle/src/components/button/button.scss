@@ -29,4 +29,17 @@
     letter-spacing: 0.03rem;
     text-transform: uppercase;
   }
+  &_small {
+    border-radius: 0.35rem;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0.03rem;
+    text-transform: uppercase;
+  }
+
+  &_logout {
+    float: right;
+  }
 }
