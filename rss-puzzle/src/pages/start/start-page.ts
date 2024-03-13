@@ -1,5 +1,6 @@
 import './start-page.scss';
-import { FirstPage } from '../first-page';
+import FirstPage from '../first-page';
+import GamePage from '../game/game-page';
 import Button from '../../components/button/button';
 
 class StartPage extends FirstPage {
@@ -45,7 +46,10 @@ class StartPage extends FirstPage {
 
   private addStartButton() {
     const main = this.content.querySelector('main') as HTMLElement;
-    const button: HTMLButtonElement = Button.create('Start', ['button_start', 'button_big'], () => console.log('Игра'));
+    const button: HTMLButtonElement = Button.create('Start', ['button_start', 'button_big'], () => {
+      const gamePage = new GamePage(this.app);
+      gamePage.drawGamePage();
+    });
     main.append(button);
   }
 

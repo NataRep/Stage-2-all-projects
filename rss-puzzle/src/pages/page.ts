@@ -4,6 +4,8 @@ class Page {
 
   app: App;
 
+  content: HTMLElement;
+
   constructor(className: string, app: App) {
     this.className = className;
     this.app = app;

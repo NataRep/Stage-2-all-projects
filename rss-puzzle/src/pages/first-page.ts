@@ -2,10 +2,8 @@ import App from '../app/app';
 import Page from './page';
 import './first-page.scss';
 
-export class FirstPage extends Page {
+class FirstPage extends Page {
   heading: string;
-
-  content: HTMLElement;
 
   constructor(app: App) {
     super('page_app-cover', app);
@@ -31,3 +29,5 @@ export class FirstPage extends Page {
     this.content = pageContainer;
   }
 }
+
+export default FirstPage;

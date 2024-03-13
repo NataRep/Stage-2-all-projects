@@ -1,5 +1,5 @@
 import './login-page.scss';
-import { FirstPage } from '../first-page';
+import FirstPage from '../first-page';
 import LoginForm from '../../components/form/login-form';
 
 export class LoginPage extends FirstPage {
