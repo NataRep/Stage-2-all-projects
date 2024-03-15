@@ -1,0 +1,11 @@
+@import './../../utils/variables.scss';
+
+.word {
+  display: flex;
+  height: 2.875rem;
+  border: 1px solid var(--color-grey-dark);
+  background-color: var(--color-grey-light);
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
