@@ -5,7 +5,7 @@ class Word {
 
   element: HTMLElement;
 
-  constructor(str: string, index: number) {
+  constructor(str: string) {
     this.value = str;
     this.element = this.createElement(this.value);
   }
@@ -15,6 +15,13 @@ class Word {
     div.innerHTML = str;
     div.className = 'word';
     return div;
+  }
+
+  public seteElementWidth(strArray: string[]) {
+    const totalNumberOfLetters = strArray.join('').length;
+    const wordNumberOfLetters = this.value.length;
+    const width = (100 / totalNumberOfLetters) * wordNumberOfLetters;
+    this.element.style.width = `${width}%`;
   }
 }
 

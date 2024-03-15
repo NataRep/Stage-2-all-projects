@@ -75,9 +75,9 @@ class Game {
   private createTaskSource() {
     this.curentTaskData = this.currentLevelData.rounds[this.round].words[this.round];
     this.taskWords = this.curentTaskData.textExample.split(' ');
-    this.taskWords.forEach((str, index) => {
-      const word = new Word(str, index);
-
+    this.taskWords.forEach((str) => {
+      const word = new Word(str);
+      word.seteElementWidth(this.taskWords);
       word.element.addEventListener('click', () => this.wordOnClick(word));
       this.source.push(word);
     });
