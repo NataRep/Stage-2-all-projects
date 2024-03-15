@@ -1,10 +1,15 @@
 import User from './user';
+import Game from './game';
 import StartPage from '../pages/start/start-page';
 import { LoginPage } from '../pages/login/login-page';
 import { LocalStorageKeys } from '../utils/enums';
 
 class App {
   user: User;
+
+  game: Game | null;
+
+  playGame: boolean;
 
   constructor() {
     const name = localStorage.getItem(LocalStorageKeys.USER)
@@ -13,13 +18,11 @@ class App {
     const surname = localStorage.getItem(LocalStorageKeys.USER)
       ? JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).surname
       : '';
-    const level = localStorage.getItem(LocalStorageKeys.USER)
-      ? JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).level
-      : 0;
-    const round = localStorage.getItem(LocalStorageKeys.USER)
-      ? JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).round
-      : 0;
-    this.user = new User(name, surname, level, round);
+    this.user = new User(name, surname);
+
+    this.playGame = false;
+
+    this.game = null;
   }
 
   public start(): void {
@@ -27,14 +30,13 @@ class App {
       //TODO
       //метод getUser - получаем данные из хранилища
       //запуск игры с указанного в джонсоне левела и раунда
-      if (JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).level === 0) {
+      if (!this.playGame) {
         this.user = new User(
           JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).name,
-          JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).surname,
-          0,
-          0
+          JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).surname
         );
         const page = new StartPage(this);
+        this.game = new Game(this.user, 1, 1);
         page.drawStartPage();
       }
     } else {
@@ -44,13 +46,16 @@ class App {
   }
 
   public login(name: string, surname: string): void {
-    this.user = new User(name, surname, 0, 0);
+    this.user = new User(name, surname);
+    this.game = new Game(this.user, 1, 1);
     localStorage.setItem(LocalStorageKeys.USER, JSON.stringify(this.user));
   }
 
   public logout() {
     localStorage.removeItem(LocalStorageKeys.USER);
+    this.playGame = false;
     this.start();
+    this.game = null;
   }
 
   public getUser() {

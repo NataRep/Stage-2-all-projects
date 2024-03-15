@@ -17,7 +17,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.json'],
   },
   output: {
     filename: 'bundle.js',
@@ -56,6 +56,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+        type: 'javascript/auto',
       },
       {
         test: /\.(mp3)$/,

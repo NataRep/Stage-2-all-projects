@@ -49,6 +49,8 @@ class StartPage extends FirstPage {
     const button: HTMLButtonElement = Button.create('Start', ['button_start', 'button_big'], () => {
       const gamePage = new GamePage(this.app);
       gamePage.drawGamePage();
+      this.app.playGame = true;
+      this.app.game.start.bind(this.app.game)();
     });
     main.append(button);
   }
