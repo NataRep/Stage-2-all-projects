@@ -8,4 +8,18 @@
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+  opacity: 0;
+  animation-name: smoothDisplay;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes smoothDisplay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

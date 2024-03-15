@@ -32,6 +32,8 @@ class Game {
 
   taskWords: string[];
 
+  buttonContinue: HTMLButtonElement;
+
   constructor(user: User, level: number, round: number) {
     this.user = user;
     this.level = level;
@@ -39,7 +41,6 @@ class Game {
     this.rowIndex = 0;
     this.result = new WordsList();
     this.source = new WordsList();
-    this.rowIndex = 0;
   }
 
   public start() {
@@ -73,7 +74,7 @@ class Game {
   }
 
   private createTaskSource() {
-    this.curentTaskData = this.currentLevelData.rounds[this.round].words[this.round];
+    this.curentTaskData = this.currentLevelData.rounds[this.round - 1].words[this.rowIndex];
     this.taskWords = this.curentTaskData.textExample.split(' ');
     this.taskWords.forEach((str) => {
       const word = new Word(str);
@@ -87,8 +88,9 @@ class Game {
     this.createTaskSource();
     this.source.shuffle();
     let currentNode = this.source.head;
+    const ctx = this;
     while (currentNode) {
-      this.sourceField.append(currentNode.value.element);
+      ctx.sourceField.append(currentNode.value.element);
       currentNode = currentNode.next;
     }
   }
@@ -120,13 +122,71 @@ class Game {
     } else {
       this.movingWord(word.element, word, this.result, this.source, resultRow, this.sourceField);
     }
-    console.log(this.chekWin());
+    if (this.chekWin()) this.setActiveButtonContinue();
+    word.element.style.animationDelay = '0.1s';
   }
 
-  private chekWin(): boolean {
+  public chekWin(): boolean {
     const resultStr: string = this.result.getWordsStrArray().join(' ');
     const dataStr = this.taskWords.join(' ');
+    console.log(dataStr);
+    console.log(resultStr);
+
     return resultStr === dataStr;
+  }
+
+  private setActiveButtonContinue() {
+    const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
+    resultRow.classList.add('collected');
+    this.buttonContinue.disabled = false;
+  }
+
+  public buttonContinueOnClick(): void {
+    const maxRowInRound = 10;
+    if (this.rowIndex < maxRowInRound - 1) {
+      this.startNewRow();
+    } else if (this.round < this.currentLevelData.roundsCount - 1 && this.rowIndex === maxRowInRound - 1) {
+      this.round += 1;
+      this.startNewRound(this.round);
+      console.log(this.rowIndex);
+    } else if (this.round === this.currentLevelData.roundsCount - 1 && this.rowIndex === maxRowInRound - 1) {
+      this.level += 1;
+      this.startNewLevel(this.level);
+    }
+  }
+
+  private startNewRow() {
+    this.buttonContinue.disabled = true;
+    this.result = new WordsList();
+    this.rowIndex += 1;
+    this.start();
+  }
+
+  private startNewRound(round: number) {
+    this.buttonContinue.disabled = true;
+    this.clearWordsRow();
+    this.result = new WordsList();
+    this.round = round;
+    this.rowIndex = 0;
+    this.start();
+  }
+
+  private startNewLevel(level: number) {
+    this.buttonContinue.disabled = true;
+    this.round = 0;
+    this.level = level;
+    this.rowIndex = 0;
+    this.result = new WordsList();
+    this.clearWordsRow();
+    this.start();
+  }
+
+  private clearWordsRow() {
+    const arrayResultRows = Array.from(this.puzzleField.children[0].children);
+    arrayResultRows.forEach((row) => {
+      row.innerHTML = '';
+      row.classList.remove('collected');
+    });
   }
 }
 

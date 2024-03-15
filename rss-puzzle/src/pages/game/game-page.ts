@@ -21,6 +21,7 @@ class GamePage extends Page {
       this.app.logout.bind(this.app)
     );
     logotype.className = 'logotype';
+    header.append(logotype);
     header.append(button);
 
     const main: HTMLElement = document.createElement('main');
@@ -33,7 +34,13 @@ class GamePage extends Page {
     puzzleField.append(sourceField);
     main.append(puzzleField);
 
-    this.content.append(logotype);
+    const buttonsRow: HTMLDivElement = document.createElement('div');
+    buttonsRow.className = 'puzzle__buttons-row';
+    const buttonContinue = this.addButtonContinue();
+    this.app.game.buttonContinue = buttonContinue;
+    buttonsRow.append(buttonContinue);
+    puzzleField.append(buttonsRow);
+
     this.content.append(header);
     this.content.append(main);
   }
@@ -41,17 +48,14 @@ class GamePage extends Page {
   private createPuzzleField(): HTMLElement {
     const puzzle = document.createElement('div');
     puzzle.className = 'puzzle';
-
     const resultField: HTMLOListElement = document.createElement('ol');
     resultField.className = 'puzzle__result-field';
-
     for (let i = 1; i < 11; i++) {
       //10 is number of rows in puzzle
       const liRow: HTMLElement = document.createElement('li');
       liRow.className = 'puzzle__result-row';
       resultField.append(liRow);
     }
-
     puzzle.append(resultField);
     return puzzle;
   }
@@ -68,6 +72,14 @@ class GamePage extends Page {
     this.drawPages(this.content);
     const footer: HTMLElement = document.createElement('footer');
     document.body.append(footer);
+  }
+
+  private addButtonContinue() {
+    const button = Button.create('Continue', ['button_continue', 'button_small'], () =>
+      this.app.game.buttonContinueOnClick.bind(this.app.game)()
+    );
+    button.disabled = true;
+    return button;
   }
 }
 

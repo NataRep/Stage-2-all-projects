@@ -8,8 +8,13 @@
 }
 .page_game {
   min-height: 100vh;
-
   background-color: var(--color-grey-light);
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .page__container {
     display: flex;
@@ -58,12 +63,23 @@ footer {
   &__source-field {
     @include field();
     display: flex;
+    height: 2.875rem;
+
+    @for $i from 1 through 10 {
+      .word:nth-child(#{$i}) {
+        animation-delay: #{0.2 * ($i - 1)}s;
+      }
+    }
   }
 
   &__result-row {
     position: relative;
     height: 2.875rem;
     display: flex;
+
+    &.collected {
+      pointer-events: none;
+    }
 
     &::before {
       content: counter(num);
@@ -80,5 +96,11 @@ footer {
       height: 100%;
       width: 3rem;
     }
+  }
+
+  &__buttons-row {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
   }
 }
