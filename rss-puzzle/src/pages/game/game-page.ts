@@ -31,15 +31,15 @@ class GamePage extends Page {
     this.app.game.sourceField = sourceField;
     this.app.game.puzzleField = puzzleField;
 
-    puzzleField.append(sourceField);
-    main.append(puzzleField);
-
     const buttonsRow: HTMLDivElement = document.createElement('div');
     buttonsRow.className = 'puzzle__buttons-row';
     const buttonContinue = this.addButtonContinue();
     this.app.game.buttonContinue = buttonContinue;
     buttonsRow.append(buttonContinue);
-    puzzleField.append(buttonsRow);
+
+    main.append(puzzleField);
+    main.append(sourceField);
+    main.append(buttonsRow);
 
     this.content.append(header);
     this.content.append(main);

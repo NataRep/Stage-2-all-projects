@@ -45,6 +45,7 @@ class Game {
 
   public start() {
     this.setDataLevel(this.level);
+    this.setBgImage();
     this.drawSource();
   }
 
@@ -71,6 +72,14 @@ class Game {
       default:
         throw new Error(`Invalid level: ${level}`);
     }
+  }
+
+  private setBgImage() {
+    const dataImagesSrc = this.currentLevelData.rounds[this.round - 1].levelData.imageSrc;
+    const imageSrc = `assets/images/${dataImagesSrc}`;
+    const puzzle = this.puzzleField.children[0] as HTMLElement;
+    console.log(puzzle);
+    puzzle.style.backgroundImage = `url(${imageSrc})`;
   }
 
   private createTaskSource() {

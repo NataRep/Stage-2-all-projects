@@ -2,7 +2,7 @@
 
 .word {
   display: flex;
-  height: 2.875rem;
+  height: calc(100% - 1px);
   border: 1px solid var(--color-grey-dark);
   background-color: var(--color-grey-light);
   justify-content: space-around;
@@ -14,6 +14,7 @@
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  transition: background-color 2s;
 }
 @keyframes smoothDisplay {
   from {
