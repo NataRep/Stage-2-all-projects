@@ -34,6 +34,8 @@ class Game {
 
   buttonContinue: HTMLButtonElement;
 
+  buttonCheck: HTMLButtonElement;
+
   constructor(user: User, level: number, round: number) {
     this.user = user;
     this.level = level;
@@ -97,9 +99,8 @@ class Game {
     this.createTaskSource();
     this.source.shuffle();
     let currentNode = this.source.head;
-    const ctx = this;
     while (currentNode) {
-      ctx.sourceField.append(currentNode.value.element);
+      this.sourceField.append(currentNode.value.element);
       currentNode = currentNode.next;
     }
   }
@@ -131,11 +132,17 @@ class Game {
     } else {
       this.movingWord(word.element, word, this.result, this.source, resultRow, this.sourceField);
     }
+
+    this.setActiveButtonCheck();
     if (this.chekWin()) this.setActiveButtonContinue();
+
+    const row = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
+    this.removeClassName(word.element, 'incorrect');
+    this.removeClassName(row, 'checked');
     word.element.style.animationDelay = '0.1s';
   }
 
-  public chekWin(): boolean {
+  private chekWin(): boolean {
     const resultStr: string = this.result.getWordsStrArray().join(' ');
     const dataStr = this.taskWords.join(' ');
     console.log(dataStr);
@@ -146,8 +153,16 @@ class Game {
 
   private setActiveButtonContinue() {
     const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
-    resultRow.classList.add('collected');
     this.buttonContinue.disabled = false;
+    resultRow.classList.add('collected');
+  }
+
+  private setActiveButtonCheck() {
+    if (this.result.length === this.taskWords.length && !this.chekWin()) {
+      this.buttonCheck.disabled = false;
+    } else {
+      this.buttonCheck.disabled = true;
+    }
   }
 
   public buttonContinueOnClick(): void {
@@ -195,6 +210,29 @@ class Game {
     arrayResultRows.forEach((row) => {
       row.innerHTML = '';
       row.classList.remove('collected');
+    });
+  }
+
+  public buttonChekcOnClick() {
+    const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
+    resultRow.classList.add('checked');
+
+    this.result.forEachElem((word: Word, index: number) => {
+      console.log(this.taskWords[index]);
+      console.log(word.value);
+      if (this.taskWords[index] != word.value) {
+        word.element.classList.add('incorrect');
+      }
+    });
+
+    console.log('Проверка');
+  }
+
+  private removeClassName(elem: HTMLElement, ...classes: string[]): void {
+    classes.forEach((className) => {
+      if (elem.classList.contains(className)) {
+        elem.classList.remove(className);
+      }
     });
   }
 }

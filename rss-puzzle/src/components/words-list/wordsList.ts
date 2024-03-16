@@ -1,4 +1,5 @@
 import Word from '../word/word';
+import { FunctionForEach } from '../../utils/types';
 
 class Node {
   value: Word;
@@ -165,6 +166,16 @@ class WordsList {
       }
     }
     return array;
+  }
+
+  public forEachElem(fn: FunctionForEach) {
+    let currentNode = this.head;
+    let index = 0;
+    while (currentNode) {
+      fn(currentNode.value, index);
+      index += 1;
+      currentNode = currentNode.next;
+    }
   }
 }
 

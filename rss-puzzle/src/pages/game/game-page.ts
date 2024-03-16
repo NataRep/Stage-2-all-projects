@@ -33,8 +33,11 @@ class GamePage extends Page {
 
     const buttonsRow: HTMLDivElement = document.createElement('div');
     buttonsRow.className = 'puzzle__buttons-row';
+    const buttonCheck = this.addCheckContinue();
     const buttonContinue = this.addButtonContinue();
     this.app.game.buttonContinue = buttonContinue;
+    this.app.game.buttonCheck = buttonCheck;
+    buttonsRow.append(buttonCheck);
     buttonsRow.append(buttonContinue);
 
     main.append(puzzleField);
@@ -77,6 +80,14 @@ class GamePage extends Page {
   private addButtonContinue() {
     const button = Button.create('Continue', ['button_continue', 'button_small'], () =>
       this.app.game.buttonContinueOnClick.bind(this.app.game)()
+    );
+    button.disabled = true;
+    return button;
+  }
+
+  private addCheckContinue() {
+    const button = Button.create('Check', ['button_check', 'button_small'], () =>
+      this.app.game.buttonChekcOnClick.bind(this.app.game)()
     );
     button.disabled = true;
     return button;

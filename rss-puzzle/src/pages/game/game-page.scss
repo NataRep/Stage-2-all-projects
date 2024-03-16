@@ -102,6 +102,14 @@ footer {
       }
     }
 
+    &.checked {
+      .word {
+        &.incorrect {
+          background-color: #eca8b9;
+        }
+      }
+    }
+
     &::before {
       content: counter(num);
       counter-increment: num;
@@ -123,5 +131,9 @@ footer {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
+
+    .button {
+      margin: 0 1.25rem;
+    }
   }
 }

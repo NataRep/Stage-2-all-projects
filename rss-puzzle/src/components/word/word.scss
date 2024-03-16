@@ -14,7 +14,16 @@
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transition: background-color 2s;
+  transition: background-color 1s;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: #a1a6cc;
+    }
+  }
+  &:active {
+    background: #a1a6cc;
+  }
 }
 @keyframes smoothDisplay {
   from {
