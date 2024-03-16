@@ -17,7 +17,7 @@ class Word {
     return div;
   }
 
-  public seteElementWidth(strArray: string[]) {
+  public setElementWidth(strArray: string[]) {
     const totalNumberOfLetters = strArray.join('').length;
     const wordNumberOfLetters = this.value.length;
     const width = (100 / totalNumberOfLetters) * wordNumberOfLetters;

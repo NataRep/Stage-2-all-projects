@@ -33,10 +33,13 @@ class GamePage extends Page {
 
     const buttonsRow: HTMLDivElement = document.createElement('div');
     buttonsRow.className = 'puzzle__buttons-row';
-    const buttonCheck = this.addCheckContinue();
+    const buttonCheck = this.addButtonCheck();
     const buttonContinue = this.addButtonContinue();
+    const buttonAuto = this.addButtonAutoCollect();
+    this.app.game.buttonAutoCollect = buttonAuto;
     this.app.game.buttonContinue = buttonContinue;
     this.app.game.buttonCheck = buttonCheck;
+    buttonsRow.append(buttonAuto);
     buttonsRow.append(buttonCheck);
     buttonsRow.append(buttonContinue);
 
@@ -85,11 +88,17 @@ class GamePage extends Page {
     return button;
   }
 
-  private addCheckContinue() {
-    const button = Button.create('Check', ['button_check', 'button_small'], () =>
+  private addButtonCheck() {
+    const button = Button.create('Check', ['button_check', 'button_small', 'hidden'], () =>
       this.app.game.buttonChekcOnClick.bind(this.app.game)()
     );
     button.disabled = true;
+    return button;
+  }
+  private addButtonAutoCollect() {
+    const button = Button.create('I don`t know', ['button_auto', 'button_small'], () =>
+      this.app.game.buttonAutoCollectOnClick.bind(this.app.game)()
+    );
     return button;
   }
 }

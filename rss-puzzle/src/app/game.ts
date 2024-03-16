@@ -36,6 +36,8 @@ class Game {
 
   buttonCheck: HTMLButtonElement;
 
+  buttonAutoCollect: HTMLButtonElement;
+
   constructor(user: User, level: number, round: number) {
     this.user = user;
     this.level = level;
@@ -80,7 +82,6 @@ class Game {
     const dataImagesSrc = this.currentLevelData.rounds[this.round - 1].levelData.imageSrc;
     const imageSrc = `assets/images/${dataImagesSrc}`;
     const puzzle = this.puzzleField.children[0] as HTMLElement;
-    console.log(puzzle);
     puzzle.style.backgroundImage = `url(${imageSrc})`;
   }
 
@@ -89,7 +90,7 @@ class Game {
     this.taskWords = this.curentTaskData.textExample.split(' ');
     this.taskWords.forEach((str) => {
       const word = new Word(str);
-      word.seteElementWidth(this.taskWords);
+      word.setElementWidth(this.taskWords);
       word.element.addEventListener('click', () => this.wordOnClick(word));
       this.source.push(word);
     });
@@ -134,12 +135,21 @@ class Game {
     }
 
     this.setActiveButtonCheck();
-    if (this.chekWin()) this.setActiveButtonContinue();
+    if (this.chekWin()) {
+      this.setActiveButtonContinue();
+    }
 
     const row = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
-    this.removeClassName(word.element, 'incorrect');
-    this.removeClassName(row, 'checked');
+    word.element.classList.remove('incorrect');
+    row.classList.remove('checked');
     word.element.style.animationDelay = '0.1s';
+
+    //hidden button I don`t know
+    if (this.result.length === this.taskWords.length) {
+      this.buttonAutoCollect.classList.add('hidden');
+    } else if (this.buttonAutoCollect.classList.contains('hidden')) {
+      this.buttonAutoCollect.classList.remove('hidden');
+    }
   }
 
   private chekWin(): boolean {
@@ -156,13 +166,16 @@ class Game {
     this.buttonContinue.disabled = false;
     this.buttonContinue.classList.remove('hidden');
     this.buttonCheck.classList.add('hidden');
+    this.buttonAutoCollect.classList.add('hidden');
     resultRow.classList.add('collected');
   }
 
   private setActiveButtonCheck() {
     if (this.result.length === this.taskWords.length && !this.chekWin()) {
+      this.buttonCheck.classList.remove('hidden');
       this.buttonCheck.disabled = false;
     } else {
+      if (!this.buttonCheck.classList.contains('hidden')) this.buttonCheck.classList.add('hidden');
       this.buttonCheck.disabled = true;
     }
   }
@@ -184,7 +197,7 @@ class Game {
   private startNewRow() {
     this.buttonContinue.disabled = true;
     this.buttonContinue.classList.add('hidden');
-    this.buttonCheck.classList.remove('hidden');
+    this.buttonAutoCollect.classList.remove('hidden');
     this.result = new WordsList();
     this.rowIndex += 1;
     this.start();
@@ -192,7 +205,7 @@ class Game {
 
   private startNewRound(round: number) {
     this.buttonContinue.classList.add('hidden');
-    this.buttonCheck.classList.remove('hidden');
+    this.buttonAutoCollect.classList.remove('hidden');
     this.buttonContinue.disabled = true;
     this.clearWordsRow();
     this.result = new WordsList();
@@ -203,7 +216,7 @@ class Game {
 
   private startNewLevel(level: number) {
     this.buttonContinue.classList.add('hidden');
-    this.buttonCheck.classList.remove('hidden');
+    this.buttonAutoCollect.classList.remove('hidden');
     this.buttonContinue.disabled = true;
     this.round = 0;
     this.level = level;
@@ -232,16 +245,34 @@ class Game {
         word.element.classList.add('incorrect');
       }
     });
-
-    console.log('Проверка');
   }
 
-  private removeClassName(elem: HTMLElement, ...classes: string[]): void {
-    classes.forEach((className) => {
-      if (elem.classList.contains(className)) {
-        elem.classList.remove(className);
-      }
+  public buttonAutoCollectOnClick() {
+    //remove all words
+    const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
+    this.result.forEachElem((elem: Word) => {
+      this.result.remove(elem.element);
     });
+    Array.from(resultRow.children).forEach((elem) => elem.remove());
+
+    Array.from(this.sourceField.children).forEach((elem) => elem.remove());
+    this.source.forEachElem((elem: Word) => {
+      this.source.remove(elem.element);
+    });
+
+    //add words in the correct order
+    this.taskWords.forEach((str) => {
+      const word = new Word(str);
+      word.setElementWidth(this.taskWords);
+      word.element.addEventListener('click', () => this.wordOnClick(word));
+      this.result.push(word);
+      resultRow.append(word.element);
+    });
+    resultRow.classList.add('collected');
+    this.buttonContinue.classList.remove('hidden');
+    this.buttonContinue.disabled = false;
+    this.buttonCheck.classList.add('hidden');
+    this.buttonAutoCollect.classList.add('hidden');
   }
 }
 
