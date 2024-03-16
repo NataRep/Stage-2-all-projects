@@ -154,6 +154,8 @@ class Game {
   private setActiveButtonContinue() {
     const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
     this.buttonContinue.disabled = false;
+    this.buttonContinue.classList.remove('hidden');
+    this.buttonCheck.classList.add('hidden');
     resultRow.classList.add('collected');
   }
 
@@ -181,12 +183,16 @@ class Game {
 
   private startNewRow() {
     this.buttonContinue.disabled = true;
+    this.buttonContinue.classList.add('hidden');
+    this.buttonCheck.classList.remove('hidden');
     this.result = new WordsList();
     this.rowIndex += 1;
     this.start();
   }
 
   private startNewRound(round: number) {
+    this.buttonContinue.classList.add('hidden');
+    this.buttonCheck.classList.remove('hidden');
     this.buttonContinue.disabled = true;
     this.clearWordsRow();
     this.result = new WordsList();
@@ -196,6 +202,8 @@ class Game {
   }
 
   private startNewLevel(level: number) {
+    this.buttonContinue.classList.add('hidden');
+    this.buttonCheck.classList.remove('hidden');
     this.buttonContinue.disabled = true;
     this.round = 0;
     this.level = level;

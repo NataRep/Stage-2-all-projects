@@ -78,7 +78,7 @@ class GamePage extends Page {
   }
 
   private addButtonContinue() {
-    const button = Button.create('Continue', ['button_continue', 'button_small'], () =>
+    const button = Button.create('Continue', ['button_continue', 'button_small', 'hidden'], () =>
       this.app.game.buttonContinueOnClick.bind(this.app.game)()
     );
     button.disabled = true;
