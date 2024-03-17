@@ -2,6 +2,7 @@ import './game-page.scss';
 import Page from '../page';
 import App from '../../app/app';
 import Button from '../../components/button/button';
+import DragAndDrop from '../../components/drag-and-drop/mouse';
 
 class GamePage extends Page {
   constructor(app: App) {
@@ -12,7 +13,7 @@ class GamePage extends Page {
     const pageContainer: HTMLDivElement = document.createElement('div');
     pageContainer.className = 'page__container';
     this.content = pageContainer;
-
+    //Header
     const header: HTMLElement = document.createElement('header');
     const logotype: HTMLElement = document.createElement('div');
     const button: HTMLButtonElement = Button.create(
@@ -23,14 +24,20 @@ class GamePage extends Page {
     logotype.className = 'logotype';
     header.append(logotype);
     header.append(button);
-
+    //Main
     const main: HTMLElement = document.createElement('main');
     const puzzleField = this.createPuzzleField();
     const sourceField = this.createSourseField();
-
+    //remember field in game
     this.app.game.sourceField = sourceField;
+    sourceField.addEventListener('dragover', DragAndDrop.onDragover);
+    sourceField.addEventListener('drop', (event: DragEvent) => {
+      DragAndDrop.onDrop(event, this.app.game);
+      this.app.game.chekWin();
+    });
+    sourceField.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragenter(event, this.app.game));
     this.app.game.puzzleField = puzzleField;
-
+    //buttons
     const buttonsRow: HTMLDivElement = document.createElement('div');
     buttonsRow.className = 'puzzle__buttons-row';
     const buttonCheck = this.addButtonCheck();
@@ -42,11 +49,11 @@ class GamePage extends Page {
     buttonsRow.append(buttonAuto);
     buttonsRow.append(buttonCheck);
     buttonsRow.append(buttonContinue);
-
+    //fill main
     main.append(puzzleField);
     main.append(sourceField);
     main.append(buttonsRow);
-
+    //fill content
     this.content.append(header);
     this.content.append(main);
   }
@@ -95,6 +102,7 @@ class GamePage extends Page {
     button.disabled = true;
     return button;
   }
+
   private addButtonAutoCollect() {
     const button = Button.create('I don`t know', ['button_auto', 'button_small'], () =>
       this.app.game.buttonAutoCollectOnClick.bind(this.app.game)()

@@ -14,7 +14,10 @@
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transition: background-color 1s;
+  margin-left: 0;
+  transition:
+    background-color 1s,
+    margin-left 0.5s;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
@@ -23,6 +26,9 @@
   }
   &:active {
     background: #a1a6cc;
+  }
+  &.move {
+    margin-left: 1rem;
   }
 }
 @keyframes smoothDisplay {

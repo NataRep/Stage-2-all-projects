@@ -46,10 +46,13 @@ class WordsList {
 
   public insertWordByIndex(word: Word, index: number): void {
     const node: Node = this.createNode(word);
-    if (this.length - 1 < index) throw Error('Invalid index for insert');
+    if (this.length < index) throw Error('Invalid index for insert');
     if (index === 0) {
       node.next = this.head;
       this.head = node;
+      if (!this.tail) {
+        this.tail = node;
+      }
     } else {
       let currentIndex: number = 0;
       let currentNode: Node = this.head;
@@ -115,9 +118,11 @@ class WordsList {
     let currentNode = this.head;
     let result = false;
     while (currentNode) {
-      if (currentNode.value.value === str) result = true;
-      if (currentNode.next) currentNode = currentNode.next;
-      if (!currentNode.next) break;
+      if (currentNode.value.value === str) {
+        result = true;
+        break;
+      }
+      currentNode = currentNode.next;
     }
     return result;
   }
@@ -176,6 +181,19 @@ class WordsList {
       index += 1;
       currentNode = currentNode.next;
     }
+  }
+
+  public find(elem: HTMLElement): Word | null {
+    let currentNode = this.head;
+    let result: Word | null = null;
+    while (currentNode) {
+      if (currentNode.value.element === elem) {
+        result = currentNode.value;
+        break;
+      }
+      currentNode = currentNode.next;
+    }
+    return result;
   }
 }
 

@@ -1,5 +1,6 @@
 import User from './user';
 import Word from '../components/word/word';
+import DragAndDrop from '../components/drag-and-drop/mouse';
 import WordsList from '../components/words-list/wordsList';
 import { TaskIntarface, LevelDataInterfase } from '../utils/interfaces';
 import dataLevel1 from './../assets/data/wordCollectionLevel1.json';
@@ -38,6 +39,14 @@ class Game {
 
   buttonAutoCollect: HTMLButtonElement;
 
+  dropSource: WordsList | null;
+
+  dropTarget: WordsList | null;
+
+  dropPlace: HTMLElement | null;
+
+  dropIndex: number | null;
+
   constructor(user: User, level: number, round: number) {
     this.user = user;
     this.level = level;
@@ -51,6 +60,10 @@ class Game {
     this.setDataLevel(this.level);
     this.setBgImage();
     this.drawSource();
+    const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
+    resultRow.addEventListener('dragover', DragAndDrop.onDragover);
+    resultRow.addEventListener('drop', this.WordOnDrop.bind(this));
+    resultRow.addEventListener('dragenter', this.wordOnDragenterEvent.bind(this));
   }
 
   private setDataLevel(level: number) {
@@ -61,7 +74,7 @@ class Game {
       case 2:
         this.currentLevelData = dataLevel2;
         break;
-      case 2:
+      case 3:
         this.currentLevelData = dataLevel3;
         break;
       case 4:
@@ -92,6 +105,11 @@ class Game {
       const word = new Word(str);
       word.setElementWidth(this.taskWords);
       word.element.addEventListener('click', () => this.wordOnClick(word));
+      word.element.draggable = true;
+      word.element.addEventListener('dragstart', (event: DragEvent) => DragAndDrop.onDragStart(event, this));
+      word.element.addEventListener('dragend', DragAndDrop.onDradend);
+      word.element.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragenter(event, this));
+      word.element.addEventListener('dragleave', (event: DragEvent) => DragAndDrop.onDragleave(event, this));
       this.source.push(word);
     });
   }
@@ -133,14 +151,27 @@ class Game {
     } else {
       this.movingWord(word.element, word, this.result, this.source, resultRow, this.sourceField);
     }
+    this.doAfterPlayrsStep(word, resultRow);
+  }
+
+  public chekWin(): boolean {
+    const resultStr: string = this.result.getWordsStrArray().join(' ');
+    const dataStr = this.taskWords.join(' ');
+    return resultStr === dataStr;
+  }
+
+  public doAfterPlayrsStep(word: Word, row: HTMLElement) {
+    //ПРОВЕРКА СТОР, УБРАТЬ!!!
+    const resultStr: string = this.result.getWordsStrArray().join(' ');
+    const dataStr = this.taskWords.join(' ');
+    console.log(dataStr);
+    console.log(resultStr);
 
     this.setActiveButtonCheck();
     if (this.chekWin()) {
       this.setActiveButtonContinue();
     }
-
-    const row = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
-    word.element.classList.remove('incorrect');
+    if (word.element.classList.contains('incorrect')) word.element.classList.remove('incorrect');
     row.classList.remove('checked');
     word.element.style.animationDelay = '0.1s';
 
@@ -150,15 +181,6 @@ class Game {
     } else if (this.buttonAutoCollect.classList.contains('hidden')) {
       this.buttonAutoCollect.classList.remove('hidden');
     }
-  }
-
-  private chekWin(): boolean {
-    const resultStr: string = this.result.getWordsStrArray().join(' ');
-    const dataStr = this.taskWords.join(' ');
-    console.log(dataStr);
-    console.log(resultStr);
-
-    return resultStr === dataStr;
   }
 
   private setActiveButtonContinue() {
@@ -208,6 +230,7 @@ class Game {
     this.buttonAutoCollect.classList.remove('hidden');
     this.buttonContinue.disabled = true;
     this.clearWordsRow();
+    this.clearDropData();
     this.result = new WordsList();
     this.round = round;
     this.rowIndex = 0;
@@ -223,15 +246,8 @@ class Game {
     this.rowIndex = 0;
     this.result = new WordsList();
     this.clearWordsRow();
+    this.clearDropData();
     this.start();
-  }
-
-  private clearWordsRow() {
-    const arrayResultRows = Array.from(this.puzzleField.children[0].children);
-    arrayResultRows.forEach((row) => {
-      row.innerHTML = '';
-      row.classList.remove('collected');
-    });
   }
 
   public buttonChekcOnClick() {
@@ -239,8 +255,6 @@ class Game {
     resultRow.classList.add('checked');
 
     this.result.forEachElem((word: Word, index: number) => {
-      console.log(this.taskWords[index]);
-      console.log(word.value);
       if (this.taskWords[index] != word.value) {
         word.element.classList.add('incorrect');
       }
@@ -273,6 +287,32 @@ class Game {
     this.buttonContinue.disabled = false;
     this.buttonCheck.classList.add('hidden');
     this.buttonAutoCollect.classList.add('hidden');
+  }
+
+  private WordOnDrop(event: DragEvent) {
+    DragAndDrop.onDrop(event, this);
+    this.chekWin();
+  }
+
+  private wordOnDragenterEvent(event: DragEvent) {
+    DragAndDrop.onDragenter(event, this);
+  }
+
+  private clearWordsRow() {
+    const arrayResultRows = Array.from(this.puzzleField.children[0].children);
+    arrayResultRows.forEach((row) => {
+      row.remove();
+      const liRow: HTMLElement = document.createElement('li');
+      liRow.className = 'puzzle__result-row';
+      this.puzzleField.children[0].append(liRow);
+    });
+  }
+
+  private clearDropData() {
+    this.dropSource = null;
+    this.dropTarget = null;
+    this.dropPlace = null;
+    this.dropIndex = null;
   }
 }
 
