@@ -58,10 +58,11 @@ class DragAndDrop {
         game.dropSource.remove(word.element);
         //определяю место вставки слова
 
-        direction === 'forward'
-          ? game.dropTarget.insertWordByIndex(word, game.dropIndex - 1)
-          : game.dropTarget.insertWordByIndex(word, game.dropIndex);
-        console.log(direction);
+        if (direction === 'forward') {
+          game.dropTarget.insertWordByIndex(word, game.dropIndex - 1);
+        } else {
+          game.dropTarget.insertWordByIndex(word, game.dropIndex);
+        }
       }
       game.doAfterPlayersStep(word, resultRow);
     }
@@ -77,7 +78,7 @@ class DragAndDrop {
     game.dropIndex = Array.from(game.dropPlace.parentNode.children).indexOf(game.dropPlace);
   }
 
-  static onDragLeave(event: DragEvent, game: Game) {
+  static onDragLeave(event: DragEvent) {
     const word = event.target as HTMLElement;
     word.classList.remove('move');
   }

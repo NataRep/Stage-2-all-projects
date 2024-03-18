@@ -47,6 +47,8 @@ class Game {
 
   dropIndex: number | null;
 
+  imageInfo: HTMLElement;
+
   constructor(user: User, level: number, round: number) {
     this.user = user;
     this.level = level;
@@ -109,7 +111,7 @@ class Game {
       word.element.addEventListener('dragstart', (event: DragEvent) => DragAndDrop.onDragStart(event, this));
       word.element.addEventListener('dragend', DragAndDrop.onDragEnd);
       word.element.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragEnter(event, this));
-      word.element.addEventListener('dragleave', (event: DragEvent) => DragAndDrop.onDragLeave(event, this));
+      word.element.addEventListener('dragleave', (event: DragEvent) => DragAndDrop.onDragLeave(event));
       this.source.push(word);
 
       if (index === 0) {
@@ -181,6 +183,9 @@ class Game {
     this.setActiveButtonCheck();
     if (this.chekWin()) {
       this.setActiveButtonContinue();
+      if (this.rowIndex === 9) {
+        this.showBgImageWithInfo();
+      }
     }
     if (word.element.classList.contains('incorrect')) word.element.classList.remove('incorrect');
     row.classList.remove('checked');
@@ -238,6 +243,7 @@ class Game {
   }
 
   private startNewRound(round: number) {
+    this.imageInfo.remove();
     this.buttonContinue.classList.add('hidden');
     this.buttonAutoCollect.classList.remove('hidden');
     this.buttonContinue.disabled = true;
@@ -250,6 +256,7 @@ class Game {
   }
 
   private startNewLevel(level: number) {
+    this.imageInfo.remove();
     this.buttonContinue.classList.add('hidden');
     this.buttonAutoCollect.classList.remove('hidden');
     this.buttonContinue.disabled = true;
@@ -299,6 +306,9 @@ class Game {
     this.buttonContinue.disabled = false;
     this.buttonCheck.classList.add('hidden');
     this.buttonAutoCollect.classList.add('hidden');
+    if (this.rowIndex === 9) {
+      this.showBgImageWithInfo();
+    }
   }
 
   private WordOnDrop(event: DragEvent) {
@@ -341,6 +351,33 @@ class Game {
       word.style.zIndex = `${indexSource}`;
       indexSource -= 1;
     });
+  }
+
+  private showBgImageWithInfo() {
+    const arrayResultRows = Array.from(this.puzzleField.children[0].children);
+    arrayResultRows.forEach((word: HTMLElement) => (word.style.opacity = '0'));
+
+    const infoData = this.currentLevelData.rounds[this.round].levelData;
+
+    const info = document.createElement('div');
+    info.className = 'image-info';
+
+    const avtor = document.createElement('span');
+    avtor.className = 'image-info__avtor';
+    avtor.innerHTML = `${infoData.author}, `;
+    const name = document.createElement('span');
+    name.className = 'image-info__name';
+    name.innerHTML = `"${infoData.name}", `;
+    const year = document.createElement('span');
+    year.className = 'image-info_year';
+    year.innerHTML = `${parseInt(infoData.year)}`;
+
+    info.append(name);
+    info.append(avtor);
+    info.append(year);
+
+    this.imageInfo = info;
+    this.sourceField.append(info);
   }
 }
 
