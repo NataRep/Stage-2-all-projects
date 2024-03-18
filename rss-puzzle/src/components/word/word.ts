@@ -20,7 +20,7 @@ class Word {
   public setElementWidth(strArray: string[]) {
     const totalNumberOfLetters = strArray.join('').length;
     const wordNumberOfLetters = this.value.length;
-    const width = (100 / totalNumberOfLetters) * wordNumberOfLetters;
+    const width = (100 / (totalNumberOfLetters + strArray.length)) * (wordNumberOfLetters + 1);
     this.element.style.width = `${width}%`;
   }
 }

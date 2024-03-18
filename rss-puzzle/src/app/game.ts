@@ -101,7 +101,7 @@ class Game {
   private createTaskSource() {
     this.curentTaskData = this.currentLevelData.rounds[this.round - 1].words[this.rowIndex];
     this.taskWords = this.curentTaskData.textExample.split(' ');
-    this.taskWords.forEach((str) => {
+    this.taskWords.forEach((str, index, array) => {
       const word = new Word(str);
       word.setElementWidth(this.taskWords);
       word.element.addEventListener('click', () => this.wordOnClick(word));
@@ -111,12 +111,23 @@ class Game {
       word.element.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragenter(event, this));
       word.element.addEventListener('dragleave', (event: DragEvent) => DragAndDrop.onDragleave(event, this));
       this.source.push(word);
+
+      if (index === 0) {
+        word.element.classList.add('first');
+      } else if (index === array.length - 1) {
+        word.element.classList.add('last');
+      }
     });
   }
 
   public drawSource() {
     this.createTaskSource();
     this.source.shuffle();
+    let zIndex = this.source.length;
+    this.source.forEachElem((elem) => {
+      elem.element.style.zIndex = `${zIndex}`;
+      zIndex -= 1;
+    });
     let currentNode = this.source.head;
     while (currentNode) {
       this.sourceField.append(currentNode.value.element);
@@ -181,6 +192,7 @@ class Game {
     } else if (this.buttonAutoCollect.classList.contains('hidden')) {
       this.buttonAutoCollect.classList.remove('hidden');
     }
+    this.changeZIndex();
   }
 
   private setActiveButtonContinue() {
@@ -313,6 +325,22 @@ class Game {
     this.dropTarget = null;
     this.dropPlace = null;
     this.dropIndex = null;
+  }
+
+  private changeZIndex() {
+    const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
+    const arrayResult = Array.from(resultRow.children);
+    let indexResult = arrayResult.length;
+    arrayResult.forEach((word: HTMLElement) => {
+      word.style.zIndex = `${indexResult}`;
+      indexResult -= 1;
+    });
+    const arraySource = Array.from(this.sourceField.children);
+    let indexSource = arraySource.length;
+    arraySource.forEach((word: HTMLElement) => {
+      word.style.zIndex = `${indexSource}`;
+      indexSource -= 1;
+    });
   }
 }
 

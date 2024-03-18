@@ -111,13 +111,72 @@ footer {
           -1px 0px 0px #fff,
           0px 1px 0px #fff,
           0px -1px 0px #fff;
+
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0rem;
+          height: 0.75rem;
+          width: 0.75rem;
+          background: none;
+          z-index: 0;
+        }
+        &::after {
+          content: '';
+          background: none;
+          display: block;
+          position: absolute;
+          right: -0.75rem;
+          top: 50%;
+          height: 0.75rem;
+          width: 0.75rem;
+          border-radius: 0% 100% 100% 100%;
+          transform: translateY(-50%) rotate(-45deg);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+          z-index: 2;
+        }
+        &:last-child::after {
+          content: '';
+          display: block;
+          height: 0rem;
+          width: 0rem;
+          background: inherit;
+          border-radius: 0% 100% 100% 100%;
+          transform: none;
+          box-shadow: none;
+          z-index: 2;
+        }
+        &.first::before {
+          content: '';
+          display: block;
+          height: 0.75rem;
+          width: 0.75rem;
+          background: none;
+          z-index: 0;
+        }
+        @media (hover: hover) and (pointer: fine) {
+          &.first::before:hover {
+            background: #a1a6cc;
+          }
+        }
+        &.first::before:active {
+          background: #a1a6cc;
+        }
       }
     }
 
     &.checked {
       .word {
         &.incorrect {
-          background-color: #eca8b9;
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0) 10px, #eca8b9 10px, #eca8b9 100%);
+
+          &::before {
+            background: url('./../../images/puzzle-piece-left-incorrect.svg');
+          }
+          &::after {
+            background: #eca8b9;
+          }
         }
       }
     }

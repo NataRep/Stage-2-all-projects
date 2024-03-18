@@ -34,6 +34,7 @@ class DragAndDrop {
         game.sourceField.append(word.element);
         game.dropSource.remove(word.element);
         game.dropTarget.push(word);
+        word.element.style.zIndex = `0`;
       } else {
         game.dropPlace.before(word.element);
         game.dropSource.remove(word.element);
@@ -47,6 +48,7 @@ class DragAndDrop {
         resultRow.append(word.element);
         game.dropSource.remove(word.element);
         game.dropTarget.push(word);
+        word.element.style.zIndex = `0`;
       } else {
         game.dropPlace.before(word.element);
         game.dropSource.remove(word.element);
