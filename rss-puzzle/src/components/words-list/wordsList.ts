@@ -195,6 +195,20 @@ class WordsList {
     }
     return result;
   }
+
+  public indexOf(word: Word) {
+    let currentNode = this.head;
+    let index = 0;
+    while (currentNode) {
+      if (currentNode.value === word) {
+        break;
+      } else {
+        currentNode = currentNode.next;
+        index += 1;
+      }
+    }
+    return index;
+  }
 }
 
 export default WordsList;

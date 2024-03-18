@@ -30,12 +30,12 @@ class GamePage extends Page {
     const sourceField = this.createSourseField();
     //remember field in game
     this.app.game.sourceField = sourceField;
-    sourceField.addEventListener('dragover', DragAndDrop.onDragover);
+    sourceField.addEventListener('dragover', DragAndDrop.onDragOver);
     sourceField.addEventListener('drop', (event: DragEvent) => {
       DragAndDrop.onDrop(event, this.app.game);
       this.app.game.chekWin();
     });
-    sourceField.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragenter(event, this.app.game));
+    sourceField.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragEnter(event, this.app.game));
     this.app.game.puzzleField = puzzleField;
     //buttons
     const buttonsRow: HTMLDivElement = document.createElement('div');

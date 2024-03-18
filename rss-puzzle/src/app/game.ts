@@ -61,7 +61,7 @@ class Game {
     this.setBgImage();
     this.drawSource();
     const resultRow = this.puzzleField.children[0].children[this.rowIndex] as HTMLElement;
-    resultRow.addEventListener('dragover', DragAndDrop.onDragover);
+    resultRow.addEventListener('dragover', DragAndDrop.onDragOver);
     resultRow.addEventListener('drop', this.WordOnDrop.bind(this));
     resultRow.addEventListener('dragenter', this.wordOnDragenterEvent.bind(this));
   }
@@ -107,9 +107,9 @@ class Game {
       word.element.addEventListener('click', () => this.wordOnClick(word));
       word.element.draggable = true;
       word.element.addEventListener('dragstart', (event: DragEvent) => DragAndDrop.onDragStart(event, this));
-      word.element.addEventListener('dragend', DragAndDrop.onDradend);
-      word.element.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragenter(event, this));
-      word.element.addEventListener('dragleave', (event: DragEvent) => DragAndDrop.onDragleave(event, this));
+      word.element.addEventListener('dragend', DragAndDrop.onDragEnd);
+      word.element.addEventListener('dragenter', (event: DragEvent) => DragAndDrop.onDragEnter(event, this));
+      word.element.addEventListener('dragleave', (event: DragEvent) => DragAndDrop.onDragLeave(event, this));
       this.source.push(word);
 
       if (index === 0) {
@@ -162,7 +162,7 @@ class Game {
     } else {
       this.movingWord(word.element, word, this.result, this.source, resultRow, this.sourceField);
     }
-    this.doAfterPlayrsStep(word, resultRow);
+    this.doAfterPlayersStep(word, resultRow);
   }
 
   public chekWin(): boolean {
@@ -171,7 +171,7 @@ class Game {
     return resultStr === dataStr;
   }
 
-  public doAfterPlayrsStep(word: Word, row: HTMLElement) {
+  public doAfterPlayersStep(word: Word, row: HTMLElement) {
     //ПРОВЕРКА СТОР, УБРАТЬ!!!
     const resultStr: string = this.result.getWordsStrArray().join(' ');
     const dataStr = this.taskWords.join(' ');
@@ -307,7 +307,7 @@ class Game {
   }
 
   private wordOnDragenterEvent(event: DragEvent) {
-    DragAndDrop.onDragenter(event, this);
+    DragAndDrop.onDragEnter(event, this);
   }
 
   private clearWordsRow() {

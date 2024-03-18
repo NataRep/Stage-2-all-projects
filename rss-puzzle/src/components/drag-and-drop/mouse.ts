@@ -1,4 +1,6 @@
 import Game from '../../app/game';
+import Word from '../word/word';
+
 class DragAndDrop {
   static onDragStart(event: DragEvent, game: Game): boolean {
     const word = event.target as HTMLElement;
@@ -11,13 +13,13 @@ class DragAndDrop {
     return false;
   }
 
-  static onDradend(event: DragEvent) {
+  static onDragEnd(event: DragEvent) {
     const word = event.target as HTMLElement;
     word.classList.remove('draggling');
     word.id = '';
   }
 
-  static onDragover(event: DragEvent) {
+  static onDragOver(event: DragEvent) {
     event.preventDefault();
   }
 
@@ -40,7 +42,7 @@ class DragAndDrop {
         game.dropSource.remove(word.element);
         game.dropTarget.insertWordByIndex(word, game.dropIndex);
       }
-      game.doAfterPlayrsStep(word, game.sourceField);
+      game.doAfterPlayersStep(word, game.sourceField);
     } else if (target.closest('.puzzle__result-row')) {
       game.dropTarget = game.result;
       const resultRow = game.puzzleField.children[0].children[game.rowIndex] as HTMLElement;
@@ -50,27 +52,40 @@ class DragAndDrop {
         game.dropTarget.push(word);
         word.element.style.zIndex = `0`;
       } else {
+        const direction = this.determineDirectionTransfer(game, word);
+
         game.dropPlace.before(word.element);
         game.dropSource.remove(word.element);
-        game.dropTarget.insertWordByIndex(word, game.dropIndex);
+        //определяю место вставки слова
+
+        direction === 'forward'
+          ? game.dropTarget.insertWordByIndex(word, game.dropIndex - 1)
+          : game.dropTarget.insertWordByIndex(word, game.dropIndex);
+        console.log(direction);
       }
-      game.doAfterPlayrsStep(word, resultRow);
+      game.doAfterPlayersStep(word, resultRow);
     }
     event.dataTransfer.clearData();
     game.dropPlace.classList.remove('move');
     event.preventDefault();
   }
 
-  static onDragenter(event: DragEvent, game: Game) {
+  static onDragEnter(event: DragEvent, game: Game) {
     game.dropPlace = event.target as HTMLElement;
     game.dropPlace.classList.add('move');
     Array.from(game.dropPlace.parentNode.children).indexOf(game.dropPlace);
     game.dropIndex = Array.from(game.dropPlace.parentNode.children).indexOf(game.dropPlace);
   }
 
-  static onDragleave(event: DragEvent, game: Game) {
+  static onDragLeave(event: DragEvent, game: Game) {
     const word = event.target as HTMLElement;
     word.classList.remove('move');
+  }
+
+  static determineDirectionTransfer(game: Game, word: Word): string {
+    console.log(game.result.indexOf(word));
+    const derection: string = game.result.indexOf(word) < game.dropIndex ? 'forward' : 'back';
+    return derection;
   }
 }
 
