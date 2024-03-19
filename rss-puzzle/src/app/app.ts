@@ -27,9 +27,6 @@ class App {
 
   public start(): void {
     if (localStorage.getItem(LocalStorageKeys.USER)) {
-      //TODO
-      //метод getUser - получаем данные из хранилища
-      //запуск игры с указанного в джонсоне левела и раунда
       if (!this.playGame) {
         this.user = new User(
           JSON.parse(localStorage.getItem(LocalStorageKeys.USER)).name,

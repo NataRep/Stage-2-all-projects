@@ -174,12 +174,6 @@ class Game {
   }
 
   public doAfterPlayersStep(word: Word, row: HTMLElement) {
-    //ПРОВЕРКА СТОР, УБРАТЬ!!!
-    const resultStr: string = this.result.getWordsStrArray().join(' ');
-    const dataStr = this.taskWords.join(' ');
-    console.log(dataStr);
-    console.log(resultStr);
-
     this.setActiveButtonCheck();
     if (this.chekWin()) {
       this.setActiveButtonContinue();

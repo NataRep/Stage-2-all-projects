@@ -56,7 +56,6 @@ class DragAndDrop {
 
         game.dropPlace.before(word.element);
         game.dropSource.remove(word.element);
-        //определяю место вставки слова
 
         if (direction === 'forward') {
           game.dropTarget.insertWordByIndex(word, game.dropIndex - 1);
@@ -84,7 +83,6 @@ class DragAndDrop {
   }
 
   static determineDirectionTransfer(game: Game, word: Word): string {
-    console.log(game.result.indexOf(word));
     const derection: string = game.result.indexOf(word) < game.dropIndex ? 'forward' : 'back';
     return derection;
   }
