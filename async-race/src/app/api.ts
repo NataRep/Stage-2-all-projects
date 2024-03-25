@@ -12,7 +12,7 @@ class Api {
     try {
       const response = await fetch(url, options);
       if (!response.ok) {
-        throw new Error('Ошибка HTTP: ' + response.status);
+        throw new Error('Error HTTP: ' + response.status);
       }
       return response;
     } catch (error) {
@@ -180,8 +180,62 @@ class Api {
     const options = {
       method: 'GET',
     };
-    const response = await this.fetchWithOptions(fullUrl, options, 'Error getting car: ');
+    const response = await this.fetchWithOptions(fullUrl, options, 'Error getting winner: ');
     return (await response.json()) as Winner;
+  }
+
+  public async createWinner(id: number, wins: number, time: number): Promise<Winner> {
+    const pathUrl: string = '/winners';
+    let fullUrl: string = this.port + pathUrl;
+    const winnerData: Winner = {
+      id: id,
+      wins: wins,
+      time: time,
+    };
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(winnerData),
+    };
+    const response = await this.fetchWithOptions(fullUrl, options, 'Error creating winner: ');
+    return (await response.json()) as Winner;
+  }
+
+  public async deleteWinner(id: number): Promise<void> {
+    const pathUrl: string = '/winners/';
+    const fullUrl: string = this.port + pathUrl + String(id);
+    const options = {
+      method: 'DELETE',
+    };
+    try {
+      await this.fetchWithOptions(fullUrl, options, 'Error deleting winner: ');
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  }
+
+  public async updateWinner(id: number, wins: number, time: number): Promise<Winner> {
+    const pathUrl: string = '/winners/';
+    const fullUrl: string = this.port + pathUrl + String(id);
+    const winnerData = {
+      wins: wins,
+      time: time,
+    };
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(winnerData),
+    };
+    try {
+      const response = await this.fetchWithOptions(fullUrl, options, 'Error updating winner: ');
+      return (await response.json()) as Winner;
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   }
 }
 export default Api;
