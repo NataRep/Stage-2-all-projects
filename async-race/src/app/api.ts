@@ -1,4 +1,4 @@
-import { Car, SpeedCar } from '../utils/interfaces';
+import { Car, SpeedCar, Winner } from '../utils/interfaces';
 import { HexColor } from '../utils/types';
 
 class Api {
@@ -30,7 +30,7 @@ class Api {
     return (await response.json()) as Car;
   }
 
-  public async getCars(page?: number, limit?: number): Promise<Car[]> {
+  public async getCars(page?: number, limit?: number): Promise<{ cars: Car[]; totalCount?: string } | undefined> {
     const pathUrl: string = '/garage/';
     let fullUrl: string = this.port + pathUrl;
     if (page || limit) fullUrl = fullUrl + '?';
@@ -39,8 +39,19 @@ class Api {
     const options = {
       method: 'GET',
     };
-    const response = await this.fetchWithOptions(fullUrl, options, 'Error getting cars: ');
-    return (await response.json()) as Car[];
+    try {
+      const response = await fetch(fullUrl, options);
+      if (!response.ok) {
+        console.error('Error:', response.statusText);
+        return undefined;
+      }
+      const totalCount = response.headers.get('X-Total-Count');
+      const data = (await response.json()) as Car[];
+      return { cars: data, totalCount };
+    } catch (error) {
+      console.error('Error:', error.message);
+      return undefined;
+    }
   }
 
   public async createCar(name: string, color: HexColor): Promise<Car> {
@@ -126,6 +137,38 @@ class Api {
       }
       const json = await response.json();
       return json;
+    } catch (error) {
+      console.error('Error:', error.message);
+      return undefined;
+    }
+  }
+
+  public async getWinners(
+    page?: number,
+    limit?: number,
+    sort?: 'id' | 'wins' | 'time',
+    order?: 'ASC' | 'DESC'
+  ): Promise<{ winners: Winner[]; totalCount?: string } | undefined> {
+    const pathUrl: string = '/winners';
+    let fullUrl: string = this.port + pathUrl;
+    if (page || limit || sort || order) fullUrl += '?';
+    if (page) fullUrl += `_page=${page}&`;
+    if (limit) fullUrl += `_limit=${limit}&`;
+    if (sort) fullUrl += `_sort=${sort}&`;
+    if (order) fullUrl += `_order=${order}`;
+
+    const options = {
+      method: 'GET',
+    };
+    try {
+      const response = await fetch(fullUrl, options);
+      if (!response.ok) {
+        console.error('Error:', response.statusText);
+        return undefined;
+      }
+      const totalCount = response.headers.get('X-Total-Count');
+      const data = (await response.json()) as Winner[];
+      return { winners: data, totalCount };
     } catch (error) {
       console.error('Error:', error.message);
       return undefined;
