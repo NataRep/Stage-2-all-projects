@@ -156,7 +156,6 @@ class Api {
     if (limit) fullUrl += `_limit=${limit}&`;
     if (sort) fullUrl += `_sort=${sort}&`;
     if (order) fullUrl += `_order=${order}`;
-
     const options = {
       method: 'GET',
     };
@@ -173,6 +172,16 @@ class Api {
       console.error('Error:', error.message);
       return undefined;
     }
+  }
+
+  public async getWinner(id: number): Promise<Winner> {
+    const pathUrl: string = '/winners/';
+    let fullUrl: string = this.port + pathUrl + String(id);
+    const options = {
+      method: 'GET',
+    };
+    const response = await this.fetchWithOptions(fullUrl, options, 'Error getting car: ');
+    return (await response.json()) as Winner;
   }
 }
 export default Api;
