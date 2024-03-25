@@ -56,7 +56,7 @@ class Api {
 
   public async createCar(name: string, color: HexColor): Promise<Car> {
     const pathUrl: string = '/garage';
-    let fullUrl: string = this.port + pathUrl;
+    const fullUrl: string = this.port + pathUrl;
     const carData = {
       name: name,
       color: color,
@@ -176,7 +176,7 @@ class Api {
 
   public async getWinner(id: number): Promise<Winner> {
     const pathUrl: string = '/winners/';
-    let fullUrl: string = this.port + pathUrl + String(id);
+    const fullUrl: string = this.port + pathUrl + String(id);
     const options = {
       method: 'GET',
     };
@@ -186,7 +186,7 @@ class Api {
 
   public async createWinner(id: number, wins: number, time: number): Promise<Winner> {
     const pathUrl: string = '/winners';
-    let fullUrl: string = this.port + pathUrl;
+    const fullUrl: string = this.port + pathUrl;
     const winnerData: Winner = {
       id: id,
       wins: wins,
