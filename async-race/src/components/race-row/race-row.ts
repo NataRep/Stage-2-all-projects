@@ -1,6 +1,7 @@
 import { HexColor } from '../../utils/types';
 import Button from '../button/button';
 import CarEl from '../car/car';
+import './race-row.scss';
 
 class RaceRow {
   static create(id: number, name: string, color: HexColor) {
