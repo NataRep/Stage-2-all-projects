@@ -12,3 +12,10 @@ export interface Winner {
   wins: number;
   time: number;
 }
+
+export interface carState {
+  id: number;
+  status: 'started' | 'stopped' | 'drived';
+  speed: number;
+  position: number;
+}
