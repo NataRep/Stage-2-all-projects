@@ -1,11 +1,10 @@
 import './form.scss';
 import Button from '../button/button';
-import { HexColor } from '../../utils/types';
 
 class Form {
   static create(
     value: string,
-    color: HexColor,
+    color: string,
     className: string,
     buttonText: string,
     buttonClassList: string[],
@@ -20,7 +19,6 @@ class Form {
     const inputText: HTMLInputElement = document.createElement('input');
     inputText.className = 'form__input input_text';
     inputText.type = 'text';
-    inputText.placeholder = 'Mercedes-Benz';
     inputText.maxLength = 20;
     inputText.pattern = '^[a-zA-Z0-9]+$';
     inputText.value = value;

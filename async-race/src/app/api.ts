@@ -1,5 +1,4 @@
 import { Car, SpeedCar, Winner } from '../utils/interfaces';
-import { HexColor } from '../utils/types';
 
 const PORT = 'http://127.0.0.1:3000';
 class Api {
@@ -49,7 +48,7 @@ class Api {
     }
   }
 
-  static async createCar(name: string, color: HexColor): Promise<Car> {
+  static async createCar(name: string, color: string): Promise<Car> {
     const pathUrl: string = '/garage';
     const fullUrl: string = PORT + pathUrl;
     const carData = {
@@ -76,7 +75,7 @@ class Api {
     await Api.fetchWithOptions(fullUrl, options, 'Error deleting car: ');
   }
 
-  static async updateCar(id: number, name: string, color: HexColor): Promise<Car> {
+  static async updateCar(id: number, name: string, color: string): Promise<Car> {
     const pathUrl: string = '/garage/';
     const fullUrl: string = PORT + pathUrl + String(id);
     const carData = {

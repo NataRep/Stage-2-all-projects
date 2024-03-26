@@ -1,10 +1,9 @@
-import { HexColor } from '../../utils/types';
 import Button from '../button/button';
 import CarEl from '../car/car';
 import './race-row.scss';
 
 class RaceRow {
-  static create(id: number, name: string, color: HexColor) {
+  static create(id: number, name: string, color: string) {
     const row = document.createElement('div');
     row.className = 'race-row';
     row.id = String(id);

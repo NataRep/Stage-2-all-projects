@@ -1,7 +1,5 @@
-import { HexColor } from '../../utils/types';
-
 class CarEl {
-  static create(color: HexColor) {
+  static create(color: string) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('width', '120');
     svg.setAttribute('height', '36');
@@ -17,7 +15,7 @@ class CarEl {
     return svg;
   }
 
-  static changeColor(color: HexColor, element: HTMLElement) {
+  static changeColor(color: string, element: HTMLElement) {
     const svg = element.querySelector('svg') as SVGElement;
     const path = svg.querySelector('part') as SVGPathElement;
     path.setAttribute('fill', color);

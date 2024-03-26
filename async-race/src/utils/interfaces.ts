@@ -1,8 +1,6 @@
-import { HexColor } from './types';
-
 export interface Car {
   name: string;
-  color: HexColor;
+  color: string;
   id: number;
 }
 export interface SpeedCar {
