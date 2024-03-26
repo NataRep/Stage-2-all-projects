@@ -4,6 +4,7 @@ import Api from './api';
 class App {
   state: State;
   race: boolean;
+  carsElements: HTMLElement[];
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
