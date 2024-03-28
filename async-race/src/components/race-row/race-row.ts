@@ -14,10 +14,10 @@ class RaceRow {
     const topButtons = document.createElement('div');
     topButtons.className = 'race-row__top-button';
 
-    const buttonSelect = Button.create('Select', ['race-row__button, button_select'], () =>
+    const buttonSelect = Button.create('Select', ['race-row__button', 'button_select'], () =>
       console.log(`выбрана машина: ${id}`)
     );
-    const buttonRemove = Button.create('Remove', ['race-row__button, button_remove'], () =>
+    const buttonRemove = Button.create('Remove', ['race-row__button', 'button_remove'], () =>
       console.log(`удалена машина: ${id}`)
     );
 
@@ -30,8 +30,10 @@ class RaceRow {
 
     const controlButtons = document.createElement('div');
     controlButtons.className = 'race-row__control-buttons';
-    const buttonA = Button.create('A', ['race-row__button, button_start'], () => console.log(` машина поехала: ${id}`));
-    const buttonB = Button.create('B', ['race-row__button, button_reset'], () =>
+    const buttonA = Button.create('A', ['race-row__button', 'button_start'], () =>
+      console.log(` машина поехала: ${id}`)
+    );
+    const buttonB = Button.create('B', ['race-row__button', 'button_reset'], () =>
       console.log(` машина вернулась на старт: ${id}`)
     );
 

@@ -1,3 +1,4 @@
+import './page.scss';
 import App from '../app/app';
 import Navigation from '../components/nav/nav';
 

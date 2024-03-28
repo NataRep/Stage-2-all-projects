@@ -3,16 +3,14 @@ import App from '../app/app';
 import Form from '../components/form/form';
 import RaceTable from '../components/race-table.ts/race-table';
 import Page from './page';
+import { Car } from '../utils/interfaces';
 import Button from '../components/button/button';
 
 class GaragePageView extends Page {
-  app: App;
-
   constructor(app: App) {
     super(app);
-    this.app = app;
 
-    const formWrapper = this.createForm();
+    const formWrapper = this.createForm(app);
     const toolButtonsRow = this.createToolButtonsRow();
     this.mainContent.append(formWrapper);
     this.mainContent.append(toolButtonsRow);
@@ -22,20 +20,20 @@ class GaragePageView extends Page {
     this.mainContent.appendChild(description);
   }
 
-  private createForm(): HTMLElement {
+  private createForm(app: App): HTMLElement {
     const formWrapper = document.createElement('div');
     formWrapper.className = 'form-wrapper';
     const formCreateCar = Form.create(
-      this.app.state.inputCreateValue,
-      this.app.state.inputCreateColor,
+      app.state.inputCreateValue,
+      app.state.inputCreateColor,
       'form_create-car',
       'Create',
       ['button_create', 'button_blue'],
       () => console.log('создаю машинку')
     );
     const formUpdateCar = Form.create(
-      this.app.state.inputUpdateValue,
-      this.app.state.inputUpdateColor,
+      app.state.inputUpdateValue,
+      app.state.inputUpdateColor,
       'form_update-car',
       'Update',
       ['button_update', 'button_blue'],
@@ -63,6 +61,12 @@ class GaragePageView extends Page {
     buttonsWrapper.append(buttonGenerate);
 
     return buttonsWrapper;
+  }
+
+  public addRaceTable(app: App, cars: Car[]) {
+    app.raceTable = new RaceTable();
+    const table = app.raceTable.createTable(cars);
+    this.mainContent.append(table);
   }
 }
 

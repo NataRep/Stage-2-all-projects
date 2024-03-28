@@ -5,12 +5,17 @@ class RaceTable {
   rows: HTMLElement[];
   table: HTMLElement;
 
-  public createRaceTable(cars: Car[]): HTMLElement {
+  constructor() {
+    this.rows = [];
+  }
+
+  public createTable(cars: Car[]): HTMLElement {
     this.table = document.createElement('div');
     this.table.className = 'race-table';
 
     cars.forEach((car) => {
       const row = RaceRow.create(car.id, car.name, car.color);
+
       this.table.append(row);
       this.rows.push(row);
     });
