@@ -3,6 +3,11 @@ export interface Car {
   color: string;
   id: number;
 }
+
+export interface CarsData {
+  cars: Car[];
+  totalCount?: string;
+}
 export interface SpeedCar {
   velocity: number;
   distance: number;

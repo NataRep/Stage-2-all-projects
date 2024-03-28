@@ -1,4 +1,4 @@
-import { Car, SpeedCar, Winner } from '../utils/interfaces';
+import { Car, CarsData, SpeedCar, Winner } from '../utils/interfaces';
 
 const PORT = 'http://127.0.0.1:3000';
 class Api {
@@ -24,7 +24,7 @@ class Api {
     return (await response.json()) as Car;
   }
 
-  static async getCars(page?: number, limit?: number): Promise<{ cars: Car[]; totalCount?: string } | undefined> {
+  static async getCars(page?: number, limit?: number): Promise<CarsData | undefined> {
     const pathUrl: string = '/garage/';
     let fullUrl: string = PORT + pathUrl;
     if (page || limit) fullUrl = fullUrl + '?';

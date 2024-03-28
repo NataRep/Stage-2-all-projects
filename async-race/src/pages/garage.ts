@@ -14,10 +14,6 @@ class GaragePageView extends Page {
     const toolButtonsRow = this.createToolButtonsRow();
     this.mainContent.append(formWrapper);
     this.mainContent.append(toolButtonsRow);
-
-    const description = document.createElement('p');
-    description.textContent = 'Это пример минимального контента';
-    this.mainContent.appendChild(description);
   }
 
   private createForm(app: App): HTMLElement {
@@ -67,6 +63,18 @@ class GaragePageView extends Page {
     app.raceTable = new RaceTable();
     const table = app.raceTable.createTable(cars);
     this.mainContent.append(table);
+  }
+
+  public createCarsCounter(app: App, num: number) {
+    const counter: HTMLElement = document.createElement('div');
+    counter.className = 'cars-counter';
+    counter.innerHTML = `Garage (${num})`;
+    app.counterGarage = counter;
+    this.mainContent.append(counter);
+  }
+
+  public setCarsCounter(app: App, num: number) {
+    app.counterGarage.innerHTML = `Garage (${num})`;
   }
 }
 
