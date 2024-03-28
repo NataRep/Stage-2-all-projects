@@ -31,6 +31,7 @@ class App {
     this.pageNumberGarage = 1;
     this.pageNumberWinner = 1;
     const carsData = await Api.getCars(1, 7);
+    console.log(await Api.getCars());
     if (carsData.totalCount) {
       this.pageGarage.createCarsCounter(this, parseInt(carsData.totalCount));
     } else {
@@ -38,7 +39,7 @@ class App {
     }
     this.pageGarage.addRaceTable(this, carsData.cars);
     this.pageGarage.addPaginationButtons(this);
-    this.pageGarage.setPaginationButtons(this, carsData.cars);
+    this.pageGarage.setPaginationButtons(this, carsData);
     //рисуем страницу гаража:
     //инпуты значение берем из state
     //общее количество машин из полученного объекта

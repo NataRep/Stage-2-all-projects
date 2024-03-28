@@ -3,7 +3,7 @@ import App from '../app/app';
 import Form from '../components/form/form';
 import RaceTable from '../components/race-table.ts/race-table';
 import Page from './page';
-import { Car } from '../utils/interfaces';
+import { Car, CarsData } from '../utils/interfaces';
 import Button from '../components/button/button';
 
 class GaragePageView extends Page {
@@ -92,14 +92,20 @@ class GaragePageView extends Page {
     this.mainContent.append(pagination);
   }
 
-  public setPaginationButtons(app: App, cars: Car[]) {
+  public setPaginationButtons(app: App, cars: CarsData) {
     if (app.pageNumberGarage === 1) {
       app.paginationButtonGarage.prev.disabled = true;
     } else {
       app.paginationButtonGarage.prev.disabled = false;
     }
-    if (Math.ceil(cars.length / 7) === app.pageNumberGarage) {
-      app.paginationButtonGarage.next.disabled = true;
+    if (cars.totalCount) {
+      if (Math.ceil(Number(cars.totalCount) / 7) === app.pageNumberGarage) {
+        app.paginationButtonGarage.next.disabled = true;
+      }
+    } else if (!cars.totalCount) {
+      if (Math.ceil(cars.cars.length / 7) === app.pageNumberGarage) {
+        app.paginationButtonGarage.next.disabled = true;
+      }
     } else {
       app.paginationButtonGarage.next.disabled = false;
     }
