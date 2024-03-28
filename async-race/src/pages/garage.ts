@@ -30,7 +30,7 @@ class GaragePageView extends Page {
       this.app.state.inputCreateColor,
       'form_create-car',
       'Create',
-      ['button_create'],
+      ['button_create', 'button_blue'],
       () => console.log('создаю машинку')
     );
     const formUpdateCar = Form.create(
@@ -38,7 +38,7 @@ class GaragePageView extends Page {
       this.app.state.inputUpdateColor,
       'form_update-car',
       'Update',
-      ['button_update'],
+      ['button_update', 'button_blue'],
       () => console.log('изменяю машинку')
     );
 
@@ -51,9 +51,13 @@ class GaragePageView extends Page {
     const buttonsWrapper = document.createElement('div');
     buttonsWrapper.className = 'tool-buttons';
 
-    const buttonRace = Button.create('Race', ['button_race'], () => console.log('начинаем гонку'));
-    const buttonReset = Button.create('Reset', ['button_reset'], () => console.log('возвращаем на исходные позиции'));
-    const buttonGenerate = Button.create('Generate', ['button_generate'], () => console.log('создаем 100 машинок'));
+    const buttonRace = Button.create('Race', ['button_race', 'button_green'], () => console.log('начинаем гонку'));
+    const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () =>
+      console.log('возвращаем на исходные позиции')
+    );
+    const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () =>
+      console.log('создаем 100 машинок')
+    );
     buttonsWrapper.append(buttonRace);
     buttonsWrapper.append(buttonReset);
     buttonsWrapper.append(buttonGenerate);

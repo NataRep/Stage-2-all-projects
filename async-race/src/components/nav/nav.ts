@@ -7,12 +7,12 @@ class Navigation {
   constructor(app: App) {
     this.nav = document.createElement('nav');
 
-    const buttonToGarage = Button.create('To garage', ['nav__button'], () => {
+    const buttonToGarage = Button.create('To garage', ['nav__button', 'button_green'], () => {
       app.pageGarage.clearContent();
       app.pageGarage.render();
     });
 
-    const buttonToWinner = Button.create('To winners', ['nav__button'], () => {
+    const buttonToWinner = Button.create('To winners', ['nav__button', 'button_green'], () => {
       app.pageWinners.clearContent();
       app.pageWinners.render();
     });

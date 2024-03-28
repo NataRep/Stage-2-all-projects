@@ -6,6 +6,7 @@ class Button {
     className.forEach((str) => button.classList.add(str));
     button.innerHTML = text;
     button.addEventListener('click', handler);
+    button.addEventListener('click', (event: Event) => event.preventDefault());
     return button;
   }
 }

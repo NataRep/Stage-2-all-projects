@@ -1,0 +1,21 @@
+:root {
+  --color-black: #252525;
+  --color-white: #e4e9e9;
+  --color-green: #2ec66d;
+  --color-green-secondary: #27a75d;
+  --color-blue: #3292d4;
+  --color-blue-secondary: #287bb2;
+  --color-red: #e85152;
+  --color-red-secondary: #e33636;
+  --color-gray-light: #959ea3;
+  --color-gray: #959ea3;
+}
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+  background-color: var(--color-black);
+  //font-family: 'Sono', monospace;
+  font-family: 'Victor Mono', monospace;
+  color: var(--color-white);
+}

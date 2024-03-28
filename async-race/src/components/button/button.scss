@@ -1,45 +1,53 @@
 @import './../../utils/variables.scss';
 
-.button {
-  background-color: var(--color-red-main);
-  color: var(--color-white);
-  border: none;
-  box-shadow: var(--shadow);
-
+@mixin hover($colorHover) {
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background-color: var(--color-red-dark);
+      background-color: $colorHover;
     }
   }
   &:active {
-    background-color: var(--color-red-dark);
-    color: var(--color-grey-light);
+    background-color: $colorHover;
   }
+}
+
+.button {
+  background-color: var(--color-gray-light);
+  color: var(--color-black);
+  box-shadow: inset 0px 0px 8px #00000087;
+  border: none;
+  border-radius: 0.35rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 100%;
+  letter-spacing: 0.03rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: all 0.3s;
+
+  &:last-child {
+    margin-right: 0rem;
+  }
+
   &:disabled {
     background-color: var(--color-grey-light);
     color: var(--color-white);
   }
 
-  &_big {
-    border-radius: 0.5rem;
-    padding: 0 3rem;
-    font-weight: 500;
-    font-size: 2.5rem;
-    line-height: 180%;
-    letter-spacing: 0.03rem;
-    text-transform: uppercase;
+  &_green {
+    background-color: var(--color-green);
+    @include hover(var(--color-green-secondary));
   }
-  &_small {
-    border-radius: 0.35rem;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 100%;
-    letter-spacing: 0.03rem;
-    text-transform: uppercase;
+  &_blue {
+    background-color: var(--color-blue);
+    @include hover(var(--color-blue-secondary));
   }
 
-  &_logout {
-    float: right;
+  &_red {
+    background-color: var(--color-red);
+
+    @include hover(var(--color-red-secondary));
   }
 }
