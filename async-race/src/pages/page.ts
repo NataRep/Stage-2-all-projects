@@ -3,7 +3,7 @@ import App from '../app/app';
 import Navigation from '../components/nav/nav';
 
 class Page {
-  protected mainContent: HTMLElement;
+  public mainContent: HTMLElement;
 
   constructor(app: App) {
     this.mainContent = document.createElement('div');

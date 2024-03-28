@@ -1,4 +1,5 @@
 import './garage.scss';
+import Api from '../app/api';
 import App from '../app/app';
 import Form from '../components/form/form';
 import RaceTable from '../components/race-table.ts/race-table';
@@ -59,10 +60,10 @@ class GaragePageView extends Page {
     return buttonsWrapper;
   }
 
-  public addRaceTable(app: App, cars: Car[]) {
+  public createRaceTable(app: App, cars: Car[]): HTMLElement {
     app.raceTable = new RaceTable();
     const table = app.raceTable.createTable(cars);
-    this.mainContent.append(table);
+    return table;
   }
 
   public createCarsCounter(app: App, num: number) {
@@ -81,10 +82,10 @@ class GaragePageView extends Page {
     const pagination = document.createElement('div');
     pagination.className = 'pagination';
     const buttonPrev = Button.create('Previous', ['pagination__button', 'button_blue'], () =>
-      console.log('листаем назад')
+      this.creatPrevPage.bind(this, app)()
     );
     const buttonNext = Button.create('Next', ['pagination__button', 'button_blue'], () =>
-      console.log('листаем вперед')
+      this.creatNextPage.bind(this, app)()
     );
     app.paginationButtonGarage = { prev: buttonPrev, next: buttonNext };
     pagination.append(buttonPrev);
@@ -98,17 +99,28 @@ class GaragePageView extends Page {
     } else {
       app.paginationButtonGarage.prev.disabled = false;
     }
-    if (cars.totalCount) {
-      if (Math.ceil(Number(cars.totalCount) / 7) === app.pageNumberGarage) {
-        app.paginationButtonGarage.next.disabled = true;
-      }
-    } else if (!cars.totalCount) {
-      if (Math.ceil(cars.cars.length / 7) === app.pageNumberGarage) {
-        app.paginationButtonGarage.next.disabled = true;
-      }
+    if (Math.ceil(Number(cars.totalCount) / 7) === app.pageNumberGarage) {
+      app.paginationButtonGarage.next.disabled = true;
     } else {
       app.paginationButtonGarage.next.disabled = false;
     }
+  }
+
+  private async creatNextPage(app: App) {
+    app.pageNumberGarage += 1;
+    const carsData = await Api.getCars(app.pageNumberGarage, 7);
+    app.raceTable.table.remove();
+    app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
+    app.counterGarage.after(app.raceTable.table);
+    this.setPaginationButtons(app, carsData);
+  }
+  private async creatPrevPage(app: App) {
+    app.pageNumberGarage -= 1;
+    const carsData = await Api.getCars(app.pageNumberGarage, 7);
+    app.raceTable.table.remove();
+    app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
+    app.counterGarage.after(app.raceTable.table);
+    this.setPaginationButtons(app, carsData);
   }
 }
 

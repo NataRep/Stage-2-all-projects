@@ -37,7 +37,8 @@ class App {
     } else {
       this.pageGarage.createCarsCounter(this, carsData.cars.length);
     }
-    this.pageGarage.addRaceTable(this, carsData.cars);
+    const raceTable = this.pageGarage.createRaceTable(this, carsData.cars);
+    this.pageGarage.mainContent.append(raceTable);
     this.pageGarage.addPaginationButtons(this);
     this.pageGarage.setPaginationButtons(this, carsData);
     //рисуем страницу гаража:
