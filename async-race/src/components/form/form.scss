@@ -1,15 +1,33 @@
+@import './../../utils/variables.scss';
+
 .form {
-  width: 22.5rem;
+  width: 24rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
 
   &:last-child {
     margin-bottom: 0rem;
   }
 
   .input_text {
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-white);
+    height: 1.75rem;
+    border-radius: 0.25rem;
   }
   .input_color {
     margin-right: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('./../../images/color.svg') no-repeat left 4px center;
+    padding-left: 1.75rem;
+    width: 4.5rem;
+    height: 2rem;
+    border: solid 2px var(--color-white);
+    border-radius: 0.35rem;
+    cursor: pointer;
   }
 }

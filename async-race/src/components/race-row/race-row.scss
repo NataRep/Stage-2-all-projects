@@ -1,0 +1,31 @@
+.race-row {
+  margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__top-row {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+  }
+
+  &__top-buttons {
+    margin-right: 1rem;
+  }
+  &__track {
+    height: 3rem;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: dashed 2px var(--color-white);
+    background-image: url('./../../images/flag.svg');
+    background-repeat: no-repeat;
+    background-position: right 90px bottom 3px;
+    background-size: auto;
+  }
+
+  &__control-buttons {
+    align-self: flex-start;
+    margin-right: 1rem;
+  }
+}

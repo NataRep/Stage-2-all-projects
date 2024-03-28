@@ -12,13 +12,17 @@ class RaceRow {
     top.className = 'race-row__top-row';
 
     const topButtons = document.createElement('div');
-    topButtons.className = 'race-row__top-button';
+    topButtons.className = 'race-row__top-buttons';
 
-    const buttonSelect = Button.create('Select', ['race-row__button', 'button_select'], () =>
-      console.log(`выбрана машина: ${id}`)
+    const buttonSelect = Button.create(
+      'Select',
+      ['race-row__button', 'button_select', 'button_small', 'button_blue'],
+      () => console.log(`выбрана машина: ${id}`)
     );
-    const buttonRemove = Button.create('Remove', ['race-row__button', 'button_remove'], () =>
-      console.log(`удалена машина: ${id}`)
+    const buttonRemove = Button.create(
+      'Remove',
+      ['race-row__button', 'button_remove', 'button_small', 'button_blue'],
+      () => console.log(`удалена машина: ${id}`)
     );
 
     const carName = document.createElement('div');
@@ -30,18 +34,21 @@ class RaceRow {
 
     const controlButtons = document.createElement('div');
     controlButtons.className = 'race-row__control-buttons';
-    const buttonA = Button.create('A', ['race-row__button', 'button_start'], () =>
+    const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], () =>
       console.log(` машина поехала: ${id}`)
     );
-    const buttonB = Button.create('B', ['race-row__button', 'button_reset'], () =>
+    const buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () =>
       console.log(` машина вернулась на старт: ${id}`)
     );
+    buttonB.disabled = true;
 
     const car = CarEl.create(color);
 
     topButtons.append(buttonSelect);
     topButtons.append(buttonRemove);
     top.append(topButtons);
+
+    top.append(carName);
     controlButtons.append(buttonA);
     controlButtons.append(buttonB);
     track.append(controlButtons);

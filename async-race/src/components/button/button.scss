@@ -12,7 +12,7 @@
 }
 
 .button {
-  background-color: var(--color-grey-light);
+  background-color: var(--color-red);
   color: var(--color-black);
   border: none;
   border-radius: 0.35rem;
@@ -32,7 +32,7 @@
   }
 
   &:disabled {
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey);
     pointer-events: none;
   }
 
@@ -49,5 +49,46 @@
     background-color: var(--color-red);
 
     @include hover(var(--color-red-secondary));
+  }
+  &_small {
+    border-radius: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+
+  &_cars-control {
+    background: none;
+    border: solid 2px var(--color-green);
+    color: var(--color-green);
+    border-radius: 0.35rem;
+    padding: 0.5rem;
+    width: 2.25rem;
+    margin-right: 0.25rem;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--color-green-secondary);
+        border: solid 2px var(--color-green-secondary);
+        color: var(--color-black);
+      }
+    }
+    &:active {
+      background: var(--color-green-secondary);
+      border: solid 2px var(--color-green-secondary);
+      color: var(--color-black);
+    }
+
+    &.active {
+      background: var(--color-green);
+      color: var(--color-black);
+    }
+
+    &:disabled {
+      background: none;
+      border: solid 2px var(--color-grey);
+      color: var(--color-grey);
+      pointer-events: none;
+    }
   }
 }
