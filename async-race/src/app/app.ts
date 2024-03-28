@@ -18,8 +18,8 @@ class App {
     //получаем данные объект: { cars: data, totalCount };:
     //const carsData = await Api.getCars(1, 7);
     //console.log(carsData);
-    this.pageGarage = new GaragePageView(this.state, this);
-    this.pageWinners = new WinnersPageView(this.state, this);
+    this.pageGarage = new GaragePageView(this);
+    this.pageWinners = new WinnersPageView(this);
     this.pageGarage.render();
     //рисуем страницу гаража:
     //инпуты значение берем из state

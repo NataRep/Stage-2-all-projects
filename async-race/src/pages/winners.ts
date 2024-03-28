@@ -3,7 +3,7 @@ import { State } from '../app/state';
 import Page from './page';
 
 class WinnersPageView extends Page {
-  constructor(state: State, app: App) {
+  constructor(app: App) {
     super(app);
 
     const title = document.createElement('h1');
