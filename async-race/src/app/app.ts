@@ -17,6 +17,7 @@ class App {
   paginationButtonGarage: PaginationButtons;
   pageNumberWinner: number;
   paginationButtonWinner: PaginationButtons;
+  formUpdateCar: HTMLElement;
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
@@ -31,7 +32,6 @@ class App {
     this.pageNumberGarage = 1;
     this.pageNumberWinner = 1;
     const carsData = await Api.getCars(1, 7);
-    console.log(await Api.getCars());
     if (carsData.totalCount) {
       this.pageGarage.createCarsCounter(this, parseInt(carsData.totalCount));
     } else {
@@ -41,11 +41,6 @@ class App {
     this.pageGarage.mainContent.append(raceTable);
     this.pageGarage.addPaginationButtons(this);
     this.pageGarage.setPaginationButtons(this, carsData);
-    //рисуем страницу гаража:
-    //инпуты значение берем из state
-    //общее количество машин из полученного объекта
-    //номер страницы из sate
-    //все машины в статусе started
   }
 }
 

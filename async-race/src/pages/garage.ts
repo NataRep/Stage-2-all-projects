@@ -36,6 +36,7 @@ class GaragePageView extends Page {
       ['button_update', 'button_blue'],
       () => console.log('изменяю машинку')
     );
+    app.formUpdateCar = formUpdateCar;
 
     formWrapper.append(formCreateCar);
     formWrapper.append(formUpdateCar);
@@ -62,7 +63,7 @@ class GaragePageView extends Page {
 
   public createRaceTable(app: App, cars: Car[]): HTMLElement {
     app.raceTable = new RaceTable();
-    const table = app.raceTable.createTable(cars);
+    const table = app.raceTable.createTable(cars, app);
     return table;
   }
 

@@ -1,9 +1,11 @@
 import Button from '../button/button';
 import CarEl from '../car/car';
+import App from '../../app/app';
+import Api from '../../app/api';
 import './race-row.scss';
 
 class RaceRow {
-  static create(id: number, name: string, color: string) {
+  static create(id: number, name: string, color: string, app: App) {
     const row = document.createElement('div');
     row.className = 'race-row';
     row.id = String(id);
@@ -22,7 +24,15 @@ class RaceRow {
     const buttonRemove = Button.create(
       'Remove',
       ['race-row__button', 'button_remove', 'button_small', 'button_blue'],
-      () => console.log(`удалена машина: ${id}`)
+      async () => {
+        await Api.deleteCar(id);
+        const carsData = await Api.getCars(app.pageNumberGarage, 7);
+        app.raceTable.table.remove();
+        app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
+        app.counterGarage.after(app.raceTable.table);
+        app.pageGarage.setCarsCounter(app, Number(carsData.totalCount));
+        app.pageGarage.setPaginationButtons(app, carsData);
+      }
     );
 
     const carName = document.createElement('div');
