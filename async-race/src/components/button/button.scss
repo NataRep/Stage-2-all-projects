@@ -12,9 +12,8 @@
 }
 
 .button {
-  background-color: var(--color-gray-light);
+  background-color: var(--color-grey-light);
   color: var(--color-black);
-  // box-shadow: inset 0px 0px 8px #00000087;
   border: none;
   border-radius: 0.35rem;
   padding: 0.5rem 1rem;
@@ -34,7 +33,7 @@
 
   &:disabled {
     background-color: var(--color-grey-light);
-    color: var(--color-white);
+    pointer-events: none;
   }
 
   &_green {

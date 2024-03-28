@@ -3,6 +3,7 @@ import Api from './api';
 import GaragePageView from '../pages/garage';
 import WinnersPageView from '../pages/winners';
 import RaceTable from '../components/race-table.ts/race-table';
+import { PaginationButtons } from '../utils/interfaces';
 
 class App {
   state: State;
@@ -12,6 +13,10 @@ class App {
   pageWinners: WinnersPageView;
   raceTable: RaceTable;
   counterGarage: HTMLElement;
+  pageNumberGarage: number;
+  paginationButtonGarage: PaginationButtons;
+  pageNumberWinner: number;
+  paginationButtonWinner: PaginationButtons;
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
@@ -23,6 +28,8 @@ class App {
     this.pageWinners = new WinnersPageView(this);
     this.pageGarage.render();
     this.raceTable = new RaceTable();
+    this.pageNumberGarage = 1;
+    this.pageNumberWinner = 1;
     const carsData = await Api.getCars(1, 7);
     if (carsData.totalCount) {
       this.pageGarage.createCarsCounter(this, parseInt(carsData.totalCount));
@@ -30,6 +37,8 @@ class App {
       this.pageGarage.createCarsCounter(this, carsData.cars.length);
     }
     this.pageGarage.addRaceTable(this, carsData.cars);
+    this.pageGarage.addPaginationButtons(this);
+    this.pageGarage.setPaginationButtons(this, carsData.cars);
     //рисуем страницу гаража:
     //инпуты значение берем из state
     //общее количество машин из полученного объекта

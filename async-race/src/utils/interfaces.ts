@@ -24,3 +24,8 @@ export interface carState {
   speed: number;
   position: number;
 }
+
+export interface PaginationButtons {
+  prev: HTMLButtonElement;
+  next: HTMLButtonElement;
+}

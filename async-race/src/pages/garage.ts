@@ -76,6 +76,34 @@ class GaragePageView extends Page {
   public setCarsCounter(app: App, num: number) {
     app.counterGarage.innerHTML = `Garage (${num})`;
   }
+
+  public addPaginationButtons(app: App) {
+    const pagination = document.createElement('div');
+    pagination.className = 'pagination';
+    const buttonPrev = Button.create('Previous', ['pagination__button', 'button_blue'], () =>
+      console.log('листаем назад')
+    );
+    const buttonNext = Button.create('Next', ['pagination__button', 'button_blue'], () =>
+      console.log('листаем вперед')
+    );
+    app.paginationButtonGarage = { prev: buttonPrev, next: buttonNext };
+    pagination.append(buttonPrev);
+    pagination.append(buttonNext);
+    this.mainContent.append(pagination);
+  }
+
+  public setPaginationButtons(app: App, cars: Car[]) {
+    if (app.pageNumberGarage === 1) {
+      app.paginationButtonGarage.prev.disabled = true;
+    } else {
+      app.paginationButtonGarage.prev.disabled = false;
+    }
+    if (Math.ceil(cars.length / 7) === app.pageNumberGarage) {
+      app.paginationButtonGarage.next.disabled = true;
+    } else {
+      app.paginationButtonGarage.next.disabled = false;
+    }
+  }
 }
 
 export default GaragePageView;
