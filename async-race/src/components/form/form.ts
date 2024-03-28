@@ -11,7 +11,7 @@ class Form {
     buttonHandler: (event: Event) => void
   ): HTMLDivElement {
     const wrapper: HTMLDivElement = document.createElement('div');
-    wrapper.className = 'form-wrapper';
+    wrapper.className = 'form';
 
     const form: HTMLFormElement = document.createElement('form');
     form.className = `form_${className} form`;

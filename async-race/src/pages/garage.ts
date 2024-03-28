@@ -1,5 +1,5 @@
+import './garage.scss';
 import App from '../app/app';
-import { State } from '../app/state';
 import Form from '../components/form/form';
 import RaceTable from '../components/race-table.ts/race-table';
 import Page from './page';
