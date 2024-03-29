@@ -6,6 +6,7 @@ import RaceTable from '../components/race-table.ts/race-table';
 import Page from './page';
 import { Car, CarsData } from '../utils/interfaces';
 import Button from '../components/button/button';
+import CarEl from '../components/car/car';
 
 class GaragePageView extends Page {
   constructor(app: App) {
@@ -54,7 +55,7 @@ class GaragePageView extends Page {
       'update-car',
       'Update',
       ['button_update', 'button_blue'],
-      async (event: Event) => app.updateCar(event, app.selectedCarId)
+      async (event: Event) => this.updateCar(event, app, app.selectedCarId)
     );
     app.formUpdateCar = formUpdateCar;
     const buttonUpdate = formUpdateCar.querySelector('button') as HTMLButtonElement;
@@ -152,6 +153,17 @@ class GaragePageView extends Page {
     app.counterGarage.after(app.raceTable.table);
     this.setPaginationButtons(app, carsData);
     this.setCarsCounter(app, parseInt(carsData.totalCount));
+  }
+
+  private async updateCar(event: Event, app: App, id: number) {
+    const inputText = app.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
+    const inputColor = app.formUpdateCar.querySelector('.input_color') as HTMLInputElement;
+    const name = inputText.value;
+    const color = inputColor.value;
+    app.selectedCarName.innerHTML = name;
+    CarEl.changeColor(color, app.selectedCarSVG);
+    CarEl.changeName(name, app.selectedCarName);
+    await Api.updateCar(id, name, color);
   }
 }
 

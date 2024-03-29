@@ -48,17 +48,6 @@ class App {
     this.pageGarage.addPaginationButtons(this);
     this.pageGarage.setPaginationButtons(this, carsData);
   }
-
-  public async updateCar(event: Event, id: number) {
-    const inputText = this.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
-    const inputColor = this.formUpdateCar.querySelector('.input_color') as HTMLInputElement;
-    const name = inputText.value;
-    const color = inputColor.value;
-    this.selectedCarName.innerHTML = name;
-    CarEl.changeColor(color, this.selectedCarSVG);
-    CarEl.changeName(name, this.selectedCarName);
-    await Api.updateCar(id, name, color);
-  }
 }
 
 export default App;
