@@ -9,31 +9,10 @@ class RaceRow {
     const row = document.createElement('div');
     row.className = 'race-row';
     row.id = String(id);
-
     const top = document.createElement('div');
     top.className = 'race-row__top-row';
-
     const topButtons = document.createElement('div');
     topButtons.className = 'race-row__top-buttons';
-
-    const buttonSelect = Button.create(
-      'Select',
-      ['race-row__button', 'button_select', 'button_small', 'button_blue'],
-      () => console.log(`выбрана машина: ${id}`)
-    );
-    const buttonRemove = Button.create(
-      'Remove',
-      ['race-row__button', 'button_remove', 'button_small', 'button_blue'],
-      async () => {
-        await Api.deleteCar(id);
-        const carsData = await Api.getCars(app.pageNumberGarage, 7);
-        app.raceTable.table.remove();
-        app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
-        app.counterGarage.after(app.raceTable.table);
-        app.pageGarage.setCarsCounter(app, Number(carsData.totalCount));
-        app.pageGarage.setPaginationButtons(app, carsData);
-      }
-    );
 
     const carName = document.createElement('div');
     carName.className = 'race-row__car-name';
@@ -54,6 +33,25 @@ class RaceRow {
 
     const car = CarEl.create(color);
 
+    const buttonSelect = Button.create(
+      'Select',
+      ['race-row__button', 'button_select', 'button_small', 'button_blue'],
+      this.buttonSelectOnClick.bind(this, event, this, app, id, carName, car)
+    );
+    const buttonRemove = Button.create(
+      'Remove',
+      ['race-row__button', 'button_remove', 'button_small', 'button_blue'],
+      async () => {
+        await Api.deleteCar(id);
+        const carsData = await Api.getCars(app.pageNumberGarage, 7);
+        app.raceTable.table.remove();
+        app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
+        app.counterGarage.after(app.raceTable.table);
+        app.pageGarage.setCarsCounter(app, Number(carsData.totalCount));
+        app.pageGarage.setPaginationButtons(app, carsData);
+      }
+    );
+
     topButtons.append(buttonSelect);
     topButtons.append(buttonRemove);
     top.append(topButtons);
@@ -67,6 +65,48 @@ class RaceRow {
     row.append(track);
 
     return row;
+  }
+
+  static async buttonSelectOnClick(
+    event: Event,
+    buttonSelect: HTMLButtonElement,
+    app: App,
+    id: number,
+    nameEl: HTMLElement,
+    svg: SVGElement
+  ) {
+    app.formUpdateCar.querySelector('button').disabled = false;
+    const inputText = app.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
+    const inputColor = app.formUpdateCar.querySelector('.input_color') as HTMLInputElement;
+    const button = app.formUpdateCar.querySelector('button') as HTMLButtonElement;
+    inputText.focus();
+    const carData = await Api.getCar(id);
+    inputText.value = carData.name;
+    inputColor.value = carData.color;
+    app.selectedCarId = id;
+    app.selectedCarName = nameEl;
+    app.selectedCarSVG = svg;
+    buttonSelect.disabled = true;
+    const buttons = app.raceTable.table.querySelectorAll('.button');
+    buttons.forEach((button: HTMLButtonElement) => (button.disabled = true));
+
+    //отменяем выделение машины
+    document.body.addEventListener('click', function onClick(event: Event) {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.form_update-car') || event.target === button) {
+        buttons.forEach((button: HTMLButtonElement) => {
+          if (!button.classList.contains('button_reset')) {
+            button.disabled = false;
+          }
+        });
+        button.disabled = true;
+        buttonSelect.disabled = false;
+        inputText.value = '';
+        inputColor.value = '#ffffff';
+        document.body.removeEventListener('click', onClick);
+        app.selectedCarId = null;
+      }
+    });
   }
 }
 

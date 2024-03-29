@@ -60,6 +60,10 @@
   &_remove {
     @include hover(var(--color-red));
   }
+  &.selected {
+    background-color: var(--color-yellow);
+    @include hover(var(-color-yellow-secondary));
+  }
 
   &_cars-control {
     background: none;

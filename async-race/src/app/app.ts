@@ -4,6 +4,7 @@ import GaragePageView from '../pages/garage';
 import WinnersPageView from '../pages/winners';
 import RaceTable from '../components/race-table.ts/race-table';
 import { PaginationButtons } from '../utils/interfaces';
+import CarEl from '../components/car/car';
 
 class App {
   state: State;
@@ -18,6 +19,10 @@ class App {
   pageNumberWinner: number;
   paginationButtonWinner: PaginationButtons;
   formUpdateCar: HTMLElement;
+  formCreateCar: HTMLElement;
+  selectedCarId: number;
+  selectedCarName: HTMLElement;
+  selectedCarSVG: SVGElement;
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
@@ -41,6 +46,17 @@ class App {
     this.pageGarage.mainContent.append(raceTable);
     this.pageGarage.addPaginationButtons(this);
     this.pageGarage.setPaginationButtons(this, carsData);
+  }
+
+  public async updateCar(event: Event, id: number) {
+    const inputText = this.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
+    const inputColor = this.formUpdateCar.querySelector('.input_color') as HTMLInputElement;
+    const name = inputText.value;
+    const color = inputColor.value;
+    this.selectedCarName.innerHTML = name;
+    CarEl.changeColor(color, this.selectedCarSVG);
+    CarEl.changeName(name, this.selectedCarName);
+    await Api.updateCar(id, name, color);
   }
 }
 

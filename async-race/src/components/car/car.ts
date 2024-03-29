@@ -15,15 +15,13 @@ class CarEl {
     return svg;
   }
 
-  static changeColor(color: string, element: HTMLElement) {
-    const svg = element.querySelector('svg') as SVGElement;
-    const path = svg.querySelector('part') as SVGPathElement;
+  static changeColor(color: string, svg: SVGElement) {
+    const path = svg.querySelector('path') as SVGPathElement;
     path.setAttribute('fill', color);
   }
 
-  static changeName(value: string, element: HTMLElement) {
-    const name = document.querySelector('row-car__name') as HTMLElement;
-    name.innerHTML = value;
+  static changeName(value: string, nameEl: HTMLElement) {
+    nameEl.innerHTML = value;
   }
 }
 export default CarEl;

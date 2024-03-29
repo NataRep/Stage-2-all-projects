@@ -23,20 +23,23 @@ class GaragePageView extends Page {
     const formCreateCar = Form.create(
       app.state.inputCreateValue,
       app.state.inputCreateColor,
-      'form_create-car',
+      'create-car',
       'Create',
       ['button_create', 'button_blue'],
       () => console.log('создаю машинку')
     );
+    app.formCreateCar = formCreateCar;
     const formUpdateCar = Form.create(
       app.state.inputUpdateValue,
       app.state.inputUpdateColor,
-      'form_update-car',
+      'update-car',
       'Update',
       ['button_update', 'button_blue'],
-      () => console.log('изменяю машинку')
+      async (event: Event) => app.updateCar(event, app.selectedCarId)
     );
     app.formUpdateCar = formUpdateCar;
+    const buttonUpdate = formUpdateCar.querySelector('button') as HTMLButtonElement;
+    buttonUpdate.disabled = true;
 
     formWrapper.append(formCreateCar);
     formWrapper.append(formUpdateCar);
