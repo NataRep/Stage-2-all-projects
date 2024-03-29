@@ -49,6 +49,9 @@ class RaceRow {
         app.counterGarage.after(app.raceTable.table);
         app.pageGarage.setCarsCounter(app, Number(carsData.totalCount));
         app.pageGarage.setPaginationButtons(app, carsData);
+        if (app.raceTable.rows.length === 0) {
+          app.pageGarage.creatPrevPage(app);
+        }
       }
     );
 

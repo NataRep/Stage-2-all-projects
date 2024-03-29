@@ -81,9 +81,10 @@ class GaragePageView extends Page {
 
     const buttonRace = Button.create('Race', ['button_race', 'button_green'], () => console.log('начинаем гонку'));
     app.buttonRace = buttonRace;
-    const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () =>
-      console.log('возвращаем на исходные позиции')
-    );
+    const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () => {
+      console.log('возвращаем на исходные позиции');
+      //Использовать app.raceTable - там хранятся строки эллементов на странице
+    });
     app.buttonReset = buttonReset;
     const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () => this.generateCars(app));
     app.buttonGenerate = buttonGenerate;
@@ -144,7 +145,7 @@ class GaragePageView extends Page {
     app.pageNumberGarage += 1;
     this.updateCarsTable(app);
   }
-  private async creatPrevPage(app: App) {
+  public async creatPrevPage(app: App) {
     app.pageNumberGarage -= 1;
     this.updateCarsTable(app);
   }
