@@ -1,6 +1,6 @@
 import { CarsMaker } from '../utils/interfaces';
 
-export const carsMakers: CarsMaker[] = [
+export const MAKERS: CarsMaker[] = [
   {
     maker: 'Toyota',
     models: ['Camry', 'Corolla', 'RAV4', 'Highlander', 'Prius', 'Tacoma', 'Sienna', 'Tundra', '4Runner', 'Yaris'],

@@ -7,13 +7,15 @@ import Page from './page';
 import { Car, CarsData } from '../utils/interfaces';
 import Button from '../components/button/button';
 import CarEl from '../components/car/car';
+import { COLORS } from '../assets/colors';
+import { MAKERS } from '../assets/carsMakers';
 
 class GaragePageView extends Page {
   constructor(app: App) {
     super(app);
 
     const formWrapper = this.createForm(app);
-    const toolButtonsRow = this.createToolButtonsRow();
+    const toolButtonsRow = this.createToolButtonsRow(app);
     this.mainContent.append(formWrapper);
     this.mainContent.append(toolButtonsRow);
   }
@@ -73,7 +75,7 @@ class GaragePageView extends Page {
     return errorMessageEl;
   }
 
-  private createToolButtonsRow(): HTMLElement {
+  private createToolButtonsRow(app: App): HTMLElement {
     const buttonsWrapper = document.createElement('div');
     buttonsWrapper.className = 'tool-buttons';
 
@@ -81,9 +83,8 @@ class GaragePageView extends Page {
     const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () =>
       console.log('возвращаем на исходные позиции')
     );
-    const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () =>
-      console.log('создаем 100 машинок')
-    );
+    const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () => this.generateCars(app));
+    app.buttonGenerate = buttonGenerate;
     buttonsWrapper.append(buttonRace);
     buttonsWrapper.append(buttonReset);
     buttonsWrapper.append(buttonGenerate);
@@ -164,6 +165,29 @@ class GaragePageView extends Page {
     CarEl.changeColor(color, app.selectedCarSVG);
     CarEl.changeName(name, app.selectedCarName);
     await Api.updateCar(id, name, color);
+  }
+
+  private async generateCars(app: App) {
+    app.buttonGenerate.disabled = true;
+    const downloadMassege = document.createElement('div');
+    downloadMassege.className = 'download-massege';
+    downloadMassege.innerHTML = 'Cars are created...';
+    app.buttonGenerate.after(downloadMassege);
+    let name: string;
+    let color: string;
+    for (let i = 0; i < 100; i += 1) {
+      color = COLORS[getRandom(COLORS)];
+      let maker = MAKERS[getRandom(MAKERS)];
+      name = `${maker.maker} ${maker.models[getRandom(maker.models)]}`;
+      await Api.createCar(name, color);
+    }
+    this.updateCarsTable(app);
+
+    function getRandom<T>(array: T[]): number {
+      return Math.floor(Math.random() * array.length);
+    }
+    app.buttonGenerate.disabled = false;
+    downloadMassege.remove();
   }
 }
 
