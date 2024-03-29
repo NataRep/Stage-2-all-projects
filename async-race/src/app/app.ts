@@ -5,6 +5,7 @@ import WinnersPageView from '../pages/winners';
 import RaceTable from '../components/race-table.ts/race-table';
 import { PaginationButtons } from '../utils/interfaces';
 import CarEl from '../components/car/car';
+import RaceRow from '../components/race-row/race-row';
 
 class App {
   state: State;

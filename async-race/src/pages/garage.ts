@@ -20,13 +20,32 @@ class GaragePageView extends Page {
   private createForm(app: App): HTMLElement {
     const formWrapper = document.createElement('div');
     formWrapper.className = 'form-wrapper';
+    //creat error massege for createCar
+    let isErrorMessage: boolean = false;
+    const errorMessageEl = this.createErrorMassege();
     const formCreateCar = Form.create(
       app.state.inputCreateValue,
       app.state.inputCreateColor,
       'create-car',
       'Create',
       ['button_create', 'button_blue'],
-      () => console.log('создаю машинку')
+      async () => {
+        const inputText = app.formCreateCar.querySelector('.input_text') as HTMLInputElement;
+        const inputColor = app.formCreateCar.querySelector('.input_color') as HTMLInputElement;
+        const name = inputText.value;
+        const color = inputColor.value;
+        if (name != '') {
+          await Api.createCar(name, color);
+          this.updateCarsTable(app);
+          inputText.value = '';
+          inputColor.value = '#ffffff';
+          console.log(isErrorMessage);
+          if (isErrorMessage) errorMessageEl.remove();
+        } else {
+          app.formCreateCar.append(errorMessageEl);
+          isErrorMessage = true;
+        }
+      }
     );
     app.formCreateCar = formCreateCar;
     const formUpdateCar = Form.create(
@@ -44,6 +63,13 @@ class GaragePageView extends Page {
     formWrapper.append(formCreateCar);
     formWrapper.append(formUpdateCar);
     return formWrapper;
+  }
+
+  private createErrorMassege(): HTMLElement {
+    const errorMessageEl: HTMLElement = document.createElement('p');
+    errorMessageEl.className = 'input__error';
+    errorMessageEl.innerHTML = 'Please enter a name';
+    return errorMessageEl;
   }
 
   private createToolButtonsRow(): HTMLElement {
@@ -112,14 +138,14 @@ class GaragePageView extends Page {
 
   private async creatNextPage(app: App) {
     app.pageNumberGarage += 1;
-    const carsData = await Api.getCars(app.pageNumberGarage, 7);
-    app.raceTable.table.remove();
-    app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
-    app.counterGarage.after(app.raceTable.table);
-    this.setPaginationButtons(app, carsData);
+    this.updateCarsTable(app);
   }
   private async creatPrevPage(app: App) {
     app.pageNumberGarage -= 1;
+    this.updateCarsTable(app);
+  }
+
+  private async updateCarsTable(app: App) {
     const carsData = await Api.getCars(app.pageNumberGarage, 7);
     app.raceTable.table.remove();
     app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);

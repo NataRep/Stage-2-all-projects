@@ -14,3 +14,9 @@
 .race-table {
   margin-bottom: 2rem;
 }
+.input__error {
+  position: absolute;
+  font-size: 0.75rem;
+  bottom: -1.25rem;
+  color: var(--color-red);
+}
