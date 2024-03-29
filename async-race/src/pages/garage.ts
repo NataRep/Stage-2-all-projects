@@ -55,7 +55,7 @@ class GaragePageView extends Page {
       'update-car',
       'Update',
       ['button_update', 'button_blue'],
-      async (event: Event) => this.updateCar(event, app, app.selectedCarId)
+      async (event: Event) => this.updateCar(app, app.selectedCarId)
     );
     app.formUpdateCar = formUpdateCar;
     const buttonUpdate = formUpdateCar.querySelector('button') as HTMLButtonElement;
@@ -155,7 +155,7 @@ class GaragePageView extends Page {
     this.setCarsCounter(app, parseInt(carsData.totalCount));
   }
 
-  private async updateCar(event: Event, app: App, id: number) {
+  private async updateCar(app: App, id: number) {
     const inputText = app.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
     const inputColor = app.formUpdateCar.querySelector('.input_color') as HTMLInputElement;
     const name = inputText.value;

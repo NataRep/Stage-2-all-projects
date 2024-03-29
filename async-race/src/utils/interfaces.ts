@@ -29,3 +29,8 @@ export interface PaginationButtons {
   prev: HTMLButtonElement;
   next: HTMLButtonElement;
 }
+
+export interface CarsMaker {
+  maker: string;
+  models: string[];
+}
