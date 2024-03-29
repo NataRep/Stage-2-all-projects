@@ -25,6 +25,8 @@ class App {
   selectedCarName: HTMLElement;
   selectedCarSVG: SVGElement;
   buttonGenerate: HTMLButtonElement;
+  buttonRace: HTMLButtonElement;
+  buttonReset: HTMLButtonElement;
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);

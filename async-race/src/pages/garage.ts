@@ -80,9 +80,11 @@ class GaragePageView extends Page {
     buttonsWrapper.className = 'tool-buttons';
 
     const buttonRace = Button.create('Race', ['button_race', 'button_green'], () => console.log('начинаем гонку'));
+    app.buttonRace = buttonRace;
     const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () =>
       console.log('возвращаем на исходные позиции')
     );
+    app.buttonReset = buttonReset;
     const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () => this.generateCars(app));
     app.buttonGenerate = buttonGenerate;
     buttonsWrapper.append(buttonRace);
@@ -169,6 +171,8 @@ class GaragePageView extends Page {
 
   private async generateCars(app: App) {
     app.buttonGenerate.disabled = true;
+    app.buttonRace.disabled = true;
+    app.buttonReset.disabled = true;
     const downloadMassege = document.createElement('div');
     downloadMassege.className = 'download-massege';
     downloadMassege.innerHTML = 'Cars are created...';
@@ -187,6 +191,8 @@ class GaragePageView extends Page {
       return Math.floor(Math.random() * array.length);
     }
     app.buttonGenerate.disabled = false;
+    app.buttonRace.disabled = false;
+    app.buttonReset.disabled = false;
     downloadMassege.remove();
   }
 }
