@@ -133,7 +133,7 @@ class GaragePageView extends Page {
     } else {
       app.paginationButtonGarage.prev.disabled = false;
     }
-    if (Math.ceil(Number(cars.totalCount) / 7) === app.pageNumberGarage) {
+    if (Math.ceil(Number(cars.totalCount) / 7) === app.pageNumberGarage || Number(cars.totalCount) === 0) {
       app.paginationButtonGarage.next.disabled = true;
     } else {
       app.paginationButtonGarage.next.disabled = false;
