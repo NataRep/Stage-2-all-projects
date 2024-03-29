@@ -46,6 +46,7 @@ class GaragePageView extends Page {
           if (isErrorMessage) errorMessageEl.remove();
         } else {
           app.formCreateCar.append(errorMessageEl);
+          setTimeout(() => errorMessageEl.remove(), 5000);
           isErrorMessage = true;
         }
       }
