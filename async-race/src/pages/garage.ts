@@ -151,6 +151,7 @@ class GaragePageView extends Page {
     app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
     app.counterGarage.after(app.raceTable.table);
     this.setPaginationButtons(app, carsData);
+    this.setCarsCounter(app, parseInt(carsData.totalCount));
   }
 }
 
