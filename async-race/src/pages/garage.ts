@@ -63,7 +63,6 @@ class GaragePageView extends Page {
     app.formUpdateCar = formUpdateCar;
     const buttonUpdate = formUpdateCar.querySelector('button') as HTMLButtonElement;
     buttonUpdate.disabled = true;
-
     formWrapper.append(formCreateCar);
     formWrapper.append(formUpdateCar);
     return formWrapper;
@@ -80,10 +79,10 @@ class GaragePageView extends Page {
     const buttonsWrapper = document.createElement('div');
     buttonsWrapper.className = 'tool-buttons';
 
-    const buttonRace = Button.create('Race', ['button_race', 'button_green'], () => console.log('начинаем гонку'));
+    const buttonRace = Button.create('Race', ['button_race', 'button_green'], () => app.startRace());
     app.buttonRace = buttonRace;
     const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () => {
-      console.log('возвращаем на исходные позиции');
+      app.resetRace();
     });
     app.buttonReset = buttonReset;
     const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () => this.generateCars(app));
