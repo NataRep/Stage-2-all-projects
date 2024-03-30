@@ -101,7 +101,8 @@ class App {
     }
   }
 
-  private startCarAnimation(car: SVGElement, speed: number, isMoving: boolean) {
+  private startCarAnimation(car: SVGElement, time: number, isMoving: boolean) {
+    console.log('!!!!!!!!');
     function calculateSpeedReduction() {
       const screenWidth = window.innerWidth;
       if (screenWidth < 600) {
@@ -114,13 +115,13 @@ class App {
         return 1;
       }
     }
-    const track = this.raceTable.rows[0].querySelector('.race-row__track');
+    const track = this.raceTable.rows[0].querySelector('.race-row__track') as HTMLElement;
     return setInterval(() => {
       if (isMoving === true) {
         const currentTransform = getComputedStyle(car).transform;
         const currentTranslateX = parseFloat(currentTransform.split(',')[4]);
-        const speedReduction = (speed / 50) * calculateSpeedReduction();
-        const newTranslateX = currentTranslateX + speedReduction;
+        const speed = track.clientWidth / time;
+        const newTranslateX = currentTranslateX + speed;
         const rigthPadding = 16;
         if (newTranslateX > track.clientWidth - car.clientWidth * 2 - rigthPadding) {
           car.style.transform = `translateX(${track.clientWidth - car.clientWidth * 2 - 16}px)`;
@@ -148,10 +149,10 @@ class App {
         try {
           const startResponse = (await Api.startOrStopCar(car.id, 'started')) as SpeedCar;
           //тут начинаем анимацию
-          // let isMoving: boolean = true;
-          //let carSVG = app.raceTable.rows[index].querySelector('svg');
-          //let interval: ReturnType<typeof setInterval>;
-          // interval = this.startCarAnimation(carSVG, startResponse.velocity, isMoving);
+          let isMoving: boolean = true;
+          let carSVG = app.raceTable.rows[index].querySelector('svg');
+          let interval: ReturnType<typeof setInterval>;
+          interval = app.startCarAnimation(carSVG, startResponse.distance / startResponse.velocity / 10, isMoving);
 
           const winner: Finisher = {
             id: car.id,
@@ -161,6 +162,7 @@ class App {
           };
           await Api.switchCarToDriveMode(car.id);
           //тут если ошибка, останавливаем анимацию
+          clearInterval(interval);
 
           resolve(winner);
         } catch (error) {
