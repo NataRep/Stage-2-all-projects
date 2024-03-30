@@ -84,7 +84,6 @@ class GaragePageView extends Page {
     app.buttonRace = buttonRace;
     const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () => {
       console.log('возвращаем на исходные позиции');
-      //Использовать app.raceTable - там хранятся строки эллементов на странице
     });
     app.buttonReset = buttonReset;
     const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () => this.generateCars(app));

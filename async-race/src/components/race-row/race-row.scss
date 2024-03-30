@@ -22,10 +22,20 @@
     background-repeat: no-repeat;
     background-position: right 90px bottom 3px;
     background-size: auto;
+    @media (max-width: 768px) {
+      background-position: right 50px bottom 3px;
+    }
   }
 
   &__control-buttons {
     align-self: flex-start;
     margin-right: 1rem;
+  }
+
+  svg {
+    transform: translateX(0px);
+    @media (max-width: 768px) {
+      width: 60px;
+    }
   }
 }

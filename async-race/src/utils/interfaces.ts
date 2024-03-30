@@ -3,7 +3,6 @@ export interface Car {
   color: string;
   id: number;
 }
-
 export interface CarsData {
   cars: Car[];
   totalCount?: string;
@@ -17,20 +16,21 @@ export interface Winner {
   wins: number;
   time: number;
 }
-
 export interface carState {
   id: number;
   status: 'started' | 'stopped' | 'drived';
   speed: number;
   position: number;
 }
-
 export interface PaginationButtons {
   prev: HTMLButtonElement;
   next: HTMLButtonElement;
 }
-
 export interface CarsMaker {
   maker: string;
   models: string[];
+}
+export interface Finisher {
+  id: number;
+  speed: number;
 }

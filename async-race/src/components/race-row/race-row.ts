@@ -21,17 +21,19 @@ class RaceRow {
     const track = document.createElement('div');
     track.className = 'race-row__track';
 
+    const car = CarEl.create(color);
+
     const controlButtons = document.createElement('div');
     controlButtons.className = 'race-row__control-buttons';
+    let buttonB: HTMLButtonElement;
+
     const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], () =>
-      console.log(` машина поехала: ${id}`)
+      app.moveCar(id, buttonA, buttonB, car, track)
     );
-    const buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () =>
-      console.log(` машина вернулась на старт: ${id}`)
+    buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () =>
+      app.stopCar(id, buttonA, buttonB, car)
     );
     buttonB.disabled = true;
-
-    const car = CarEl.create(color);
 
     const buttonSelect = Button.create(
       'Select',

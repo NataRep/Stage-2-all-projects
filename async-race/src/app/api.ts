@@ -115,25 +115,16 @@ class Api {
       const response = await fetch(fullUrl, options);
       if (!response.ok) {
         if (response.status === 404) {
-          console.error(
-            'Engine parameters for car with such id was not found in the garage. Have you tried to set engine status to "started" before?'
-          );
+          console.error('Engine parameters for car with such id was not found in the garage.');
         } else if (response.status === 429) {
-          console.error(
-            "Drive already in progress. You can't run drive for the same car twice while it's not stopped."
-          );
-        } else if (response.status === 500) {
-          console.error("Car has been stopped suddenly. It's engine was broken down.");
-        } else {
-          console.error('Wrong parameters:', await response.text());
+          console.error('Drive already in progress.');
         }
-        return undefined;
+      } else {
+        const json = await response.json();
+        return json;
       }
-      const json = await response.json();
-      return json;
     } catch (error) {
       console.error('Error:', error.message);
-      return undefined;
     }
   }
 
