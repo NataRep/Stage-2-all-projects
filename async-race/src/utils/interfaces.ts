@@ -33,4 +33,5 @@ export interface CarsMaker {
 export interface Finisher {
   id: number;
   speed: number;
+  name: string;
 }

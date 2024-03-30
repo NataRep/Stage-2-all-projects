@@ -28,7 +28,7 @@ class RaceRow {
     let buttonB: HTMLButtonElement;
 
     const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], () =>
-      app.moveCar(id, buttonA, buttonB, car, track)
+      app.moveCar(id, buttonA, buttonB, car, track, carName)
     );
     buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () =>
       app.stopCar(id, buttonA, buttonB, car)
@@ -73,7 +73,6 @@ class RaceRow {
   }
 
   static async buttonSelectOnClick(
-    event: Event,
     buttonSelect: HTMLButtonElement,
     app: App,
     id: number,

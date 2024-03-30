@@ -61,7 +61,8 @@ class App {
     buttonA: HTMLButtonElement,
     buttonB: HTMLButtonElement,
     car: SVGElement,
-    track: HTMLElement
+    track: HTMLElement,
+    carName: HTMLElement
   ) {
     buttonA.disabled = true;
     const data = await Api.startOrStopCar(id, 'started');
@@ -79,6 +80,7 @@ class App {
       const finisher: Finisher = {
         id: id,
         speed: data.velocity,
+        name: carName.innerHTML,
       };
       buttonB.disabled = false;
       if (this.isRace) {
@@ -158,7 +160,7 @@ class App {
   }
 
   private chooseWinner(): Finisher {
-    this.curentRaceResults.sort((a, b) => a.speed - b.speed);
+    this.curentRaceResults.sort((a, b) => b.speed - a.speed);
     return this.curentRaceResults[0];
   }
 }
