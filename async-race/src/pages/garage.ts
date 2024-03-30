@@ -195,6 +195,14 @@ class GaragePageView extends Page {
     app.buttonReset.disabled = false;
     downloadMassege.remove();
   }
+
+  public createMessageAboutWinner(name: string, time: string) {
+    const messageWrapper: HTMLDivElement = document.createElement('div');
+    const winner: HTMLDivElement = document.createElement('div');
+    winner.innerHTML = `Race winner: ${name} [${time}s]`;
+    messageWrapper.append(winner);
+    return messageWrapper;
+  }
 }
 
 export default GaragePageView;

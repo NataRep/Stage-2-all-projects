@@ -28,7 +28,7 @@ class RaceRow {
     let buttonB: HTMLButtonElement;
 
     const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], () =>
-      app.moveCar(id, buttonA, buttonB, car, track, carName)
+      app.moveCar(id, buttonA, buttonB, car, carName)
     );
     buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () =>
       app.stopCar(id, buttonA, buttonB, car)
