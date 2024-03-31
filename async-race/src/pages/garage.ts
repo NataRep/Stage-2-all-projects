@@ -83,6 +83,8 @@ class GaragePageView extends Page {
     app.buttonRace = buttonRace;
     const buttonReset = Button.create('Reset', ['button_reset', 'button_green'], () => {
       app.resetRace();
+      app.abortController.abort();
+      app.abortController = new AbortController();
     });
     app.buttonReset = buttonReset;
     const buttonGenerate = Button.create('Generate', ['button_generate', 'button_blue'], () => this.generateCars(app));

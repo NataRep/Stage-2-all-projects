@@ -104,12 +104,13 @@ class Api {
     return (await response.json()) as SpeedCar;
   }
 
-  static async switchCarToDriveMode(id: number) {
+  static async switchCarToDriveMode(id: number, abortController: AbortController) {
     const pathUrl: string = '/engine';
     const fullUrl: string = PORT + pathUrl + '?id=' + String(id) + '&status=' + 'drive';
 
     const options = {
       method: 'PATCH',
+      signal: abortController.signal,
     };
     try {
       const response = await fetch(fullUrl, options);

@@ -26,6 +26,7 @@ class App {
   buttonRace: HTMLButtonElement;
   buttonReset: HTMLButtonElement;
   isRace: boolean;
+  abortController: AbortController;
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
@@ -40,6 +41,7 @@ class App {
     this.pageNumberGarage = 1;
     this.pageNumberWinner = 1;
     this.isRace = false;
+    this.abortController = new AbortController();
     const carsData = await Api.getCars(1, 7);
     if (carsData.totalCount) {
       this.pageGarage.createCarsCounter(this, parseInt(carsData.totalCount));
@@ -69,7 +71,7 @@ class App {
 
     interval = this.startCarAnimation(car, data.velocity, isMoving);
 
-    const response = await Api.switchCarToDriveMode(id);
+    const response = await Api.switchCarToDriveMode(id, this.abortController);
     const stopTime = new Date().getTime();
     const finisher: Finisher = {
       id: id,
@@ -131,7 +133,7 @@ class App {
             time: (startResponse.distance / startResponse.velocity / 1000).toFixed(2),
             name: car.name,
           };
-          await Api.switchCarToDriveMode(car.id);
+          await Api.switchCarToDriveMode(car.id, app.abortController);
           resolve(winner);
         } catch (error) {
           //останавливаем анимацию
