@@ -14,6 +14,7 @@ class App {
   raceTable: RaceTable;
   counterGarage: HTMLElement;
   pageNumberGarage: number;
+  pageNumberGarageElem: HTMLElement;
   paginationButtonGarage: PaginationButtons;
   pageNumberWinner: number;
   paginationButtonWinner: PaginationButtons;
@@ -49,6 +50,7 @@ class App {
     } else {
       this.pageGarage.createCarsCounter(this, carsData.cars.length);
     }
+    this.pageGarage.createPageCounter(this, this.pageNumberGarage);
     const raceTable = this.pageGarage.createRaceTable(this, carsData.cars);
     this.pageGarage.mainContent.append(raceTable);
     this.pageGarage.addPaginationButtons(this);

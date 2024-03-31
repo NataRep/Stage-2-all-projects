@@ -112,15 +112,27 @@ class GaragePageView extends Page {
     app.counterGarage.innerHTML = `Garage (${num})`;
   }
 
+  public createPageCounter(app: App, num: number) {
+    const counter: HTMLElement = document.createElement('div');
+    counter.className = 'page-counter';
+    counter.innerHTML = `Page #${num}`;
+    app.pageNumberGarageElem = counter;
+    this.mainContent.append(counter);
+  }
+
+  public setPageCounter(app: App) {
+    app.pageNumberGarageElem.innerHTML = `Page #${app.pageNumberGarage}`;
+  }
+
   public addPaginationButtons(app: App) {
     const pagination = document.createElement('div');
     pagination.className = 'pagination';
-    const buttonPrev = Button.create('Previous', ['pagination__button', 'button_blue'], () =>
-      this.creatPrevPage.bind(this, app)()
-    );
-    const buttonNext = Button.create('Next', ['pagination__button', 'button_blue'], () =>
-      this.creatNextPage.bind(this, app)()
-    );
+    const buttonPrev = Button.create('Previous', ['pagination__button', 'button_blue'], () => {
+      this.creatPrevPage.bind(this, app)();
+    });
+    const buttonNext = Button.create('Next', ['pagination__button', 'button_blue'], () => {
+      this.creatNextPage.bind(this, app)();
+    });
     app.paginationButtonGarage = { prev: buttonPrev, next: buttonNext };
     pagination.append(buttonPrev);
     pagination.append(buttonNext);
@@ -142,10 +154,12 @@ class GaragePageView extends Page {
 
   private async creatNextPage(app: App) {
     app.pageNumberGarage += 1;
+    this.setPageCounter(app);
     this.updateCarsTable(app);
   }
   public async creatPrevPage(app: App) {
     app.pageNumberGarage -= 1;
+    this.setPageCounter(app);
     this.updateCarsTable(app);
   }
 
@@ -153,7 +167,7 @@ class GaragePageView extends Page {
     const carsData = await Api.getCars(app.pageNumberGarage, 7);
     app.raceTable.table.remove();
     app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
-    app.counterGarage.after(app.raceTable.table);
+    app.pageNumberGarageElem.after(app.raceTable.table);
     this.setPaginationButtons(app, carsData);
     this.setCarsCounter(app, parseInt(carsData.totalCount));
   }
