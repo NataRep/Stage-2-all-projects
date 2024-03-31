@@ -38,7 +38,7 @@ class RaceRow {
     const buttonSelect = Button.create(
       'Select',
       ['race-row__button', 'button_select', 'button_small', 'button_blue'],
-      this.buttonSelectOnClick.bind(this, event, this, app, id, carName, car)
+      this.buttonSelectOnClick.bind(this, this, app, id, carName, car)
     );
     const buttonRemove = Button.create(
       'Remove',
@@ -79,6 +79,7 @@ class RaceRow {
     nameEl: HTMLElement,
     svg: SVGElement
   ) {
+    console.log(app.formUpdateCar);
     app.formUpdateCar.querySelector('button').disabled = false;
     const inputText = app.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
     const inputColor = app.formUpdateCar.querySelector('.input_color') as HTMLInputElement;
