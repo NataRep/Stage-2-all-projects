@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,

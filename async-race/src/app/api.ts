@@ -119,12 +119,15 @@ class Api {
         } else if (response.status === 429) {
           console.error('Drive already in progress.');
         }
+        // Ошибка, промис отклонен
+        throw new Error('Request failed with status: ' + response.status);
       } else {
         const json = await response.json();
         return json;
       }
     } catch (error) {
-      console.error('Error:', error.message);
+      // Ошибка, промис отклонен
+      throw error;
     }
   }
 

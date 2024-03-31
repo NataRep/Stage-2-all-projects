@@ -26,8 +26,6 @@ class App {
   buttonRace: HTMLButtonElement;
   buttonReset: HTMLButtonElement;
   isRace: boolean;
-  curentRaceResults: Finisher[];
-  countcurrentRaceRequest: number;
 
   constructor() {
     this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
@@ -42,8 +40,6 @@ class App {
     this.pageNumberGarage = 1;
     this.pageNumberWinner = 1;
     this.isRace = false;
-    this.countcurrentRaceRequest = 0;
-    this.curentRaceResults = [];
     const carsData = await Api.getCars(1, 7);
     if (carsData.totalCount) {
       this.pageGarage.createCarsCounter(this, parseInt(carsData.totalCount));
@@ -87,34 +83,10 @@ class App {
       buttonB.disabled = false;
     } else {
       buttonB.disabled = false;
-      if (this.isRace) {
-        this.curentRaceResults.push(finisher);
-      }
-    }
-    if (this.isRace) {
-      this.countcurrentRaceRequest += 1;
-    }
-    if (this.countcurrentRaceRequest === 7) {
-      console.log(this.chooseWinner());
-      this.buttonReset.disabled = false;
-      this.showWinner(finisher.name, finisher.time);
     }
   }
 
   private startCarAnimation(car: SVGElement, time: number, isMoving: boolean) {
-    console.log('!!!!!!!!');
-    function calculateSpeedReduction() {
-      const screenWidth = window.innerWidth;
-      if (screenWidth < 600) {
-        return 0.25;
-      } else if (screenWidth < 1200) {
-        return 0.5;
-      } else if (screenWidth < 1200) {
-        return 0.75;
-      } else {
-        return 1;
-      }
-    }
     const track = this.raceTable.rows[0].querySelector('.race-row__track') as HTMLElement;
     return setInterval(() => {
       if (isMoving === true) {
@@ -145,15 +117,14 @@ class App {
     const carsData: CarsData = await Api.getCars(this.pageNumberGarage, 7);
 
     function startAndSwitchCar(car: Car, index: number, app: App): Promise<any> {
+      let interval: ReturnType<typeof setInterval>;
       return new Promise(async (resolve, reject) => {
         try {
           const startResponse = (await Api.startOrStopCar(car.id, 'started')) as SpeedCar;
           //тут начинаем анимацию
           let isMoving: boolean = true;
           let carSVG = app.raceTable.rows[index].querySelector('svg');
-          let interval: ReturnType<typeof setInterval>;
           interval = app.startCarAnimation(carSVG, startResponse.distance / startResponse.velocity / 10, isMoving);
-
           const winner: Finisher = {
             id: car.id,
             speed: startResponse.velocity,
@@ -161,46 +132,54 @@ class App {
             name: car.name,
           };
           await Api.switchCarToDriveMode(car.id);
-          //тут если ошибка, останавливаем анимацию
-          clearInterval(interval);
-
           resolve(winner);
         } catch (error) {
+          //останавливаем анимацию
+          clearInterval(interval);
           reject(error);
         }
       });
     }
+
     const promises = carsData.cars.map(async (car, index) => {
       return startAndSwitchCar(car, index, this);
     });
 
     try {
       //отключаю кнопки на время гонки
-      this.buttonRace.disabled = true;
-      this.buttonReset.disabled = true;
-      this.buttonGenerate.disabled = true;
+      this.disableButtonsDuringRace();
       //гонка
-      const results = await Promise.allSettled(promises);
-      const successfulResults = results.filter((result) => result.status === 'fulfilled');
-
-      if (successfulResults.length > 0 && successfulResults[0].status === 'fulfilled' && successfulResults[0].value) {
-        //победитель
-        const firstSuccessfulResult = successfulResults[0].value;
-        console.log(firstSuccessfulResult);
-        this.showWinner(firstSuccessfulResult.name, firstSuccessfulResult.time);
-        console.log('Данные первого успешно завершенного промиса:', firstSuccessfulResult);
-      }
-      this.buttonGenerate.disabled = false;
-      this.buttonReset.disabled = false;
+      const result = await Promise.any(promises);
+      this.turnButtonsAfterRace();
+      this.showWinner(result.name, result.time);
     } catch (error) {
       console.error('Ошибка:', error);
     }
   }
 
+  private disableButtonsDuringRace() {
+    this.buttonRace.disabled = true;
+    this.buttonReset.disabled = true;
+    this.buttonGenerate.disabled = true;
+    this.raceTable.rows.forEach((row) => {
+      const buttonA = row.querySelector('.button_start') as HTMLButtonElement;
+      const buttonB = row.querySelector('.button_reset') as HTMLButtonElement;
+      buttonA.disabled = true;
+      buttonB.disabled = true;
+    });
+  }
+
+  private turnButtonsAfterRace() {
+    this.buttonGenerate.disabled = false;
+    this.buttonReset.disabled = false;
+    this.raceTable.rows.forEach((row) => {
+      const buttonB = row.querySelector('.button_reset') as HTMLButtonElement;
+      buttonB.disabled = false;
+    });
+  }
+
   public async resetRace() {
     this.isRace = false;
-    this.curentRaceResults = [];
-    this.countcurrentRaceRequest = 0;
     this.raceTable.rows.forEach((row) => {
       const buttonB = row.querySelector('.button_reset') as HTMLButtonElement;
       buttonB.click();
@@ -208,12 +187,6 @@ class App {
       this.buttonGenerate.disabled = false;
       this.formCreateCar.querySelector('button').disabled = false;
     });
-  }
-
-  //УБРАТЬ
-  private chooseWinner(): Finisher {
-    this.curentRaceResults.sort((a, b) => b.speed - a.speed);
-    return this.curentRaceResults[0];
   }
 
   private showWinner(name: string, time: string): void {
