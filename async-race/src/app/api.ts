@@ -3,15 +3,11 @@ import { Car, CarsData, SpeedCar, Winner } from '../utils/interfaces';
 const PORT = 'http://127.0.0.1:3000';
 class Api {
   static async fetchWithOptions(url: string, options: RequestInit, errorMessage: string): Promise<Response> {
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error('Error HTTP: ' + response.status);
-      }
-      return response;
-    } catch (error) {
-      console.error(errorMessage, error.message);
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error('Error HTTP: ' + response.status);
     }
+    return response;
   }
 
   static async getCar(id: number): Promise<Car> {

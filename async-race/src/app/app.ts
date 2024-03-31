@@ -117,15 +117,25 @@ class App {
       return this.startAndSwitchCar(car, index, this);
     });
 
+    //отключаю кнопки на время гонки
+    this.disableButtonsDuringRace();
+    //гонка
+    const result = await Promise.any(promises);
+    this.turnButtonsAfterRace();
+    this.showWinner(result.name, result.time);
+
     try {
-      //отключаю кнопки на время гонки
-      this.disableButtonsDuringRace();
-      //гонка
-      const result = await Promise.any(promises);
-      this.turnButtonsAfterRace();
-      this.showWinner(result.name, result.time);
+      const winnerData = await Api.getWinner(result.id);
+      Api.updateWinner(result.id, winnerData.wins + 1, parseFloat(result.time));
+      console.log('новая победа ' + (winnerData.wins + 1));
     } catch (error) {
-      console.error('Ошибка:', error);
+      if ((error.status = 404)) {
+        await Api.createWinner(result.id, 1, parseFloat(result.time));
+        console.log('первая победа');
+        console.log(await Api.getWinners());
+      } else {
+        throw error;
+      }
     }
   }
 
