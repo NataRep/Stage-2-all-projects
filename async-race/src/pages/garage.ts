@@ -198,8 +198,10 @@ class GaragePageView extends Page {
 
   public createMessageAboutWinner(name: string, time: string) {
     const messageWrapper: HTMLDivElement = document.createElement('div');
+    messageWrapper.className = 'winner';
     const winner: HTMLDivElement = document.createElement('div');
-    winner.innerHTML = `Race winner: ${name} [${time}s]`;
+    winner.className = 'winner__text';
+    winner.innerHTML = `Winner: ${name} [${time}s]`;
     messageWrapper.append(winner);
     return messageWrapper;
   }

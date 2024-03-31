@@ -27,3 +27,20 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+.winner {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-red);
+  background: url('./../images/trophy-cup.svg') var(--color-white) no-repeat left 1rem center;
+  background-size: auto;
+  padding: 1rem 1rem 1rem 6rem;
+  box-shadow: 13px 11px 1px #000;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
