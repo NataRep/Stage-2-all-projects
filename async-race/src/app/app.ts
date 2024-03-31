@@ -162,19 +162,24 @@ class App {
     this.buttonReset.disabled = true;
     this.buttonGenerate.disabled = true;
     this.raceTable.rows.forEach((row) => {
-      const buttonA = row.querySelector('.button_start') as HTMLButtonElement;
-      const buttonB = row.querySelector('.button_reset') as HTMLButtonElement;
-      buttonA.disabled = true;
-      buttonB.disabled = true;
+      const buttons = row.querySelectorAll('button');
+      buttons.forEach((button) => {
+        button.disabled = true;
+      });
     });
   }
 
-  private turnButtonsAfterRace() {
+  public turnButtonsAfterRace() {
     this.buttonGenerate.disabled = false;
     this.buttonReset.disabled = false;
     this.raceTable.rows.forEach((row) => {
-      const buttonB = row.querySelector('.button_reset') as HTMLButtonElement;
-      buttonB.disabled = false;
+      const buttons = row.querySelectorAll('button');
+      buttons.forEach((button) => {
+        button.disabled = false;
+      });
+
+      const buttonA = row.querySelector('.button_start') as HTMLButtonElement;
+      buttonA.disabled = true;
     });
   }
 
