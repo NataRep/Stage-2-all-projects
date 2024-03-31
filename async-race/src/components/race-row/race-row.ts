@@ -3,6 +3,7 @@ import CarEl from '../car/car';
 import App from '../../app/app';
 import Api from '../../app/api';
 import './race-row.scss';
+import { SpeedCar } from '../../utils/interfaces';
 
 class RaceRow {
   static create(id: number, name: string, color: string, app: App) {
@@ -27,12 +28,24 @@ class RaceRow {
     controlButtons.className = 'race-row__control-buttons';
     let buttonB: HTMLButtonElement;
 
-    const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], () =>
-      app.moveCar(id, buttonA, buttonB, car, carName)
-    );
-    buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () =>
-      app.stopCar(id, buttonA, buttonB, car)
-    );
+    const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], async () => {
+      buttonA.disabled = true;
+      let interval: ReturnType<typeof setInterval>;
+      try {
+        const startResponse = (await Api.startOrStopCar(id, 'started')) as SpeedCar;
+        let isMoving: boolean = true;
+        interval = app.startCarAnimation(car, startResponse.distance / startResponse.velocity / 10, isMoving);
+        await Api.switchCarToDriveMode(id, app.abortController);
+        buttonB.disabled = false;
+      } catch (error) {
+        clearInterval(interval);
+        buttonB.disabled = false;
+      }
+    });
+
+    buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () => {
+      app.stopCar(id, buttonA, buttonB, car);
+    });
     buttonB.disabled = true;
 
     const buttonSelect = Button.create(
