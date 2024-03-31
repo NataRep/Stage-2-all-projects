@@ -56,32 +56,6 @@ class App {
     this.buttonReset.click();
   }
 
-  public async moveCar(
-    id: number,
-    buttonA: HTMLButtonElement,
-    buttonB: HTMLButtonElement,
-    car: SVGElement,
-    carName: HTMLElement
-  ) {
-    buttonA.disabled = true;
-    const data = await Api.startOrStopCar(id, 'started');
-    let isMoving: boolean = true;
-    let interval: ReturnType<typeof setInterval>;
-    interval = this.startCarAnimation(car, data.velocity, isMoving);
-
-    try {
-      const response = await Api.switchCarToDriveMode(id, this.abortController);
-      buttonB.disabled = false;
-      if (response === undefined) {
-        throw new Error('Request failed with status: ' + response.status);
-      }
-    } catch (error) {
-      isMoving = false;
-      clearInterval(interval);
-      buttonB.disabled = false;
-    }
-  }
-
   public startCarAnimation(car: SVGElement, time: number, isMoving: boolean) {
     const track = this.raceTable.rows[0].querySelector('.race-row__track') as HTMLElement;
     return setInterval(() => {
