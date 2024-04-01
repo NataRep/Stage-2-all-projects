@@ -1,4 +1,4 @@
-import { carState } from '../utils/interfaces';
+import { CarState } from '../utils/interfaces';
 
 export class State {
   inputCreateValue: string;
@@ -8,7 +8,7 @@ export class State {
   pageGarage: number;
   pageWinners: number;
   //заполняется в момент переключения страницы если идет гонка
-  carsState?: carState[];
+  carsState?: CarState[];
   //поля сортировки будут заполняться в мемент переключения страниц, если применены
   sortWinners?: 'id' | 'wins' | 'time';
   orderWinners?: 'ASC' | 'DESC';
