@@ -15,6 +15,7 @@ class Navigation {
     const buttonToWinner = Button.create('To winners', ['nav__button', 'button_green'], () => {
       app.pageWinners.clearContent();
       app.pageWinners.render();
+      app.pageWinners.updatePage(app);
     });
 
     this.nav.append(buttonToGarage);

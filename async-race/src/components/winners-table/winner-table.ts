@@ -27,6 +27,7 @@ class WinnerTable {
 
     const rowHeader = this.createHeader();
     this.table.append(rowHeader);
+    this.rows.push(rowHeader);
 
     winners.forEach((winner, index) => {
       const car = cars.find((car) => car.id === winner.id);

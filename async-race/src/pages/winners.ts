@@ -6,15 +6,13 @@ import Page from './page';
 class WinnersPageView extends Page {
   constructor(app: App) {
     super(app);
-
     const winnerTable = new WinnerTable();
     app.winnersTable = winnerTable;
-
-    this.addTable(app);
   }
 
-  private async addTable(app: App) {
-    const table = await app.winnersTable.create(app);
+  public async updatePage(app: App) {
+    app.winnersTable.rows.forEach((row) => row.remove());
+    const table = await app.winnersTable.create(app, app.winnersTableSort, app.winnersTableOrder);
     this.mainContent.appendChild(table);
   }
 }
