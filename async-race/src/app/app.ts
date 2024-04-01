@@ -126,13 +126,14 @@ class App {
 
     try {
       const winnerData = await Api.getWinner(result.id);
-      Api.updateWinner(result.id, winnerData.wins + 1, parseFloat(result.time));
-      console.log('новая победа ' + (winnerData.wins + 1));
+      if (winnerData.time > parseFloat(result.time)) {
+        Api.updateWinner(result.id, winnerData.wins + 1, parseFloat(result.time));
+      } else {
+        Api.updateWinner(result.id, winnerData.wins + 1, winnerData.time);
+      }
     } catch (error) {
       if ((error.status = 404)) {
         await Api.createWinner(result.id, 1, parseFloat(result.time));
-        console.log('первая победа');
-        console.log(await Api.getWinners());
       } else {
         throw error;
       }
