@@ -5,6 +5,7 @@ import WinnersPageView from '../pages/winners';
 import RaceTable from '../components/race-table.ts/race-table';
 import { Car, CarsData, Finisher, PaginationButtons, SpeedCar } from '../utils/interfaces';
 import WinnerTable from '../components/winners-table/winner-table';
+import { Order, Sorting } from '../utils/type';
 
 class App {
   state: State;
@@ -14,8 +15,8 @@ class App {
   pageWinners: WinnersPageView;
   raceTable: RaceTable;
   winnersTable: WinnerTable;
-  winnersTableSort: 'id' | 'wins' | 'time';
-  winnersTableOrder: 'ASC' | 'DESC';
+  winnersTableSort: Sorting;
+  winnersTableOrder: Order;
   counterGarage: HTMLElement;
   counterWinner: HTMLElement;
   pageNumberGarage: number;

@@ -3,6 +3,7 @@ import App from '../../app/app';
 import './winner-table.scss';
 import { CarsData, Winner, Winners } from '../../utils/interfaces';
 import WinnerRow from '../winners-row/winner-row';
+import { Order, Sorting } from '../../utils/type';
 
 class WinnerTable {
   rows: HTMLElement[];
@@ -12,7 +13,7 @@ class WinnerTable {
     this.rows = [];
   }
 
-  public async create(app: App, sort?: 'id' | 'wins' | 'time', order?: 'ASC' | 'DESC'): Promise<HTMLElement> {
+  public async create(app: App, sort?: Sorting, order?: Order): Promise<HTMLElement> {
     let winnersObj: Winners;
     if (sort && order) {
       winnersObj = await Api.getWinners(app.pageNumberWinner, 10, sort, order);
@@ -26,7 +27,7 @@ class WinnerTable {
     this.table = document.createElement('div');
     this.table.className = 'winners-table';
 
-    const rowHeader = this.createHeader();
+    const rowHeader = this.createHeader(app);
     this.table.append(rowHeader);
     this.rows.push(rowHeader);
 
@@ -44,7 +45,7 @@ class WinnerTable {
     return this.table;
   }
 
-  private createHeader(): HTMLElement {
+  private createHeader(app: App): HTMLElement {
     const rowHeader: HTMLElement = document.createElement('div');
     rowHeader.classList.add('winner-row', 'winner-row_header');
 
@@ -63,10 +64,12 @@ class WinnerTable {
     const winsCell: HTMLElement = document.createElement('div');
     winsCell.className = 'winner-row__cell winner-row__cell_wins';
     winsCell.innerHTML = 'Wins';
+    winsCell.addEventListener('click', (event: Event) => this.sort(event, app));
 
     const timeCell: HTMLElement = document.createElement('div');
     timeCell.className = 'winner-row__cell winner-row__cell_time';
     timeCell.innerHTML = 'Best time';
+    timeCell.addEventListener('click', (event: Event) => this.sort(event, app));
 
     rowHeader.append(numberCell);
     rowHeader.append(carCell);
@@ -75,6 +78,17 @@ class WinnerTable {
     rowHeader.append(timeCell);
 
     return rowHeader;
+  }
+
+  private async sort(event: Event, app: App) {
+    const button = event.target as HTMLElement;
+    if (button.innerHTML === 'Wins') {
+      app.winnersTableSort = 'wins';
+    } else if (button.innerHTML === 'Best time') {
+      app.winnersTableSort = 'time';
+    }
+    app.winnersTableOrder === 'ASC' ? (app.winnersTableOrder = 'DESC') : (app.winnersTableOrder = 'ASC');
+    app.pageWinners.updatePage(app);
   }
 }
 
