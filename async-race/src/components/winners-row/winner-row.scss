@@ -1,4 +1,59 @@
+@import './../../utils/variables.scss';
+
 .winner-row {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  transition: all 0.5s;
+  padding: 0.25rem;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--color-grey);
+    }
+  }
+  &_header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    .winner-row__cell {
+      font-size: 1rem;
+
+      &_wins {
+        cursor: pointer;
+      }
+      &_time {
+        cursor: pointer;
+      }
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: none;
+      }
+    }
+  }
+  &__cell {
+    margin-right: 1rem;
+    font-size: 0.75rem;
+    &:last-child() {
+      margin-right: 0;
+    }
+    &_number {
+      width: 1rem;
+    }
+    &_car {
+      width: 3rem;
+      svg {
+        width: 100%;
+      }
+    }
+    &_name {
+      width: 12rem;
+    }
+    &_wins {
+      width: 3rem;
+    }
+    &_time {
+      width: 6rem;
+    }
+  }
 }

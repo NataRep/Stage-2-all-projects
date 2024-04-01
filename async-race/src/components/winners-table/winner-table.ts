@@ -1,5 +1,6 @@
 import Api from '../../app/api';
 import App from '../../app/app';
+import './winner-table.scss';
 import { CarsData, Winner, Winners } from '../../utils/interfaces';
 import WinnerRow from '../winners-row/winner-row';
 
@@ -49,7 +50,7 @@ class WinnerTable {
 
     const numberCell: HTMLElement = document.createElement('div');
     numberCell.className = 'winner-row__cell winner-row__cell_number';
-    numberCell.innerHTML = 'Number';
+    numberCell.innerHTML = '#';
 
     const carCell: HTMLElement = document.createElement('div');
     carCell.className = 'winner-row__cell winner-row__cell_car';
@@ -64,8 +65,8 @@ class WinnerTable {
     winsCell.innerHTML = 'Wins';
 
     const timeCell: HTMLElement = document.createElement('div');
-    timeCell.className = 'winner-row__cell winner-row__cell_wins';
-    timeCell.innerHTML = 'time';
+    timeCell.className = 'winner-row__cell winner-row__cell_time';
+    timeCell.innerHTML = 'Best time';
 
     rowHeader.append(numberCell);
     rowHeader.append(carCell);

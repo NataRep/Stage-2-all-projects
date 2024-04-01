@@ -1,5 +1,4 @@
 import App from '../app/app';
-import { State } from '../app/state';
 import WinnerTable from '../components/winners-table/winner-table';
 import Page from './page';
 

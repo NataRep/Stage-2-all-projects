@@ -24,7 +24,7 @@ class WinnerRow {
     winsCell.innerHTML = String(wins);
 
     const timeCell = document.createElement('div');
-    timeCell.className = 'winner-row__cell winner-row__cell_wins';
+    timeCell.className = 'winner-row__cell winner-row__cell_time';
     timeCell.innerHTML = String(time);
 
     row.append(numberCell);
