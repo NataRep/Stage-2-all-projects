@@ -72,7 +72,6 @@ class WinnersPageView extends Page {
 
   public setPaginationButtons(app: App, winners: Winner[]) {
     if (app.pageNumberWinner === 1) {
-      console.log('!!');
       app.paginationButtonWinner.prev.disabled = true;
     } else {
       app.paginationButtonWinner.prev.disabled = false;

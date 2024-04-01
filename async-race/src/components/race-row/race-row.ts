@@ -64,7 +64,7 @@ class RaceRow {
             Api.deleteWinner(id);
           }
         } catch {
-          console.log('this car hasnt won a race yet');
+          console.log('delete car');
         }
 
         const carsData = await Api.getCars(app.pageNumberGarage, 7);
@@ -101,7 +101,6 @@ class RaceRow {
     nameEl: HTMLElement,
     svg: SVGElement
   ) {
-    console.log(app.formUpdateCar);
     app.formUpdateCar.querySelector('button').disabled = false;
     const inputText = app.formUpdateCar.querySelector('.input_text') as HTMLInputElement;
     const inputColor = app.formUpdateCar.querySelector('.input_color') as HTMLInputElement;

@@ -42,7 +42,6 @@ class GaragePageView extends Page {
           this.updateCarsTable(app);
           inputText.value = '';
           inputColor.value = '#ffffff';
-          console.log(isErrorMessage);
           if (isErrorMessage) errorMessageEl.remove();
         } else {
           app.formCreateCar.append(errorMessageEl);
