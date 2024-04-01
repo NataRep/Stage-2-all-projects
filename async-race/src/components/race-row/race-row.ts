@@ -58,10 +58,19 @@ class RaceRow {
       ['race-row__button', 'button_remove', 'button_small', 'button_blue'],
       async () => {
         await Api.deleteCar(id);
+        try {
+          const winnerData = await Api.getWinner(id);
+          if (winnerData) {
+            Api.deleteWinner(id);
+          }
+        } catch {
+          console.log('this car hasnt won a race yet');
+        }
+
         const carsData = await Api.getCars(app.pageNumberGarage, 7);
         app.raceTable.table.remove();
         app.raceTable.table = app.pageGarage.createRaceTable(app, carsData.cars);
-        app.counterGarage.after(app.raceTable.table);
+        app.pageNumberGarageElem.after(app.raceTable.table);
         app.pageGarage.setCarsCounter(app, Number(carsData.totalCount));
         app.pageGarage.setPaginationButtons(app, carsData);
         if (app.raceTable.rows.length === 0) {
