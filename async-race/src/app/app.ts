@@ -18,9 +18,10 @@ class App {
   winnersTableOrder: 'ASC' | 'DESC';
   counterGarage: HTMLElement;
   pageNumberGarage: number;
-  pageNumberGarageElem: HTMLElement;
-  paginationButtonGarage: PaginationButtons;
   pageNumberWinner: number;
+  pageNumberGarageElem: HTMLElement;
+  pageNumberWinnerElem: HTMLElement;
+  paginationButtonGarage: PaginationButtons;
   paginationButtonWinner: PaginationButtons;
   formUpdateCar: HTMLElement;
   formCreateCar: HTMLElement;
