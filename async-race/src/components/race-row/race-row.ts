@@ -6,7 +6,7 @@ import './race-row.scss';
 import { SpeedCar } from '../../utils/interfaces';
 
 class RaceRow {
-  static create(id: number, name: string, color: string, app: App) {
+  static create(id: number, name: string, color: string, app: App): HTMLElement {
     const row = document.createElement('div');
     row.className = 'race-row';
     row.id = String(id);

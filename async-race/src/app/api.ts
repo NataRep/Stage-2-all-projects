@@ -1,4 +1,4 @@
-import { Car, CarsData, SpeedCar, Winner } from '../utils/interfaces';
+import { Car, CarsData, SpeedCar, Winner, Winners } from '../utils/interfaces';
 
 const PORT = 'http://127.0.0.1:3000';
 class Api {
@@ -133,7 +133,7 @@ class Api {
     limit?: number,
     sort?: 'id' | 'wins' | 'time',
     order?: 'ASC' | 'DESC'
-  ): Promise<{ winners: Winner[]; totalCount?: string } | undefined> {
+  ): Promise<Winners | undefined> {
     const pathUrl: string = '/winners';
     let fullUrl: string = PORT + pathUrl;
     if (page || limit || sort || order) fullUrl += '?';

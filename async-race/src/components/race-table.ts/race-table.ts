@@ -23,16 +23,6 @@ class RaceTable {
 
     return this.table;
   }
-
-  /*public removeRow(id: number) {
-    this.rows.find((el) => el.id === String(id)).remove;
-  }
-
-  public addRow(car: Car, app: App) {
-    const row = RaceRow.create(car.id, car.name, car.color, app);
-    this.table.append(row);
-    this.rows.push(row);
-  }*/
 }
 
 export default RaceTable;
