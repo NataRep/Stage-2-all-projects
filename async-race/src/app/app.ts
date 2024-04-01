@@ -17,6 +17,7 @@ class App {
   winnersTableSort: 'id' | 'wins' | 'time';
   winnersTableOrder: 'ASC' | 'DESC';
   counterGarage: HTMLElement;
+  counterWinner: HTMLElement;
   pageNumberGarage: number;
   pageNumberWinner: number;
   pageNumberGarageElem: HTMLElement;
