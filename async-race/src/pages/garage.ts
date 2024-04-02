@@ -57,7 +57,7 @@ class GaragePageView extends Page {
       'update-car',
       'Update',
       ['button_update', 'button_blue'],
-      async (event: Event) => this.updateCar(app, app.selectedCarId)
+      async () => this.updateCar(app, app.selectedCarId)
     );
     app.formUpdateCar = formUpdateCar;
     const buttonUpdate = formUpdateCar.querySelector('button') as HTMLButtonElement;
@@ -156,6 +156,7 @@ class GaragePageView extends Page {
     this.setPageCounter(app);
     this.updateCarsTable(app);
   }
+
   public async creatPrevPage(app: App) {
     app.pageNumberGarage -= 1;
     this.setPageCounter(app);
@@ -183,6 +184,9 @@ class GaragePageView extends Page {
   }
 
   private async generateCars(app: App) {
+    function getRandom<T>(array: T[]): number {
+      return Math.floor(Math.random() * array.length);
+    }
     app.buttonGenerate.disabled = true;
     app.buttonRace.disabled = true;
     app.buttonReset.disabled = true;
@@ -194,15 +198,12 @@ class GaragePageView extends Page {
     let color: string;
     for (let i = 0; i < 100; i += 1) {
       color = COLORS[getRandom(COLORS)];
-      let maker = MAKERS[getRandom(MAKERS)];
+      const maker = MAKERS[getRandom(MAKERS)];
       name = `${maker.maker} ${maker.models[getRandom(maker.models)]}`;
       await Api.createCar(name, color);
     }
     this.updateCarsTable(app);
 
-    function getRandom<T>(array: T[]): number {
-      return Math.floor(Math.random() * array.length);
-    }
     app.buttonGenerate.disabled = false;
     app.buttonRace.disabled = false;
     app.buttonReset.disabled = false;
