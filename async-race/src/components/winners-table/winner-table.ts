@@ -7,6 +7,7 @@ import { Order, Sorting } from '../../utils/type';
 
 class WinnerTable {
   rows: HTMLElement[];
+
   table: HTMLElement;
 
   constructor() {
@@ -32,7 +33,7 @@ class WinnerTable {
     this.rows.push(rowHeader);
 
     winners.forEach((winner, index) => {
-      const car = cars.find((car) => car.id === winner.id);
+      const car = cars.find((item) => item.id === winner.id);
       const name = car.name;
       const color = car.color;
       const wins = winner.wins;
@@ -87,7 +88,9 @@ class WinnerTable {
     } else if (button.innerHTML === 'Best time') {
       app.winnersTableSort = 'time';
     }
-    app.winnersTableOrder === 'ASC' ? (app.winnersTableOrder = 'DESC') : (app.winnersTableOrder = 'ASC');
+    if (app.winnersTableOrder === 'ASC') {
+      app.winnersTableOrder = 'DESC';
+    } else app.winnersTableOrder = 'ASC';
     app.pageWinners.updatePage(app);
   }
 }
