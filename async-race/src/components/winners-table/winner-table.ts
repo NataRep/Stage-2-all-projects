@@ -4,6 +4,7 @@ import './winner-table.scss';
 import { CarsData, Winner, Winners } from '../../utils/interfaces';
 import WinnerRow from '../winners-row/winner-row';
 import { Order, Sorting } from '../../utils/type';
+import { OrderType, SortTypes } from '../../utils/enums';
 
 class WinnerTable {
   rows: HTMLElement[];
@@ -84,13 +85,13 @@ class WinnerTable {
   private async sort(event: Event, app: App) {
     const button = event.target as HTMLElement;
     if (button.innerHTML === 'Wins') {
-      app.winnersTableSort = 'wins';
+      app.winnersTableSort = SortTypes.WINS;
     } else if (button.innerHTML === 'Best time') {
-      app.winnersTableSort = 'time';
+      app.winnersTableSort = SortTypes.TIME;
     }
-    if (app.winnersTableOrder === 'ASC') {
-      app.winnersTableOrder = 'DESC';
-    } else app.winnersTableOrder = 'ASC';
+    if (app.winnersTableOrder === OrderType.ASB) {
+      app.winnersTableOrder = OrderType.DESC;
+    } else app.winnersTableOrder = OrderType.ASB;
     app.pageWinners.updatePage(app);
   }
 }

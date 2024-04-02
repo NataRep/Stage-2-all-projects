@@ -6,6 +6,7 @@ import RaceTable from '../components/race-table.ts/race-table';
 import { Car, CarsData, Finisher, PaginationButtons, SpeedCar } from '../utils/interfaces';
 import WinnerTable from '../components/winners-table/winner-table';
 import { Order, Sorting } from '../utils/type';
+import { OrderType, SortTypes } from '../utils/enums';
 
 class App {
   state: State;
@@ -72,8 +73,8 @@ class App {
   public async start() {
     this.pageGarage = new GaragePageView(this);
     this.pageWinners = new WinnersPageView(this);
-    this.winnersTableOrder = 'ASC';
-    this.winnersTableSort = 'id';
+    this.winnersTableOrder = OrderType.ASB;
+    this.winnersTableSort = SortTypes.ID;
     this.pageGarage.render();
     this.raceTable = new RaceTable();
     this.pageNumberGarage = 1;
