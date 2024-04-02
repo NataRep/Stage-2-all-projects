@@ -38,7 +38,7 @@ class App {
   winnerMessage: HTMLElement;
 
   constructor() {
-    this.state = new State('', '#ffffff', '', '#ffffff', 1, 1);
+    this.state = new State('', '#ffffff', '', '#ffffff');
     this.race = false;
   }
 
