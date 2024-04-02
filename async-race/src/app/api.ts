@@ -2,7 +2,7 @@ import { Car, CarsData, SpeedCar, Winner, Winners } from '../utils/interfaces';
 
 const PORT = 'http://127.0.0.1:3000';
 class Api {
-  static async fetchWithOptions(url: string, options: RequestInit, errorMessage: string): Promise<Response> {
+  static async fetchWithOptions(url: string, options: RequestInit): Promise<Response> {
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error('Error HTTP: ' + response.status);
@@ -16,7 +16,7 @@ class Api {
     const options = {
       method: 'GET',
     };
-    const response = await Api.fetchWithOptions(fullUrl, options, 'Error getting car: ');
+    const response = await Api.fetchWithOptions(fullUrl, options);
     return (await response.json()) as Car;
   }
 
@@ -58,7 +58,7 @@ class Api {
       },
       body: JSON.stringify(carData),
     };
-    const response = await Api.fetchWithOptions(fullUrl, options, 'Error creating car: ');
+    const response = await Api.fetchWithOptions(fullUrl, options);
     return (await response.json()) as Car;
   }
 
@@ -68,7 +68,7 @@ class Api {
       method: 'DELETE',
     };
     const fullUrl: string = PORT + pathUrl + String(id);
-    await Api.fetchWithOptions(fullUrl, options, 'Error deleting car: ');
+    await Api.fetchWithOptions(fullUrl, options);
   }
 
   static async updateCar(id: number, name: string, color: string): Promise<Car> {
@@ -85,7 +85,7 @@ class Api {
       },
       body: JSON.stringify(carData),
     };
-    const response = await Api.fetchWithOptions(fullUrl, options, 'Error updating car: ');
+    const response = await Api.fetchWithOptions(fullUrl, options);
     return (await response.json()) as Car;
   }
 
@@ -96,7 +96,7 @@ class Api {
     const options = {
       method: 'PATCH',
     };
-    const response = await Api.fetchWithOptions(fullUrl, options, 'Error start or stop car: ');
+    const response = await Api.fetchWithOptions(fullUrl, options);
     return (await response.json()) as SpeedCar;
   }
 
@@ -165,7 +165,7 @@ class Api {
     const options = {
       method: 'GET',
     };
-    const response = await Api.fetchWithOptions(fullUrl, options, 'Error getting winner: ');
+    const response = await Api.fetchWithOptions(fullUrl, options);
     return (await response.json()) as Winner;
   }
 
@@ -184,7 +184,7 @@ class Api {
       },
       body: JSON.stringify(winnerData),
     };
-    const response = await Api.fetchWithOptions(fullUrl, options, 'Error creating winner: ');
+    const response = await Api.fetchWithOptions(fullUrl, options);
     return (await response.json()) as Winner;
   }
 
@@ -195,7 +195,7 @@ class Api {
       method: 'DELETE',
     };
     try {
-      await Api.fetchWithOptions(fullUrl, options, 'Error deleting winner: ');
+      await Api.fetchWithOptions(fullUrl, options);
     } catch (error) {
       console.error('Error:', error.message);
     }
@@ -216,7 +216,7 @@ class Api {
       body: JSON.stringify(winnerData),
     };
     try {
-      const response = await Api.fetchWithOptions(fullUrl, options, 'Error updating winner: ');
+      const response = await Api.fetchWithOptions(fullUrl, options);
       return (await response.json()) as Winner;
     } catch (error) {
       console.error('Error:', error.message);
