@@ -4,6 +4,7 @@ import RaceRow from '../race-row/race-row';
 
 class RaceTable {
   rows: HTMLElement[];
+
   table: HTMLElement;
 
   constructor() {

@@ -26,14 +26,18 @@ class RaceRow {
 
     const controlButtons = document.createElement('div');
     controlButtons.className = 'race-row__control-buttons';
-    let buttonB: HTMLButtonElement;
+    const buttonB: HTMLButtonElement = Button.create(
+      'B',
+      ['race-row__button', 'button_reset', 'button_cars-control'],
+      () => {}
+    );
 
     const buttonA = Button.create('A', ['race-row__button', 'button_start', 'button_cars-control'], async () => {
       buttonA.disabled = true;
       let interval: ReturnType<typeof setInterval>;
       try {
         const startResponse = (await Api.startOrStopCar(id, 'started')) as SpeedCar;
-        let isMoving: boolean = true;
+        const isMoving: boolean = true;
         interval = app.startCarAnimation(car, startResponse.distance / startResponse.velocity / 10, isMoving);
         await Api.switchCarToDriveMode(id, app.abortController);
         buttonB.disabled = false;
@@ -43,7 +47,7 @@ class RaceRow {
       }
     });
 
-    buttonB = Button.create('B', ['race-row__button', 'button_reset', 'button_cars-control'], () => {
+    buttonB.addEventListener('click', () => {
       app.stopCar(id, buttonA, buttonB, car);
     });
     buttonB.disabled = true;
@@ -114,15 +118,15 @@ class RaceRow {
     app.selectedCarSVG = svg;
     buttonSelect.disabled = true;
     const buttons = app.raceTable.table.querySelectorAll('.button');
-    buttons.forEach((button: HTMLButtonElement) => (button.disabled = true));
+    buttons.forEach((elem: HTMLButtonElement) => (elem.disabled = true));
 
     //отменяем выделение машины
     document.body.addEventListener('click', function onClick(event: Event) {
       const target = event.target as HTMLElement;
       if (!target.closest('.form_update-car') || event.target === button) {
-        buttons.forEach((button: HTMLButtonElement) => {
-          if (!button.classList.contains('button_reset')) {
-            button.disabled = false;
+        buttons.forEach((elem: HTMLButtonElement) => {
+          if (!elem.classList.contains('button_reset')) {
+            elem.disabled = false;
           }
         });
         button.disabled = true;
