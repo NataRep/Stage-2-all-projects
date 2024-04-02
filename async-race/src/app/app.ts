@@ -9,32 +9,59 @@ import { Order, Sorting } from '../utils/type';
 
 class App {
   state: State;
+
   race: boolean;
+
   carsElements: HTMLElement[];
+
   pageGarage: GaragePageView;
+
   pageWinners: WinnersPageView;
+
   raceTable: RaceTable;
+
   winnersTable: WinnerTable;
+
   winnersTableSort: Sorting;
+
   winnersTableOrder: Order;
+
   counterGarage: HTMLElement;
+
   counterWinner: HTMLElement;
+
   pageNumberGarage: number;
+
   pageNumberWinner: number;
+
   pageNumberGarageElem: HTMLElement;
+
   pageNumberWinnerElem: HTMLElement;
+
   paginationButtonGarage: PaginationButtons;
+
   paginationButtonWinner: PaginationButtons;
+
   formUpdateCar: HTMLElement;
+
   formCreateCar: HTMLElement;
+
   selectedCarId: number;
+
   selectedCarName: HTMLElement;
+
   selectedCarSVG: SVGElement;
+
   buttonGenerate: HTMLButtonElement;
+
   buttonRace: HTMLButtonElement;
+
   buttonReset: HTMLButtonElement;
+
   isRace: boolean;
+
   abortController: AbortController;
+
   winnerMessage: HTMLElement;
 
   constructor() {
@@ -93,14 +120,14 @@ class App {
     car.style.transform = `translateX(0px)`;
   }
 
-  public startAndSwitchCar(car: Car, index: number, app: App): Promise<any> {
+  public startAndSwitchCar(car: Car, index: number, app: App): Promise<Finisher> {
     let interval: ReturnType<typeof setInterval>;
     return new Promise(async (resolve, reject) => {
       try {
         const startResponse = (await Api.startOrStopCar(car.id, 'started')) as SpeedCar;
         //тут начинаем анимацию
-        let isMoving: boolean = true;
-        let carSVG = app.raceTable.rows[index].querySelector('svg');
+        const isMoving: boolean = true;
+        const carSVG = app.raceTable.rows[index].querySelector('svg');
         interval = app.startCarAnimation(carSVG, startResponse.distance / startResponse.velocity / 10, isMoving);
         const winner: Finisher = {
           id: car.id,
@@ -165,6 +192,7 @@ class App {
     this.buttonGenerate.disabled = false;
     this.buttonReset.disabled = false;
   }
+
   private turnButtonsAfterReset() {
     this.raceTable.rows.forEach((row) => {
       const buttons = row.querySelectorAll('button');
