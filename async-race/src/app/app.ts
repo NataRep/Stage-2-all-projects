@@ -157,23 +157,28 @@ class App {
     //отключаю кнопки на время гонки
     this.disableButtonsDuringRace();
     //гонка
-    const result = await Promise.any(promises);
-    this.turnButtonsAfterRace();
-    this.showWinner(result.name, result.time);
-
     try {
-      const winnerData = await Api.getWinner(result.id);
-      if (winnerData.time > parseFloat(result.time)) {
-        Api.updateWinner(result.id, winnerData.wins + 1, parseFloat(result.time));
-      } else {
-        Api.updateWinner(result.id, winnerData.wins + 1, winnerData.time);
+      const result = await Promise.any(promises);
+      this.turnButtonsAfterRace();
+      this.showWinner(result.name, result.time);
+
+      try {
+        const winnerData = await Api.getWinner(result.id);
+        if (winnerData.time > parseFloat(result.time)) {
+          Api.updateWinner(result.id, winnerData.wins + 1, parseFloat(result.time));
+        } else {
+          Api.updateWinner(result.id, winnerData.wins + 1, winnerData.time);
+        }
+      } catch (error) {
+        if ((error.status = 404)) {
+          await Api.createWinner(result.id, 1, parseFloat(result.time));
+        } else {
+          throw error;
+        }
       }
-    } catch (error) {
-      if ((error.status = 404)) {
-        await Api.createWinner(result.id, 1, parseFloat(result.time));
-      } else {
-        throw error;
-      }
+    } catch {
+      this.turnButtonsAfterRace();
+      this.showWinner('nobody', 'all cars are broken');
     }
   }
 
