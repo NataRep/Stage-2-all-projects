@@ -39,8 +39,10 @@ class WinnerTable {
       const color = car.color;
       const wins = winner.wins;
       const time = winner.time;
-
-      const row = WinnerRow.create(index + 1, name, color, wins, time);
+      const row: HTMLElement =
+        app.pageNumberWinner === 1
+          ? WinnerRow.create(index + 1, name, color, wins, time)
+          : WinnerRow.create(index + (app.pageNumberWinner - 1) * 10, name, color, wins, time);
       this.table.append(row);
       this.rows.push(row);
     });
