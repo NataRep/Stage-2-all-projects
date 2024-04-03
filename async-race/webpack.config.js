@@ -12,8 +12,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
-      title: 'English Puzzle Game',
-      //favicon: path.resolve(__dirname, './src/assets/images/favicon.svg'),
+      title: 'Async Race',
+      favicon: path.resolve(__dirname, './src/images/favicon.svg'),
     }),
   ],
   resolve: {
