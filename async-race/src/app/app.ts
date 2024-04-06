@@ -141,6 +141,8 @@ class App {
       } catch (error) {
         //останавливаем анимацию
         clearInterval(interval);
+        const carSVG = app.raceTable.rows[index].querySelector('svg');
+        carSVG.classList.add('broken');
         reject(error);
       }
     });
@@ -218,6 +220,7 @@ class App {
       const buttonA = this.raceTable.rows[index].querySelector('.button_start') as HTMLButtonElement;
       const buttonB = this.raceTable.rows[index].querySelector('.button_reset') as HTMLButtonElement;
       const svg = this.raceTable.rows[index].querySelector('svg') as SVGElement;
+      if (svg.classList.contains('broken')) svg.classList.remove('broken');
       this.stopCar(car.id, buttonA, buttonB, svg);
     });
     this.formCreateCar.querySelector('button').disabled = false;
