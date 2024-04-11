@@ -1,5 +1,5 @@
-export interface RequestFormat<T> {
-  id: string | null;
+export interface RequestOrResponse<T> {
+  id: string;
   type: string;
   payload: T;
 }
@@ -17,4 +17,7 @@ export interface MessageRequest {
     to: string;
     text: string;
   };
+}
+export interface ErrorResponse {
+  error: string;
 }

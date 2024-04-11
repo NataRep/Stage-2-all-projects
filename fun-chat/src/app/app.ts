@@ -1,9 +1,8 @@
-import WebSocketAPI from './api';
-import { RequestFormat } from '../interfaces.ts/api.interfaces';
+import WebSocketAPI from '../api/api';
+import { RequestOrResponse } from '../utils/interfaces.ts/api.interfaces';
 
 export default class App {
   webSocket: WebSocket;
-  id: string;
 
   public async start() {
     const url = 'ws://localhost:4000';
@@ -11,14 +10,14 @@ export default class App {
 
     this.webSocket.onopen = (event) => {
       console.log('Соединение установлено');
-      WebSocketAPI.sendUserAuthentication(this.webSocket, this.id, 'Логин', 'Пароль');
-      WebSocketAPI.sendUserLogout(this.webSocket, this.id, 'Логин', 'Пароль');
+      WebSocketAPI.sendUserAuthentication(this.webSocket, 'Логин', 'Пароль');
+      WebSocketAPI.sendUserLogout(this.webSocket, 'Логин', 'Пароль');
     };
 
-    this.id = crypto.randomUUID();
+    const id = crypto.randomUUID();
 
-    const requestAuthenticatedUsers: RequestFormat<null> = {
-      id: this.id,
+    const requestAuthenticatedUsers: RequestOrResponse<null> = {
+      id: id,
       type: 'USER_ACTIVE',
       payload: null,
     };
