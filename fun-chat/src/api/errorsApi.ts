@@ -1,5 +1,5 @@
-import { ErrorResponse } from '../utils/interfaces.ts/api.interfaces';
-import { RequestOrResponse } from '../utils/interfaces.ts/api.interfaces';
+import { ErrorResponse } from '../utils/interfaces.ts/interfaces';
+import { RequestOrResponse } from '../utils/interfaces.ts/interfaces';
 
 export default class ResponsesForErrors {
   id: string;

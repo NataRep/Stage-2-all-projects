@@ -1,3 +1,5 @@
+import './page.scss';
+
 class Page {
   public mainContent: HTMLElement;
 

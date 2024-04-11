@@ -1,4 +1,4 @@
-import { MessageRequest, RequestOrResponse, UserRequest } from '../utils/interfaces.ts/api.interfaces';
+import { MessageRequest, RequestOrResponse, UserRequest } from '../utils/interfaces.ts/interfaces';
 
 export default class WebSocketAPI {
   static sendRequest<T>(webSocket: WebSocket, type: string, payload: T) {

@@ -12,17 +12,15 @@
 }
 
 .button {
-  background-color: var(--color-red);
-  color: var(--color-black);
+  background-color: var(--color-blue);
+  color: var(--color-white);
   border: none;
   border-radius: 0.35rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
   font-size: 1rem;
-  font-style: italic;
   line-height: 100%;
   letter-spacing: 0.03rem;
-  text-transform: uppercase;
   cursor: pointer;
   margin-right: 1rem;
   transition: all 0.3s;
@@ -36,20 +34,6 @@
     pointer-events: none;
   }
 
-  &_green {
-    background-color: var(--color-green);
-    @include hover(var(--color-green-secondary));
-  }
-  &_blue {
-    background-color: var(--color-blue);
-    @include hover(var(--color-blue-secondary));
-  }
-
-  &_red {
-    background-color: var(--color-red);
-
-    @include hover(var(--color-red-secondary));
-  }
   &_small {
     border-radius: 0.35rem;
     padding: 0.25rem 0.5rem;
@@ -57,46 +41,26 @@
     font-size: 0.75rem;
   }
 
-  &_remove {
-    @include hover(var(--color-red));
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--color-blue-secondary);
+      color: var(--color-white);
+    }
   }
-  &.selected {
-    background-color: var(--color-yellow);
-    @include hover(var(-color-yellow-secondary));
+  &:active {
+    background: var(--color-blue-secondary);
+    color: var(--color-white);
   }
 
-  &_cars-control {
+  &.active {
+    background: var(--color-blue-secondary);
+    color: var(--color-white);
+  }
+
+  &:disabled {
     background: none;
-    border: solid 2px var(--color-green);
-    color: var(--color-green);
-    border-radius: 0.35rem;
-    padding: 0.5rem;
-    width: 2.25rem;
-    margin-right: 0.25rem;
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        background: var(--color-green-secondary);
-        border: solid 2px var(--color-green-secondary);
-        color: var(--color-black);
-      }
-    }
-    &:active {
-      background: var(--color-green-secondary);
-      border: solid 2px var(--color-green-secondary);
-      color: var(--color-black);
-    }
-
-    &.active {
-      background: var(--color-green);
-      color: var(--color-black);
-    }
-
-    &:disabled {
-      background: none;
-      border: solid 2px var(--color-grey);
-      color: var(--color-grey);
-      pointer-events: none;
-    }
+    border: solid 2px var(--color-grey);
+    color: var(--color-grey);
+    pointer-events: none;
   }
 }

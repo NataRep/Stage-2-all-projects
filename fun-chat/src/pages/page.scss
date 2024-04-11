@@ -1,0 +1,8 @@
+@import './../utils/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+body {
+  background: #e4e9e9;
+  font-family: 'Sono', monospace;
+  color: var(--color-grey-dark);
+}
