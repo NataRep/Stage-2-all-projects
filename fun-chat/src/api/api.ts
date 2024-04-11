@@ -1,3 +1,4 @@
+import App from '../app/app';
 import { MessageRequest, RequestOrResponse, UserRequest } from '../utils/interfaces.ts/interfaces';
 
 export default class WebSocketAPI {
@@ -11,7 +12,7 @@ export default class WebSocketAPI {
     webSocket.send(JSON.stringify(request));
   }
 
-  static sendUserAuthentication(webSocket: WebSocket, login: string, password: string) {
+  static sendUserAuthentication(app: App, webSocket: WebSocket, login: string, password: string) {
     const payload: UserRequest = {
       user: {
         login: login,
@@ -21,7 +22,7 @@ export default class WebSocketAPI {
     this.sendRequest(webSocket, 'USER_LOGIN', payload);
   }
 
-  static sendUserLogout(webSocket: WebSocket, login: string, password: string) {
+  static sendUserLogout(app: App, webSocket: WebSocket, login: string, password: string) {
     const payload: UserRequest = {
       user: {
         login: login,
@@ -31,30 +32,30 @@ export default class WebSocketAPI {
     this.sendRequest(webSocket, 'USER_LOGOUT', payload);
   }
 
-  static getAllAuthenticatedUsers(webSocket: WebSocket) {
+  static getAllAuthenticatedUsers(app: App, webSocket: WebSocket) {
     this.sendRequest(webSocket, 'USER_ACTIVE', null);
   }
 
-  static getAllUnauthorizedUsers(webSocket: WebSocket) {
-    this.sendRequest(webSocket, 'USER_INACTIVE', null);
+  static getAllUnauthorizedUsers(app: App, webSocket: WebSocket) {
+    const request = this.sendRequest(webSocket, 'USER_INACTIVE', null);
   }
 
-  static sendMessageToUser(webSocket: WebSocket, toId: string, text: string) {
+  static sendMessageToUser(app: App, webSocket: WebSocket, toId: string, text: string) {
     const payload: MessageRequest = {
       message: {
         to: toId,
         text: text,
       },
     };
-    this.sendRequest(webSocket, 'MSG_SEND', payload);
+    const request = this.sendRequest(webSocket, 'MSG_SEND', payload);
   }
 
-  static getMessageHistoryWithUser(webSocket: WebSocket, login: string) {
+  static getMessageHistoryWithUser(app: App, webSocket: WebSocket, login: string) {
     const payload = {
       user: {
         login: login,
       },
     };
-    this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
+    const request = this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
   }
 }

@@ -6,6 +6,11 @@ export interface RequestOrResponse<T> {
 export interface UserRequest {
   user: User;
 }
+export interface UserRequestHistory {
+  user: {
+    login: string;
+  };
+}
 
 export interface User {
   login: string;

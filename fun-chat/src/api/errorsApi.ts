@@ -1,7 +1,7 @@
 import { ErrorResponse } from '../utils/interfaces.ts/interfaces';
 import { RequestOrResponse } from '../utils/interfaces.ts/interfaces';
 
-export default class ResponsesForErrors {
+export default class ErrorsFromResponses {
   id: string;
   error: string;
 
@@ -13,4 +13,8 @@ export default class ResponsesForErrors {
   throwError() {
     throw new Error(this.error);
   }
+
+  private checkTypeError(id: string) {}
+
+  private catchLoginError() {}
 }

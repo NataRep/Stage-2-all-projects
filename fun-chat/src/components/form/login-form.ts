@@ -32,8 +32,6 @@ class LoginForm extends Form {
   private onClickButton(event: Event) {
     if (this.fieldValidation && this.loginInput.value.length > 0 && this.passwordInput.value.length > 0) {
       this.app.login(this.loginInput.value, this.passwordInput.value);
-      //const startPages = new StartPage(this.app);
-      //startPages.drawStartPage();
     }
     if (this.loginInput.value.length === 0 || this.passwordInput.value.length === 0) {
       if (this.loginInput.value.length === 0) {
@@ -55,7 +53,7 @@ class LoginForm extends Form {
 
   private checkValalidationInput(event: Event) {
     let result: boolean = true;
-    const pattern = /^[a-zA-Z]+$/;
+    const pattern = /^[a-zA-Z0-9_]+$/;
     let inputField: HTMLElement;
 
     if (event.target === this.loginInput) {
