@@ -1,8 +1,14 @@
 import WebSocketAPI from '../api/api';
+import AppHtmlEllements from '../utils/app-html-ellements';
 import { RequestOrResponse } from '../utils/interfaces.ts/api.interfaces';
 
 export default class App {
   webSocket: WebSocket;
+  appHtmlEllements: AppHtmlEllements;
+
+  constructor() {
+    this.appHtmlEllements = new AppHtmlEllements();
+  }
 
   public async start() {
     const url = 'ws://localhost:4000';
