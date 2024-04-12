@@ -4,7 +4,7 @@ import Page from '../../pages/page';
 export default class Router {
   urlPath;
 
-  constructor(app: App) {
+  constructor() {
     this.urlPath = {
       LOGIN: '/',
       CHAT: '/chat',
@@ -24,7 +24,10 @@ export default class Router {
       location = '/';
     }
     if (location === this.urlPath.LOGIN) {
-      app.loginPage.render();
+      if (sessionStorage.getItem('current-user_nuttik')) {
+        sessionStorage.removeItem('current-user_nuttik');
+      }
+      app.loginPage.open(app);
     }
     if (location === this.urlPath.CHAT) {
       app.chatPage.render();

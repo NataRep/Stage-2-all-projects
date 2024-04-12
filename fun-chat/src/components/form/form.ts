@@ -71,6 +71,12 @@ class Form {
 
     return form;
   }
+
+  public clear() {
+    if (this.inputs) {
+      this.inputs.forEach((input) => (input.querySelector('input').value = ''));
+    }
+  }
 }
 
 export default Form;

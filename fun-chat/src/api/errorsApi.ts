@@ -3,6 +3,7 @@ import { RequestOrResponse } from '../utils/interfaces.ts/interfaces';
 
 export default class ErrorsFromResponses {
   id: string;
+
   error: string;
 
   constructor(errorMessage: RequestOrResponse<ErrorResponse>) {
@@ -10,11 +11,11 @@ export default class ErrorsFromResponses {
     this.error = errorMessage.payload.error;
   }
 
-  throwError() {
+  public throwError() {
     throw new Error(this.error);
   }
 
-  private checkTypeError(id: string) {}
+  //private checkTypeError(id: string) {}
 
-  private catchLoginError() {}
+  //private catchLoginError() {}
 }

@@ -1,9 +1,7 @@
 import WebSocketAPI from '../api/api';
-import ErrorsFromResponses from '../api/errorsApi';
 import Router from '../components/router.ts/router';
 import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
-import Page from '../pages/page';
 import AppHtmlEllements from '../utils/app-html-ellements';
 import { typeMessagesFromCerver } from '../utils/enums/messages-from-server';
 import { ErrorResponse, RequestOrResponse } from '../utils/interfaces.ts/interfaces';
@@ -11,17 +9,22 @@ import User from './user';
 
 export default class App {
   webSocket: WebSocket;
+
   appHtmlEllements: AppHtmlEllements;
+
   loginPage: LoginPage;
+
   chatPage: ChatPage;
+
   user: User;
+
   router: Router;
 
   constructor() {
-    this.appHtmlEllements = new AppHtmlEllements();
+    this.appHtmlEllements = new AppHtmlEllements(this);
     this.loginPage = new LoginPage(this);
     this.chatPage = new ChatPage(this);
-    this.router = new Router(this);
+    this.router = new Router();
   }
 
   public async start() {
@@ -43,10 +46,7 @@ export default class App {
 
   public login(login: string, password: string) {
     WebSocketAPI.sendUserAuthentication(this, this.webSocket, login, password);
-    this.user = {
-      login: login,
-      password: password,
-    };
+    this.user = new User(login, password);
     const userStr = JSON.stringify(this.user);
     sessionStorage.setItem('current-user_nuttik', userStr);
   }
@@ -59,11 +59,12 @@ export default class App {
         // выясняем какая ошибка пришла и как ее обработать
         break;
       case typeMessagesFromCerver.USER_LOGIN:
+        this.user.isLogin = true;
         this.router.urlRoute(this, this.router.urlPath.CHAT);
         break;
       case typeMessagesFromCerver.USER_LOGOUT:
-        //..обработчик
-        //..открываем страницу логина c с пустыми полями формы
+        this.user.isLogin = false;
+        this.router.urlRoute(this, this.router.urlPath.LOGIN);
         break;
       case typeMessagesFromCerver.USER_EXTERNAL_LOGIN:
         //..обработчик

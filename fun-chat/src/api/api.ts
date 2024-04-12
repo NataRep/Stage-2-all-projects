@@ -37,7 +37,7 @@ export default class WebSocketAPI {
   }
 
   static getAllUnauthorizedUsers(app: App, webSocket: WebSocket) {
-    const request = this.sendRequest(webSocket, 'USER_INACTIVE', null);
+    this.sendRequest(webSocket, 'USER_INACTIVE', null);
   }
 
   static sendMessageToUser(app: App, webSocket: WebSocket, toId: string, text: string) {
@@ -47,7 +47,7 @@ export default class WebSocketAPI {
         text: text,
       },
     };
-    const request = this.sendRequest(webSocket, 'MSG_SEND', payload);
+    this.sendRequest(webSocket, 'MSG_SEND', payload);
   }
 
   static getMessageHistoryWithUser(app: App, webSocket: WebSocket, login: string) {
@@ -56,6 +56,6 @@ export default class WebSocketAPI {
         login: login,
       },
     };
-    const request = this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
+    this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
   }
 }
