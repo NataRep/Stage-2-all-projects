@@ -1,16 +1,12 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
+import Router from '../components/router.ts/router';
 import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
+import Page from '../pages/page';
 import AppHtmlEllements from '../utils/app-html-ellements';
 import { typeMessagesFromCerver } from '../utils/enums/messages-from-server';
-import {
-  ErrorResponse,
-  MessageRequest,
-  RequestOrResponse,
-  UserRequest,
-  UserRequestHistory,
-} from '../utils/interfaces.ts/interfaces';
+import { ErrorResponse, RequestOrResponse } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
 export default class App {
@@ -19,11 +15,13 @@ export default class App {
   loginPage: LoginPage;
   chatPage: ChatPage;
   user: User;
+  router: Router;
 
   constructor() {
     this.appHtmlEllements = new AppHtmlEllements();
     this.loginPage = new LoginPage(this);
     this.chatPage = new ChatPage(this);
+    this.router = new Router(this);
   }
 
   public async start() {
@@ -37,6 +35,10 @@ export default class App {
     } else {
       this.loginPage.render();
     }
+    //запускаем обработку сообщений с сервера
+    this.webSocket.onmessage = (event) => {
+      this.onMessage(JSON.parse(event.data));
+    };
   }
 
   public login(login: string, password: string) {
@@ -47,11 +49,6 @@ export default class App {
     };
     const userStr = JSON.stringify(this.user);
     sessionStorage.setItem('current-user_nuttik', userStr);
-
-    //дальше тест удалить
-    this.webSocket.onmessage = (event) => {
-      this.onMessage(JSON.parse(event.data));
-    };
   }
 
   private onMessage(message: RequestOrResponse<ErrorResponse>) {
@@ -62,11 +59,7 @@ export default class App {
         // выясняем какая ошибка пришла и как ее обработать
         break;
       case typeMessagesFromCerver.USER_LOGIN:
-        //..обработчик
-        // открываем страницу чата
-        console.log('открываем страницу чата');
-        this.loginPage.clearContent();
-        this.chatPage.render();
+        this.router.urlRoute(this, this.router.urlPath.CHAT);
         break;
       case typeMessagesFromCerver.USER_LOGOUT:
         //..обработчик

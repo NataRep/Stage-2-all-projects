@@ -12,7 +12,7 @@ class Page {
     document.body.append(this.mainContent);
   }
 
-  public clearContent() {
+  static clearContent() {
     document.body.innerHTML = '';
   }
 }
