@@ -45,9 +45,6 @@ export default class App {
     this.webSocket.onmessage = (event) => {
       this.onMessage(JSON.parse(event.data));
     };
-
-    //включаю обработку перемещения по страницам вперед назад
-    // window.addEventListener('popstate', () => this.openPage());
   }
 
   public login(login: string, password: string) {
@@ -55,6 +52,12 @@ export default class App {
     this.user = new User(login, password);
     const userStr = JSON.stringify(this.user);
     sessionStorage.setItem('current-user_nuttik', userStr);
+  }
+
+  public logout() {
+    WebSocketAPI.sendUserLogout(this, this.webSocket, this.user.login, this.user.password);
+    sessionStorage.removeItem('current-user_nuttik');
+    window.location.pathname = '/';
   }
 
   private onMessage(message: RequestOrResponse<ErrorResponse>) {
