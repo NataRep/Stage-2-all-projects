@@ -1,10 +1,10 @@
 import App from '../app/app';
-import { MessageRequest, RequestOrResponse, UserRequest } from '../utils/interfaces.ts/interfaces';
+import { MessageRequest, RequestServer, UserRequest } from '../utils/interfaces.ts/interfaces';
 
 export default class WebSocketAPI {
   static sendRequest<T>(webSocket: WebSocket, type: string, payload: T) {
     const id = crypto.randomUUID();
-    const request: RequestOrResponse<T> = {
+    const request: RequestServer<T> = {
       id: id,
       type: type,
       payload: payload,

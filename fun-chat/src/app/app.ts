@@ -4,7 +4,7 @@ import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
 import AppHtmlEllements from '../utils/app-html-ellements';
 import { typeMessagesFromCerver } from '../utils/enums/messages-from-server';
-import { ErrorResponse, RequestOrResponse, UserRequest } from '../utils/interfaces.ts/interfaces';
+import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
 export default class App {
@@ -64,7 +64,7 @@ export default class App {
     this.router.urlRoute(this, this.router.urlPath.LOGIN);
   }
 
-  private onMessage(message: RequestOrResponse<UserRequest>) {
+  private onMessage(message: ResponseServer) {
     //сделать действие на каждый тип получаемых сообщений
     switch (message.type) {
       case typeMessagesFromCerver.ERROR:

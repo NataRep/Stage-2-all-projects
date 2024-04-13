@@ -1,12 +1,11 @@
-import { ErrorResponse } from '../utils/interfaces.ts/interfaces';
-import { RequestOrResponse } from '../utils/interfaces.ts/interfaces';
+import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 
 export default class ErrorsFromResponses {
   id: string;
 
   error: string;
 
-  constructor(errorMessage: RequestOrResponse<ErrorResponse>) {
+  constructor(errorMessage: ResponseServer) {
     this.id = errorMessage.id;
     this.error = errorMessage.payload.error;
   }
