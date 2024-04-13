@@ -1,4 +1,5 @@
 import WebSocketAPI from '../api/api';
+import ErrorsFromResponses from '../api/errorsApi';
 import Router from '../components/router.ts/router';
 import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
@@ -65,11 +66,13 @@ export default class App {
   }
 
   private onMessage(message: ResponseServer) {
+    console.log(message);
     //сделать действие на каждый тип получаемых сообщений
     switch (message.type) {
       case typeMessagesFromServer.ERROR:
         //..обработчик
-        // выясняем какая ошибка пришла и как ее обработать
+        const error = new ErrorsFromResponses(message);
+        error.catchError();
         break;
       case typeMessagesFromServer.USER_LOGIN:
         this.login();
