@@ -3,7 +3,7 @@ import Router from '../components/router.ts/router';
 import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
 import AppHtmlEllements from '../utils/app-html-ellements';
-import { typeMessagesFromCerver } from '../utils/enums/messages-from-server';
+import { typeMessagesFromServer } from '../utils/enums/messages-from-server';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
@@ -67,39 +67,44 @@ export default class App {
   private onMessage(message: ResponseServer) {
     //сделать действие на каждый тип получаемых сообщений
     switch (message.type) {
-      case typeMessagesFromCerver.ERROR:
+      case typeMessagesFromServer.ERROR:
         //..обработчик
         // выясняем какая ошибка пришла и как ее обработать
         break;
-      case typeMessagesFromCerver.USER_LOGIN:
+      case typeMessagesFromServer.USER_LOGIN:
         this.login();
         break;
-      case typeMessagesFromCerver.USER_LOGOUT:
+      case typeMessagesFromServer.USER_LOGOUT:
         this.logout();
         break;
-      case typeMessagesFromCerver.USER_EXTERNAL_LOGIN:
+      case typeMessagesFromServer.USER_EXTERNAL_LOGIN:
         //..обработчик
+        console.log(message);
         break;
-      case typeMessagesFromCerver.USER_EXTERNAL_LOGOUT:
+      case typeMessagesFromServer.USER_EXTERNAL_LOGOUT:
         this.logout();
         break;
-      case typeMessagesFromCerver.USER_ACTIVE:
+      case typeMessagesFromServer.USER_ACTIVE:
         //..обработчик
         break;
-      case typeMessagesFromCerver.USER_INACTIVE:
+      case typeMessagesFromServer.USER_INACTIVE:
+        //..обработчик
+        console.log(message);
+        break;
+      case typeMessagesFromServer.MSG_SEND:
+        //..обработчик
+        console.log(message);
+        break;
+      case typeMessagesFromServer.MSG_EDIT:
         //..обработчик
         break;
-      case typeMessagesFromCerver.MSG_SEND:
+      case typeMessagesFromServer.MSG_READ:
         //..обработчик
+        console.log(message);
         break;
-      case typeMessagesFromCerver.MSG_EDIT:
+      case typeMessagesFromServer.MSG_DELETE:
         //..обработчик
-        break;
-      case typeMessagesFromCerver.MSG_READ:
-        //..обработчик
-        break;
-      case typeMessagesFromCerver.MSG_DELETE:
-        //..обработчик
+        console.log(message);
         break;
     }
   }

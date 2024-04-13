@@ -1,4 +1,4 @@
-export enum typeMessagesFromCerver {
+export enum typeMessagesFromServer {
   ERROR = 'ERROR',
   USER_LOGIN = 'USER_LOGIN',
   USER_LOGOUT = 'USER_LOGOUT',
