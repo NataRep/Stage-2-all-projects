@@ -3,6 +3,7 @@ import App from '../../app/app';
 import Form from './form';
 import Button from '../button/button';
 import { InputErrors, ValidationLengthInputs } from '../../utils/enums/login-form-enums';
+import WebSocketAPI from '../../api/api';
 
 class LoginForm extends Form {
   loginInput: HTMLInputElement;
@@ -23,7 +24,9 @@ class LoginForm extends Form {
     this.loginInput.addEventListener('blur', this.checkValalidationInput.bind(this));
     this.passwordInput = this.addInputTextWithLabel('loginSurname', 'Password', '', 6, 15, true);
     this.passwordInput.addEventListener('blur', this.checkValalidationInput.bind(this));
-    this.button = Button.create('Login', ['button_login', 'button_big'], this.onClickButton.bind(this));
+    this.button = Button.create('Login', ['button_login', 'button_big'], (event: Event) => {
+      this.onClickButton(event, app);
+    });
     this.fieldValidation = false;
     this.loginErrorsArray = [];
     this.passwordErrorsArray = [];
@@ -31,8 +34,9 @@ class LoginForm extends Form {
 
   private onClickButton(event: Event, app: App) {
     if (this.fieldValidation && this.loginInput.value.length > 0 && this.passwordInput.value.length > 0) {
-      this.app.login(this.loginInput.value, this.passwordInput.value);
-      window.location.pathname = '/chat';
+      app.user.login = this.loginInput.value;
+      app.user.password = this.passwordInput.value;
+      WebSocketAPI.sendUserAuthentication(app, app.webSocket, app.user.login, app.user.password);
     }
     if (this.loginInput.value.length === 0 || this.passwordInput.value.length === 0) {
       if (this.loginInput.value.length === 0) {

@@ -4,7 +4,7 @@ import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
 import AppHtmlEllements from '../utils/app-html-ellements';
 import { typeMessagesFromCerver } from '../utils/enums/messages-from-server';
-import { ErrorResponse, RequestOrResponse } from '../utils/interfaces.ts/interfaces';
+import { ErrorResponse, RequestOrResponse, UserRequest } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
 export default class App {
@@ -25,6 +25,8 @@ export default class App {
     this.loginPage = new LoginPage(this);
     this.chatPage = new ChatPage(this);
     this.router = new Router();
+
+    this.user = new User('', '');
   }
 
   public start() {
@@ -35,7 +37,9 @@ export default class App {
     if (sessionStorage.getItem('current-user_nuttik')) {
       this.user = JSON.parse(sessionStorage.getItem('current-user_nuttik')) as User;
       //жду подключения сервера
-      setTimeout(this.login.bind(this, this.user.login, this.user.password), 200);
+      setTimeout(() => {
+        WebSocketAPI.sendUserAuthentication(this, this.webSocket, this.user.login, this.user.password);
+      }, 200);
     }
 
     //Открываю страницу приложения
@@ -47,20 +51,20 @@ export default class App {
     };
   }
 
-  public login(login: string, password: string) {
-    WebSocketAPI.sendUserAuthentication(this, this.webSocket, login, password);
-    this.user = new User(login, password);
+  public login() {
+    this.user.isLogin = true;
     const userStr = JSON.stringify(this.user);
     sessionStorage.setItem('current-user_nuttik', userStr);
+    this.router.urlRoute(this, this.router.urlPath.CHAT);
   }
 
   public logout() {
-    WebSocketAPI.sendUserLogout(this, this.webSocket, this.user.login, this.user.password);
+    this.user.isLogin = false;
     sessionStorage.removeItem('current-user_nuttik');
-    window.location.pathname = '/';
+    this.router.urlRoute(this, this.router.urlPath.LOGIN);
   }
 
-  private onMessage(message: RequestOrResponse<ErrorResponse>) {
+  private onMessage(message: RequestOrResponse<UserRequest>) {
     //сделать действие на каждый тип получаемых сообщений
     switch (message.type) {
       case typeMessagesFromCerver.ERROR:
@@ -68,18 +72,16 @@ export default class App {
         // выясняем какая ошибка пришла и как ее обработать
         break;
       case typeMessagesFromCerver.USER_LOGIN:
-        this.user.isLogin = true;
-        this.router.urlRoute(this, this.router.urlPath.CHAT);
+        this.login();
         break;
       case typeMessagesFromCerver.USER_LOGOUT:
-        this.user.isLogin = false;
-        this.router.urlRoute(this, this.router.urlPath.LOGIN);
+        this.logout();
         break;
       case typeMessagesFromCerver.USER_EXTERNAL_LOGIN:
         //..обработчик
         break;
       case typeMessagesFromCerver.USER_EXTERNAL_LOGOUT:
-        //..обработчик
+        this.logout();
         break;
       case typeMessagesFromCerver.USER_ACTIVE:
         //..обработчик

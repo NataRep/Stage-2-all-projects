@@ -15,7 +15,7 @@ export default class AppHtmlEllements {
     });
 
     this.buttonLogout = Button.create('Logout', ['button_logout'], () => {
-      app.logout();
+      WebSocketAPI.sendUserLogout(app, app.webSocket, app.user.login, app.user.password);
     });
   }
 }
