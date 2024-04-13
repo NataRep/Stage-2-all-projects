@@ -29,9 +29,10 @@ class LoginForm extends Form {
     this.passwordErrorsArray = [];
   }
 
-  private onClickButton(event: Event) {
+  private onClickButton(event: Event, app: App) {
     if (this.fieldValidation && this.loginInput.value.length > 0 && this.passwordInput.value.length > 0) {
       this.app.login(this.loginInput.value, this.passwordInput.value);
+      window.location.pathname = '/chat';
     }
     if (this.loginInput.value.length === 0 || this.passwordInput.value.length === 0) {
       if (this.loginInput.value.length === 0) {

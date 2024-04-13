@@ -20,7 +20,7 @@ export default class Router {
   private urlLocationHandler(app: App) {
     Page.clearContent();
     let location = window.location.pathname;
-    if (location.length === 0 || !Object.values(this.urlPath).includes(location)) {
+    if (!Object.values(this.urlPath).includes(location)) {
       location = '/';
     }
     if (location === this.urlPath.LOGIN) {
@@ -33,6 +33,23 @@ export default class Router {
       app.chatPage.render();
     }
     if (location === this.urlPath.ABOUT) {
+    }
+  }
+
+  public checkAndChangeUrl() {
+    const urlPath = window.location.pathname;
+
+    //страница не существует в списке доступных - меняем адрес на /
+    if (window.location.pathname.length === 0 || !Object.values(this.urlPath).includes(urlPath)) {
+      window.location.pathname = this.urlPath.LOGIN;
+    }
+    //у залогинненого нет доступа к странице входа
+    if (urlPath === this.urlPath.CHAT && !sessionStorage.getItem('current-user_nuttik')) {
+      window.location.pathname = this.urlPath.LOGIN;
+    }
+    //у залогиненого нет доступа к странице входа
+    if (urlPath === this.urlPath.LOGIN && sessionStorage.getItem('current-user_nuttik')) {
+      window.location.pathname = this.urlPath.CHAT;
     }
   }
 }

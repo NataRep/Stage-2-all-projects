@@ -27,21 +27,27 @@ export default class App {
     this.router = new Router();
   }
 
-  public async start() {
-    const url = 'ws://localhost:4000';
-    this.webSocket = new WebSocket(url);
+  public start() {
+    const URL = 'ws://localhost:4000';
+    this.webSocket = new WebSocket(URL);
 
+    //Если возможно, автоматически логинемся
     if (sessionStorage.getItem('current-user_nuttik')) {
       this.user = JSON.parse(sessionStorage.getItem('current-user_nuttik')) as User;
       //жду подключения сервера
-      setTimeout(this.login.bind(this, this.user.login, this.user.password), 1000);
-    } else {
-      this.loginPage.render();
+      setTimeout(this.login.bind(this, this.user.login, this.user.password), 200);
     }
+
+    //Открываю страницу приложения
+    this.openPage();
+
     //запускаем обработку сообщений с сервера
     this.webSocket.onmessage = (event) => {
       this.onMessage(JSON.parse(event.data));
     };
+
+    //включаю обработку перемещения по страницам вперед назад
+    // window.addEventListener('popstate', () => this.openPage());
   }
 
   public login(login: string, password: string) {
@@ -91,5 +97,15 @@ export default class App {
         //..обработчик
         break;
     }
+  }
+
+  private openPage() {
+    //выбираю какую страницу открывать
+    this.router.checkAndChangeUrl();
+    //даю отсрочку чтобы сменить адрес страницы и открываю страницу
+    setTimeout(() => {
+      const urlPath = window.location.pathname;
+      this.router.urlRoute(this, urlPath);
+    }, 200);
   }
 }
