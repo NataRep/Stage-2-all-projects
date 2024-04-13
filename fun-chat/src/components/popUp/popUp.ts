@@ -8,6 +8,11 @@ export default class PopUp {
     popUp.className = 'popUp';
 
     classList.forEach((item) => popUp.classList.add(item));
+
+    const close = document.createElement('div');
+    close.className = 'popUp__close';
+    close.innerHTML = '+';
+
     const popUpTitle = document.createElement('h1');
     popUpTitle.className = 'popUp__h1';
     popUpTitle.innerHTML = h1;
@@ -16,13 +21,18 @@ export default class PopUp {
     popUpText.className = 'popUp__p';
     popUpText.innerHTML = text;
 
+    popUp.append(close);
     popUp.append(popUpTitle);
     popUp.append(popUpText);
     document.body.append(popUp);
-    document.body.addEventListener('click', (event) => {
-      if (event.target != popUp) {
+
+    function removePopUp(event: Event) {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.popUp') || event.target === close) {
         popUp.remove();
+        document.body.removeEventListener('click', removePopUp);
       }
-    });
+    }
+    document.body.addEventListener('click', removePopUp);
   }
 }
