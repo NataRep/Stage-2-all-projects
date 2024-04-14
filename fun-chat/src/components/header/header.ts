@@ -11,6 +11,9 @@ export class Header {
     header.className = 'header';
     const logotype = createLogotype();
 
+    const leftRow = document.createElement('header');
+    leftRow.className = 'header__left';
+
     const buttonsRow = document.createElement('div');
     buttonsRow.className = 'header__button-row';
 
@@ -26,12 +29,13 @@ export class Header {
 
     const user = document.createElement('div');
     user.className = 'header__user';
-    user.innerHTML = app.user.login;
+    user.innerHTML = `Hello, ${app.user.login}!`;
 
-    buttonsRow.append(user);
     buttonsRow.append(buttonAbout);
     buttonsRow.append(buttonLogout);
-    header.append(logotype);
+    leftRow.append(logotype);
+    leftRow.append(user);
+    header.append(leftRow);
     header.append(buttonsRow);
     return header;
   }
