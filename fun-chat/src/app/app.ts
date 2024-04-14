@@ -22,7 +22,7 @@ export default class App {
   router: Router;
 
   constructor() {
-    this.appHtmlEllements = new AppHtmlEllements(this);
+    this.appHtmlEllements = new AppHtmlEllements();
     this.loginPage = new LoginPage(this);
     this.chatPage = new ChatPage(this);
     this.router = new Router();
@@ -50,6 +50,9 @@ export default class App {
     this.webSocket.onmessage = (event) => {
       this.onMessage(JSON.parse(event.data));
     };
+
+    //включаю обработку переходов по страницам вперед и назад
+    window.onpopstate = () => this.openPage();
   }
 
   public login() {

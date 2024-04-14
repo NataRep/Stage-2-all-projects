@@ -8,14 +8,4 @@ export default class AppHtmlEllements {
   buttonLogout: HTMLButtonElement;
 
   loginForm: HTMLElement;
-
-  constructor(app: App) {
-    this.buttonAbout = Button.create('About', ['button_about'], () => {
-      app.router.urlRoute(app, app.router.urlPath.ABOUT);
-    });
-
-    this.buttonLogout = Button.create('Logout', ['button_logout'], () => {
-      WebSocketAPI.sendUserLogout(app, app.webSocket, app.user.login, app.user.password);
-    });
-  }
 }
