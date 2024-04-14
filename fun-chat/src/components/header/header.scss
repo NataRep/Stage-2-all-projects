@@ -8,4 +8,20 @@
     height: 4rem;
     margin: 0;
   }
+  &__button-row {
+    display: flex;
+    align-items: center;
+  }
+
+  &__user {
+    padding-right: 2.25rem;
+    height: 1.75rem;
+    margin-right: 1rem;
+    background: url('./../../assets/images/avatar.svg') no-repeat right center;
+    background-size: contain;
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
 }

@@ -24,7 +24,6 @@ export default class App {
   constructor() {
     this.appHtmlEllements = new AppHtmlEllements();
     this.loginPage = new LoginPage(this);
-    this.chatPage = new ChatPage(this);
     this.router = new Router();
 
     this.user = new User('', '');

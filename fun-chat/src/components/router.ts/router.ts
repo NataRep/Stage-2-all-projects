@@ -1,5 +1,6 @@
 import App from '../../app/app';
 import Page from '../../pages/page';
+import ChatPage from '../../pages/chat/chat';
 
 export default class Router {
   urlPath;
@@ -30,6 +31,7 @@ export default class Router {
       app.loginPage.open(app);
     }
     if (location === this.urlPath.CHAT) {
+      app.chatPage = new ChatPage(app);
       app.chatPage.render();
     }
     if (location === this.urlPath.ABOUT) {
