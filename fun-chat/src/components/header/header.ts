@@ -44,7 +44,7 @@ export class Header {
 
   static createHeaderButtons(app: App): HTMLElement[] {
     const buttonArray: HTMLElement[] = [];
-    const buttonAbout = Button.create('About Us', ['button_about'], () => {
+    const buttonAbout = Button.create('About Chat', ['button_about'], () => {
       app.router.urlRoute(app, app.router.urlPath.ABOUT);
     });
     buttonArray.push(buttonAbout);
