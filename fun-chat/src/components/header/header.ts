@@ -35,10 +35,10 @@ export class Header {
     }
 
     leftRow.append(logotype);
+
     if (app.user.isLogin === true) {
       leftRow.append(user);
     }
-    leftRow.append(user);
     header.append(leftRow);
     header.append(buttonsRow);
     return header;
