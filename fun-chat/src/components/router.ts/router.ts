@@ -1,6 +1,7 @@
 import App from '../../app/app';
 import Page from '../../pages/page';
 import ChatPage from '../../pages/chat/chat';
+import AboutPage from '../../pages/about/about';
 
 export default class Router {
   urlPath;
@@ -35,6 +36,8 @@ export default class Router {
       app.chatPage.render();
     }
     if (location === this.urlPath.ABOUT) {
+      app.aboutPage = new AboutPage(app);
+      app.aboutPage.render();
     }
   }
 

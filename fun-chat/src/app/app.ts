@@ -1,6 +1,7 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
 import Router from '../components/router.ts/router';
+import AboutPage from '../pages/about/about';
 import ChatPage from '../pages/chat/chat';
 import LoginPage from '../pages/login/login-page';
 import AppHtmlEllements from '../utils/app-html-ellements';
@@ -16,6 +17,8 @@ export default class App {
   loginPage: LoginPage;
 
   chatPage: ChatPage;
+
+  aboutPage: AboutPage;
 
   user: User;
 
