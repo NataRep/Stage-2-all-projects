@@ -3,23 +3,22 @@ import Button from '../button/button';
 import WebSocketAPI from '../../api/api';
 import { createLogotype } from '../logotype/logotype';
 import './header.scss';
-import User from '../../app/user';
 
 export class Header {
   static create(app: App): HTMLElement {
     const header = document.createElement('header');
     header.className = 'header';
-    const logotype = createLogotype();
+    const logotype: HTMLElement = createLogotype();
 
-    const leftRow = document.createElement('header');
+    const leftRow: HTMLElement = document.createElement('header');
     leftRow.className = 'header__left';
 
-    const buttonsRow = document.createElement('div');
+    const buttonsRow: HTMLElement = document.createElement('div');
     buttonsRow.className = 'header__button-row';
 
     const [buttonAbout, buttonLogout, buttonChat, buttonLogin] = this.createHeaderButtons(app);
 
-    const user = document.createElement('div');
+    const user: HTMLElement = document.createElement('div');
     user.className = 'header__user';
     user.innerHTML = `Hello, ${app.user.login}!`;
 

@@ -1,6 +1,7 @@
 import { Header } from '../../components/header/header';
 import Page from '../page';
 import App from '../../app/app';
+import Footer from '../../components/footer/footer';
 
 export default class AboutPage extends Page {
   constructor(app: App) {
@@ -8,6 +9,7 @@ export default class AboutPage extends Page {
 
     const header = Header.create(app) as HTMLElement;
     const main = document.createElement('main');
+    const footer = Footer.create();
     const h1 = document.createElement('h1');
     h1.innerHTML = 'About Fun Chat';
     const text = document.createElement('div');
@@ -16,6 +18,7 @@ export default class AboutPage extends Page {
     main.insertAdjacentHTML('beforeend', TEXT);
     this.mainContent.append(header);
     this.mainContent.append(main);
+    this.mainContent.append(footer);
   }
 }
 

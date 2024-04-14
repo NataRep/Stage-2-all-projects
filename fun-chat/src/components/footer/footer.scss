@@ -1,0 +1,42 @@
+@import './../../utils/variables.scss';
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: var(--color-grey-dark);
+  color: var(--color-grey);
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  a {
+    color: var(--color-grey);
+    text-decoration: none;
+  }
+  &__autor {
+    display: flex;
+
+    a {
+      display: block;
+      padding-left: 2rem;
+      margin-right: 1rem;
+      background: url('./../../assets/images/git.svg') no-repeat left center;
+      background-size: contain;
+    }
+  }
+  &__school {
+    a {
+      display: block;
+      padding-left: 2rem;
+      background: url('./../../assets/images/rs-logo.webp') no-repeat left center;
+      background-size: contain;
+      color: var(--color-yellow);
+      font-weight: 600;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          color: var(--color-yellow-secondary);
+        }
+      }
+    }
+  }
+}
