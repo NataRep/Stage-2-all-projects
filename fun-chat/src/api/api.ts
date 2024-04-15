@@ -1,4 +1,3 @@
-import App from '../app/app';
 import { MessageRequest, RequestServer, UserRequest } from '../utils/interfaces.ts/interfaces';
 export default class WebSocketAPI {
   static async sendRequest<T>(webSocket: WebSocket, type: string, payload: T): Promise<any> {

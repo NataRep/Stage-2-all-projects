@@ -4,10 +4,8 @@ export default class UsersList {
 
   public createList() {
     this.list = document.createElement('ul');
-    this.list.className = 'chat__users-list';
-    //array.forEach((response) => {
-    // this.createUser(response.payload.user.login, response.payload.user.isLogined);
-    //});
+    this.list.className = 'chat__users-list users-list';
+    this.usersArray = [];
     return this.list;
   }
 
@@ -25,7 +23,7 @@ export default class UsersList {
 
   private createUserEl(login: string, isLogined: boolean): HTMLElement {
     const li = document.createElement('li');
-    li.className = isLogined ? 'chat__user user_online' : 'chat__user user_offline';
+    li.className = isLogined ? 'users-list__user online' : 'users-list__user offline';
     li.innerHTML = login;
     return li;
   }

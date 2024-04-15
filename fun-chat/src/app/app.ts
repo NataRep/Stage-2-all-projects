@@ -98,16 +98,10 @@ export default class App {
         this.logout();
         break;
       case typeMessagesFromServer.USER_ACTIVE:
-        const userActive = message.payload.users;
-        userActive.forEach((userData) => {
-          this.chat.userList.createUser(userData.login, userData.isLogined);
-        });
+        //..обработчик
         break;
       case typeMessagesFromServer.USER_INACTIVE:
-        const userInactive = message.payload.users;
-        userInactive.forEach((userData) => {
-          this.chat.userList.createUser(userData.login, userData.isLogined);
-        });
+        //..обработчик
         break;
       case typeMessagesFromServer.MSG_SEND:
         //..обработчик

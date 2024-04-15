@@ -5,6 +5,7 @@ import Footer from '../../components/footer/footer';
 import Chat from '../../components/chat/chat';
 import UsersList from '../../components/chat/users-list/users-list';
 import WebSocketAPI from '../../api/api';
+import { ResponseServer, UserResponse } from '../../utils/interfaces.ts/interfaces';
 
 export default class ChatPage extends Page {
   constructor(app: App) {
@@ -23,11 +24,21 @@ export default class ChatPage extends Page {
     this.mainContent.append(main);
     this.mainContent.append(footer);
 
-    this.sendRequests(app);
+    this.createList(app);
   }
 
-  private async sendRequests(app: App) {
-    await WebSocketAPI.getAllAuthenticatedUsers(app.webSocket);
-    await WebSocketAPI.getAllUnauthorizedUsers(app.webSocket);
+  private async getUsersFriomServer(app: App): Promise<UserResponse[]> {
+    const usersLoginData = (await WebSocketAPI.getAllAuthenticatedUsers(app.webSocket)) as ResponseServer;
+    const usesUnloginData = (await WebSocketAPI.getAllUnauthorizedUsers(app.webSocket)) as ResponseServer;
+    return usersLoginData.payload.users.concat(usesUnloginData.payload.users);
+  }
+
+  private async createList(app: App) {
+    const usersArray = await this.getUsersFriomServer(app);
+    usersArray.forEach((user) => {
+      if (user.login != app.user.login) {
+        app.chat.userList.createUser(user.login, user.isLogined);
+      }
+    });
   }
 }
