@@ -1,0 +1,22 @@
+.users-list {
+  &__user {
+    display: flex;
+    align-items: center;
+
+    &::after {
+      content: '';
+      display: block;
+      margin-left: 0.25rem;
+      width: 0.25rem;
+      height: 0.25rem;
+      border-radius: 0.25rem;
+      border: 1px solid;
+    }
+    &.online::after {
+      background: green;
+    }
+    &.offline::after {
+      background: red;
+    }
+  }
+}

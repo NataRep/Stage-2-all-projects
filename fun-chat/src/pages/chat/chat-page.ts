@@ -36,6 +36,7 @@ export default class ChatPage extends Page {
   private async createList(app: App) {
     const usersArray = await this.getUsersFriomServer(app);
     usersArray.forEach((user) => {
+      console.log(user);
       if (user.login != app.user.login) {
         app.chat.userList.createUser(user.login, user.isLogined);
       }

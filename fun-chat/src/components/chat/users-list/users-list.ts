@@ -1,3 +1,4 @@
+import './users-list.scss';
 export default class UsersList {
   usersArray: UserChat[];
   list: HTMLUListElement;
