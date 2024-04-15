@@ -30,12 +30,10 @@ export default class Router {
         sessionStorage.removeItem('current-user_nuttik');
       }
       app.loginPage.open(app);
-    }
-    if (location === this.urlPath.CHAT) {
+    } else if (location === this.urlPath.CHAT) {
       app.chatPage = new ChatPage(app);
       app.chatPage.render();
-    }
-    if (location === this.urlPath.ABOUT) {
+    } else if (location === this.urlPath.ABOUT) {
       app.aboutPage = new AboutPage(app);
       app.aboutPage.render();
     }

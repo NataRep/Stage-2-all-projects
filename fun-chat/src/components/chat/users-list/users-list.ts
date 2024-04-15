@@ -3,7 +3,7 @@ export default class UsersList {
   usersArray: UserChat[];
   list: HTMLUListElement;
 
-  public createList() {
+  public createUl() {
     this.list = document.createElement('ul');
     this.list.className = 'chat__users-list users-list';
     this.usersArray = [];

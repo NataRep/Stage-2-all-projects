@@ -16,30 +16,33 @@ export default class ChatPage extends Page {
     const header = Header.create(app) as HTMLElement;
     const main = document.createElement('main');
     const chatEl = app.chat.createEl();
-    const userList = app.chat.userList.createList();
+    const userList = app.chat.userList.createUl();
     chatEl.append(userList);
     main.append(chatEl);
     const footer = Footer.create();
     this.mainContent.append(header);
     this.mainContent.append(main);
     this.mainContent.append(footer);
-
     this.createList(app);
   }
 
-  private async getUsersFriomServer(app: App): Promise<UserResponse[]> {
+  private async getUsersFromServer(app: App): Promise<UserResponse[]> {
     const usersLoginData = (await WebSocketAPI.getAllAuthenticatedUsers(app.webSocket)) as ResponseServer;
     const usesUnloginData = (await WebSocketAPI.getAllUnauthorizedUsers(app.webSocket)) as ResponseServer;
     return usersLoginData.payload.users.concat(usesUnloginData.payload.users);
   }
 
   private async createList(app: App) {
-    const usersArray = await this.getUsersFriomServer(app);
+    const usersArray = await this.getUsersFromServer(app);
     usersArray.forEach((user) => {
-      console.log(user);
       if (user.login != app.user.login) {
         app.chat.userList.createUser(user.login, user.isLogined);
       }
     });
+  }
+
+  private clearList(app: App) {
+    app.chat.userList.usersArray = [];
+    app.chat.userList.list.innerHTML = '';
   }
 }

@@ -1,3 +1,5 @@
+@import './../../../utils/variables.scss';
+
 .users-list {
   &__user {
     display: flex;
@@ -10,13 +12,14 @@
       width: 0.25rem;
       height: 0.25rem;
       border-radius: 0.25rem;
-      border: 1px solid;
     }
     &.online::after {
-      background: green;
+      background: var(--color-green);
+      border: 1px solid var(--color-green);
     }
     &.offline::after {
-      background: red;
+      background: none;
+      border: 1px solid var(--color-grey-dark);
     }
   }
 }

@@ -62,8 +62,9 @@ export default class App {
   public login() {
     this.user.isLogin = true;
     const userStr = JSON.stringify(this.user);
-    sessionStorage.setItem('current-user_nuttik', userStr);
-    this.router.urlRoute(this, this.router.urlPath.CHAT);
+    if (!sessionStorage.getItem('current-user_nuttik')) {
+      sessionStorage.setItem('current-user_nuttik', userStr);
+    }
   }
 
   public logout() {
@@ -73,8 +74,9 @@ export default class App {
   }
 
   private onMessage(message: ResponseServer) {
-    console.log(message);
     //сделать действие на каждый тип получаемых сообщений
+    console.log(message);
+
     switch (message.type) {
       case typeMessagesFromServer.ERROR:
         //..обработчик
@@ -82,16 +84,13 @@ export default class App {
         error.catchError();
         break;
       case typeMessagesFromServer.USER_LOGIN:
-        console.log(message);
         this.login();
         break;
       case typeMessagesFromServer.USER_LOGOUT:
-        console.log(message);
         this.logout();
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGIN:
-        //..обработчик
-        console.log(message);
+        //..обработчик;
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGOUT:
         //..обработчик
