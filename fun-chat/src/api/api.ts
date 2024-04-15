@@ -1,8 +1,7 @@
 import App from '../app/app';
 import { MessageRequest, RequestServer, UserRequest } from '../utils/interfaces.ts/interfaces';
-
 export default class WebSocketAPI {
-  static sendRequest<T>(webSocket: WebSocket, type: string, payload: T) {
+  static async sendRequest<T>(webSocket: WebSocket, type: string, payload: T): Promise<any> {
     const id = crypto.randomUUID();
     const request: RequestServer<T> = {
       id: id,
@@ -10,52 +9,62 @@ export default class WebSocketAPI {
       payload: payload,
     };
     webSocket.send(JSON.stringify(request));
+
+    // Ожидание ответа от сервера
+    return new Promise((resolve) => {
+      webSocket.addEventListener('message', (event) => {
+        const response = JSON.parse(event.data);
+        if (response.id === id) {
+          resolve(response);
+        }
+      });
+    });
   }
 
-  static sendUserAuthentication(app: App, webSocket: WebSocket, login: string, password: string) {
+  static async sendUserAuthentication(webSocket: WebSocket, login: string, password: string): Promise<any> {
     const payload: UserRequest = {
       user: {
         login: login,
         password: password,
       },
     };
-    this.sendRequest(webSocket, 'USER_LOGIN', payload);
+    return await this.sendRequest(webSocket, 'USER_LOGIN', payload);
   }
 
-  static sendUserLogout(app: App, webSocket: WebSocket, login: string, password: string) {
+  static async sendUserLogout(webSocket: WebSocket, login: string, password: string): Promise<any> {
     const payload: UserRequest = {
       user: {
         login: login,
         password: password,
       },
     };
-    this.sendRequest(webSocket, 'USER_LOGOUT', payload);
+    return await this.sendRequest(webSocket, 'USER_LOGOUT', payload);
   }
 
-  static getAllAuthenticatedUsers(app: App, webSocket: WebSocket) {
-    this.sendRequest(webSocket, 'USER_ACTIVE', null);
+  static async getAllAuthenticatedUsers(webSocket: WebSocket): Promise<any> {
+    return await this.sendRequest(webSocket, 'USER_ACTIVE', null);
   }
 
-  static getAllUnauthorizedUsers(app: App, webSocket: WebSocket) {
-    this.sendRequest(webSocket, 'USER_INACTIVE', null);
+  static async getAllUnauthorizedUsers(webSocket: WebSocket): Promise<any> {
+    return await this.sendRequest(webSocket, 'USER_INACTIVE', null);
   }
 
-  static sendMessageToUser(app: App, webSocket: WebSocket, toId: string, text: string) {
+  static async sendMessageToUser(webSocket: WebSocket, toId: string, text: string): Promise<any> {
     const payload: MessageRequest = {
       message: {
         to: toId,
         text: text,
       },
     };
-    this.sendRequest(webSocket, 'MSG_SEND', payload);
+    return await this.sendRequest(webSocket, 'MSG_SEND', payload);
   }
 
-  static getMessageHistoryWithUser(app: App, webSocket: WebSocket, login: string) {
+  static async getMessageHistoryWithUser(webSocket: WebSocket, login: string): Promise<any> {
     const payload = {
       user: {
         login: login,
       },
     };
-    this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
+    return await this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
   }
 }

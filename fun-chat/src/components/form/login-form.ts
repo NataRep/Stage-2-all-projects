@@ -36,7 +36,7 @@ class LoginForm extends Form {
     if (this.fieldValidation && this.loginInput.value.length > 0 && this.passwordInput.value.length > 0) {
       app.user.login = this.loginInput.value;
       app.user.password = this.passwordInput.value;
-      WebSocketAPI.sendUserAuthentication(app, app.webSocket, app.user.login, app.user.password);
+      WebSocketAPI.sendUserAuthentication(app.webSocket, app.user.login, app.user.password);
     }
     if (this.loginInput.value.length === 0 || this.passwordInput.value.length === 0) {
       if (this.loginInput.value.length === 0) {

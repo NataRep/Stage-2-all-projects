@@ -35,19 +35,21 @@ export default class App {
     this.user = new User('', '');
   }
 
-  public start() {
+  public async start() {
     const URL = 'ws://localhost:4000';
-    this.webSocket = new WebSocket(URL);
+    this.webSocket = await new WebSocket(URL);
 
     //Если возможно, автоматически логинемся
     if (sessionStorage.getItem('current-user_nuttik')) {
       this.user = JSON.parse(sessionStorage.getItem('current-user_nuttik')) as User;
-      //жду подключения сервера
-      setTimeout(() => {
-        WebSocketAPI.sendUserAuthentication(this, this.webSocket, this.user.login, this.user.password);
-      }, 200);
-    }
 
+      // Ждем подключения сервера перед отправкой запроса аутентификации
+      await new Promise<void>((resolve) => {
+        this.webSocket.onopen = () => {
+          resolve();
+        };
+      });
+    }
     //Открываю страницу приложения
     this.openPage();
 

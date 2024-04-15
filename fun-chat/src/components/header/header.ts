@@ -52,7 +52,7 @@ export class Header {
     buttonArray.push(buttonAbout);
 
     const buttonLogout = Button.create('Logout', ['button_logout'], () => {
-      WebSocketAPI.sendUserLogout(app, app.webSocket, app.user.login, app.user.password);
+      WebSocketAPI.sendUserLogout(app.webSocket, app.user.login, app.user.password);
     });
     buttonArray.push(buttonLogout);
 

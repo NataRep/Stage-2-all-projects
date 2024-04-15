@@ -10,8 +10,6 @@ export default class ChatPage extends Page {
   constructor(app: App) {
     super();
 
-    this.sendRequests(app);
-
     app.chat = new Chat();
     app.chat.userList = new UsersList();
     const header = Header.create(app) as HTMLElement;
@@ -24,10 +22,12 @@ export default class ChatPage extends Page {
     this.mainContent.append(header);
     this.mainContent.append(main);
     this.mainContent.append(footer);
+
+    this.sendRequests(app);
   }
 
   private async sendRequests(app: App) {
-    WebSocketAPI.getAllAuthenticatedUsers(app, app.webSocket);
-    WebSocketAPI.getAllUnauthorizedUsers(app, app.webSocket);
+    await WebSocketAPI.getAllAuthenticatedUsers(app.webSocket);
+    await WebSocketAPI.getAllUnauthorizedUsers(app.webSocket);
   }
 }
