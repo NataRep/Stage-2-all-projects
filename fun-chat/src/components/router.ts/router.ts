@@ -1,7 +1,7 @@
 import App from '../../app/app';
 import Page from '../../pages/page';
-import ChatPage from '../../pages/chat/chat';
-import AboutPage from '../../pages/about/about';
+import ChatPage from '../../pages/chat/chat-page';
+import AboutPage from '../../pages/about/about-page';
 
 export default class Router {
   urlPath;

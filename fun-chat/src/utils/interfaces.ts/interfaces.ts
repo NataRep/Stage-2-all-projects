@@ -7,12 +7,19 @@ export interface ResponseServer {
   id: string;
   type: string;
   payload: {
-    user?: User;
+    user?: UserResponse;
     error?: string;
+    users?: UserResponse[];
   };
 }
+
 export interface UserRequest {
   user: User;
+}
+
+export interface UserResponse {
+  login: string;
+  isLogined: boolean;
 }
 export interface UserRequestHistory {
   user: {

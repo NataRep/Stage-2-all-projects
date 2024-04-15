@@ -1,8 +1,9 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
+import Chat from '../components/chat/chat';
 import Router from '../components/router.ts/router';
-import AboutPage from '../pages/about/about';
-import ChatPage from '../pages/chat/chat';
+import AboutPage from '../pages/about/about-page';
+import ChatPage from '../pages/chat/chat-page';
 import LoginPage from '../pages/login/login-page';
 import AppHtmlEllements from '../utils/app-html-ellements';
 import { typeMessagesFromServer } from '../utils/enums/messages-from-server';
@@ -23,6 +24,8 @@ export default class App {
   user: User;
 
   router: Router;
+
+  chat: Chat;
 
   constructor() {
     this.appHtmlEllements = new AppHtmlEllements();
@@ -93,11 +96,16 @@ export default class App {
         this.logout();
         break;
       case typeMessagesFromServer.USER_ACTIVE:
-        //..обработчик
+        const userActive = message.payload.users;
+        userActive.forEach((userData) => {
+          this.chat.userList.createUser(userData.login, userData.isLogined);
+        });
         break;
       case typeMessagesFromServer.USER_INACTIVE:
-        //..обработчик
-        console.log(message);
+        const userInactive = message.payload.users;
+        userInactive.forEach((userData) => {
+          this.chat.userList.createUser(userData.login, userData.isLogined);
+        });
         break;
       case typeMessagesFromServer.MSG_SEND:
         //..обработчик

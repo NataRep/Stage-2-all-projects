@@ -22,8 +22,6 @@ export default class LoginPage extends Page {
     loginContentWrapper.append(buttonAbout);
     loginContentWrapper.append(loginFormEl);
     this.mainContent.append(loginContentWrapper);
-
-    app.appHtmlEllements.loginForm = loginFormEl;
   }
 
   public open(app: App) {
