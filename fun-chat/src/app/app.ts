@@ -42,13 +42,10 @@ export default class App {
     //Если возможно, автоматически логинемся
     if (sessionStorage.getItem('current-user_nuttik')) {
       this.user = JSON.parse(sessionStorage.getItem('current-user_nuttik')) as User;
-
       // Ждем подключения сервера перед отправкой запроса аутентификации
-      await new Promise<void>((resolve) => {
-        this.webSocket.onopen = () => {
-          resolve();
-        };
-      });
+      this.webSocket.onopen = () => {
+        WebSocketAPI.sendUserAuthentication(this.webSocket, this.user.login, this.user.password);
+      };
     }
     //Открываю страницу приложения
     this.openPage();
@@ -85,9 +82,11 @@ export default class App {
         error.catchError();
         break;
       case typeMessagesFromServer.USER_LOGIN:
+        console.log(message);
         this.login();
         break;
       case typeMessagesFromServer.USER_LOGOUT:
+        console.log(message);
         this.logout();
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGIN:
@@ -95,7 +94,7 @@ export default class App {
         console.log(message);
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGOUT:
-        this.logout();
+        //..обработчик
         break;
       case typeMessagesFromServer.USER_ACTIVE:
         //..обработчик
