@@ -65,6 +65,9 @@ export default class App {
     if (!sessionStorage.getItem('current-user_nuttik')) {
       sessionStorage.setItem('current-user_nuttik', userStr);
     }
+    if (window.location.pathname === this.router.urlPath.LOGIN) {
+      this.router.urlRoute(this, this.router.urlPath.CHAT);
+    }
   }
 
   public logout() {
@@ -90,10 +93,10 @@ export default class App {
         this.logout();
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGIN:
-        //..обработчик;
+        this.chat.userList.changUserStatus(message.payload.user.login, message.payload.user.isLogined);
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGOUT:
-        //..обработчик
+        this.chat.userList.changUserStatus(message.payload.user.login, message.payload.user.isLogined);
         break;
       case typeMessagesFromServer.USER_ACTIVE:
         //..обработчик

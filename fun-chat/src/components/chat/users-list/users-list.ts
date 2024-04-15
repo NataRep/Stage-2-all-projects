@@ -28,6 +28,16 @@ export default class UsersList {
     li.innerHTML = login;
     return li;
   }
+
+  public changUserStatus(login: string, isLogined: boolean) {
+    const user = this.usersArray.find((user) => user.userData.login === login);
+    if (user) {
+      user.userData.isLogined = isLogined;
+      user.userEl.className = isLogined ? 'users-list__user online' : 'users-list__user offline';
+    } else if (isLogined === true) {
+      this.createUser(login, isLogined);
+    }
+  }
 }
 
 interface UserChat {
