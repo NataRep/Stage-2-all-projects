@@ -1,5 +1,5 @@
 import App from '../../app/app';
-import LoginForm from '../../components/form/login-form';
+import LoginForm from '../../components/form/login-form/login-form';
 import { createLogotype } from '../../components/logotype/logotype';
 import Page from '../page';
 import Button from '../../components/button/button';

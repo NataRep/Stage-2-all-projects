@@ -1,10 +1,14 @@
+import App from '../../app/app';
+import chatForm from '../form/chat-form/chatForm';
 import UsersList from './users-list/users-list';
 
 export default class Chat {
   userList: UsersList;
+  form: chatForm;
 
-  constructor() {
+  constructor(app: App) {
     this.userList = new UsersList();
+    this.form = new chatForm(app);
   }
 
   public create(): HTMLElement {
@@ -20,9 +24,10 @@ export default class Chat {
     dialogueDefault.innerHTML = 'To begin, please select a contact from the list.';
     dialogueWrapper.append(dialogueDefault);
     chatWrapper.append(dialogueWrapper);
-
     const formWrapper = document.createElement('div');
     formWrapper.className = 'chat__form-wrapper';
+    const form = this.form.create();
+    formWrapper.append(form);
     chatWrapper.append(formWrapper);
     return chatWrapper;
   }

@@ -1,9 +1,9 @@
 import './login-form.scss';
-import App from '../../app/app';
-import Form from './form';
-import Button from '../button/button';
-import { InputErrors, ValidationLengthInputs } from '../../utils/enums/login-form-enums';
-import WebSocketAPI from '../../api/api';
+import App from '../../../app/app';
+import Form from '../form';
+import Button from '../../button/button';
+import { InputErrors, ValidationLengthInputs } from '../../../utils/enums/login-form-enums';
+import WebSocketAPI from '../../../api/api';
 
 class LoginForm extends Form {
   loginInput: HTMLInputElement;
@@ -19,10 +19,10 @@ class LoginForm extends Form {
   passwordErrorsArray: HTMLElement[];
 
   constructor(app: App) {
-    super('login', app);
-    this.loginInput = this.addInputTextWithLabel('login', 'Login', 'John', 3, 15, true);
+    super('login');
+    this.loginInput = this.addInput('login', 'Login', 'John', 3, 15, true);
     this.loginInput.addEventListener('blur', this.checkValalidationInput.bind(this));
-    this.passwordInput = this.addInputTextWithLabel('loginSurname', 'Password', '', 6, 15, true);
+    this.passwordInput = this.addInput('loginSurname', 'Password', '', 6, 15, true);
     this.passwordInput.addEventListener('blur', this.checkValalidationInput.bind(this));
     this.button = Button.create('Login', ['button_login', 'button_big'], (event: Event) => {
       this.onClickButton(event, app);

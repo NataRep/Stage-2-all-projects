@@ -9,13 +9,12 @@ class Form {
 
   app: App;
 
-  constructor(className: string, app: App) {
+  constructor(className: string) {
     this.className = className;
     this.inputs = [];
-    this.app = app;
   }
 
-  public addInputTextWithLabel(
+  public addInput(
     id: string,
     labelText: string,
     placeholder: string,
@@ -26,10 +25,13 @@ class Form {
     const inputWrapper: HTMLDivElement = document.createElement('div');
     inputWrapper.className = 'input-field';
 
-    const label: HTMLLabelElement = document.createElement('label');
-    label.className = 'label input-field__label';
-    label.innerHTML = labelText;
-    label.htmlFor = id;
+    if (labelText) {
+      const label: HTMLLabelElement = document.createElement('label');
+      label.className = 'label input-field__label';
+      label.innerHTML = labelText;
+      label.htmlFor = id;
+      inputWrapper.append(label);
+    }
 
     const input: HTMLInputElement = document.createElement('input');
     input.type = 'text';
@@ -43,7 +45,6 @@ class Form {
     input.pattern = '^[A-Z][a-z]*(-[A-Z][a-z]*)*$';
     input.required = required;
 
-    inputWrapper.append(label);
     inputWrapper.append(input);
     inputWrapper.append();
 
