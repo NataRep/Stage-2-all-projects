@@ -1,6 +1,8 @@
+import Dialogue from '../dialogue/dialogue';
 import './users-list.scss';
 export default class UsersList {
   usersArray: UserChat[];
+
   list: HTMLUListElement;
 
   public createUl() {
@@ -16,6 +18,7 @@ export default class UsersList {
         login: login,
         isLogined: isLogined,
       },
+      userDialogue: new Dialogue(),
       userEl: this.createUserEl(login, isLogined),
     };
     this.usersArray.push(user);
@@ -45,5 +48,6 @@ interface UserChat {
     login: string;
     isLogined: boolean;
   };
+  userDialogue: Dialogue;
   userEl: HTMLElement;
 }

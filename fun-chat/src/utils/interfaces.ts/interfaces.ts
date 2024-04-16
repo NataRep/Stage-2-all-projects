@@ -10,6 +10,8 @@ export interface ResponseServer {
     user?: UserResponse;
     error?: string;
     users?: UserResponse[];
+    message?: messageResponse;
+    messages?: messageResponse[];
   };
 }
 
@@ -35,4 +37,21 @@ export interface MessageRequest {
     to: string;
     text: string;
   };
+}
+export interface messageResponse {
+  id: string;
+  from: string;
+  to: string;
+  text: string;
+  datetime: number;
+  status: {
+    isDelivered: boolean;
+    isReaded: boolean;
+    isEdited: boolean;
+  };
+}
+
+export interface ChatMessage {
+  message: messageResponse;
+  element: HTMLElement;
 }
