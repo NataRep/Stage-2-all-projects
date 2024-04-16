@@ -15,9 +15,7 @@ export default class ChatPage extends Page {
     app.chat.userList = new UsersList();
     const header = Header.create(app) as HTMLElement;
     const main = document.createElement('main');
-    const chatEl = app.chat.createEl();
-    const userList = app.chat.userList.createUl();
-    chatEl.append(userList);
+    const chatEl = app.chat.create();
     main.append(chatEl);
     const footer = Footer.create();
     this.mainContent.append(header);

@@ -9,11 +9,18 @@ export default class Chat {
     this.userList = new UsersList();
   }
 
-  public createEl(): HTMLElement {
+  private createWrapper(): HTMLElement {
     const chat = document.createElement('div');
     chat.className = 'chat';
-
     return chat;
+  }
+
+  public create(): HTMLElement {
+    const chatWrapper = this.createWrapper();
+    const userList = this.userList.createUl();
+    chatWrapper.append(userList);
+
+    return chatWrapper;
   }
 }
 
