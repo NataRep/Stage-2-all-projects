@@ -1,3 +1,5 @@
+import Dialogue from '../../components/chat/dialogue/dialogue';
+
 export interface RequestServer<T> {
   id: string;
   type: string;
@@ -54,4 +56,13 @@ export interface messageResponse {
 export interface ChatMessage {
   message: messageResponse;
   element: HTMLElement;
+}
+
+export interface UserChat {
+  userData: {
+    login: string;
+    isLogined: boolean;
+  };
+  userDialogue: Dialogue;
+  userEl: HTMLElement;
 }

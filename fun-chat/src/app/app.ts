@@ -93,10 +93,10 @@ export default class App {
         this.logout();
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGIN:
-        this.chat.userList.changUserStatus(message.payload.user.login, message.payload.user.isLogined);
+        this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
         break;
       case typeMessagesFromServer.USER_EXTERNAL_LOGOUT:
-        this.chat.userList.changUserStatus(message.payload.user.login, message.payload.user.isLogined);
+        this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
         break;
       case typeMessagesFromServer.USER_ACTIVE:
         //..обработчик

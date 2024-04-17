@@ -1,3 +1,5 @@
+import App from '../../../app/app';
+import { UserChat } from '../../../utils/interfaces.ts/interfaces';
 import Dialogue from '../dialogue/dialogue';
 import './users-list.scss';
 export default class UsersList {
@@ -12,15 +14,17 @@ export default class UsersList {
     return this.list;
   }
 
-  public createUser(login: string, isLogined: boolean) {
+  public createUser(app: App, login: string, isLogined: boolean) {
     const user: UserChat = {
       userData: {
         login: login,
         isLogined: isLogined,
       },
-      userDialogue: new Dialogue(),
+      userDialogue: new Dialogue(app, login),
       userEl: this.createUserEl(login, isLogined),
     };
+
+    user.userEl.addEventListener('click', () => this.userOnClick(app, user));
     this.usersArray.push(user);
     this.list.append(user.userEl);
   }
@@ -32,22 +36,29 @@ export default class UsersList {
     return li;
   }
 
-  public changUserStatus(login: string, isLogined: boolean) {
+  public changUserStatus(app: App, login: string, isLogined: boolean) {
     const user = this.usersArray.find((user) => user.userData.login === login);
     if (user) {
       user.userData.isLogined = isLogined;
       user.userEl.className = isLogined ? 'users-list__user online' : 'users-list__user offline';
     } else if (isLogined === true) {
-      this.createUser(login, isLogined);
+      this.createUser(app, login, isLogined);
     }
   }
-}
 
-interface UserChat {
-  userData: {
-    login: string;
-    isLogined: boolean;
-  };
-  userDialogue: Dialogue;
-  userEl: HTMLElement;
+  private userOnClick(app: App, user: UserChat) {
+    if (app.chat.currentcPartner) {
+      app.chat.currentcPartner.userEl.classList.remove('current-partner');
+    }
+    user.userEl.classList.add('current-partner');
+    //сохраняю текущего собеседнику
+    app.chat.currentcPartner = user;
+    //заменяю историю сообщений
+    app.chat.dialogueWrapper.replaceChildren(user.userDialogue.dialogueEl);
+    //разблокирую форму если она была закрыта
+    app.chat.form.changeStateDisabled(false);
+    //очищаю поле ввода и перевожу курсор
+    app.chat.form.textArea.value = '';
+    app.chat.form.textArea.focus();
+  }
 }

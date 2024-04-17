@@ -11,7 +11,7 @@ export default class Dialogue {
 
   dialogueEl: HTMLElement;
 
-  construcrot(app: App, login: string) {
+  constructor(app: App, login: string) {
     this.login = login;
     this.messageArray = [];
     this.dialogueEl = document.createElement('div');
@@ -19,9 +19,10 @@ export default class Dialogue {
     this.createDialogueHistory(app);
   }
 
-  private async createDialogueHistory(app: App) {
+  public async createDialogueHistory(app: App) {
     //получаем данные с сервера
     const data: ResponseServer = await WebSocketAPI.getMessageHistoryWithUser(app.webSocket, this.login);
+
     //для каждого сообщения создаем ChatMessage
     if (data.payload.messages.length > 0) {
       data.payload.messages.forEach((response) => {

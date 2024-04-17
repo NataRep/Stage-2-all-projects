@@ -34,7 +34,7 @@ export default class ChatPage extends Page {
     const usersArray = await this.getUsersFromServer(app);
     usersArray.forEach((user) => {
       if (user.login != app.user.login) {
-        app.chat.userList.createUser(user.login, user.isLogined);
+        app.chat.userList.createUser(app, user.login, user.isLogined);
       }
     });
   }
