@@ -48,10 +48,10 @@ export default class WebSocketAPI {
     return await this.sendRequest(webSocket, 'USER_INACTIVE', null);
   }
 
-  static async sendMessageToUser(webSocket: WebSocket, toId: string, text: string): Promise<any> {
+  static async sendMessageToUser(webSocket: WebSocket, toUser: string, text: string): Promise<any> {
     const payload: MessageRequest = {
       message: {
-        to: toId,
+        to: toUser,
         text: text,
       },
     };

@@ -1,5 +1,8 @@
+import WebSocketAPI from '../../../api/api';
 import App from '../../../app/app';
+import { ResponseServer } from '../../../utils/interfaces.ts/interfaces';
 import Button from '../../button/button';
+import Message from '../../chat/message/message';
 import Form from '../form';
 import './chat-form.scss';
 
@@ -13,7 +16,7 @@ export default class chatForm extends Form {
 
     this.textArea = this.addTextArea('Write your message');
     this.button = Button.create('Send', ['button_send', 'button_big'], () => {
-      console.log('Отправляю сообщение');
+      this.sendMessage(app, app.chat.currentcPartner.userData.login);
     });
     this.changeStateDisabled(true);
   }
@@ -25,6 +28,15 @@ export default class chatForm extends Form {
     } else {
       this.textArea.disabled = false;
       this.button.disabled = false;
+    }
+  }
+
+  private async sendMessage(app: App, toUser: string) {
+    if (this.textArea.value != '') {
+      const text = this.textArea.value;
+      const response: ResponseServer = await WebSocketAPI.sendMessageToUser(app.webSocket, toUser, text);
+      app.chat.currentcPartner.userDialogue.addMessage(app, response);
+      this.textArea.value = '';
     }
   }
 }
