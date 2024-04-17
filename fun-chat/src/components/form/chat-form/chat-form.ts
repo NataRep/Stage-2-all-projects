@@ -31,12 +31,10 @@ export default class chatForm extends Form {
     }
   }
 
-  private async sendMessage(app: App, toUser: string) {
+  private sendMessage(app: App, toUser: string) {
     if (this.textArea.value != '') {
       const text = this.textArea.value;
-      const response: ResponseServer = await WebSocketAPI.sendMessageToUser(app.webSocket, toUser, text);
-      app.chat.currentcPartner.userDialogue.addMessage(app, response);
-      this.textArea.value = '';
+      WebSocketAPI.sendMessageToUser(app.webSocket, toUser, text);
     }
   }
 }

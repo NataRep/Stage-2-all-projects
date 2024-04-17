@@ -106,7 +106,9 @@ export default class App {
         break;
       case typeMessagesFromServer.MSG_SEND:
         //..обработчик
-        console.log(message);
+
+        this.chat.currentcPartner.userDialogue.addMessage(this, message);
+        this.chat.form.textArea.value = '';
         break;
       case typeMessagesFromServer.MSG_EDIT:
         //..обработчик

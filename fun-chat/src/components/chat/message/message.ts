@@ -26,10 +26,10 @@ export default class Message {
     const date = this.createMessageDate(message);
     const buttonRow = document.createElement('div');
     buttonRow.className = 'message__button-row';
-    const buttonRemove = Button.create('', ['button_remove-message', 'button_circle'], () => {
+    const buttonRemove = Button.create('', ['button_message', 'button_remove-message'], () => {
       console.log('Удвляю сообщение');
     });
-    const buttonEdit = Button.create('', ['button_edit-message', 'button_circle'], () => {
+    const buttonEdit = Button.create('', ['button_message', 'button_edit-message'], () => {
       console.log('Изменяю сообщение');
     });
     buttonRow.append(buttonRemove);
