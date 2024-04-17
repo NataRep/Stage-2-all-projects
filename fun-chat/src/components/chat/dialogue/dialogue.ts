@@ -2,6 +2,8 @@ import WebSocketAPI from '../../../api/api';
 import App from '../../../app/app';
 import { ChatMessage, ResponseServer } from '../../../utils/interfaces.ts/interfaces';
 import Message from '../message/message';
+import './dialogue.scss';
+
 export default class Dialogue {
   login: string;
 

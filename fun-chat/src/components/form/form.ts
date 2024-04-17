@@ -57,6 +57,15 @@ class Form {
     return input;
   }
 
+  public addTextArea(placeholder: string): HTMLTextAreaElement {
+    const textArea: HTMLTextAreaElement = document.createElement('textarea');
+    textArea.placeholder = placeholder;
+    textArea.className = 'form__text';
+    textArea.autocomplete = 'off';
+    this.inputs.push(textArea);
+    return textArea;
+  }
+
   public create() {
     const formWrapper: HTMLDivElement = document.createElement('div');
     formWrapper.className = this.className;

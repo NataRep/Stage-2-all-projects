@@ -1,0 +1,9 @@
+@import './../../../utils/variables.scss';
+
+.chat__dialogue-wrapper {
+  border-radius: 0.5rem;
+  background: var(--color-white);
+  padding: 1.5rem;
+  height: 45dvh;
+  overflow-y: scroll;
+}

@@ -1,0 +1,49 @@
+@import './../../utils/variables.scss';
+
+.chat {
+  display: grid;
+  grid-template-areas:
+    'list dialogue'
+    'list form';
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem 2rem;
+
+  &__users-list {
+    grid-area: list;
+  }
+  &__dialogue-wrapper {
+    grid-area: dialogue;
+  }
+  &__form-wrapper {
+    grid-area: form;
+    align-items: flex-end;
+  }
+
+  &__default {
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+    padding: 1rem;
+    background: var(--color-green);
+    line-height: 1.5rem;
+    color: var(--color-white);
+    max-width: 30rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -1rem;
+      left: 0;
+      border: 0.75rem solid transparent;
+      border-left: 0.75rem solid var(--color-green);
+      border-top: 0.75rem solid var(--color-green);
+      border-radius: 0.25rem;
+    }
+    &::before {
+      content: 'Fun Chat:';
+      display: block;
+      text-align: left;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 @import './../../utils/variables.scss';
 
 .footer {
-  width: 100%;
+  width: calc(100% - 2rem);
   display: flex;
   justify-content: space-between;
   background: var(--color-grey-dark);

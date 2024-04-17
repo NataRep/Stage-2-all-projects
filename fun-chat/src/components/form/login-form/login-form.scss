@@ -33,7 +33,6 @@
       font-weight: 400;
       font-size: 1rem;
       line-height: 150%;
-      letter-spacing: 0.01em;
       color: rgba(0, 0, 0, 0.35);
     }
   }
@@ -63,13 +62,13 @@
       margin-right: 0.25rem;
     }
   }
-  &.active {
+  &_login.active {
     border: 1px solid #1e88e5;
     border-bottom: 0.125rem solid #1e88e5;
     width: calc(16rem - 2px);
     box-shadow: 0 0 4px #1e88e5;
   }
-  &.invalided {
+  &_login.invalided {
     border: 1px solid rgba(201, 19, 46, 0.6);
     border-bottom: 0.125rem solid rgba(201, 19, 46, 0.6);
     width: calc(16rem - 2px);

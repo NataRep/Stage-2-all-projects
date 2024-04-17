@@ -1,6 +1,7 @@
 import App from '../../app/app';
-import chatForm from '../form/chat-form/chatForm';
+import chatForm from '../form/chat-form/chat-form';
 import UsersList from './users-list/users-list';
+import './chat.scss';
 
 export default class Chat {
   userList: UsersList;
@@ -21,7 +22,7 @@ export default class Chat {
     dialogueWrapper.className = 'chat__dialogue-wrapper';
     const dialogueDefault = document.createElement('p');
     dialogueDefault.className = 'chat__default';
-    dialogueDefault.innerHTML = 'To begin, please select a contact from the list.';
+    dialogueDefault.innerHTML = 'To begin, please select a contact from the list. Have fun!';
     dialogueWrapper.append(dialogueDefault);
     chatWrapper.append(dialogueWrapper);
     const formWrapper = document.createElement('div');

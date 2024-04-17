@@ -1,0 +1,38 @@
+@import './../../../utils/variables.scss';
+
+.form_chat {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  textarea {
+    width: calc(100% - 200px);
+    font-family: 'Sono', monospace;
+    color: var(--color-grey-dark);
+    font-size: 1rem;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    min-height: 3rem;
+    overflow-y: auto;
+    border: 1px solid var(--color-yellow);
+    border-bottom: 0.1px solid var(--color-yellow);
+    border-radius: 0.25rem;
+    outline: 0;
+
+    &:focus {
+      width: calc(100% - 202px);
+      border: 1px solid #1e88e566;
+      border-bottom: 0.1px solid #1e88e566;
+      box-shadow: 0 0 4px #1e88e566;
+    }
+
+    &:disabled {
+      background: none;
+      border: solid 2px var(--color-grey);
+      pointer-events: none;
+      &::placeholder {
+        color: var(--color-grey);
+      }
+    }
+  }
+}
