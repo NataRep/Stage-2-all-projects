@@ -41,9 +41,18 @@ export default class Chat {
   }
 
   public getMessageFromServer(app: App, message: ResponseServer) {
-    //ищем в какой какие диалоги добавлять сообщение
-    const senderDialogue = app.chat.userList.usersArray.find((user) => user.userDialogue);
-    const recipientDialogue = app.chat.currentcPartner.userDialogue.addMessage(app, message);
+    //ищем в какой какой диалог с отправителем добавлять сообщение
+    const sender = message.payload.message.from;
+    const recipient = message.payload.message.to;
+
+    if (sender != app.user.login) {
+      const senderDialogue = app.user.dialogues.find((dialogue) => dialogue.login === sender);
+      senderDialogue.addMessage(app, message);
+    } else {
+      const recipientDialogue = app.user.dialogues.find((dialogue) => dialogue.login === recipient);
+      recipientDialogue.addMessage(app, message);
+    }
+
     app.chat.form.textArea.value = '';
   }
 }
