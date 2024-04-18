@@ -10,7 +10,6 @@ import { ResponseServer, UserResponse } from '../../utils/interfaces.ts/interfac
 export default class ChatPage extends Page {
   constructor(app: App) {
     super();
-
     app.chat = new Chat(app);
     app.chat.userList = new UsersList();
     const header = Header.create(app) as HTMLElement;

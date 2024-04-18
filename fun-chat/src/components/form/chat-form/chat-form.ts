@@ -1,8 +1,6 @@
 import WebSocketAPI from '../../../api/api';
 import App from '../../../app/app';
-import { ResponseServer } from '../../../utils/interfaces.ts/interfaces';
 import Button from '../../button/button';
-import Message from '../../chat/message/message';
 import Form from '../form';
 import './chat-form.scss';
 

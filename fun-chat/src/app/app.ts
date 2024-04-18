@@ -40,8 +40,9 @@ export default class App {
     this.webSocket = await new WebSocket(URL);
 
     //Если возможно, автоматически логинемся
-    if (sessionStorage.getItem('current-user_nuttik')) {
-      this.user = JSON.parse(sessionStorage.getItem('current-user_nuttik')) as User;
+    if (sessionStorage.getItem('current-user_nuttik_login') && sessionStorage.getItem('current-user_nuttik_password')) {
+      this.user.login = sessionStorage.getItem('current-user_nuttik_login');
+      this.user.password = sessionStorage.getItem('current-user_nuttik_password');
       // Ждем подключения сервера перед отправкой запроса аутентификации
       this.webSocket.onopen = () => {
         WebSocketAPI.sendUserAuthentication(this.webSocket, this.user.login, this.user.password);
@@ -61,9 +62,12 @@ export default class App {
 
   public login() {
     this.user.isLogin = true;
-    const userStr = JSON.stringify(this.user);
-    if (!sessionStorage.getItem('current-user_nuttik')) {
-      sessionStorage.setItem('current-user_nuttik', userStr);
+    if (
+      !sessionStorage.getItem('current-user_nuttik_login') &&
+      !sessionStorage.getItem('urrent-user_nuttik_password')
+    ) {
+      sessionStorage.setItem('current-user_nuttik_login', this.user.login);
+      sessionStorage.setItem('current-user_nuttik_password', this.user.password);
     }
     if (window.location.pathname === this.router.urlPath.LOGIN) {
       this.router.urlRoute(this, this.router.urlPath.CHAT);

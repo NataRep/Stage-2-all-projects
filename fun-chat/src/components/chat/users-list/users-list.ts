@@ -23,7 +23,6 @@ export default class UsersList {
       userDialogue: new Dialogue(app, login),
       userEl: this.createUserEl(login, isLogined),
     };
-
     user.userEl.addEventListener('click', () => this.userOnClick(app, user));
     this.usersArray.push(user);
     this.list.append(user.userEl);

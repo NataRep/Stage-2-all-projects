@@ -17,6 +17,7 @@ export default class Dialogue {
     this.dialogueEl = document.createElement('div');
     this.dialogueEl.className = 'chat__dialogue dialogue';
     this.createDialogueHistory(app);
+    //app.user.dialogues.push(this);
   }
 
   public async createDialogueHistory(app: App) {

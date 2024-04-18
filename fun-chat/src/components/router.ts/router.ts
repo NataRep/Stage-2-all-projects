@@ -47,11 +47,11 @@ export default class Router {
       window.location.pathname = this.urlPath.LOGIN;
     }
     //у залогинненого нет доступа к странице входа
-    if (urlPath === this.urlPath.CHAT && !sessionStorage.getItem('current-user_nuttik')) {
+    if (urlPath === this.urlPath.CHAT && !sessionStorage.getItem('current-user_nuttik_login')) {
       window.location.pathname = this.urlPath.LOGIN;
     }
     //у залогиненого нет доступа к странице входа
-    if (urlPath === this.urlPath.LOGIN && sessionStorage.getItem('current-user_nuttik')) {
+    if (urlPath === this.urlPath.LOGIN && sessionStorage.getItem('current-user_nuttik_login')) {
       window.location.pathname = this.urlPath.CHAT;
     }
   }

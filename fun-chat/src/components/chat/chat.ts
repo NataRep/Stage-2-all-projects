@@ -2,7 +2,7 @@ import App from '../../app/app';
 import chatForm from '../form/chat-form/chat-form';
 import UsersList from './users-list/users-list';
 import './chat.scss';
-import { UserChat } from '../../utils/interfaces.ts/interfaces';
+import { ResponseServer, UserChat } from '../../utils/interfaces.ts/interfaces';
 
 export default class Chat {
   userList: UsersList;
@@ -38,5 +38,12 @@ export default class Chat {
     formWrapper.append(form);
     chatWrapper.append(formWrapper);
     return chatWrapper;
+  }
+
+  public getMessageFromServer(app: App, message: ResponseServer) {
+    //ищем в какой какие диалоги добавлять сообщение
+    const senderDialogue = app.chat.userList.usersArray.find((user) => user.userDialogue);
+    const recipientDialogue = app.chat.currentcPartner.userDialogue.addMessage(app, message);
+    app.chat.form.textArea.value = '';
   }
 }
