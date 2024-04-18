@@ -54,11 +54,15 @@ export default class UsersList {
     //сохраняю текущего собеседнику
     app.chat.currentcPartner = user;
     //заменяю историю сообщений
-    app.chat.dialogueWrapper.replaceChildren(user.userDialogue.dialogueEl);
+    if (app.chat.dialogueWrapper.children.length > 0) {
+      app.chat.dialogueWrapper.replaceChildren(user.userDialogue.dialogueEl);
+    }
     //разблокирую форму если она была закрыта
     app.chat.form.changeStateDisabled(false);
     //очищаю поле ввода и перевожу курсор
     app.chat.form.textArea.value = '';
     app.chat.form.textArea.focus();
+    //прокручиваю окно чата до последнего сообщения
+    Dialogue.scrollToLastMessage(app);
   }
 }

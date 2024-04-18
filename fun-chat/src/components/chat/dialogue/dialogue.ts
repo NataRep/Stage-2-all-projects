@@ -37,9 +37,14 @@ export default class Dialogue {
     const message = Message.create(app, data.payload.message);
     this.messageArray.push(message);
     this.dialogueEl.append(message.element);
+    Dialogue.scrollToLastMessage(app);
   }
 
   public changeMessageStatus(data: ResponseServer) {
     console.log('меняю статус сообщения');
+  }
+
+  static scrollToLastMessage(app: App) {
+    app.chat.dialogueWrapper.scrollTop = app.chat.dialogueWrapper.scrollHeight;
   }
 }
