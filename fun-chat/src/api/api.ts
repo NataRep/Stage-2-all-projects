@@ -27,7 +27,8 @@ export default class WebSocketAPI {
         password: password,
       },
     };
-    return await this.sendRequest(webSocket, 'USER_LOGIN', payload);
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'USER_LOGIN', payload);
+    return responseServer;
   }
 
   static async sendUserLogout(webSocket: WebSocket, login: string, password: string): Promise<ResponseServer> {
@@ -37,15 +38,18 @@ export default class WebSocketAPI {
         password: password,
       },
     };
-    return await this.sendRequest(webSocket, 'USER_LOGOUT', payload);
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'USER_LOGOUT', payload);
+    return responseServer;
   }
 
   static async getAllAuthenticatedUsers(webSocket: WebSocket): Promise<ResponseServer> {
-    return await this.sendRequest(webSocket, 'USER_ACTIVE', null);
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'USER_ACTIVE', null);
+    return responseServer;
   }
 
   static async getAllUnauthorizedUsers(webSocket: WebSocket): Promise<ResponseServer> {
-    return await this.sendRequest(webSocket, 'USER_INACTIVE', null);
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'USER_INACTIVE', null);
+    return responseServer;
   }
 
   static async sendMessageToUser(webSocket: WebSocket, toUser: string, text: string): Promise<ResponseServer> {
@@ -55,7 +59,8 @@ export default class WebSocketAPI {
         text: text,
       },
     };
-    return await this.sendRequest(webSocket, 'MSG_SEND', payload);
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'MSG_SEND', payload);
+    return responseServer;
   }
 
   static async getMessageHistoryWithUser(webSocket: WebSocket, login: string): Promise<ResponseServer> {
@@ -64,6 +69,7 @@ export default class WebSocketAPI {
         login: login,
       },
     };
-    return await this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
+    return responseServer;
   }
 }
