@@ -5,15 +5,12 @@ import Router from '../components/router.ts/router';
 import AboutPage from '../pages/about/about-page';
 import ChatPage from '../pages/chat/chat-page';
 import LoginPage from '../pages/login/login-page';
-import AppHtmlEllements from '../utils/app-html-ellements';
-import { typeMessagesFromServer } from '../utils/enums/messages-from-server';
+import { TypeMessagesFromServer } from '../utils/enums/messages-from-server';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
 export default class App {
   webSocket: WebSocket;
-
-  appHtmlEllements: AppHtmlEllements;
 
   loginPage: LoginPage;
 
@@ -28,7 +25,6 @@ export default class App {
   chat: Chat;
 
   constructor() {
-    this.appHtmlEllements = new AppHtmlEllements();
     this.loginPage = new LoginPage(this);
     this.router = new Router();
 
@@ -85,41 +81,41 @@ export default class App {
     console.log(message);
 
     switch (message.type) {
-      case typeMessagesFromServer.ERROR:
+      case TypeMessagesFromServer.ERROR:
         //..обработчик
         const error = new ErrorsFromResponses(message);
         error.catchError();
         break;
-      case typeMessagesFromServer.USER_LOGIN:
+      case TypeMessagesFromServer.USER_LOGIN:
         this.login();
         break;
-      case typeMessagesFromServer.USER_LOGOUT:
+      case TypeMessagesFromServer.USER_LOGOUT:
         this.logout();
         break;
-      case typeMessagesFromServer.USER_EXTERNAL_LOGIN:
+      case TypeMessagesFromServer.USER_EXTERNAL_LOGIN:
         this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
         break;
-      case typeMessagesFromServer.USER_EXTERNAL_LOGOUT:
+      case TypeMessagesFromServer.USER_EXTERNAL_LOGOUT:
         this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
         break;
-      case typeMessagesFromServer.USER_ACTIVE:
+      case TypeMessagesFromServer.USER_ACTIVE:
         //..обработчик
         break;
-      case typeMessagesFromServer.USER_INACTIVE:
+      case TypeMessagesFromServer.USER_INACTIVE:
         //..обработчик
         break;
-      case typeMessagesFromServer.MSG_SEND:
+      case TypeMessagesFromServer.MSG_SEND:
         //..обработчик
         this.chat.getMessageFromServer(this, message);
         break;
-      case typeMessagesFromServer.MSG_EDIT:
+      case TypeMessagesFromServer.MSG_EDIT:
         //..обработчик
         break;
-      case typeMessagesFromServer.MSG_READ:
+      case TypeMessagesFromServer.MSG_READ:
         //..обработчик
         console.log(message);
         break;
-      case typeMessagesFromServer.MSG_DELETE:
+      case TypeMessagesFromServer.MSG_DELETE:
         //..обработчик
         console.log(message);
         break;

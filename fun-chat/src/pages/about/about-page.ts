@@ -3,6 +3,13 @@ import Page from '../page';
 import App from '../../app/app';
 import Footer from '../../components/footer/footer';
 
+const TEXT = `<p>The app was created as part of the <a href="https://rs.school/courses/javascript-mentoring-program">JS / Front-end course</a> at <a href='https://rs.school'>The Rolling Scopes School</a> in 2024.</p>
+  <p>Author of the application: <a href="https://github.com/Nuttik">Natalia Repkina</a>.</p>
+  <h2>Gratitude:</h2>
+  <p> I express my gratitude to <b>the whole team of the school</b>.</p>
+  <p>Thanks to <b>my mentor <a href="https://github.com/rimidalu">Vladimir Stankevich</a></b> for his help, patience and motivation.</p>
+  <p>I thank <b>all the students</b> who have helped me out more than once with advice and words of encouragement on discord.</p>
+<p> It is a great adventure to learn on this courses!</p>`;
 export default class AboutPage extends Page {
   constructor(app: App) {
     super();
@@ -21,11 +28,3 @@ export default class AboutPage extends Page {
     this.mainContent.append(footer);
   }
 }
-
-const TEXT = `<p>The app was created as part of the <a href="https://rs.school/courses/javascript-mentoring-program">JS / Front-end course</a> at <a href='https://rs.school'>The Rolling Scopes School</a> in 2024.</p>
-  <p>Author of the application: <a href="https://github.com/Nuttik">Natalia Repkina</a>.</p>
-  <h2>Gratitude:</h2>
-  <p> I express my gratitude to <b>the whole team of the school</b>.</p>
-  <p>Thanks to <b>my mentor <a href="https://github.com/rimidalu">Vladimir Stankevich</a></b> for his help, patience and motivation.</p>
-  <p>I thank <b>all the students</b> who have helped me out more than once with advice and words of encouragement on discord.</p>
-<p> It is a great adventure to learn on this courses!</p>`;

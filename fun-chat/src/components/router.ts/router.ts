@@ -29,7 +29,7 @@ export default class Router {
       if (sessionStorage.getItem('current-user_nuttik')) {
         sessionStorage.removeItem('current-user_nuttik');
       }
-      app.loginPage.open(app);
+      app.loginPage.open();
     } else if (location === this.urlPath.CHAT) {
       app.chatPage = new ChatPage(app);
       app.chatPage.render();

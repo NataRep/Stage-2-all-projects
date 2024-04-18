@@ -1,5 +1,5 @@
 import App from '../../app/app';
-import chatForm from '../form/chat-form/chat-form';
+import ChatForm from '../form/chat-form/chat-form';
 import UsersList from './users-list/users-list';
 import './chat.scss';
 import { ResponseServer, UserChat } from '../../utils/interfaces.ts/interfaces';
@@ -7,7 +7,7 @@ import { ResponseServer, UserChat } from '../../utils/interfaces.ts/interfaces';
 export default class Chat {
   userList: UsersList;
 
-  form: chatForm;
+  form: ChatForm;
 
   currentcPartner: UserChat;
 
@@ -15,7 +15,7 @@ export default class Chat {
 
   constructor(app: App) {
     this.userList = new UsersList();
-    this.form = new chatForm(app);
+    this.form = new ChatForm(app);
   }
 
   public create(): HTMLElement {

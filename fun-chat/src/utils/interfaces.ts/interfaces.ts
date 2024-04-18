@@ -12,8 +12,8 @@ export interface ResponseServer {
     user?: UserResponse;
     error?: string;
     users?: UserResponse[];
-    message?: messageResponse;
-    messages?: messageResponse[];
+    message?: MessageResponse;
+    messages?: MessageResponse[];
   };
 }
 
@@ -40,7 +40,7 @@ export interface MessageRequest {
     text: string;
   };
 }
-export interface messageResponse {
+export interface MessageResponse {
   id: string;
   from: string;
   to: string;
@@ -54,7 +54,7 @@ export interface messageResponse {
 }
 
 export interface ChatMessage {
-  message: messageResponse;
+  message: MessageResponse;
   element: HTMLElement;
 }
 

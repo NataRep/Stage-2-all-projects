@@ -21,7 +21,9 @@ const errorText: { [key: string]: string } = {
 
 export default class ErrorsFromResponses {
   message: ResponseServer;
+
   id: string;
+
   error: string;
 
   constructor(errorMessage: ResponseServer) {
@@ -32,7 +34,7 @@ export default class ErrorsFromResponses {
 
   private checkTypeError(text: string): string {
     let result: string;
-    for (let key in errorText) {
+    for (const key in errorText) {
       if (errorText[key] === text) {
         console.log(text);
         result = key;
@@ -45,11 +47,11 @@ export default class ErrorsFromResponses {
   }
 
   public catchError() {
-    const typeError = this.checkTypeError(this.message.payload.error);
+    // const typeError = this.checkTypeError(this.message.payload.error);
     this.displayError(this.message.payload.error);
   }
 
   public displayError(text: string) {
-    const popUpError = PopUp.create(['popUp_error'], 'Oops!', text);
+    PopUp.create(['popUp_error'], 'Oops!', text);
   }
 }

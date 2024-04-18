@@ -24,7 +24,7 @@ export default class LoginPage extends Page {
     this.mainContent.append(loginContentWrapper);
   }
 
-  public open(app: App) {
+  public open() {
     this.loginForm.clear();
     this.render();
   }

@@ -4,7 +4,7 @@ import Button from '../../button/button';
 import Form from '../form';
 import './chat-form.scss';
 
-export default class chatForm extends Form {
+export default class ChatForm extends Form {
   textArea: HTMLTextAreaElement;
 
   button: HTMLButtonElement;

@@ -1,4 +1,4 @@
-export enum typeMessagesFromServer {
+export enum TypeMessagesFromServer {
   ERROR = 'ERROR',
   USER_LOGIN = 'USER_LOGIN',
   USER_LOGOUT = 'USER_LOGOUT',

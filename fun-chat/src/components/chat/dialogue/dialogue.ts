@@ -41,7 +41,7 @@ export default class Dialogue {
     Dialogue.scrollToLastMessage(app);
   }
 
-  public changeMessageStatus(data: ResponseServer) {
+  public changeMessageStatus(/* data: ResponseServer */) {
     console.log('меняю статус сообщения');
   }
 

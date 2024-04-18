@@ -1,10 +1,10 @@
 import App from '../../../app/app';
-import { ChatMessage, messageResponse } from '../../../utils/interfaces.ts/interfaces';
+import { ChatMessage, MessageResponse } from '../../../utils/interfaces.ts/interfaces';
 import Button from '../../button/button';
 import './message.scss';
 
 export default class Message {
-  static create(app: App, message: messageResponse): ChatMessage {
+  static create(app: App, message: MessageResponse): ChatMessage {
     const messageObj: ChatMessage = {
       message: message,
       element: this.createEl(app, message),
@@ -12,7 +12,7 @@ export default class Message {
     return messageObj;
   }
 
-  static createEl(app: App, message: messageResponse): HTMLElement {
+  static createEl(app: App, message: MessageResponse): HTMLElement {
     const messageWrapper = document.createElement('div');
     messageWrapper.className = 'message-wrapper';
     if (message.from === app.user.login) {
@@ -69,7 +69,7 @@ export default class Message {
     return messageWrapper;
   }
 
-  static createMessageDate(message: messageResponse): HTMLElement {
+  static createMessageDate(message: MessageResponse): HTMLElement {
     const dateWrapper = document.createElement('div');
     dateWrapper.className = 'message__date';
 

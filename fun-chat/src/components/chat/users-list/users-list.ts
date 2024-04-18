@@ -37,10 +37,10 @@ export default class UsersList {
   }
 
   public changUserStatus(app: App, login: string, isLogined: boolean) {
-    const user = this.usersArray.find((user) => user.userData.login === login);
-    if (user) {
-      user.userData.isLogined = isLogined;
-      user.userEl.className = isLogined ? 'users-list__user online' : 'users-list__user offline';
+    const currentUser = this.usersArray.find((user) => user.userData.login === login);
+    if (currentUser) {
+      currentUser.userData.isLogined = isLogined;
+      currentUser.userEl.className = isLogined ? 'users-list__user online' : 'users-list__user offline';
     } else if (isLogined === true) {
       this.createUser(app, login, isLogined);
     }
