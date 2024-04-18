@@ -69,4 +69,33 @@
     font-size: 1.25rem;
     min-width: 10rem;
   }
+  &_message {
+    background: none;
+    padding: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.25rem;
+  }
+  &_remove-message {
+    background: url('./../../assets/images/trash.svg') no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url('./../../assets/images/trash-hover.svg') no-repeat center;
+      }
+    }
+    &:active {
+      background: url('./../../assets/images/trash-hover.svg') no-repeat center;
+    }
+  }
+  &_edit-message {
+    background: url('./../../assets/images/edit.svg') no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url('./../../assets/images/edit-hover.svg') no-repeat center;
+      }
+    }
+    &:active {
+      background: url('./../../assets/images/edit-hover.svg') no-repeat center;
+    }
+  }
 }

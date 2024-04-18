@@ -1,6 +1,7 @@
 import App from '../../../app/app';
 import { ChatMessage, messageResponse } from '../../../utils/interfaces.ts/interfaces';
 import Button from '../../button/button';
+import './message.scss';
 
 export default class Message {
   static create(app: App, message: messageResponse): ChatMessage {
@@ -12,18 +13,27 @@ export default class Message {
   }
 
   static createEl(app: App, message: messageResponse): HTMLElement {
+    const messageWrapper = document.createElement('div');
+    messageWrapper.className = 'message-wrapper';
+    if (message.from === app.user.login) {
+      messageWrapper.classList.add('message-wrapper_myself');
+    }
     const messageEl = document.createElement('div');
     messageEl.className = 'message';
-    if (message.from === app.user.login) {
-      messageEl.classList.add('message_myself');
-    }
+
+    const descRow = document.createElement('div');
+    descRow.className = 'message__desc-row';
     const from = document.createElement('div');
     from.className = 'message__from';
     from.innerHTML = message.from !== app.user.login ? message.from : 'You';
+    const date = this.createMessageDate(message);
+    descRow.append(from);
+    descRow.append(date);
+
     const text = document.createElement('div');
     text.className = 'message__text';
     text.innerHTML = message.text;
-    const date = this.createMessageDate(message);
+
     const buttonRow = document.createElement('div');
     buttonRow.className = 'message__button-row';
     const buttonRemove = Button.create('', ['button_message', 'button_remove-message'], () => {
@@ -32,8 +42,8 @@ export default class Message {
     const buttonEdit = Button.create('', ['button_message', 'button_edit-message'], () => {
       console.log('Изменяю сообщение');
     });
-    buttonRow.append(buttonRemove);
     buttonRow.append(buttonEdit);
+    buttonRow.append(buttonRemove);
     const statusRow = document.createElement('div');
     statusRow.className = 'message__status-row';
     const statusRead = document.createElement('div');
@@ -51,12 +61,12 @@ export default class Message {
     statusRow.append(statusEdit);
     statusRow.append(statusRead);
 
-    messageEl.append(from);
-    messageEl.append(date);
+    messageEl.append(descRow);
     messageEl.append(buttonRow);
     messageEl.append(text);
     messageEl.append(statusRow);
-    return messageEl;
+    messageWrapper.append(messageEl);
+    return messageWrapper;
   }
 
   static createMessageDate(message: messageResponse): HTMLElement {

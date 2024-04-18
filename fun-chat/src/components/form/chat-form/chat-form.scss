@@ -18,6 +18,9 @@
     border-bottom: 0.1px solid var(--color-yellow);
     border-radius: 0.25rem;
     outline: 0;
+    &::placeholder {
+      color: var(--color-grey);
+    }
 
     &:focus {
       width: calc(100% - 202px);
@@ -31,7 +34,7 @@
       border: solid 2px var(--color-grey);
       pointer-events: none;
       &::placeholder {
-        color: var(--color-grey);
+        color: var(--color-bg);
       }
     }
   }
