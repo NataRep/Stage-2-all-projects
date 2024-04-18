@@ -75,12 +75,11 @@ export default class Message {
 
     const dateMessage = new Date(message.datetime);
     const year = String(dateMessage.getFullYear());
-    const month =
-      dateMessage.getMonth() + 1 < 10 ? '0' + String(dateMessage.getMonth() + 1) : String(dateMessage.getMonth() + 1);
-    const date = dateMessage.getDate() < 10 ? '0' + String(dateMessage.getDate()) : String(dateMessage.getDate());
-    const hours = dateMessage.getHours() < 10 ? '0' + String(dateMessage.getHours()) : String(dateMessage.getHours());
-    const min = String(dateMessage.getMinutes());
-    const sec = String(dateMessage.getSeconds());
+    const month = String(dateMessage.getMonth()).padStart(2, '0');
+    const date = String(dateMessage.getDate()).padStart(2, '0');
+    const hours = String(dateMessage.getHours()).padStart(2, '0');
+    const min = String(dateMessage.getMinutes()).padStart(2, '0');
+    const sec = String(dateMessage.getSeconds()).padStart(2, '0');
 
     dateWrapper.innerHTML = `${date}/${month}/${year} ${hours}:${min}:${sec}`;
     return dateWrapper;
