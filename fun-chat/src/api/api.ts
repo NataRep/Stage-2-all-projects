@@ -1,6 +1,6 @@
-import { MessageRequest, RequestServer, UserRequest } from '../utils/interfaces.ts/interfaces';
+import { MessageRequest, RequestServer, ResponseServer, UserRequest } from '../utils/interfaces.ts/interfaces';
 export default class WebSocketAPI {
-  static async sendRequest<T>(webSocket: WebSocket, type: string, payload: T): Promise<any> {
+  static async sendRequest<T>(webSocket: WebSocket, type: string, payload: T): Promise<ResponseServer> {
     const id = crypto.randomUUID();
     const request: RequestServer<T> = {
       id: id,
@@ -20,7 +20,7 @@ export default class WebSocketAPI {
     });
   }
 
-  static async sendUserAuthentication(webSocket: WebSocket, login: string, password: string): Promise<any> {
+  static async sendUserAuthentication(webSocket: WebSocket, login: string, password: string): Promise<ResponseServer> {
     const payload: UserRequest = {
       user: {
         login: login,
@@ -30,7 +30,7 @@ export default class WebSocketAPI {
     return await this.sendRequest(webSocket, 'USER_LOGIN', payload);
   }
 
-  static async sendUserLogout(webSocket: WebSocket, login: string, password: string): Promise<any> {
+  static async sendUserLogout(webSocket: WebSocket, login: string, password: string): Promise<ResponseServer> {
     const payload: UserRequest = {
       user: {
         login: login,
@@ -40,15 +40,15 @@ export default class WebSocketAPI {
     return await this.sendRequest(webSocket, 'USER_LOGOUT', payload);
   }
 
-  static async getAllAuthenticatedUsers(webSocket: WebSocket): Promise<any> {
+  static async getAllAuthenticatedUsers(webSocket: WebSocket): Promise<ResponseServer> {
     return await this.sendRequest(webSocket, 'USER_ACTIVE', null);
   }
 
-  static async getAllUnauthorizedUsers(webSocket: WebSocket): Promise<any> {
+  static async getAllUnauthorizedUsers(webSocket: WebSocket): Promise<ResponseServer> {
     return await this.sendRequest(webSocket, 'USER_INACTIVE', null);
   }
 
-  static async sendMessageToUser(webSocket: WebSocket, toUser: string, text: string): Promise<any> {
+  static async sendMessageToUser(webSocket: WebSocket, toUser: string, text: string): Promise<ResponseServer> {
     const payload: MessageRequest = {
       message: {
         to: toUser,
@@ -58,7 +58,7 @@ export default class WebSocketAPI {
     return await this.sendRequest(webSocket, 'MSG_SEND', payload);
   }
 
-  static async getMessageHistoryWithUser(webSocket: WebSocket, login: string): Promise<any> {
+  static async getMessageHistoryWithUser(webSocket: WebSocket, login: string): Promise<ResponseServer> {
     const payload = {
       user: {
         login: login,
