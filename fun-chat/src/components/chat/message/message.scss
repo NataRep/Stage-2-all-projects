@@ -53,3 +53,8 @@
     justify-content: space-between;
   }
 }
+.message-wrapper:not(.message-wrapper_myself) {
+  .message__status-read {
+    display: none;
+  }
+}
