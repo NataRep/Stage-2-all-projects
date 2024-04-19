@@ -35,7 +35,7 @@ export default class Message {
 
     const text = document.createElement('div');
     text.className = 'message__text';
-    text.innerHTML = message.text;
+    text.insertAdjacentHTML('afterbegin', `<p>${message.text}</p>`);
 
     const buttonRow = document.createElement('div');
     buttonRow.className = 'message__button-row';

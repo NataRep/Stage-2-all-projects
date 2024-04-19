@@ -37,7 +37,7 @@ export default class ChatForm extends Form {
 
   private sendMessage(app: App, toUser: string) {
     if (this.textArea.value != '') {
-      const text = this.textArea.value.trim();
+      const text = this.textArea.value.trim().replaceAll('\n', '<br>');
       WebSocketAPI.sendMessageToUser(app.webSocket, toUser, text);
     }
   }
