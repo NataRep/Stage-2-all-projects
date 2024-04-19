@@ -31,7 +31,10 @@ export default class Router {
       }
       app.loginPage.open();
     } else if (location === this.urlPath.CHAT) {
-      app.chatPage = new ChatPage(app);
+      if (!app.chatPage) {
+        app.chatPage = new ChatPage(app);
+      }
+
       app.chatPage.render();
     } else if (location === this.urlPath.ABOUT) {
       app.aboutPage = new AboutPage(app);
