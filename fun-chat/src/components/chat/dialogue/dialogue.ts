@@ -17,7 +17,7 @@ export default class Dialogue {
     this.dialogueEl = document.createElement('div');
     this.dialogueEl.className = 'chat__dialogue dialogue';
     this.createDialogueHistory(app);
-    this.dialogueEl.addEventListener('click', () => this.onClickDialogueEl(app, this));
+    this.addHandlersForReadMessage(app);
     //app.user.dialogues.push(this);
   }
 
@@ -53,6 +53,17 @@ export default class Dialogue {
 
   private onClickDialogueEl(app: App, dialogue: Dialogue) {
     this.readAllUnreadedMessage(app, dialogue);
+  }
+
+  private addHandlersForReadMessage(app: App) {
+    this.dialogueEl.addEventListener('click', () => this.onClickDialogueEl(app, this));
+    app.chat.form.button.addEventListener('click', () => {
+      this.onClickDialogueEl(app, this);
+    });
+    app.chat.dialogueWrapper.addEventListener('scroll', () => {
+      //нужно доскролить до начала непрочитанных сообщений
+      //this.onClickDialogueEl(app, this);
+    });
   }
 
   static scrollToLastMessage(app: App) {
