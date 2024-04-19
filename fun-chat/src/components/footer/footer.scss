@@ -9,6 +9,10 @@
   border-radius: 0.5rem;
   padding: 1rem;
 
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
+
   a {
     color: var(--color-grey);
     text-decoration: none;
@@ -18,6 +22,8 @@
 
     a {
       display: block;
+
+      width: min-content;
       padding-left: 2rem;
       margin-right: 1rem;
       background: url('./../../assets/images/git.svg') no-repeat left center;

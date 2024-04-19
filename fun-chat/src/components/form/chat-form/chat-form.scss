@@ -38,4 +38,19 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .button {
+      width: 100%;
+    }
+    textarea {
+      width: calc(100% - 1rem);
+      margin: 0 0 1rem 0;
+      &:focus {
+        width: calc(100% - 1rem);
+      }
+    }
+  }
 }
