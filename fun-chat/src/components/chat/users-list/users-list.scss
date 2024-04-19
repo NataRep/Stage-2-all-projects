@@ -3,7 +3,15 @@
 .users-list {
   border-radius: 0.5rem;
   background: var(--color-white);
-  padding: 1.5rem;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+
+  &::before {
+    content: 'Contacts list:';
+    margin-bottom: 1rem;
+    display: block;
+    color: var(--color-green);
+    font-weight: 600;
+  }
 
   &__user {
     display: flex;

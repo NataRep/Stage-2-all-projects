@@ -11,6 +11,8 @@ export default class Dialogue {
 
   dialogueEl: HTMLElement;
 
+  statusEl: HTMLElement;
+
   constructor(app: App, login: string) {
     this.login = login;
     this.messageArray = [];
@@ -18,6 +20,30 @@ export default class Dialogue {
     this.dialogueEl.className = 'chat__dialogue dialogue';
     this.createDialogueHistory(app);
     this.addHandlersForReadMessage(app);
+    this.createDialogueHeading();
+  }
+
+  public createDialogueHeading() {
+    //const user = app.chat.userList.usersArray.find((item) => item.userData.login === this.login);
+    const heading = document.createElement('div');
+    heading.className = 'dialogue__heading';
+    const loginEl = document.createElement('div');
+    loginEl.className = 'dialogue__heading-login';
+    loginEl.innerHTML = `Chat with ${this.login}`;
+    const statusEl = document.createElement('div');
+    this.statusEl = statusEl;
+    statusEl.className = 'dialogue__heading-status';
+    statusEl.innerHTML = ``;
+    heading.append(loginEl);
+    heading.append(statusEl);
+    this.dialogueEl.append(heading);
+  }
+
+  public changeDialogHeadingStatus(app: App) {
+    const currentUser = app.chat.userList.usersArray.find((user) => user.userData.login === this.login);
+    if (currentUser) {
+      this.statusEl.innerHTML = currentUser.userData.isLogined ? '(online)' : '(offline)';
+    }
   }
 
   public async createDialogueHistory(app: App) {

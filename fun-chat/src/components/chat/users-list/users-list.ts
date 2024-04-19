@@ -30,6 +30,7 @@ export default class UsersList {
     this.usersArray.push(user);
     this.list.append(user.userEl);
     app.user.dialogues.push(user.userDialogue);
+    user.userDialogue.changeDialogHeadingStatus(app);
   }
 
   private createUserEl(counter: Counter, login: string, isLogined: boolean): HTMLElement {

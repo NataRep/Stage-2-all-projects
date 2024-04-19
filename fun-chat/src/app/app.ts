@@ -97,10 +97,20 @@ export default class App {
       case TypeMessagesFromServer.USER_EXTERNAL_LOGIN:
         if (this.chat) {
           this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
+          //меняю статус в диалоге
+          const curentDialog = this.chat.userList.usersArray.find(
+            (user) => user.userData.login === message.payload.user.login
+          ).userDialogue;
+          curentDialog.changeDialogHeadingStatus(this);
         }
         break;
       case TypeMessagesFromServer.USER_EXTERNAL_LOGOUT:
         this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
+        //меняю статус в диалоге
+        const curentDialog = this.chat.userList.usersArray.find(
+          (user) => user.userData.login === message.payload.user.login
+        ).userDialogue;
+        curentDialog.changeDialogHeadingStatus(this);
         break;
       case TypeMessagesFromServer.USER_ACTIVE:
         //..обработчик
