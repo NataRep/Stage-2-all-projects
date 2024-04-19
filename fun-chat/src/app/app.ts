@@ -1,6 +1,7 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
 import Chat from '../components/chat/chat';
+import Message from '../components/chat/message/message';
 import Router from '../components/router.ts/router';
 import AboutPage from '../pages/about/about-page';
 import ChatPage from '../pages/chat/chat-page';
@@ -113,7 +114,8 @@ export default class App {
         break;
       case TypeMessagesFromServer.MSG_READ:
         //..обработчик
-        console.log(message);
+        //найти сообщение в диалогах - и отметить прочитанным
+        Message.changeStatusReadedMessage(this, message);
         break;
       case TypeMessagesFromServer.MSG_DELETE:
         //..обработчик

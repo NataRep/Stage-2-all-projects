@@ -72,4 +72,14 @@ export default class WebSocketAPI {
     const responseServer: ResponseServer = await this.sendRequest(webSocket, 'MSG_FROM_USER', payload);
     return responseServer;
   }
+
+  static async sedRequestToReadMessage(webSocket: WebSocket, idMessage: string): Promise<ResponseServer> {
+    const payload = {
+      message: {
+        id: idMessage,
+      },
+    };
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'MSG_READ', payload);
+    return responseServer;
+  }
 }

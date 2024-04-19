@@ -1,6 +1,8 @@
+import WebSocketAPI from '../../../api/api';
 import App from '../../../app/app';
 import { ChatMessage, MessageResponse } from '../../../utils/interfaces.ts/interfaces';
 import Button from '../../button/button';
+import { ResponseServer } from '../../../utils/interfaces.ts/interfaces';
 import './message.scss';
 
 export default class Message {
@@ -83,5 +85,31 @@ export default class Message {
 
     dateWrapper.innerHTML = `${date}/${month}/${year} ${hours}:${min}:${sec}`;
     return dateWrapper;
+  }
+
+  static changeMessageReadedStatusText(message: ChatMessage) {
+    const status = message.element.querySelector('.message__status-read') as HTMLElement;
+    status.innerHTML = 'readed';
+  }
+
+  static changeMessageEditStatusText(message: ChatMessage) {
+    const status = message.element.querySelector('.message__status-edit') as HTMLElement;
+    status.innerHTML = 'edit';
+  }
+
+  static changeStatusReadedMessage(app: App, response: ResponseServer) {
+    //получили сообщение сервера о том, что сообщение было прочитано
+    const id = response.payload.message.id;
+    let unreadedMessage: ChatMessage;
+    //нашли это сообщение в диалогах
+    app.user.dialogues.forEach((dialogue) => {
+      dialogue.messageArray.forEach((message) => {
+        if (message.message.id === id) unreadedMessage = message;
+      });
+    });
+    //изменили статус сообщения в данных
+    unreadedMessage.message.status.isReaded === response.payload.message.status.isReaded;
+    //изменили текст статуса в элементе
+    Message.changeMessageReadedStatusText(unreadedMessage);
   }
 }

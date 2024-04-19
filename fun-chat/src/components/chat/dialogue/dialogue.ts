@@ -17,6 +17,7 @@ export default class Dialogue {
     this.dialogueEl = document.createElement('div');
     this.dialogueEl.className = 'chat__dialogue dialogue';
     this.createDialogueHistory(app);
+    this.dialogueEl.addEventListener('click', () => this.onClickDialogueEl(app, this));
     //app.user.dialogues.push(this);
   }
 
@@ -41,8 +42,17 @@ export default class Dialogue {
     Dialogue.scrollToLastMessage(app);
   }
 
-  public changeMessageStatus(/* data: ResponseServer */) {
-    console.log('меняю статус сообщения');
+  public readAllUnreadedMessage(app: App, dialogue: Dialogue) {
+    const unreadedMessages = dialogue.messageArray.filter(
+      (message) => message.message.status.isReaded === false && message.message.from != app.user.login
+    );
+    unreadedMessages.forEach((message) => {
+      WebSocketAPI.sedRequestToReadMessage(app.webSocket, message.message.id);
+    });
+  }
+
+  private onClickDialogueEl(app: App, dialogue: Dialogue) {
+    this.readAllUnreadedMessage(app, dialogue);
   }
 
   static scrollToLastMessage(app: App) {
