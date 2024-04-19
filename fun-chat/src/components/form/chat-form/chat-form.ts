@@ -16,6 +16,12 @@ export default class ChatForm extends Form {
     this.button = Button.create('Send', ['button_send', 'button_big'], () => {
       this.sendMessage(app, app.chat.currentcPartner.userData.login);
     });
+    this.textArea.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        this.sendMessage(app, app.chat.currentcPartner.userData.login);
+      }
+    });
     this.changeStateDisabled(true);
   }
 
@@ -31,7 +37,7 @@ export default class ChatForm extends Form {
 
   private sendMessage(app: App, toUser: string) {
     if (this.textArea.value != '') {
-      const text = this.textArea.value;
+      const text = this.textArea.value.trim();
       WebSocketAPI.sendMessageToUser(app.webSocket, toUser, text);
     }
   }

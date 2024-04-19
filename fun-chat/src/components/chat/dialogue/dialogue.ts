@@ -61,7 +61,7 @@ export default class Dialogue {
       this.onClickDialogueEl(app, this);
     });
     app.chat.dialogueWrapper.addEventListener('scroll', () => {
-      //нужно доскролить до начала непрочитанных сообщений
+      //нужно доскролить до начала непрочитанных сообщений - до разделителя
       //this.onClickDialogueEl(app, this);
     });
   }
