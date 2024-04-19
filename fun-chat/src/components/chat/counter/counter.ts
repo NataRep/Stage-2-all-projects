@@ -10,7 +10,7 @@ export default class Counter {
 
   createEl(): HTMLElement {
     const elem: HTMLElement = document.createElement('div');
-    elem.className = 'users-list__urer-counter';
+    elem.className = 'users-list__user-counter';
     if (this.count) {
       elem.innerHTML = String(this.count);
     }
@@ -23,7 +23,8 @@ export default class Counter {
   }
 
   public clear() {
+    console.log('очищаю');
     this.count = 0;
-    this.elem.innerHTML = String(this.count);
+    this.elem.innerHTML = '';
   }
 }

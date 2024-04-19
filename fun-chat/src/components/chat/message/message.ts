@@ -12,6 +12,12 @@ export default class Message {
       message: message,
       element: this.createEl(app, message),
     };
+    //увеличить счетчик непрочитанных сообщений
+    const userInList = app.chat.userList.usersArray.find((user) => user.userData.login === message.from);
+    if (userInList && !message.status.isReaded) {
+      userInList.counter.increase();
+    }
+
     return messageObj;
   }
 

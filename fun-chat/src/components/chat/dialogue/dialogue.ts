@@ -18,16 +18,15 @@ export default class Dialogue {
     this.dialogueEl.className = 'chat__dialogue dialogue';
     this.createDialogueHistory(app);
     this.addHandlersForReadMessage(app);
-    //app.user.dialogues.push(this);
   }
 
   public async createDialogueHistory(app: App) {
     //получаем данные с сервера
     const data: ResponseServer = await WebSocketAPI.getMessageHistoryWithUser(app.webSocket, this.login);
 
-    //для каждого сообщения создаем ChatMessage
     if (data.payload.messages.length > 0) {
       data.payload.messages.forEach((response) => {
+        //для каждого сообщения создаем ChatMessage
         const message = Message.create(app, response);
         this.messageArray.push(message);
         this.dialogueEl.append(message.element);
@@ -39,6 +38,7 @@ export default class Dialogue {
     const message = Message.create(app, data.payload.message);
     this.messageArray.push(message);
     this.dialogueEl.append(message.element);
+    //скролим до последнего сообщения
     Dialogue.scrollToLastMessage(app);
   }
 
@@ -52,16 +52,27 @@ export default class Dialogue {
   }
 
   private onClickDialogueEl(app: App, dialogue: Dialogue) {
+    //отмечаю все сообщения прочитанными
     this.readAllUnreadedMessage(app, dialogue);
+    //очищаю счетчик сообщений
+    const userInList = app.chat.userList.usersArray.find((user) => user.userData.login === dialogue.login);
+    if (userInList) {
+      userInList.counter.clear();
+    }
   }
 
   private addHandlersForReadMessage(app: App) {
-    this.dialogueEl.addEventListener('click', () => this.onClickDialogueEl(app, this));
+    this.dialogueEl.addEventListener('click', () => {
+      this.onClickDialogueEl(app, this);
+    });
     app.chat.form.button.addEventListener('click', () => {
       this.onClickDialogueEl(app, this);
     });
     app.chat.dialogueWrapper.addEventListener('scroll', () => {
       //нужно доскролить до начала непрочитанных сообщений - до разделителя
+      //if (userInList) {
+      //userInList.counter.clear();
+      //}
       //this.onClickDialogueEl(app, this);
     });
   }
