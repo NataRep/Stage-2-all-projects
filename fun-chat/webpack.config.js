@@ -14,7 +14,7 @@ module.exports = {
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
       title: 'Fun Chat',
-      //favicon: path.resolve(__dirname, './src/images/favicon.svg'),
+      favicon: path.resolve(__dirname, './src/assets/images/favicon.svg'),
     }),
   ],
   resolve: {
