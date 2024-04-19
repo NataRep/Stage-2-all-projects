@@ -4,6 +4,7 @@ import { ChatMessage, MessageResponse } from '../../../utils/interfaces.ts/inter
 import Button from '../../button/button';
 import { ResponseServer } from '../../../utils/interfaces.ts/interfaces';
 import './message.scss';
+import { MessageStatus } from '../../../utils/enums/message-status';
 
 export default class Message {
   static create(app: App, message: MessageResponse): ChatMessage {
@@ -52,9 +53,11 @@ export default class Message {
     statusRead.className = 'message__status-read';
     let statusReadText;
     if (message.status.isReaded) {
-      statusReadText = 'readed';
+      statusReadText = MessageStatus.READED;
     } else if (message.status.isDelivered) {
-      statusReadText = 'delivered';
+      statusReadText = MessageStatus.DELIVERED;
+    } else if (!message.status.isDelivered) {
+      statusReadText = MessageStatus.UNDELIVERED;
     }
     statusRead.innerHTML = statusReadText;
     const statusEdit = document.createElement('div');
@@ -89,12 +92,12 @@ export default class Message {
 
   static changeMessageReadedStatusText(message: ChatMessage) {
     const status = message.element.querySelector('.message__status-read') as HTMLElement;
-    status.innerHTML = 'readed';
+    status.innerHTML = MessageStatus.READED;
   }
 
   static changeMessageEditStatusText(message: ChatMessage) {
     const status = message.element.querySelector('.message__status-edit') as HTMLElement;
-    status.innerHTML = 'edit';
+    status.innerHTML = MessageStatus.EDITED;
   }
 
   static changeStatusReadedMessage(app: App, response: ResponseServer) {
