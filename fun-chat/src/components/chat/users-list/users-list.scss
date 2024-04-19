@@ -56,6 +56,14 @@
     line-height: 1rem;
     margin-left: 1rem;
   }
+  @media (max-width: 480px) {
+    padding: 0.75rem 1.25rem 1.25rem 1.25rem;
+    height: 3.25rem;
+    overflow: auto;
+    &::before {
+      margin-bottom: 0.25rem;
+    }
+  }
 }
 .current-partner {
   pointer-events: none;

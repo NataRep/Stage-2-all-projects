@@ -14,9 +14,15 @@ body {
   @media (max-width: 680px) {
     padding: 1rem;
   }
+  @media (max-width: 480px) {
+    padding: 0.5rem 0.25rem;
+  }
 }
 main {
   padding: 3rem 0;
+  @media (max-width: 680px) {
+    padding: 1rem 0;
+  }
   a {
     text-decoration: none;
     color: var(--color-blue);
