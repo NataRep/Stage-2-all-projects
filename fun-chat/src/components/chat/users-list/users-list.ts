@@ -1,5 +1,6 @@
 import App from '../../../app/app';
 import { UserChat } from '../../../utils/interfaces.ts/interfaces';
+import Counter from '../counter/counter';
 import Dialogue from '../dialogue/dialogue';
 import './users-list.scss';
 export default class UsersList {
@@ -21,18 +22,22 @@ export default class UsersList {
         isLogined: isLogined,
       },
       userDialogue: new Dialogue(app, login),
-      userEl: this.createUserEl(login, isLogined),
+      counter: new Counter(),
+      userEl: null,
     };
+    user.userEl = this.createUserEl(user.counter, login, isLogined);
     user.userEl.addEventListener('click', () => this.userOnClick(app, user));
     this.usersArray.push(user);
     this.list.append(user.userEl);
     app.user.dialogues.push(user.userDialogue);
   }
 
-  private createUserEl(login: string, isLogined: boolean): HTMLElement {
+  private createUserEl(counter: Counter, login: string, isLogined: boolean): HTMLElement {
     const li = document.createElement('li');
     li.className = isLogined ? 'users-list__user online' : 'users-list__user offline';
     li.innerHTML = login;
+    const counterEl = counter.elem;
+    li.append(counterEl);
     return li;
   }
 

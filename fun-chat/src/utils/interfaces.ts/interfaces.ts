@@ -1,3 +1,4 @@
+import Counter from '../../components/chat/counter/counter';
 import Dialogue from '../../components/chat/dialogue/dialogue';
 
 export interface RequestServer<T> {
@@ -64,5 +65,6 @@ export interface UserChat {
     isLogined: boolean;
   };
   userDialogue: Dialogue;
+  counter: Counter;
   userEl: HTMLElement;
 }
