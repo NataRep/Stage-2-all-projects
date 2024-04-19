@@ -45,7 +45,7 @@ export default class App {
         WebSocketAPI.sendUserAuthentication(this.webSocket, this.user.login, this.user.password);
       };
     }
-    //Открываю страницу приложения
+
     this.openPage();
 
     //запускаем обработку сообщений с сервера
@@ -73,7 +73,8 @@ export default class App {
 
   public logout() {
     this.user.isLogin = false;
-    sessionStorage.removeItem('current-user_nuttik');
+    sessionStorage.removeItem('current-user_nuttik_login');
+    sessionStorage.removeItem('current-user_nuttik_password');
     this.router.urlRoute(this, this.router.urlPath.LOGIN);
   }
 
@@ -85,7 +86,7 @@ export default class App {
       case TypeMessagesFromServer.ERROR:
         //..обработчик
         const error = new ErrorsFromResponses(message);
-        error.catchError();
+        error.catchError(this);
         break;
       case TypeMessagesFromServer.USER_LOGIN:
         this.login();
@@ -94,7 +95,9 @@ export default class App {
         this.logout();
         break;
       case TypeMessagesFromServer.USER_EXTERNAL_LOGIN:
-        this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
+        if (this.chat) {
+          this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
+        }
         break;
       case TypeMessagesFromServer.USER_EXTERNAL_LOGOUT:
         this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
@@ -114,7 +117,6 @@ export default class App {
         break;
       case TypeMessagesFromServer.MSG_READ:
         //..обработчик
-        //найти сообщение в диалогах - и отметить прочитанным
         Message.changeStatusReadedMessage(this, message);
         break;
       case TypeMessagesFromServer.MSG_DELETE:

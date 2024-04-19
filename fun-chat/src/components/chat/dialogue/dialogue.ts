@@ -24,13 +24,15 @@ export default class Dialogue {
     //получаем данные с сервера
     const data: ResponseServer = await WebSocketAPI.getMessageHistoryWithUser(app.webSocket, this.login);
 
-    if (data.payload.messages.length > 0) {
-      data.payload.messages.forEach((response) => {
-        //для каждого сообщения создаем ChatMessage
-        const message = Message.create(app, response);
-        this.messageArray.push(message);
-        this.dialogueEl.append(message.element);
-      });
+    if (data.payload.messages) {
+      if (data.payload.messages.length > 0) {
+        data.payload.messages.forEach((response) => {
+          //для каждого сообщения создаем ChatMessage
+          const message = Message.create(app, response);
+          this.messageArray.push(message);
+          this.dialogueEl.append(message.element);
+        });
+      }
     }
   }
 

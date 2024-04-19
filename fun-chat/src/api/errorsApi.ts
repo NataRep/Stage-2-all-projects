@@ -1,14 +1,14 @@
+import App from '../app/app';
 import PopUp from '../components/popUp/popUp';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 
 const errorText: { [key: string]: string } = {
-  ALREADY_LOGGED: 'a user with this login is already authorized',
-  AUTHENTICATION_INCORRECT_PASSWORD: 'incorrect password',
-
-  //LOGOUT_LOGIN_DOESNT_EXIST = 'the user with the specified login does not exist',
-  //LOGOUT_INCORRECT_PASSWORD = 'incorrect password',
-  //LOGOUT_NOT_AUTHORISED = 'the user was not authorized',
-  //LOGOUT_ALREADY_AUTHORISED = 'a user with this login is already authorized',
+  USER_ERROR:
+    'a user with this login is already authorized' ||
+    'incorrect password' ||
+    'the user with the specified login does not exist' ||
+    'incorrect password' ||
+    'the user was not authorized',
 
   //MESSAGE_SEND_TO_YOURSELF = 'sender and recipient logins are the same',
   //MESSAGE_LOGIN_DOESNT_EXIST = 'the user with the specified login does not exist',
@@ -36,7 +36,6 @@ export default class ErrorsFromResponses {
     let result: string;
     for (const key in errorText) {
       if (errorText[key] === text) {
-        console.log(text);
         result = key;
       }
     }
@@ -46,8 +45,15 @@ export default class ErrorsFromResponses {
     return result;
   }
 
-  public catchError() {
-    // const typeError = this.checkTypeError(this.message.payload.error);
+  private handlerUserError(app: App) {
+    if (window.location.pathname != app.router.urlPath.LOGIN) {
+      app.logout();
+    }
+  }
+
+  public catchError(app: App) {
+    const typeError = this.checkTypeError(this.message.payload.error);
+    if (typeError === 'USER_ERROR') this.handlerUserError(app);
     this.displayError(this.message.payload.error);
   }
 
