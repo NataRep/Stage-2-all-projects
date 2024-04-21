@@ -1,7 +1,9 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
+import Button from '../components/button/button';
 import Chat from '../components/chat/chat';
 import Message from '../components/chat/message/message';
+import PopUp from '../components/popUp/popUp';
 import Router from '../components/router.ts/router';
 import AboutPage from '../pages/about/about-page';
 import ChatPage from '../pages/chat/chat-page';
@@ -12,6 +14,8 @@ import User from './user';
 
 export default class App {
   webSocket: WebSocket;
+
+  URL: string;
 
   loginPage: LoginPage;
 
@@ -28,35 +32,34 @@ export default class App {
   constructor() {
     this.loginPage = new LoginPage(this);
     this.router = new Router();
-
+    this.URL = 'ws://localhost:4000';
     this.user = new User('', '');
   }
 
   public async start() {
-    const URL = 'ws://localhost:4000';
-    this.webSocket = new WebSocket(URL);
-
+    this.webSocket = new WebSocket(this.URL);
     this.webSocket.onopen = () => {
       this.autoLogin();
       this.openPage();
     };
-
-    //запускаем обработку сообщений с сервера
     this.webSocket.onmessage = (event) => {
       this.onMessage(JSON.parse(event.data));
     };
-
-    //включаю обработку переходов по страницам вперед и назад
+    this.webSocket.onclose = () => {
+      this.addPopUpConnectionError();
+    };
+    this.webSocket.onerror = () => {
+      this.addPopUpConnectionError();
+    };
     window.onpopstate = () => this.openPage();
+  }
 
-    //обрабатываем разрыв соединения
-    this.webSocket.onclose = (event) => {
-      console.log('произошел разрыв соединения с сервером');
+  private addPopUpConnectionError() {
+    const handler = function () {
+      const app = new App();
+      app.start();
     };
-
-    this.webSocket.onerror = (event) => {
-      console.log('неудалось подключится к серверу');
-    };
+    PopUp.createConnection(handler);
   }
 
   private autoLogin() {

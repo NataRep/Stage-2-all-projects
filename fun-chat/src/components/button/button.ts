@@ -1,6 +1,7 @@
 import './button.scss';
+
 class Button {
-  static create(text: string, className: string[], handler: (event: Event) => void) {
+  static create(text: string, className: string[], handler: (event: Event) => void): HTMLButtonElement {
     const button: HTMLButtonElement = document.createElement('button');
     button.className = `button`;
     className.forEach((str) => button.classList.add(str));
