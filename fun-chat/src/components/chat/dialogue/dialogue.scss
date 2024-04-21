@@ -3,11 +3,14 @@
 .chat__dialogue-wrapper {
   border-radius: 0.5rem;
   background: var(--color-white);
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  padding: 0;
   height: 45dvh;
   overflow-y: scroll;
 }
 .dialogue {
+  min-height: 100%;
+  padding: 0 1.5rem;
+
   &__heading {
     position: sticky;
     top: 0;

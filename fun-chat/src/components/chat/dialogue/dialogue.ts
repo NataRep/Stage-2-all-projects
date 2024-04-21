@@ -15,13 +15,15 @@ export default class Dialogue {
 
   startDefaultMessage: HTMLElement;
 
+  app: App;
+
   constructor(app: App, login: string) {
+    this.app = app;
     this.login = login;
     this.messageArray = [];
     this.dialogueEl = document.createElement('div');
     this.dialogueEl.className = 'chat__dialogue dialogue';
     this.createDialogueHistory(app);
-    this.addHandlersForReadMessage(app);
     this.createDialogueHeading();
   }
 
@@ -85,6 +87,25 @@ export default class Dialogue {
     });
   }
 
+  public addHandlersForReadMessage(app: App) {
+    // Сохраняем ссылки на обработчики событий
+    this.onDialogueClick = this.onDialogueClick.bind(this);
+    this.onSendMessageButtonClick = this.onSendMessageButtonClick.bind(this);
+    this.onDialogueWrapperScroll = this.onDialogueWrapperScroll.bind(this);
+
+    // Устанавливаем обработчики событий
+    this.dialogueEl.addEventListener('click', this.onDialogueClick);
+    app.chat.form.button.addEventListener('click', this.onSendMessageButtonClick);
+    app.chat.dialogueWrapper.addEventListener('scroll', this.onDialogueWrapperScroll);
+  }
+
+  public removeHandlersForReadMessage(app: App) {
+    console.log('!!!');
+    this.dialogueEl.removeEventListener('click', this.onDialogueClick);
+    app.chat.form.button.removeEventListener('click', this.onSendMessageButtonClick);
+    app.chat.dialogueWrapper.removeEventListener('scroll', this.onDialogueWrapperScroll);
+  }
+
   private crateStartDefaultMessage() {
     this.startDefaultMessage = document.createElement('div');
     this.startDefaultMessage.className = 'dialogue__start-message';
@@ -101,20 +122,23 @@ export default class Dialogue {
     }
   }
 
-  private addHandlersForReadMessage(app: App) {
-    this.dialogueEl.addEventListener('click', () => {
-      this.readMessageInDialogue(app, this);
-    });
-    app.chat.form.button.addEventListener('click', () => {
-      this.readMessageInDialogue(app, this);
-    });
+  private onDialogueClick = () => {
+    this.readMessageInDialogue(this.app, this);
+  };
 
-    app.chat.dialogueWrapper.addEventListener('scroll', () => {
-      //ловлю скролл вверх от пользователя
-      let position = app.chat.dialogueWrapper.scrollHeight;
-      let scroll = app.chat.dialogueWrapper.scrollTop + app.chat.dialogueWrapper.offsetHeight;
-      if (scroll < position) this.readMessageInDialogue(app, this);
-    });
+  private onSendMessageButtonClick = () => {
+    this.readMessageInDialogue(this.app, this);
+  };
+
+  private onDialogueWrapperScroll = () => {
+    this.readMessageInDialogueOnScroll(this.app);
+  };
+
+  private readMessageInDialogueOnScroll(app: App) {
+    //ловлю скролл вверх от пользователя
+    const position = app.chat.dialogueWrapper.scrollHeight;
+    const scroll = app.chat.dialogueWrapper.scrollTop + app.chat.dialogueWrapper.offsetHeight;
+    if (scroll < position) this.readMessageInDialogue(app, this);
   }
 
   static scrollToLastMessage(app: App) {

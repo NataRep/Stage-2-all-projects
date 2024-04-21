@@ -117,7 +117,7 @@ export default class Message {
       });
     });
     //изменили статус сообщения в данных
-    unreadedMessage.message.status.isReaded === response.payload.message.status.isReaded;
+    unreadedMessage.message.status.isReaded = response.payload.message.status.isReaded;
     //изменили текст статуса в элементе
     Message.changeMessageReadedStatusText(unreadedMessage);
   }
@@ -141,7 +141,7 @@ export default class Message {
     let array;
     let indexofMessage;
     app.chat.userList.usersArray.forEach((user) => {
-      const finded = user.userDialogue.messageArray.find((current, index) => current === message);
+      const finded = user.userDialogue.messageArray.find((current) => current === message);
       if (finded) {
         array = user.userDialogue.messageArray;
         indexofMessage = array.indexOf(message);

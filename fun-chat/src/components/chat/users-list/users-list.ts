@@ -55,10 +55,12 @@ export default class UsersList {
   private userOnClick(app: App, user: UserChat) {
     if (app.chat.currentcPartner) {
       app.chat.currentcPartner.userEl.classList.remove('current-partner');
+      app.chat.currentcPartner.userDialogue.removeHandlersForReadMessage(app);
     }
     user.userEl.classList.add('current-partner');
     //сохраняю текущего собеседнику
     app.chat.currentcPartner = user;
+    user.userDialogue.addHandlersForReadMessage(app);
     //заменяю историю сообщений
     if (app.chat.dialogueWrapper.children.length > 0) {
       app.chat.dialogueWrapper.replaceChildren(user.userDialogue.dialogueEl);

@@ -1,6 +1,5 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
-import Button from '../components/button/button';
 import Chat from '../components/chat/chat';
 import Message from '../components/chat/message/message';
 import PopUp from '../components/popUp/popUp';
@@ -9,7 +8,7 @@ import AboutPage from '../pages/about/about-page';
 import ChatPage from '../pages/chat/chat-page';
 import LoginPage from '../pages/login/login-page';
 import { TypeMessagesFromServer } from '../utils/enums/messages-from-server';
-import { ChatMessage, ResponseServer, UserChat } from '../utils/interfaces.ts/interfaces';
+import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
 export default class App {
