@@ -48,10 +48,10 @@ export default class Message {
     const buttonRemove = Button.create('', ['button_message', 'button_remove-message'], () => {
       WebSocketAPI.sedRequestToDeletedMessage(app.webSocket, message.id);
     });
-    const buttonEdit = Button.create('', ['button_message', 'button_edit-message'], () => {
-      console.log('Изменяю сообщение');
-    });
-    buttonRow.append(buttonEdit);
+    //const buttonEdit = Button.create('', ['button_message', 'button_edit-message'], () => {
+    //  console.log('Изменяю сообщение');
+    //});
+    //buttonRow.append(buttonEdit);
     buttonRow.append(buttonRemove);
     const statusRow = document.createElement('div');
     statusRow.className = 'message__status-row';
@@ -66,10 +66,10 @@ export default class Message {
       statusReadText = MessageStatus.UNDELIVERED;
     }
     statusRead.innerHTML = statusReadText;
-    const statusEdit = document.createElement('div');
-    statusEdit.className = 'message__status-edit';
-    statusEdit.innerHTML = message.status.isEdited ? 'edit' : '';
-    statusRow.append(statusEdit);
+    //const statusEdit = document.createElement('div');
+    //statusEdit.className = 'message__status-edit';
+    //statusEdit.innerHTML = message.status.isEdited ? 'edit' : '';
+    //statusRow.append(statusEdit);
     statusRow.append(statusRead);
 
     messageEl.append(descRow);
