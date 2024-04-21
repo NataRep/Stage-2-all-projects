@@ -91,7 +91,7 @@ export default class Dialogue {
     this.startDefaultMessage.innerHTML = `Send a message to start a dialogue with ${this.login}...`;
   }
 
-  private onClickDialogueEl(app: App, dialogue: Dialogue) {
+  private readMessageInDialogue(app: App, dialogue: Dialogue) {
     //отмечаю все сообщения прочитанными
     this.readAllUnreadedMessage(app, dialogue);
     //очищаю счетчик сообщений
@@ -103,17 +103,17 @@ export default class Dialogue {
 
   private addHandlersForReadMessage(app: App) {
     this.dialogueEl.addEventListener('click', () => {
-      this.onClickDialogueEl(app, this);
+      this.readMessageInDialogue(app, this);
     });
     app.chat.form.button.addEventListener('click', () => {
-      this.onClickDialogueEl(app, this);
+      this.readMessageInDialogue(app, this);
     });
+
     app.chat.dialogueWrapper.addEventListener('scroll', () => {
-      //нужно доскролить до начала непрочитанных сообщений - до разделителя
-      //if (userInList) {
-      //userInList.counter.clear();
-      //}
-      //this.onClickDialogueEl(app, this);
+      //ловлю скролл вверх от пользователя
+      let position = app.chat.dialogueWrapper.scrollHeight;
+      let scroll = app.chat.dialogueWrapper.scrollTop + app.chat.dialogueWrapper.offsetHeight;
+      if (scroll < position) this.readMessageInDialogue(app, this);
     });
   }
 
