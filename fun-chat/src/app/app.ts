@@ -9,7 +9,7 @@ import AboutPage from '../pages/about/about-page';
 import ChatPage from '../pages/chat/chat-page';
 import LoginPage from '../pages/login/login-page';
 import { TypeMessagesFromServer } from '../utils/enums/messages-from-server';
-import { ResponseServer } from '../utils/interfaces.ts/interfaces';
+import { ChatMessage, ResponseServer, UserChat } from '../utils/interfaces.ts/interfaces';
 import User from './user';
 
 export default class App {
@@ -93,7 +93,7 @@ export default class App {
 
   private onMessage(message: ResponseServer) {
     //сделать действие на каждый тип получаемых сообщений
-    console.log(message);
+    //console.log(message);
 
     switch (message.type) {
       case TypeMessagesFromServer.ERROR:
@@ -143,8 +143,7 @@ export default class App {
         Message.changeStatusReadedMessage(this, message);
         break;
       case TypeMessagesFromServer.MSG_DELETE:
-        //..обработчик
-        console.log(message);
+        Message.deleteMessage(this, message);
         break;
     }
   }

@@ -82,4 +82,14 @@ export default class WebSocketAPI {
     const responseServer: ResponseServer = await this.sendRequest(webSocket, 'MSG_READ', payload);
     return responseServer;
   }
+
+  static async sedRequestToDeletedMessage(webSocket: WebSocket, idMessage: string): Promise<ResponseServer> {
+    const payload = {
+      message: {
+        id: idMessage,
+      },
+    };
+    const responseServer: ResponseServer = await this.sendRequest(webSocket, 'MSG_DELETE', payload);
+    return responseServer;
+  }
 }

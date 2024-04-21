@@ -1,6 +1,6 @@
 import WebSocketAPI from '../../../api/api';
 import App from '../../../app/app';
-import { ChatMessage, MessageResponse } from '../../../utils/interfaces.ts/interfaces';
+import { ChatMessage, MessageResponse, UserChat } from '../../../utils/interfaces.ts/interfaces';
 import Button from '../../button/button';
 import { ResponseServer } from '../../../utils/interfaces.ts/interfaces';
 import './message.scss';
@@ -46,7 +46,7 @@ export default class Message {
     const buttonRow = document.createElement('div');
     buttonRow.className = 'message__button-row';
     const buttonRemove = Button.create('', ['button_message', 'button_remove-message'], () => {
-      console.log('Удвляю сообщение');
+      WebSocketAPI.sedRequestToDeletedMessage(app.webSocket, message.id);
     });
     const buttonEdit = Button.create('', ['button_message', 'button_edit-message'], () => {
       console.log('Изменяю сообщение');
@@ -120,5 +120,48 @@ export default class Message {
     unreadedMessage.message.status.isReaded === response.payload.message.status.isReaded;
     //изменили текст статуса в элементе
     Message.changeMessageReadedStatusText(unreadedMessage);
+  }
+
+  static findMessage(app: App, id: string): ChatMessage | void {
+    let result: ChatMessage = null;
+    app.chat.userList.usersArray.forEach((user) => {
+      const finded = user.userDialogue.messageArray.find((message) => message.message.id === id);
+      if (finded) result = finded;
+    });
+    return result;
+  }
+
+  static findRecipient(app: App, login: string): UserChat | null {
+    let result: UserChat = null;
+    result = app.chat.userList.usersArray.find((user) => user.userData.login === login);
+    return result;
+  }
+
+  static deleteMessageFromArray(app: App, message: ChatMessage) {
+    let array;
+    let indexofMessage;
+    app.chat.userList.usersArray.forEach((user) => {
+      const finded = user.userDialogue.messageArray.find((current, index) => current === message);
+      if (finded) {
+        array = user.userDialogue.messageArray;
+        indexofMessage = array.indexOf(message);
+        array = array.splice(indexofMessage, 1);
+      }
+    });
+  }
+
+  static deleteMessage(app: App, message: ResponseServer) {
+    let currentMessage = Message.findMessage(app, message.payload.message.id);
+    let recipient = null;
+    if (currentMessage) {
+      currentMessage.element.remove();
+      recipient = Message.findRecipient(app, currentMessage.message.from);
+
+      if (recipient && currentMessage.message.status.isReaded === false) {
+        recipient.counter.reduce();
+      }
+      Message.deleteMessageFromArray(app, currentMessage);
+      currentMessage = null;
+    }
   }
 }

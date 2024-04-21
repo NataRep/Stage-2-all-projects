@@ -23,8 +23,13 @@ export default class Counter {
     if (this.elem.classList.contains('counter_zero')) this.elem.classList.remove('counter_zero');
   }
 
+  public reduce() {
+    this.count -= 1;
+    this.elem.innerHTML = this.count <= 0 ? '' : String(this.count);
+    if (this.elem.innerHTML === '') this.elem.classList.add('counter_zero');
+  }
+
   public clear() {
-    console.log('очищаю');
     this.count = 0;
     this.elem.innerHTML = '';
     this.elem.classList.add('counter_zero');
