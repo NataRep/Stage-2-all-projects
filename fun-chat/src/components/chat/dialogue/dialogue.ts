@@ -13,6 +13,8 @@ export default class Dialogue {
 
   statusEl: HTMLElement;
 
+  startDefaultMessage: HTMLElement;
+
   constructor(app: App, login: string) {
     this.login = login;
     this.messageArray = [];
@@ -24,7 +26,6 @@ export default class Dialogue {
   }
 
   public createDialogueHeading() {
-    //const user = app.chat.userList.usersArray.find((item) => item.userData.login === this.login);
     const heading = document.createElement('div');
     heading.className = 'dialogue__heading';
     const loginEl = document.createElement('div');
@@ -53,16 +54,21 @@ export default class Dialogue {
     if (data.payload.messages) {
       if (data.payload.messages.length > 0) {
         data.payload.messages.forEach((response) => {
+          if (this.startDefaultMessage) this.startDefaultMessage.remove();
           //для каждого сообщения создаем ChatMessage
           const message = Message.create(app, response);
           this.messageArray.push(message);
           this.dialogueEl.append(message.element);
         });
+      } else {
+        this.crateStartDefaultMessage();
+        this.dialogueEl.append(this.startDefaultMessage);
       }
     }
   }
 
   public addMessage(app: App, data: ResponseServer) {
+    if (this.startDefaultMessage) this.startDefaultMessage.remove();
     const message = Message.create(app, data.payload.message);
     this.messageArray.push(message);
     this.dialogueEl.append(message.element);
@@ -77,6 +83,12 @@ export default class Dialogue {
     unreadedMessages.forEach((message) => {
       WebSocketAPI.sedRequestToReadMessage(app.webSocket, message.message.id);
     });
+  }
+
+  private crateStartDefaultMessage() {
+    this.startDefaultMessage = document.createElement('div');
+    this.startDefaultMessage.className = 'dialogue__start-message';
+    this.startDefaultMessage.innerHTML = `Send a message to start a dialogue with ${this.login}...`;
   }
 
   private onClickDialogueEl(app: App, dialogue: Dialogue) {

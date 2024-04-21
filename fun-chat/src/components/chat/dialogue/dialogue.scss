@@ -7,15 +7,23 @@
   height: 45dvh;
   overflow-y: scroll;
 }
-.dialogue__heading {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  margin-left: -1rem;
-  display: flex;
-  padding: 0.75rem;
-  background-color: var(--color-white);
-  color: var(--color-green);
-  font-weight: 600;
+.dialogue {
+  &__heading {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    margin-left: -1rem;
+    display: flex;
+    padding: 0.75rem;
+    background-color: var(--color-white);
+    color: var(--color-green);
+    font-weight: 600;
+  }
+  &__start-message {
+    font-style: italic;
+    text-align: center;
+    color: var(--color-grey);
+    margin-top: 4rem;
+  }
 }
