@@ -34,19 +34,12 @@ export default class App {
 
   public async start() {
     const URL = 'ws://localhost:4000';
-    this.webSocket = await new WebSocket(URL);
+    this.webSocket = new WebSocket(URL);
 
-    //Если возможно, автоматически логинемся
-    if (sessionStorage.getItem('current-user_nuttik_login') && sessionStorage.getItem('current-user_nuttik_password')) {
-      this.user.login = sessionStorage.getItem('current-user_nuttik_login');
-      this.user.password = sessionStorage.getItem('current-user_nuttik_password');
-      // Ждем подключения сервера перед отправкой запроса аутентификации
-      this.webSocket.onopen = () => {
-        WebSocketAPI.sendUserAuthentication(this.webSocket, this.user.login, this.user.password);
-      };
-    }
-
-    this.openPage();
+    this.webSocket.onopen = () => {
+      this.autoLogin();
+      this.openPage();
+    };
 
     //запускаем обработку сообщений с сервера
     this.webSocket.onmessage = (event) => {
@@ -55,6 +48,23 @@ export default class App {
 
     //включаю обработку переходов по страницам вперед и назад
     window.onpopstate = () => this.openPage();
+
+    //обрабатываем разрыв соединения
+    this.webSocket.onclose = (event) => {
+      console.log('произошел разрыв соединения с сервером');
+    };
+
+    this.webSocket.onerror = (event) => {
+      console.log('неудалось подключится к серверу');
+    };
+  }
+
+  private autoLogin() {
+    if (sessionStorage.getItem('current-user_nuttik_login') && sessionStorage.getItem('current-user_nuttik_password')) {
+      this.user.login = sessionStorage.getItem('current-user_nuttik_login');
+      this.user.password = sessionStorage.getItem('current-user_nuttik_password');
+      WebSocketAPI.sendUserAuthentication(this.webSocket, this.user.login, this.user.password);
+    }
   }
 
   public login() {
