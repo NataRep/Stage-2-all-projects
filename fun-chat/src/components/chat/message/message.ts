@@ -29,7 +29,6 @@ export default class Message {
     }
     const messageEl = document.createElement('div');
     messageEl.className = 'message';
-
     const descRow = document.createElement('div');
     descRow.className = 'message__desc-row';
     const from = document.createElement('div');
@@ -38,25 +37,30 @@ export default class Message {
     const date = this.createMessageDate(message);
     descRow.append(from);
     descRow.append(date);
-
     const text = document.createElement('div');
     text.className = 'message__text';
     text.insertAdjacentHTML('afterbegin', `<p>${message.text}</p>`);
-
     const buttonRow = document.createElement('div');
     buttonRow.className = 'message__button-row';
     const buttonRemove = Button.create('', ['button_message', 'button_remove-message'], () => {
       WebSocketAPI.sedRequestToDeletedMessage(app.webSocket, message.id);
     });
-    //const buttonEdit = Button.create('', ['button_message', 'button_edit-message'], () => {
-    //  console.log('Изменяю сообщение');
-    //});
-    //buttonRow.append(buttonEdit);
     buttonRow.append(buttonRemove);
     const statusRow = document.createElement('div');
     statusRow.className = 'message__status-row';
     const statusRead = document.createElement('div');
     statusRead.className = 'message__status-read';
+    statusRead.innerHTML = Message.setMessageReadStatusInEl(message);
+    statusRow.append(statusRead);
+    messageEl.append(descRow);
+    messageEl.append(buttonRow);
+    messageEl.append(text);
+    messageEl.append(statusRow);
+    messageWrapper.append(messageEl);
+    return messageWrapper;
+  }
+
+  static setMessageReadStatusInEl(message: MessageResponse): string {
     let statusReadText;
     if (message.status.isReaded) {
       statusReadText = MessageStatus.READED;
@@ -65,19 +69,7 @@ export default class Message {
     } else if (!message.status.isDelivered) {
       statusReadText = MessageStatus.UNDELIVERED;
     }
-    statusRead.innerHTML = statusReadText;
-    //const statusEdit = document.createElement('div');
-    //statusEdit.className = 'message__status-edit';
-    //statusEdit.innerHTML = message.status.isEdited ? 'edit' : '';
-    //statusRow.append(statusEdit);
-    statusRow.append(statusRead);
-
-    messageEl.append(descRow);
-    messageEl.append(buttonRow);
-    messageEl.append(text);
-    messageEl.append(statusRow);
-    messageWrapper.append(messageEl);
-    return messageWrapper;
+    return statusReadText;
   }
 
   static createMessageDate(message: MessageResponse): HTMLElement {
