@@ -90,13 +90,19 @@ export default class App {
     this.router.urlRoute(this, this.router.urlPath.LOGIN);
   }
 
-  private onMessage(message: ResponseServer) {
-    //сделать действие на каждый тип получаемых сообщений
-    //console.log(message);
+  private openPage() {
+    //выбираю какую страницу открывать
+    this.router.checkAndChangeUrl();
+    //даю отсрочку чтобы сменить адрес страницы и открываю страницу
+    setTimeout(() => {
+      const urlPath = window.location.pathname;
+      this.router.urlRoute(this, urlPath);
+    }, 200);
+  }
 
+  private onMessage(message: ResponseServer) {
     switch (message.type) {
       case TypeMessagesFromServer.ERROR:
-        //..обработчик
         const error = new ErrorsFromResponses(message);
         error.catchError(this);
         break;
@@ -107,38 +113,15 @@ export default class App {
         this.logout();
         break;
       case TypeMessagesFromServer.USER_EXTERNAL_LOGIN:
-        if (this.chat) {
-          this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
-          //меняю статус в диалоге
-          const curentDialog = this.chat.userList.usersArray.find(
-            (user) => user.userData.login === message.payload.user.login
-          ).userDialogue;
-          curentDialog.changeDialogHeadingStatus(this);
-        }
+        this.changeUserExternalStatus(message);
         break;
       case TypeMessagesFromServer.USER_EXTERNAL_LOGOUT:
-        this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
-        //меняю статус в диалоге
-        const curentDialog = this.chat.userList.usersArray.find(
-          (user) => user.userData.login === message.payload.user.login
-        ).userDialogue;
-        curentDialog.changeDialogHeadingStatus(this);
-        break;
-      case TypeMessagesFromServer.USER_ACTIVE:
-        //..обработчик
-        break;
-      case TypeMessagesFromServer.USER_INACTIVE:
-        //..обработчик
+        this.changeUserExternalStatus(message);
         break;
       case TypeMessagesFromServer.MSG_SEND:
-        //..обработчик
         this.chat.getMessageFromServer(this, message);
         break;
-      case TypeMessagesFromServer.MSG_EDIT:
-        //..обработчик
-        break;
       case TypeMessagesFromServer.MSG_READ:
-        //..обработчик
         Message.changeStatusReadedMessage(this, message);
         break;
       case TypeMessagesFromServer.MSG_DELETE:
@@ -147,13 +130,14 @@ export default class App {
     }
   }
 
-  private openPage() {
-    //выбираю какую страницу открывать
-    this.router.checkAndChangeUrl();
-    //даю отсрочку чтобы сменить адрес страницы и открываю страницу
-    setTimeout(() => {
-      const urlPath = window.location.pathname;
-      this.router.urlRoute(this, urlPath);
-    }, 200);
+  private changeUserExternalStatus(message: ResponseServer) {
+    if (this.chat) {
+      this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
+      //меняю статус в диалоге
+      const curentDialog = this.chat.userList.usersArray.find(
+        (user) => user.userData.login === message.payload.user.login
+      ).userDialogue;
+      curentDialog.changeDialogHeadingStatus(this);
+    }
   }
 }
