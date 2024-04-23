@@ -174,9 +174,9 @@ class Api {
     const pathUrl: string = '/winners';
     const fullUrl: string = PORT + pathUrl;
     const winnerData: Winner = {
-      id: id,
-      wins: wins,
-      time: time,
+      id,
+      wins,
+      time,
     };
     const options = {
       method: 'POST',

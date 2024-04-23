@@ -1,6 +1,7 @@
 {
   "name": "rss-puzzle",
   "version": "1.0.0",
+  "description": "This task is a game written during training in RS School",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
