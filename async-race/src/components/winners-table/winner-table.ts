@@ -91,9 +91,9 @@ class WinnerTable {
     } else if (button.innerHTML === 'Best time') {
       app.winnersTableSort = SortTypes.TIME;
     }
-    if (app.winnersTableOrder === OrderType.ASB) {
+    if (app.winnersTableOrder === OrderType.ASC) {
       app.winnersTableOrder = OrderType.DESC;
-    } else app.winnersTableOrder = OrderType.ASB;
+    } else app.winnersTableOrder = OrderType.ASC;
     app.pageWinners.updatePage(app);
   }
 }

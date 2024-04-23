@@ -5,6 +5,6 @@ export enum SortTypes {
 }
 
 export enum OrderType {
-  ASB = 'ASC',
+  ASC = 'ASC',
   DESC = 'DESC',
 }

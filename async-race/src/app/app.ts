@@ -73,7 +73,7 @@ class App {
   public async start() {
     this.pageGarage = new GaragePageView(this);
     this.pageWinners = new WinnersPageView(this);
-    this.winnersTableOrder = OrderType.ASB;
+    this.winnersTableOrder = OrderType.ASC;
     this.winnersTableSort = SortTypes.ID;
     this.pageGarage.render();
     this.raceTable = new RaceTable();
