@@ -4,28 +4,22 @@ import App from '../../app/app';
 import Api from '../../app/api';
 import './race-row.scss';
 import { SpeedCar } from '../../utils/interfaces';
+import Elem from '../element/element';
 
 class RaceRow {
   static create(id: number, name: string, color: string, app: App): HTMLElement {
-    const row = document.createElement('div');
-    row.className = 'race-row';
+    const row = Elem.create('div', ['race-row']);
     row.id = String(id);
-    const top = document.createElement('div');
-    top.className = 'race-row__top-row';
-    const topButtons = document.createElement('div');
-    topButtons.className = 'race-row__top-buttons';
+    const top = Elem.create('div', ['race-row__top-row']);
+    const topButtons = Elem.create('div', ['race-row__top-buttons']);
 
-    const carName = document.createElement('div');
-    carName.className = 'race-row__car-name';
-    carName.innerHTML = name;
+    const carName = Elem.create('div', ['race-row__car-name'], name);
 
-    const track = document.createElement('div');
-    track.className = 'race-row__track';
+    const track = Elem.create('div', ['race-row__track']);
 
     const car = CarEl.create(color);
 
-    const controlButtons = document.createElement('div');
-    controlButtons.className = 'race-row__control-buttons';
+    const controlButtons = Elem.create('div', ['race-row__control-buttons']);
     const buttonB: HTMLButtonElement = Button.create(
       'B',
       ['race-row__button', 'button_reset', 'button_cars-control'],

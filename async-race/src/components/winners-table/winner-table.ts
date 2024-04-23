@@ -1,10 +1,11 @@
 import Api from '../../app/api';
 import App from '../../app/app';
-import './winner-table.scss';
 import { CarsData, Winner, Winners } from '../../utils/interfaces';
 import WinnerRow from '../winners-row/winner-row';
 import { Order, Sorting } from '../../utils/type';
 import { OrderType, SortTypes } from '../../utils/enums';
+import Elem from '../element/element';
+import './winner-table.scss';
 
 class WinnerTable {
   rows: HTMLElement[];
@@ -50,30 +51,14 @@ class WinnerTable {
   }
 
   private createHeader(app: App): HTMLElement {
-    const rowHeader: HTMLElement = document.createElement('div');
-    rowHeader.classList.add('winner-row', 'winner-row_header');
-
-    const numberCell: HTMLElement = document.createElement('div');
-    numberCell.className = 'winner-row__cell winner-row__cell_number';
-    numberCell.innerHTML = '#';
-
-    const carCell: HTMLElement = document.createElement('div');
-    carCell.className = 'winner-row__cell winner-row__cell_car';
-    carCell.innerHTML = 'Car';
-
-    const nameCell: HTMLElement = document.createElement('div');
-    nameCell.className = 'winner-row__cell winner-row__cell_name';
-    nameCell.innerHTML = 'Name';
-
-    const winsCell: HTMLElement = document.createElement('div');
-    winsCell.className = 'winner-row__cell winner-row__cell_wins';
-    winsCell.innerHTML = 'Wins';
-    winsCell.addEventListener('click', (event: Event) => this.sort(event, app));
-
-    const timeCell: HTMLElement = document.createElement('div');
-    timeCell.className = 'winner-row__cell winner-row__cell_time';
-    timeCell.innerHTML = 'Best time';
+    const rowHeader: HTMLElement = Elem.create('div', ['winner-row', 'winner-row_header']);
+    const numberCell: HTMLElement = Elem.create('div', ['winner-row__cell', 'winner-row__cell_number'], '#');
+    const carCell: HTMLElement = Elem.create('div', ['winner-row__cell', 'winner-row__cell_car'], 'Car');
+    const nameCell: HTMLElement = Elem.create('div', ['winner-row__cell', 'winner-row__cell_name'], 'Name');
+    const winsCell: HTMLElement = Elem.create('div', ['winner-row__cell', 'winner-row__cell_wins'], 'Wins');
+    const timeCell: HTMLElement = Elem.create('div', ['winner-row__cell', 'winner-row__cell_time'], 'Best time');
     timeCell.addEventListener('click', (event: Event) => this.sort(event, app));
+    winsCell.addEventListener('click', (event: Event) => this.sort(event, app));
 
     rowHeader.append(numberCell);
     rowHeader.append(carCell);
