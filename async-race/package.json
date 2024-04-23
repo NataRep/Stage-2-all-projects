@@ -1,7 +1,6 @@
 {
   "name": "rss-puzzle",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,8 +10,7 @@
     "ci:format": "prettier --check .",
     "lint": "eslint . --ext .ts"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Nuttik",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.10.0",
