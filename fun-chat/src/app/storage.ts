@@ -1,30 +1,27 @@
 import { User } from '../utils/interfaces.ts/interfaces';
 
-const KEY_LOGIN = 'login';
-const KEY_PASSWORD = 'password';
+const KEY_USER = 'user_fun-chat';
+
+//сохранять  ОБЪЕКТ а не по отдельным ключам
 
 export default class Storage {
   static getUser(): User | boolean {
-    const login = sessionStorage.getItem(KEY_LOGIN);
-    const password = sessionStorage.getItem(KEY_PASSWORD);
-
-    if (login && password) {
-      return {
-        login: login,
-        password: password,
-      };
+    if (sessionStorage.getItem(KEY_USER)) {
+      return JSON.parse(sessionStorage.getItem(KEY_USER));
     } else {
       return false;
     }
   }
 
   static setUser(login: string, password: string) {
-    sessionStorage.setItem(KEY_LOGIN, login);
-    sessionStorage.setItem(KEY_PASSWORD, password);
+    const user: User = {
+      login: login,
+      password: password,
+    };
+    sessionStorage.setItem(KEY_USER, JSON.stringify(user));
   }
 
   static removeUser() {
-    sessionStorage.removeItem(KEY_LOGIN);
-    sessionStorage.removeItem(KEY_PASSWORD);
+    sessionStorage.removeItem(KEY_USER);
   }
 }
