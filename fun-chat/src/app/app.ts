@@ -9,6 +9,7 @@ import ChatPage from '../pages/chat/chat-page';
 import LoginPage from '../pages/login/login-page';
 import { TypeMessagesFromServer } from '../utils/enums/messages-from-server';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
+import Storage from './storage';
 import User from './user';
 
 export default class App {
@@ -62,21 +63,19 @@ export default class App {
   }
 
   private autoLogin() {
-    if (sessionStorage.getItem('current-user_nuttik_login') && sessionStorage.getItem('current-user_nuttik_password')) {
-      this.user.login = sessionStorage.getItem('current-user_nuttik_login');
-      this.user.password = sessionStorage.getItem('current-user_nuttik_password');
+    const storageUser = Storage.getUser();
+    if (typeof storageUser === 'object') {
+      this.user.login = storageUser.login;
+      this.user.password = storageUser.password;
       WebSocketAPI.sendUserAuthentication(this.webSocket, this.user.login, this.user.password);
     }
   }
 
   public login() {
     this.user.isLogin = true;
-    if (
-      !sessionStorage.getItem('current-user_nuttik_login') &&
-      !sessionStorage.getItem('urrent-user_nuttik_password')
-    ) {
-      sessionStorage.setItem('current-user_nuttik_login', this.user.login);
-      sessionStorage.setItem('current-user_nuttik_password', this.user.password);
+    const storageUser = Storage.getUser();
+    if (typeof storageUser === 'boolean') {
+      Storage.setUser(this.user.login, this.user.password);
     }
     if (window.location.pathname === this.router.urlPath.LOGIN) {
       this.router.urlRoute(this, this.router.urlPath.CHAT);
@@ -85,8 +84,7 @@ export default class App {
 
   public logout() {
     this.user.isLogin = false;
-    sessionStorage.removeItem('current-user_nuttik_login');
-    sessionStorage.removeItem('current-user_nuttik_password');
+    Storage.removeUser();
     this.router.urlRoute(this, this.router.urlPath.LOGIN);
   }
 
