@@ -1,5 +1,6 @@
 import WebSocketAPI from '../api/api';
 import ErrorsFromResponses from '../api/errorsApi';
+import WebSocketManager from '../api/webSoket';
 import Chat from '../components/chat/chat';
 import Message from '../components/chat/message/message';
 import PopUp from '../components/popUp/popUp';
@@ -13,9 +14,9 @@ import Storage from './storage';
 import User from './user';
 
 export default class App {
-  webSocket: WebSocket;
+  webSocketManager: WebSocketManager;
 
-  URL: string;
+  webSocket: WebSocket;
 
   loginPage: LoginPage;
 
@@ -32,37 +33,16 @@ export default class App {
   constructor() {
     this.loginPage = new LoginPage(this);
     this.router = new Router();
-    this.URL = 'ws://localhost:4000';
     this.user = new User('', '');
   }
 
   public async start() {
-    this.webSocket = new WebSocket(this.URL);
-    this.webSocket.onopen = () => {
-      this.autoLogin();
-      this.openPage();
-    };
-    this.webSocket.onmessage = (event) => {
-      this.onMessage(JSON.parse(event.data));
-    };
-    this.webSocket.onclose = () => {
-      this.addPopUpConnectionError();
-    };
-    this.webSocket.onerror = () => {
-      this.addPopUpConnectionError();
-    };
+    this.webSocketManager = new WebSocketManager();
+    this.webSocketManager.init(this);
     window.onpopstate = () => this.openPage();
   }
 
-  private addPopUpConnectionError() {
-    const handler = function () {
-      const app = new App();
-      app.start();
-    };
-    PopUp.createConnection(handler);
-  }
-
-  private autoLogin() {
+  public autoLogin() {
     const storageUser = Storage.getUser();
     if (typeof storageUser === 'object') {
       this.user.login = storageUser.login;
@@ -88,7 +68,7 @@ export default class App {
     this.router.urlRoute(this, this.router.urlPath.LOGIN);
   }
 
-  private openPage() {
+  public openPage() {
     this.router.checkAndChangeUrl();
     //даю отсрочку чтобы сменить адрес страницы и открываю страницу
     setTimeout(() => {
@@ -97,37 +77,7 @@ export default class App {
     }, 200);
   }
 
-  private onMessage(message: ResponseServer) {
-    switch (message.type) {
-      case TypeMessagesFromServer.ERROR:
-        const error = new ErrorsFromResponses(message);
-        error.catchError(this);
-        break;
-      case TypeMessagesFromServer.USER_LOGIN:
-        this.login();
-        break;
-      case TypeMessagesFromServer.USER_LOGOUT:
-        this.logout();
-        break;
-      case TypeMessagesFromServer.USER_EXTERNAL_LOGIN:
-        this.changeUserExternalStatus(message);
-        break;
-      case TypeMessagesFromServer.USER_EXTERNAL_LOGOUT:
-        this.changeUserExternalStatus(message);
-        break;
-      case TypeMessagesFromServer.MSG_SEND:
-        this.chat.getMessageFromServer(this, message);
-        break;
-      case TypeMessagesFromServer.MSG_READ:
-        Message.changeStatusReadedMessage(this, message);
-        break;
-      case TypeMessagesFromServer.MSG_DELETE:
-        Message.deleteMessage(this, message);
-        break;
-    }
-  }
-
-  private changeUserExternalStatus(message: ResponseServer) {
+  public changeUserExternalStatus(message: ResponseServer) {
     if (this.chat) {
       this.chat.userList.changUserStatus(this, message.payload.user.login, message.payload.user.isLogined);
       //меняю статус в диалоге
