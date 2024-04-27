@@ -91,7 +91,6 @@ export default class App {
   }
 
   private openPage() {
-    //выбираю какую страницу открывать
     this.router.checkAndChangeUrl();
     //даю отсрочку чтобы сменить адрес страницы и открываю страницу
     setTimeout(() => {
