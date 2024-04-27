@@ -1,4 +1,3 @@
-import WebSocketAPI from '../api/api';
 import App from '../app/app';
 import { TypeMessagesFromServer } from '../utils/enums/messages-from-server';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
@@ -9,6 +8,7 @@ import PopUp from '../components/popUp/popUp';
 const URL = 'ws://localhost:4000';
 export default class WebSocketManager {
   private webSocket: WebSocket;
+
   private URL: string;
 
   constructor() {
