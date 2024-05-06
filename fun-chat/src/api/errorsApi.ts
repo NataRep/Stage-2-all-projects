@@ -1,6 +1,7 @@
 import App from '../app/app';
 import PopUp from '../components/popUp/popUp';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
+import { UrlPath } from '../utils/enums/url-path';
 
 const userError: string[] = [
   'a user with this login is already authorized',
@@ -24,7 +25,7 @@ export default class ErrorsFromResponses {
   }
 
   private handlerUserError(app: App) {
-    if (window.location.pathname != app.router.urlPath.LOGIN) {
+    if (window.location.pathname != UrlPath.LOGIN) {
       app.logout();
     }
   }

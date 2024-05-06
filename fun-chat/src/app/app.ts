@@ -7,6 +7,7 @@ import ChatPage from '../pages/chat/chat-page';
 import LoginPage from '../pages/login/login-page';
 import { ResponseServer } from '../utils/interfaces.ts/interfaces';
 import Storage from './storage';
+import { UrlPath } from '../utils/enums/url-path';
 import User from './user';
 
 export default class App {
@@ -50,15 +51,15 @@ export default class App {
   public login() {
     this.user.isLogin = true;
     Storage.setUser(this.user.login, this.user.password);
-    if (window.location.pathname === this.router.urlPath.LOGIN) {
-      this.router.urlRoute(this, this.router.urlPath.CHAT);
+    if (window.location.pathname === UrlPath.LOGIN) {
+      this.router.urlRoute(this, UrlPath.CHAT);
     }
   }
 
   public logout() {
     this.user.isLogin = false;
     Storage.removeUser();
-    this.router.urlRoute(this, this.router.urlPath.LOGIN);
+    this.router.urlRoute(this, UrlPath.LOGIN);
   }
 
   public openPage() {

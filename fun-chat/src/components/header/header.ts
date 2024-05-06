@@ -2,6 +2,7 @@ import App from '../../app/app';
 import Button from '../button/button';
 import WebSocketAPI from '../../api/api';
 import { createLogotype } from '../logotype/logotype';
+import { UrlPath } from '../../utils/enums/url-path';
 import './header.scss';
 
 export class Header {
@@ -22,15 +23,15 @@ export class Header {
     user.className = 'header__user';
     user.innerHTML = `Hello, ${app.user.login}!`;
 
-    if (window.location.pathname === app.router.urlPath.CHAT) {
+    if (window.location.pathname === UrlPath.CHAT) {
       buttonsRow.append(buttonAbout);
       buttonsRow.append(buttonLogout);
     }
-    if (window.location.pathname === app.router.urlPath.ABOUT && app.user.isLogin === true) {
+    if (window.location.pathname === UrlPath.ABOUT && app.user.isLogin === true) {
       buttonsRow.append(buttonChat);
       buttonsRow.append(buttonLogout);
     }
-    if (window.location.pathname === app.router.urlPath.ABOUT && app.user.isLogin === false) {
+    if (window.location.pathname === UrlPath.ABOUT && app.user.isLogin === false) {
       buttonsRow.append(buttonLogin);
     }
 
@@ -47,7 +48,7 @@ export class Header {
   static createHeaderButtons(app: App): HTMLElement[] {
     const buttonArray: HTMLElement[] = [];
     const buttonAbout = Button.create('About Chat', ['button_about'], () => {
-      app.router.urlRoute(app, app.router.urlPath.ABOUT);
+      app.router.urlRoute(app, UrlPath.ABOUT);
     });
     buttonArray.push(buttonAbout);
 
@@ -57,12 +58,12 @@ export class Header {
     buttonArray.push(buttonLogout);
 
     const buttonChat = Button.create('Chat', ['button_chat'], () => {
-      app.router.urlRoute(app, app.router.urlPath.CHAT);
+      app.router.urlRoute(app, UrlPath.CHAT);
     });
     buttonArray.push(buttonChat);
 
     const buttonLogin = Button.create('Login', ['button_login'], () => {
-      app.router.urlRoute(app, app.router.urlPath.LOGIN);
+      app.router.urlRoute(app, UrlPath.LOGIN);
     });
     buttonArray.push(buttonLogin);
 

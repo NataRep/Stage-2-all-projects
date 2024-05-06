@@ -6,16 +6,6 @@ import { UrlPath } from '../../utils/enums/url-path';
 import Storage from '../../app/storage';
 
 export default class Router {
-  urlPath;
-
-  constructor() {
-    this.urlPath = {
-      LOGIN: '/',
-      CHAT: '/chat',
-      ABOUT: '/about',
-    };
-  }
-
   public urlRoute(app: App, urlPath: string) {
     window.history.pushState({}, '', urlPath);
     this.urlLocationHandler(app);
@@ -23,41 +13,41 @@ export default class Router {
 
   private urlLocationHandler(app: App) {
     Page.clearContent();
-    let location = window.location.pathname;
-    if (!Object.values(this.urlPath).includes(location)) {
-      location = '/';
+    let location = window.location.pathname as UrlPath;
+    if (!Object.values(UrlPath).includes(location)) {
+      location = UrlPath.LOGIN;
     }
-    if (location === this.urlPath.LOGIN) {
+    if (location === UrlPath.LOGIN) {
       if (Storage.getUser()) {
         Storage.removeUser();
       }
       app.loginPage.open();
-    } else if (location === this.urlPath.CHAT) {
+    } else if (location === UrlPath.CHAT) {
       if (!app.chatPage) {
         app.chatPage = new ChatPage(app);
       }
 
       app.chatPage.render();
-    } else if (location === this.urlPath.ABOUT) {
+    } else if (location === UrlPath.ABOUT) {
       app.aboutPage = new AboutPage(app);
       app.aboutPage.render();
     }
   }
 
   public checkAndChangeUrl() {
-    const urlPath = window.location.pathname;
+    const urlPath = window.location.pathname as UrlPath;
 
     //страница не существует в списке доступных - меняем адрес на /
-    if (window.location.pathname.length === 0 || !Object.values(this.urlPath).includes(urlPath)) {
-      window.location.pathname = this.urlPath.LOGIN;
+    if (window.location.pathname.length === 0 || !Object.values(UrlPath).includes(urlPath)) {
+      window.location.pathname = UrlPath.LOGIN;
     }
     //у незалогинненого нет доступа к странице входа
-    if (urlPath === this.urlPath.CHAT && !Storage.getUser()) {
-      window.location.pathname = this.urlPath.LOGIN;
+    if (urlPath === UrlPath.CHAT && !Storage.getUser()) {
+      window.location.pathname = UrlPath.LOGIN;
     }
     //у залогиненого нет доступа к странице входа
-    if (urlPath === this.urlPath.LOGIN && Storage.getUser()) {
-      window.location.pathname = this.urlPath.CHAT;
+    if (urlPath === UrlPath.LOGIN && Storage.getUser()) {
+      window.location.pathname = UrlPath.CHAT;
     }
   }
 }
