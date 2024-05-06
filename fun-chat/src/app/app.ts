@@ -49,10 +49,7 @@ export default class App {
 
   public login() {
     this.user.isLogin = true;
-    const storageUser = Storage.getUser();
-    if (typeof storageUser === 'boolean') {
-      Storage.setUser(this.user.login, this.user.password);
-    }
+    Storage.setUser(this.user.login, this.user.password);
     if (window.location.pathname === this.router.urlPath.LOGIN) {
       this.router.urlRoute(this, this.router.urlPath.CHAT);
     }
