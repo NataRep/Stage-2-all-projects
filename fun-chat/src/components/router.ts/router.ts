@@ -2,6 +2,8 @@ import App from '../../app/app';
 import Page from '../../pages/page';
 import ChatPage from '../../pages/chat/chat-page';
 import AboutPage from '../../pages/about/about-page';
+import { UrlPath } from '../../utils/enums/url-path';
+import Storage from '../../app/storage';
 
 export default class Router {
   urlPath;
@@ -26,8 +28,8 @@ export default class Router {
       location = '/';
     }
     if (location === this.urlPath.LOGIN) {
-      if (sessionStorage.getItem('current-user_nuttik')) {
-        sessionStorage.removeItem('current-user_nuttik');
+      if (Storage.getUser()) {
+        Storage.removeUser();
       }
       app.loginPage.open();
     } else if (location === this.urlPath.CHAT) {
@@ -49,12 +51,12 @@ export default class Router {
     if (window.location.pathname.length === 0 || !Object.values(this.urlPath).includes(urlPath)) {
       window.location.pathname = this.urlPath.LOGIN;
     }
-    //у залогинненого нет доступа к странице входа
-    if (urlPath === this.urlPath.CHAT && !sessionStorage.getItem('current-user_nuttik_login')) {
+    //у незалогинненого нет доступа к странице входа
+    if (urlPath === this.urlPath.CHAT && !Storage.getUser()) {
       window.location.pathname = this.urlPath.LOGIN;
     }
     //у залогиненого нет доступа к странице входа
-    if (urlPath === this.urlPath.LOGIN && sessionStorage.getItem('current-user_nuttik_login')) {
+    if (urlPath === this.urlPath.LOGIN && Storage.getUser()) {
       window.location.pathname = this.urlPath.CHAT;
     }
   }
